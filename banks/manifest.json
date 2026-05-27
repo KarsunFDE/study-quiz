@@ -6,10 +6,10 @@
       "dateRange": "Tue 26 May – Fri 29 May 2026",
       "weekReady": true,
       "days": [
-        { "id": "Tuesday",   "label": "Tue 26 May", "ready": true, "questionCount": 45 },
-        { "id": "Wednesday", "label": "Wed 27 May", "ready": true, "questionCount": 46 },
-        { "id": "Thursday",  "label": "Thu 28 May", "ready": true, "questionCount": 45 },
-        { "id": "Friday",    "label": "Fri 29 May", "ready": true, "questionCount": 45 }
+        { "id": "Tuesday",   "label": "Tue 26 May", "ready": true, "questionCount": 43 },
+        { "id": "Wednesday", "label": "Wed 27 May", "ready": true, "questionCount": 43 },
+        { "id": "Thursday",  "label": "Thu 28 May", "ready": true, "questionCount": 44 },
+        { "id": "Friday",    "label": "Fri 29 May", "ready": true, "questionCount": 43 }
       ]
     },
     "W02": {

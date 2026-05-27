@@ -4,48 +4,45 @@
     "day": "Thursday",
     "dayLabel": "Thu 28 May",
     "topics": [
-      "llm-engineering",
-      "five-disciplines",
-      "demo-to-prod-antipatterns",
-      "magic-box-framing",
       "auditability",
-      "hallucination-categories",
-      "confabulation",
-      "stale-knowledge",
-      "over-confidence",
-      "format-drift",
-      "truncation",
-      "task-specific-evaluation",
       "bedrock-anchor",
-      "fedramp",
-      "claude-model-catalog",
-      "model-selection",
-      "known-bad-model-ids",
-      "invoke-model-signature",
-      "system-prompt-as-artifact",
-      "model-id-configuration",
-      "prompt-caching",
-      "streaming-sse",
-      "ttft",
-      "streaming-structured-output-pitfall",
-      "retry-classification",
-      "exponential-backoff-jitter",
       "circuit-breaker",
-      "content-filter-422",
-      "cost-telemetry",
       "claude-cost-gradient",
-      "model-family-routing",
-      "war-room-incident-mode",
+      "claude-model-catalog",
       "codex-adversarial-light",
-      "hitl-federal"
+      "confabulation",
+      "cost-telemetry",
+      "demo-to-prod-antipatterns",
+      "exponential-backoff-jitter",
+      "fedramp",
+      "five-disciplines",
+      "format-drift",
+      "hallucination-categories",
+      "invoke-model-signature",
+      "known-bad-model-ids",
+      "llm-engineering",
+      "magic-box-framing",
+      "model-family-routing",
+      "model-id-configuration",
+      "model-selection",
+      "over-confidence",
+      "prompt-caching",
+      "retry-classification",
+      "stale-knowledge",
+      "streaming-sse",
+      "streaming-structured-output-pitfall",
+      "system-prompt-as-artifact",
+      "task-specific-evaluation",
+      "truncation",
+      "ttft"
     ],
     "sourceCount": 9,
-    "questionCount": 45,
+    "questionCount": 44,
     "generated": "2026-05-27",
     "typeMix": {
       "mcq": 30,
       "multi-select": 7,
-      "tf-justified": 8
+      "tf-justified": 7
     }
   },
   "questions": [
@@ -1924,62 +1921,6 @@
           "title": "Hands-on Exercise — Cost",
           "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/8-cost-structure-of-llms.md#7-hands-on-exercise",
           "anchor": "7-hands-on-exercise"
-        }
-      ]
-    },
-    {
-      "id": "W01-Thu-Q45",
-      "type": "tf-justified",
-      "difficulty": "synthesis",
-      "topics": [
-        "war-room-incident-mode",
-        "hitl-federal"
-      ],
-      "stem": "The W1 Thu war-room scenario instructs the cohort to ship a working solicitation draft to the Contracting Officer by Friday even if it contains potentially hallucinated FAR clauses, on the grounds that 'shipping beats polish' in incident mode.",
-      "choices": [
-        {
-          "id": "t1",
-          "branch": "true",
-          "text": "True — incident mode prioritises delivery over correctness; the CO can verify clauses post-hoc",
-          "correct": false
-        },
-        {
-          "id": "t2",
-          "branch": "true",
-          "text": "True — the cohort is explicitly graded on Friday-delivery throughput regardless of hallucination posture",
-          "correct": false
-        },
-        {
-          "id": "t3",
-          "branch": "true",
-          "text": "True — Codex Adversarial Review only flags hallucinations at P2 severity in W1 Light calibration",
-          "correct": false
-        },
-        {
-          "id": "f1",
-          "branch": "false",
-          "text": "False — the CO explicitly will not sign off on hallucinated FAR clauses, and the cohort's job is to write an honest gap analysis distinguishing what the platform can do this week from what it cannot yet",
-          "correct": true
-        },
-        {
-          "id": "f2",
-          "branch": "false",
-          "text": "False — the war-room scenario forbids shipping any code to the CO under any condition during W1",
-          "correct": false
-        },
-        {
-          "id": "f3",
-          "branch": "false",
-          "text": "False — the scenario requires the cohort to obtain GSA approval before any drafting workflow runs at all",
-          "correct": false
-        }
-      ],
-      "explanation": "The D4 war-room brief is explicit: 'She'll be a guinea pig for your platform — but she won't sign off on hallucinated FAR clauses.' The EOD deliverable is a cohort-authored gap analysis distinguishing shippable from not-shippable. F2 overstates the constraint; F3 invents a GSA approval step; the T branch inverts the discipline the war-room teaches.",
-      "sources": [
-        {
-          "title": "W1 Thu War-Room — What we're tackling today",
-          "url": "https://github.com/KarsunFDE/content/blob/main/W01/war-room/D4.md#what-were-tackling-today--why",
-          "anchor": "what-were-tackling-today--why"
         }
       ]
     }

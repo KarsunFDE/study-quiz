@@ -4,41 +4,40 @@
     "day": "Tuesday",
     "dayLabel": "Tue 26 May",
     "topics": [
+      "api-gateway",
+      "bedrock-model-access",
+      "bias-detection",
+      "brownfield-debt",
+      "claude-code",
+      "container-first",
+      "correlation-ids",
+      "debt-categories",
       "fde-role",
       "fde-situations",
-      "programme-arc",
-      "claude-code",
-      "mcp",
-      "skills",
-      "subagents",
       "hooks",
-      "microservices-boundaries",
-      "api-gateway",
-      "service-mesh",
-      "container-first",
-      "modernization-6r",
-      "oauth2-jwt",
-      "jwt-claims",
-      "correlation-ids",
-      "structured-logging",
-      "traceparent",
-      "oidc-cicd",
       "iam-trust-policy",
-      "bedrock-model-access",
-      "brownfield-debt",
-      "debt-categories",
       "inventory-discipline",
-      "vendor-comparison",
+      "jwt-claims",
+      "mcp",
+      "microservices-boundaries",
+      "modernization-6r",
+      "oidc-cicd",
+      "programme-arc",
       "public-sources",
-      "bias-detection"
+      "service-mesh",
+      "skills",
+      "structured-logging",
+      "subagents",
+      "traceparent",
+      "vendor-comparison"
     ],
     "sourceCount": 9,
-    "questionCount": 45,
+    "questionCount": 43,
     "generated": "2026-05-27",
     "typeMix": {
-      "mcq": 33,
+      "mcq": 32,
       "multi-select": 6,
-      "tf-justified": 6
+      "tf-justified": 5
     }
   },
   "questions": [
@@ -1838,84 +1837,6 @@
           "title": "Best Practices (microservices)",
           "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/4-the-acquire-gov-training-repo.md#6-best-practices",
           "anchor": "6-best-practices"
-        }
-      ]
-    },
-    {
-      "id": "W01-Tue-Q44",
-      "type": "mcq",
-      "difficulty": "recall",
-      "topics": [
-        "war-room-tour"
-      ],
-      "stem": "Tuesday's war-room is in 'tour' mode rather than 'incident' mode. What's the practical difference per the brief?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Tour walks the codebase as comprehension practice; incident-driven war-rooms start Thursday",
-          "correct": true
-        },
-        {
-          "id": "b",
-          "text": "Tour mode has a 90-minute time limit; incident mode is open-ended",
-          "correct": false
-        },
-        {
-          "id": "c",
-          "text": "Tour mode is graded; incident mode is ungraded practice",
-          "correct": false
-        },
-        {
-          "id": "d",
-          "text": "Tour mode runs entirely on the instructor's laptop; cohort doesn't open their editors",
-          "correct": false
-        }
-      ],
-      "explanation": "The Tue war-room brief: 'Mode: Tour, not Incident. Day 1 isn't a client emergency. The instructor walks the codebase and shows how an FDE uses Claude Code to comprehend an unfamiliar system fast. Real incident-driven war-rooms start Thu.' The other options invent constraints not in the brief.",
-      "sources": [
-        {
-          "title": "Tue war-room",
-          "url": "https://github.com/KarsunFDE/content/blob/main/W01/war-room/D2.md#w1-tue-war-room--what-youre-tackling-today",
-          "anchor": "w1-tue-war-room--what-youre-tackling-today"
-        }
-      ]
-    },
-    {
-      "id": "W01-Tue-Q45",
-      "type": "mcq",
-      "difficulty": "applied",
-      "topics": [
-        "war-room-tour"
-      ],
-      "stem": "What three artefacts must land by Tue 16:00 per the war-room EOD deliverable?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "A passing CI build + Claude Code login + Docker compose up succeeding",
-          "correct": false
-        },
-        {
-          "id": "b",
-          "text": "A pull request to the acquire-gov repo + a Confluence page + a Slack post",
-          "correct": false
-        },
-        {
-          "id": "c",
-          "text": "A diagnostic answer + weakest sub-stack named + one thing you want to be better at by W6",
-          "correct": true
-        },
-        {
-          "id": "d",
-          "text": "An ADR + a brownfield inventory + a pair-assignment vote",
-          "correct": false
-        }
-      ],
-      "explanation": "The EOD deliverable section names three things: (1) diagnostic answer — one paragraph naming the question you would have asked Claude to comprehend the codebase fastest, (2) the weakest sub-stack from the stack tour, (3) one thing you want to be better at by W6 (private 1:1 doc). C/D are tomorrow's work; B uses Slack which isn't in the toolchain for Cohort #1.",
-      "sources": [
-        {
-          "title": "EOD deliverable (Tue 16:00)",
-          "url": "https://github.com/KarsunFDE/content/blob/main/W01/war-room/D2.md#eod-deliverable-tue-1600",
-          "anchor": "eod-deliverable-tue-1600"
         }
       ]
     }

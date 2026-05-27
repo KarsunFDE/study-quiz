@@ -4,48 +4,48 @@
     "day": "Friday",
     "dayLabel": "Fri 29 May",
     "topics": [
-      "structured-output",
-      "pydantic-v2",
-      "extra-forbid",
-      "field-validators",
-      "validation-context",
-      "structure-enforcement-tiers",
-      "fail-loud",
-      "two-layer-validation",
-      "bean-validation",
-      "jackson-config",
-      "contract-testing",
-      "context-engineering",
-      "system-prompt-architecture",
-      "dynamic-context-assembly",
-      "context-compression",
-      "token-budgeting",
-      "resolved-prompt-logging",
-      "prompt-versioning",
-      "prompt-registry",
-      "eval-harness",
-      "rollout-strategies",
-      "eval-pyramid",
-      "hitl-spectrum",
-      "reversibility-blast-radius",
-      "workflow-vs-runtime-hitl",
-      "seven-hitl-touchpoints",
-      "hitl-failure-modes",
       "async-def-vs-def",
+      "bean-validation",
+      "context-compression",
+      "context-engineering",
+      "contract-testing",
+      "dynamic-context-assembly",
+      "eval-harness",
+      "eval-pyramid",
+      "extra-forbid",
+      "fail-loud",
       "fastapi-lifespan",
-      "httpx-asyncclient",
-      "spring-webclient",
-      "polyglot-integration-shape",
+      "field-validators",
       "first-pr-adversarial-review",
-      "war-room-incident-triage"
+      "hitl-failure-modes",
+      "hitl-spectrum",
+      "httpx-asyncclient",
+      "jackson-config",
+      "polyglot-integration-shape",
+      "prompt-registry",
+      "prompt-versioning",
+      "pydantic-v2",
+      "resolved-prompt-logging",
+      "reversibility-blast-radius",
+      "rollout-strategies",
+      "seven-hitl-touchpoints",
+      "spring-webclient",
+      "structure-enforcement-tiers",
+      "structured-output",
+      "system-prompt-architecture",
+      "token-budgeting",
+      "two-layer-validation",
+      "validation-context",
+      "war-room-incident-triage",
+      "workflow-vs-runtime-hitl"
     ],
     "sourceCount": 8,
-    "questionCount": 45,
+    "questionCount": 43,
     "generated": "2026-05-27",
     "typeMix": {
       "mcq": 33,
-      "multi-select": 6,
-      "tf-justified": 6
+      "multi-select": 5,
+      "tf-justified": 5
     }
   },
   "questions": [
@@ -1807,85 +1807,6 @@
     },
     {
       "id": "W01-Fri-Q43",
-      "type": "mcq",
-      "difficulty": "recall",
-      "topics": [
-        "war-room-incident-triage",
-        "hitl-spectrum"
-      ],
-      "stem": "Per the W1 Fri war-room brief, what three concerns converge in the 09:00 escalation framing?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Cost (overnight Bedrock spend), reliability (retry + idempotency + cost-per-request logging), and HITL (1st of 7 touchpoints)",
-          "correct": true
-        },
-        {
-          "id": "b",
-          "text": "Pair-assignment, vendor-comparative re-vote, and brownfield-debt inventory",
-          "correct": false
-        },
-        {
-          "id": "c",
-          "text": "Auth0 token expiry, correlation-ID misuse, and a failing CI build on the develop branch",
-          "correct": false
-        },
-        {
-          "id": "d",
-          "text": "RAG retrieval quality, eval-harness coverage, and a model-version rollover that broke the schema",
-          "correct": false
-        }
-      ],
-      "explanation": "The war-room brief is explicit: cost (the $340 overnight spend), reliability (continuing Thu's discipline with more rigour), and HITL (the 1st-of-7 programme touchpoint). A is Wed's work; C invents a Tue-flavoured triage; D belongs to W2.",
-      "sources": [
-        {
-          "title": "W1 Fri war-room — what we're tackling today",
-          "url": "https://github.com/KarsunFDE/content/blob/main/W01/war-room/D5.md#what-were-tackling-today--why",
-          "anchor": "what-were-tackling-today--why"
-        }
-      ]
-    },
-    {
-      "id": "W01-Fri-Q44",
-      "type": "mcq",
-      "difficulty": "applied",
-      "topics": [
-        "war-room-incident-triage"
-      ],
-      "stem": "The Fri war-room mentions a draft that cited \"48 CFR 47.305-2,\" a FAR paragraph that doesn't exist. Per the brief, how is this hallucination handled today, given that RAG ships next week?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Patch the prompt to forbid FAR citations entirely until RAG arrives, then re-enable in W2",
-          "correct": false
-        },
-        {
-          "id": "b",
-          "text": "Roll back to Thursday's PR and freeze new feature work until the hallucination is resolved",
-          "correct": false
-        },
-        {
-          "id": "c",
-          "text": "Manage it today via the existing tools, and document it as the concrete problem RAG will solve so W2 Mon's Plan Day frames RAG as the answer to *this* incident",
-          "correct": true
-        },
-        {
-          "id": "d",
-          "text": "Escalate the hallucination to the federal-acquisitions ethics board for incident review",
-          "correct": false
-        }
-      ],
-      "explanation": "The brief is explicit: the hallucination has to be managed today even though RAG (the real fix) ships next week, and it is documented as the concrete problem RAG will solve. W2 Mon Plan Day uses it as the framing example — not an abstract topic. A/C/D invent over-correcting responses the brief does not prescribe.",
-      "sources": [
-        {
-          "title": "Reference — W2 handoff",
-          "url": "https://github.com/KarsunFDE/content/blob/main/W01/war-room/D5.md#reference",
-          "anchor": "reference"
-        }
-      ]
-    },
-    {
-      "id": "W01-Fri-Q45",
       "type": "mcq",
       "difficulty": "applied",
       "topics": [

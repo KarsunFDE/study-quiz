@@ -4,49 +4,48 @@
     "day": "Wednesday",
     "dayLabel": "Wed 27 May",
     "topics": [
-      "wed-shape",
-      "instant-runoff-voting",
-      "pair-project-repos",
-      "comparative-am",
-      "galentai-vs-redux",
-      "public-source-ci",
-      "four-stage-ci",
-      "source-tiers",
-      "horizontal-vs-vertical",
-      "comparative-matrix",
+      "adr-madr",
+      "adr-nygard",
       "analyst-frames",
-      "modesty-in-claims",
       "bounded-contexts",
-      "jwt-propagation",
+      "bug-hunt-vs-catalogue",
       "claim-revalidation",
+      "commitment-vs-comparison-adr",
+      "comparative-am",
+      "comparative-matrix",
+      "container-readiness",
+      "continuous-git-history",
       "correlation-ids",
+      "debt-catalogue-fields",
+      "directory-skeleton",
+      "four-stage-ci",
+      "fowler-quadrants",
+      "galentai-vs-redux",
+      "healthcheck",
+      "horizontal-vs-vertical",
+      "immutable-tags",
+      "impact-effort-matrix",
+      "instant-runoff-voting",
+      "jwt-propagation",
+      "modesty-in-claims",
+      "multi-stage-dockerfile",
+      "no-fix-during-inventory",
+      "pair-project-repos",
+      "pedagogical-debt",
+      "public-source-ci",
+      "source-tiers",
       "structured-logging",
       "sync-vs-async",
-      "container-readiness",
-      "multi-stage-dockerfile",
-      "immutable-tags",
-      "healthcheck",
       "volume-persistence",
-      "adr-nygard",
-      "adr-madr",
-      "commitment-vs-comparison-adr",
-      "directory-skeleton",
-      "continuous-git-history",
-      "fowler-quadrants",
-      "debt-catalogue-fields",
-      "impact-effort-matrix",
-      "no-fix-during-inventory",
-      "pedagogical-debt",
-      "bug-hunt-vs-catalogue",
-      "eod-deliverable"
+      "wed-shape"
     ],
     "sourceCount": 6,
-    "questionCount": 46,
+    "questionCount": 43,
     "generated": "2026-05-27",
     "typeMix": {
-      "mcq": 35,
-      "multi-select": 5,
-      "tf-justified": 6
+      "mcq": 34,
+      "multi-select": 4,
+      "tf-justified": 5
     }
   },
   "questions": [
@@ -1725,146 +1724,6 @@
     },
     {
       "id": "W01-Wed-Q41",
-      "type": "multi-select",
-      "difficulty": "recall",
-      "topics": [
-        "eod-deliverable"
-      ],
-      "stem": "By Wed 17:00, the EOD deliverable in the D3 war-room brief requires four things to land. Which of these are on that list? (Select all that apply.)",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Three comparative ADRs — one per pair, in each pair's claimed repo",
-          "correct": true
-        },
-        {
-          "id": "b",
-          "text": "Three Pair-Project repos scaffolded (README + ADR-0001 + specs/week-1.md skeleton)",
-          "correct": true
-        },
-        {
-          "id": "c",
-          "text": "A working RAG eval harness in each pair's eval/ directory",
-          "correct": false
-        },
-        {
-          "id": "d",
-          "text": "weeks/W01/brownfield-debt.md extended to 7+ items total",
-          "correct": true
-        },
-        {
-          "id": "e",
-          "text": "A deployed CI/CD pipeline pushing the pair repo to AWS Bedrock",
-          "correct": false
-        }
-      ],
-      "explanation": "The D3 war-room brief's four EOD items are: 3 comparative ADRs, 3 scaffolded repos, brownfield-debt extended to 7+ items, and 3 Karsun federal-acquisitions aspects committed without duplicates. The RAG eval harness lands W2 Fri per the overview's directory skeleton; a deployed CI/CD pipeline lands W2+ — neither belongs at Wed 17:00.",
-      "sources": [
-        {
-          "title": "W1 Wed War-Room — EOD deliverable (Wed 17:00)",
-          "url": "https://github.com/KarsunFDE/content/blob/main/W01/war-room/D3.md#eod-deliverable-wed-1700",
-          "anchor": "eod-deliverable-wed-1700"
-        }
-      ]
-    },
-    {
-      "id": "W01-Wed-Q42",
-      "type": "mcq",
-      "difficulty": "applied",
-      "topics": [
-        "eod-deliverable",
-        "wed-shape"
-      ],
-      "stem": "What is the fourth required EOD item beyond the three comparative ADRs, the three scaffolded repos, and the extended brownfield-debt list?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "A live demo of acquire-gov stack running on every pair's laptop",
-          "correct": false
-        },
-        {
-          "id": "b",
-          "text": "A Bedrock model-access verification screenshot from each pair",
-          "correct": false
-        },
-        {
-          "id": "c",
-          "text": "A signed copy of the FedRAMP-readiness checklist from the instructor",
-          "correct": false
-        },
-        {
-          "id": "d",
-          "text": "Three Karsun federal-acquisitions aspects committed (no duplicates) via each pair's ADR-0001",
-          "correct": true
-        }
-      ],
-      "explanation": "The fourth deliverable is the no-duplicate Karsun-aspect commitment via ADR-0001 — the IRV ceremony in the morning and the ADRs at 14:50–15:45 together enforce that each of the three pairs has claimed a distinct aspect. Bedrock model-access verification (D) is real but a Tuesday task per the W1 PLAN.md, not the Wed EOD line.",
-      "sources": [
-        {
-          "title": "W1 Wed War-Room — EOD deliverable (Wed 17:00)",
-          "url": "https://github.com/KarsunFDE/content/blob/main/W01/war-room/D3.md#eod-deliverable-wed-1700",
-          "anchor": "eod-deliverable-wed-1700"
-        }
-      ]
-    },
-    {
-      "id": "W01-Wed-Q43",
-      "type": "tf-justified",
-      "difficulty": "applied",
-      "topics": [
-        "eod-deliverable",
-        "pair-project-repos"
-      ],
-      "stem": "Two pairs both pitch for grants-portal-modern as their first-pick aspect. Both pairs can claim it as long as each pair commits its own ADR-0001 in its own fork.",
-      "choices": [
-        {
-          "id": "t1",
-          "branch": "true",
-          "text": "True — forking decouples the two repos so duplicate aspects are fine",
-          "correct": false
-        },
-        {
-          "id": "t2",
-          "branch": "true",
-          "text": "True — the cohort only needs three repos scaffolded, not three distinct aspects",
-          "correct": false
-        },
-        {
-          "id": "t3",
-          "branch": "true",
-          "text": "True — duplicate aspects are explicitly allowed when the underlying federal system has enough surface area for two pairs",
-          "correct": false
-        },
-        {
-          "id": "f1",
-          "branch": "false",
-          "text": "False — Wed's EOD list requires three distinct aspects committed with no duplicates; the IRV mechanic exists precisely to resolve contested first-picks",
-          "correct": true
-        },
-        {
-          "id": "f2",
-          "branch": "false",
-          "text": "False — forking is technically prohibited in the KarsunFDE org's GitHub settings",
-          "correct": false
-        },
-        {
-          "id": "f3",
-          "branch": "false",
-          "text": "False — only one pair may use the grants-portal-modern repo name, but the others can re-use the aspect with different repo names",
-          "correct": false
-        }
-      ],
-      "explanation": "The EOD deliverable line is explicit: 'Three Karsun federal-acquisitions aspects committed (no duplicates) via each pair's ADR-0001.' The IRV ceremony at 08:30 is designed to resolve contested first-picks — pairs that lose IRV go to their second-or-third-ranked option. The 'forking decouples it' framing (t1) misses that the cohort-level constraint is on aspects, not on repos.",
-      "sources": [
-        {
-          "title": "EOD deliverable + 08:30 ceremony",
-          "url": "https://github.com/KarsunFDE/content/blob/main/W01/war-room/D3.md#eod-deliverable-wed-1700",
-          "anchor": "eod-deliverable-wed-1700"
-        }
-      ]
-    },
-    {
-      "id": "W01-Wed-Q44",
       "type": "mcq",
       "difficulty": "synthesis",
       "topics": [
@@ -1904,7 +1763,7 @@
       ]
     },
     {
-      "id": "W01-Wed-Q45",
+      "id": "W01-Wed-Q42",
       "type": "mcq",
       "difficulty": "applied",
       "topics": [
@@ -1943,7 +1802,7 @@
       ]
     },
     {
-      "id": "W01-Wed-Q46",
+      "id": "W01-Wed-Q43",
       "type": "mcq",
       "difficulty": "synthesis",
       "topics": [
