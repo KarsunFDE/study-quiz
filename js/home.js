@@ -105,7 +105,13 @@ async function renderWeeks() {
 
 function render() {
   const p = getProfile();
-  if (!p) { renderNamePicker(); return; }
+  const nav = $('#topnav');
+  if (!p) {
+    if (nav) nav.classList.add('hidden');
+    renderNamePicker();
+    return;
+  }
+  if (nav) { nav.classList.remove('hidden'); nav.classList.add('flex'); }
 
   $('#name-picker').classList.add('hidden');
   $('#dashboard').classList.remove('hidden');

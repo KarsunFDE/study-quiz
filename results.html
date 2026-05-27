@@ -10,8 +10,12 @@
 <body class="bg-slate-50 text-slate-900 min-h-screen">
 
 <header class="border-b border-slate-200 bg-white">
-  <div class="max-w-3xl mx-auto px-4 py-3 flex justify-between text-sm">
-    <a href="index.html" class="text-slate-500 hover:text-slate-900">← Dashboard</a>
+  <div class="max-w-3xl mx-auto px-4 py-3 flex justify-between items-center text-sm">
+    <a id="back-link" href="index.html" class="text-slate-500 hover:text-slate-900">← Dashboard</a>
+    <nav class="flex gap-3 text-sm">
+      <a href="index.html" class="text-slate-500 hover:text-slate-900">Take a quiz</a>
+      <a href="history.html" class="text-emerald-700 hover:underline">My study →</a>
+    </nav>
     <span id="who-foot" class="text-slate-500"></span>
   </div>
 </header>
@@ -31,6 +35,7 @@
     <div class="mt-6 flex flex-wrap gap-2">
       <button id="retry-same" class="bg-slate-900 text-white rounded px-3 py-1.5 text-sm">Take again (new shuffle)</button>
       <button id="retry-distributed" class="hidden bg-emerald-600 text-white rounded px-3 py-1.5 text-sm">Distributed retry (focus weak spots)</button>
+      <a href="history.html" class="border border-emerald-500 text-emerald-700 rounded px-3 py-1.5 text-sm">View study hub →</a>
       <a href="index.html" class="border border-slate-300 rounded px-3 py-1.5 text-sm">Done</a>
     </div>
   </section>

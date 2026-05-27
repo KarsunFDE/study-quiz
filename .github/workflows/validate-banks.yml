@@ -1,0 +1,22 @@
+name: Validate banks
+
+on:
+  pull_request:
+    paths: ['banks/**/*.json', 'scripts/**']
+  push:
+    branches: [main]
+    paths: ['banks/**/*.json', 'scripts/**']
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate every bank
+        run: |
+          set -e
+          find banks -name '*.json' ! -name manifest.json -print | \
+            xargs -I{} node scripts/validate-bank.mjs {}

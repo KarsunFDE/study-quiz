@@ -11,6 +11,13 @@ const p = getProfile();
 if (!p) location.href = 'index.html';
 $('#who-foot').textContent = p?.name || '';
 
+// If we got here from the history view, send the back-link there.
+const params = new URLSearchParams(location.search);
+if (params.get('from') === 'history') {
+  const back = $('#back-link');
+  if (back) { back.href = 'history.html'; back.textContent = '← My study'; }
+}
+
 const r = JSON.parse(sessionStorage.getItem('kfde:lastResult') || 'null');
 if (!r) location.href = 'index.html';
 
