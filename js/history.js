@@ -35,11 +35,11 @@ let topicRows = [];
 
 const history = getHistory();
 if (history.length === 0) {
-  $('#empty').classList.remove('hidden');
+  $('#empty').hidden = false;
 } else {
-  $('#overview').classList.remove('hidden');
-  $('#study-grid').classList.remove('hidden');
-  $('#quizzes-section').classList.remove('hidden');
+  $('#overview').hidden = false;
+  $('#study-grid').hidden = false;
+  $('#quizzes-section').hidden = false;
   renderOverview();
   buildReadingItems();
   buildTopicRows();

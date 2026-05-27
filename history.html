@@ -24,13 +24,13 @@
 
 <main class="max-w-5xl mx-auto px-4 py-8 space-y-8">
 
-  <section id="empty" class="hidden bg-white border border-slate-200 rounded-lg p-8 text-center">
+  <section id="empty" hidden class="bg-white border border-slate-200 rounded-lg p-8 text-center">
     <h2 class="text-lg font-semibold mb-1">No quiz history yet</h2>
     <p class="text-slate-500 mb-4">Take a quiz to start building your study list.</p>
     <a href="index.html" class="inline-block bg-slate-900 text-white rounded px-4 py-2 text-sm">Take a quiz</a>
   </section>
 
-  <section id="overview" class="hidden grid grid-cols-1 md:grid-cols-3 gap-4">
+  <section id="overview" hidden class="grid grid-cols-1 md:grid-cols-3 gap-4">
     <div class="bg-white border border-slate-200 rounded-lg p-4">
       <div class="text-xs uppercase tracking-wide text-slate-500">Quizzes taken</div>
       <div class="text-2xl font-semibold mt-1" id="ov-count">0</div>
@@ -45,7 +45,7 @@
     </div>
   </section>
 
-  <div id="study-grid" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div id="study-grid" hidden class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
     <section id="reading-section" class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col">
       <div class="flex items-baseline justify-between mb-1">
@@ -82,7 +82,7 @@
 
   </div>
 
-  <section id="quizzes-section" class="hidden bg-white border border-slate-200 rounded-lg p-6">
+  <section id="quizzes-section" hidden class="bg-white border border-slate-200 rounded-lg p-6">
     <h2 class="text-lg font-semibold mb-3">Quiz history</h2>
     <p class="text-sm text-slate-500 mb-4">Click any quiz to re-open its full results page (questions you got wrong + their reading links).</p>
     <ul id="quiz-history" class="space-y-2"></ul>
