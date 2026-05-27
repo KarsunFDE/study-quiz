@@ -28,18 +28,53 @@ if (!p) { location.href = 'index.html'; }
 $('#who').innerHTML = `Signed in as <strong>${escapeHtml(p.name)}</strong> · <button id="switch-user" class="text-slate-500 hover:underline">switch</button>`;
 $('#switch-user').onclick = () => { clearProfile(); location.href = 'index.html'; };
 
+const PAGE_SIZE = 5;
+const pageState = { reading: 0, topics: 0 };
+let readingItems = [];
+let topicRows = [];
+
 const history = getHistory();
 if (history.length === 0) {
   $('#empty').classList.remove('hidden');
 } else {
   $('#overview').classList.remove('hidden');
-  $('#reading-section').classList.remove('hidden');
-  $('#topics-section').classList.remove('hidden');
+  $('#study-grid').classList.remove('hidden');
   $('#quizzes-section').classList.remove('hidden');
   renderOverview();
-  renderReadingList();
-  renderTopics();
+  buildReadingItems();
+  buildTopicRows();
+  renderReadingPage();
+  renderTopicsPage();
   renderQuizHistory();
+  wirePagers();
+}
+
+function wirePagers() {
+  document.querySelectorAll('button[data-pager]').forEach(b => {
+    b.onclick = () => {
+      const which = b.dataset.pager;
+      const dir = Number(b.dataset.dir);
+      pageState[which] = Math.max(0, pageState[which] + dir);
+      if (which === 'reading') renderReadingPage();
+      else renderTopicsPage();
+    };
+  });
+}
+
+function pagerControls(which, total) {
+  const pager = $(`#${which}-pager`);
+  const label = document.querySelector(`[data-pager-label="${which}"]`);
+  if (total <= PAGE_SIZE) { pager.classList.add('hidden'); return; }
+  pager.classList.remove('hidden');
+  pager.classList.add('flex');
+  const totalPages = Math.ceil(total / PAGE_SIZE);
+  if (pageState[which] >= totalPages) pageState[which] = totalPages - 1;
+  const cur = pageState[which];
+  const first = cur * PAGE_SIZE + 1;
+  const last = Math.min(total, (cur + 1) * PAGE_SIZE);
+  label.textContent = `${first}–${last} of ${total} · page ${cur + 1} / ${totalPages}`;
+  pager.querySelector('[data-dir="-1"]').disabled = cur === 0;
+  pager.querySelector('[data-dir="1"]').disabled  = cur >= totalPages - 1;
 }
 
 function renderOverview() {
@@ -50,7 +85,7 @@ function renderOverview() {
   $('#ov-acc').textContent = acc.total ? `${Math.round(acc.pct * 100)}%` : '—';
 }
 
-function renderReadingList() {
+function buildReadingItems() {
   // for each source URL: count misses, track latest miss date, collect titles
   const stats = new Map();
   for (const quiz of history) {
@@ -66,42 +101,57 @@ function renderReadingList() {
       }
     }
   }
-  const items = [...stats.values()].sort((a, b) => b.misses - a.misses || b.lastTs - a.lastTs);
-  $('#reading-count').textContent = `${items.length} link${items.length === 1 ? '' : 's'}`;
-  if (items.length === 0) {
+  // weakest first = most misses; tiebreak by most-recent miss
+  readingItems = [...stats.values()].sort((a, b) => b.misses - a.misses || b.lastTs - a.lastTs);
+}
+
+function renderReadingPage() {
+  $('#reading-count').textContent = `${readingItems.length} link${readingItems.length === 1 ? '' : 's'}`;
+  if (readingItems.length === 0) {
     $('#reading-list').innerHTML = '<li class="text-slate-500">No misses yet — your reading list is empty.</li>';
+    pagerControls('reading', 0);
     return;
   }
-  $('#reading-list').innerHTML = items.map(it => `
+  const start = pageState.reading * PAGE_SIZE;
+  const slice = readingItems.slice(start, start + PAGE_SIZE);
+  $('#reading-list').innerHTML = slice.map(it => `
     <li class="flex items-start gap-3">
       <span class="inline-block mt-0.5 text-xs font-mono bg-rose-50 text-rose-700 border border-rose-100 rounded px-1.5 py-0.5 min-w-[2rem] text-center">×${it.misses}</span>
-      <div class="flex-1">
-        <a href="${it.url}" target="_blank" rel="noopener" class="text-emerald-700 hover:underline">${escapeHtml(it.title)}</a>
+      <div class="flex-1 min-w-0">
+        <a href="${it.url}" target="_blank" rel="noopener" class="text-emerald-700 hover:underline break-words">${escapeHtml(it.title)}</a>
         <div class="text-xs text-slate-400">last missed ${fmtDate(it.lastTs)}</div>
       </div>
     </li>
   `).join('');
+  pagerControls('reading', readingItems.length);
 }
 
-function renderTopics() {
+function buildTopicRows() {
   const stats = getTopicStats();
-  const rows = Object.entries(stats)
+  topicRows = Object.entries(stats)
     .filter(([, s]) => s.seen >= 2)
-    .sort((a, b) => a[1].pct - b[1].pct);
-  if (rows.length === 0) {
-    $('#topics-body').innerHTML = '<tr><td colspan="4" class="py-3 text-slate-500">Not enough data yet — take more quizzes.</td></tr>';
+    .sort((a, b) => a[1].pct - b[1].pct);   // weakest first (lowest accuracy)
+}
+
+function renderTopicsPage() {
+  $('#topics-count').textContent = `${topicRows.length} topic${topicRows.length === 1 ? '' : 's'}`;
+  if (topicRows.length === 0) {
+    $('#topics-body').innerHTML = '<tr><td colspan="3" class="py-3 text-slate-500">Not enough data yet — take more quizzes.</td></tr>';
+    pagerControls('topics', 0);
     return;
   }
-  $('#topics-body').innerHTML = rows.map(([t, s]) => {
+  const start = pageState.topics * PAGE_SIZE;
+  const slice = topicRows.slice(start, start + PAGE_SIZE);
+  $('#topics-body').innerHTML = slice.map(([t, s]) => {
     const pct = Math.round(s.pct * 100);
     const tone = pct < 50 ? 'text-rose-700' : pct < 75 ? 'text-amber-700' : 'text-emerald-700';
     return `<tr class="border-b border-slate-100 last:border-0">
-      <td class="py-2">${escapeHtml(t)}</td>
+      <td class="py-2 pr-2">${escapeHtml(t)}</td>
       <td class="text-right text-slate-500">${s.seen}</td>
-      <td class="text-right text-slate-500">${s.correct}</td>
       <td class="text-right pr-2 font-medium ${tone}">${pct}%</td>
     </tr>`;
   }).join('');
+  pagerControls('topics', topicRows.length);
 }
 
 function renderQuizHistory() {
