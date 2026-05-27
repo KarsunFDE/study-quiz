@@ -12,42 +12,42 @@
             {
               "level": 1,
               "text": "W1 Tue Orientation Reading — Programme arc + Claude Code + acquire-gov + Wed comparative prep",
-              "anchor": "w1-tue-orientation-reading-programme-arc-claude-code-acquire-gov-wed-comparative-prep"
+              "anchor": "w1-tue-orientation-reading--programme-arc--claude-code--acquire-gov--wed-comparative-prep"
             },
             {
               "level": 2,
               "text": "1. What this intensive is — programme arc + the 12 FDE situations (10 min)",
-              "anchor": "1-what-this-intensive-is-programme-arc-the-12-fde-situations-10-min"
+              "anchor": "1-what-this-intensive-is--programme-arc--the-12-fde-situations-10-min"
             },
             {
               "level": 2,
               "text": "2. Claude Code as comprehension accelerant — install, auth, plugins, custom skills (12 min)",
-              "anchor": "2-claude-code-as-comprehension-accelerant-install-auth-plugins-custom-skills-12-min"
+              "anchor": "2-claude-code-as-comprehension-accelerant--install-auth-plugins-custom-skills-12-min"
             },
             {
               "level": 2,
               "text": "3. The acquire-gov training repo — clone, compose, the 4-service mesh (12 min)",
-              "anchor": "3-the-acquire-gov-training-repo-clone-compose-the-4-service-mesh-12-min"
+              "anchor": "3-the-acquire-gov-training-repo--clone-compose-the-4-service-mesh-12-min"
             },
             {
               "level": 2,
               "text": "4. Auth + observability foundations — OAuth2/JWT + structured logging + correlation IDs (10 min)",
-              "anchor": "4-auth-observability-foundations-oauth2jwt-structured-logging-correlation-ids-10-min"
+              "anchor": "4-auth--observability-foundations--oauth2jwt--structured-logging--correlation-ids-10-min"
             },
             {
               "level": 2,
               "text": "5. CI/CD + Bedrock prerequisites — GHA workflows, AWS SSO, model access verification (8 min)",
-              "anchor": "5-cicd-bedrock-prerequisites-gha-workflows-aws-sso-model-access-verification-8-min"
+              "anchor": "5-cicd--bedrock-prerequisites--gha-workflows-aws-sso-model-access-verification-8-min"
             },
             {
               "level": 2,
               "text": "6. Brownfield debt — what you start surfacing today (12 min)",
-              "anchor": "6-brownfield-debt-what-you-start-surfacing-today-12-min"
+              "anchor": "6-brownfield-debt--what-you-start-surfacing-today-12-min"
             },
             {
               "level": 2,
               "text": "7. Prep for Wed — Karsun x GalentAI public-source reading list (12 min)",
-              "anchor": "7-prep-for-wed-karsun-x-galentai-public-source-reading-list-12-min"
+              "anchor": "7-prep-for-wed--karsun-x-galentai-public-source-reading-list-12-min"
             },
             {
               "level": 2,
@@ -69,7 +69,7 @@
             {
               "level": 1,
               "text": "What this intensive is — programme arc + the 12 FDE situations",
-              "anchor": "what-this-intensive-is-programme-arc-the-12-fde-situations"
+              "anchor": "what-this-intensive-is--programme-arc--the-12-fde-situations"
             },
             {
               "level": 2,
@@ -89,7 +89,7 @@
             {
               "level": 3,
               "text": "3.1 The Forward Deployed Engineer role — three definitions worth holding together",
-              "anchor": "31-the-forward-deployed-engineer-role-three-definitions-worth-holding-together"
+              "anchor": "31-the-forward-deployed-engineer-role--three-definitions-worth-holding-together"
             },
             {
               "level": 3,
@@ -99,7 +99,7 @@
             {
               "level": 3,
               "text": "3.3 The 12 FDE situations — the vocabulary the programme operates in",
-              "anchor": "33-the-12-fde-situations-the-vocabulary-the-programme-operates-in"
+              "anchor": "33-the-12-fde-situations--the-vocabulary-the-programme-operates-in"
             },
             {
               "level": 3,
@@ -146,7 +146,7 @@
             {
               "level": 1,
               "text": "Claude Code as comprehension accelerant — install, auth, plugins, custom skills",
-              "anchor": "claude-code-as-comprehension-accelerant-install-auth-plugins-custom-skills"
+              "anchor": "claude-code-as-comprehension-accelerant--install-auth-plugins-custom-skills"
             },
             {
               "level": 2,
@@ -181,7 +181,7 @@
             {
               "level": 3,
               "text": "3.4 MCP servers — when to add one",
-              "anchor": "34-mcp-servers-when-to-add-one"
+              "anchor": "34-mcp-servers--when-to-add-one"
             },
             {
               "level": 3,
@@ -228,7 +228,7 @@
             {
               "level": 1,
               "text": "The training repo — microservices mesh, container-first, four services across three runtimes",
-              "anchor": "the-training-repo-microservices-mesh-container-first-four-services-across-three-runtimes"
+              "anchor": "the-training-repo--microservices-mesh-container-first-four-services-across-three-runtimes"
             },
             {
               "level": 2,
@@ -248,7 +248,7 @@
             {
               "level": 3,
               "text": "3.1 North-south vs east-west — the two traffic axes",
-              "anchor": "31-north-south-vs-east-west-the-two-traffic-axes"
+              "anchor": "31-north-south-vs-east-west--the-two-traffic-axes"
             },
             {
               "level": 3,
@@ -268,7 +268,7 @@
             {
               "level": 3,
               "text": "3.5 Why microservices at all — the modernization angle",
-              "anchor": "35-why-microservices-at-all-the-modernization-angle"
+              "anchor": "35-why-microservices-at-all--the-modernization-angle"
             },
             {
               "level": 2,
@@ -310,7 +310,7 @@
             {
               "level": 1,
               "text": "Auth + observability foundations — OAuth2/JWT + structured logging + correlation IDs",
-              "anchor": "auth-observability-foundations-oauth2jwt-structured-logging-correlation-ids"
+              "anchor": "auth--observability-foundations--oauth2jwt--structured-logging--correlation-ids"
             },
             {
               "level": 2,
@@ -335,7 +335,7 @@
             {
               "level": 3,
               "text": "3.2 What the gateway actually checks — four claims",
-              "anchor": "32-what-the-gateway-actually-checks-four-claims"
+              "anchor": "32-what-the-gateway-actually-checks--four-claims"
             },
             {
               "level": 3,
@@ -382,7 +382,7 @@
             {
               "level": 1,
               "text": "CI/CD + cloud-LLM prerequisites — GHA workflows, OIDC-to-cloud, model-access verification",
-              "anchor": "cicd-cloud-llm-prerequisites-gha-workflows-oidc-to-cloud-model-access-verification"
+              "anchor": "cicd--cloud-llm-prerequisites--gha-workflows-oidc-to-cloud-model-access-verification"
             },
             {
               "level": 2,
@@ -412,17 +412,17 @@
             {
               "level": 3,
               "text": "3.3 The IAM trust policy — where scoping actually happens",
-              "anchor": "33-the-iam-trust-policy-where-scoping-actually-happens"
+              "anchor": "33-the-iam-trust-policy--where-scoping-actually-happens"
             },
             {
               "level": 3,
               "text": "3.4 The workflow side — three load-bearing lines",
-              "anchor": "34-the-workflow-side-three-load-bearing-lines"
+              "anchor": "34-the-workflow-side--three-load-bearing-lines"
             },
             {
               "level": 3,
               "text": "3.5 Cloud-LLM model access — a separate concern",
-              "anchor": "35-cloud-llm-model-access-a-separate-concern"
+              "anchor": "35-cloud-llm-model-access--a-separate-concern"
             },
             {
               "level": 2,
@@ -464,7 +464,7 @@
             {
               "level": 1,
               "text": "Brownfield debt — what an inventory is and how to do one",
-              "anchor": "brownfield-debt-what-an-inventory-is-and-how-to-do-one"
+              "anchor": "brownfield-debt--what-an-inventory-is-and-how-to-do-one"
             },
             {
               "level": 2,
@@ -509,7 +509,7 @@
             {
               "level": 3,
               "text": "3.6 The 6R / 7R framing",
-              "anchor": "36-the-6r-7r-framing"
+              "anchor": "36-the-6r--7r-framing"
             },
             {
               "level": 2,
@@ -551,7 +551,7 @@
             {
               "level": 1,
               "text": "Prep for Wed — public-source comparative discipline (vendor due diligence as FDE skill)",
-              "anchor": "prep-for-wed-public-source-comparative-discipline-vendor-due-diligence-as-fde-skill"
+              "anchor": "prep-for-wed--public-source-comparative-discipline-vendor-due-diligence-as-fde-skill"
             },
             {
               "level": 2,
@@ -633,12 +633,12 @@
             {
               "level": 1,
               "text": "W1 Tue War-Room — What you're tackling today",
-              "anchor": "w1-tue-war-room-what-youre-tackling-today"
+              "anchor": "w1-tue-war-room--what-youre-tackling-today"
             },
             {
               "level": 2,
               "text": "What we're tackling today + why",
-              "anchor": "what-were-tackling-today-why"
+              "anchor": "what-were-tackling-today--why"
             },
             {
               "level": 2,
@@ -670,32 +670,32 @@
             {
               "level": 1,
               "text": "W1 Wed Pre-Session — Comparative AM + Microservices PM + Pair-Project init",
-              "anchor": "w1-wed-pre-session-comparative-am-microservices-pm-pair-project-init"
+              "anchor": "w1-wed-pre-session--comparative-am--microservices-pm--pair-project-init"
             },
             {
               "level": 2,
               "text": "1. Wed at a glance — comparative AM + Microservices PM + Pair-Project init (5 min)",
-              "anchor": "1-wed-at-a-glance-comparative-am-microservices-pm-pair-project-init-5-min"
+              "anchor": "1-wed-at-a-glance--comparative-am--microservices-pm--pair-project-init-5-min"
             },
             {
               "level": 2,
               "text": "2. Reading for the comparative session — what to bring an opinion on (15 min)",
-              "anchor": "2-reading-for-the-comparative-session-what-to-bring-an-opinion-on-15-min"
+              "anchor": "2-reading-for-the-comparative-session--what-to-bring-an-opinion-on-15-min"
             },
             {
               "level": 2,
               "text": "3. Microservices Foundation primer — what you'll walk Wed PM (15 min)",
-              "anchor": "3-microservices-foundation-primer-what-youll-walk-wed-pm-15-min"
+              "anchor": "3-microservices-foundation-primer--what-youll-walk-wed-pm-15-min"
             },
             {
               "level": 2,
               "text": "4. Pair-Project repo init — what gets scaffolded Wed PM (10 min)",
-              "anchor": "4-pair-project-repo-init-what-gets-scaffolded-wed-pm-10-min"
+              "anchor": "4-pair-project-repo-init--what-gets-scaffolded-wed-pm-10-min"
             },
             {
               "level": 2,
               "text": "5. Brownfield-debt inventory — Wed PM continuation (5 min)",
-              "anchor": "5-brownfield-debt-inventory-wed-pm-continuation-5-min"
+              "anchor": "5-brownfield-debt-inventory--wed-pm-continuation-5-min"
             },
             {
               "level": 2,
@@ -712,7 +712,7 @@
             {
               "level": 1,
               "text": "Reading for the comparative session — what to bring an opinion on",
-              "anchor": "reading-for-the-comparative-session-what-to-bring-an-opinion-on"
+              "anchor": "reading-for-the-comparative-session--what-to-bring-an-opinion-on"
             },
             {
               "level": 2,
@@ -794,7 +794,7 @@
             {
               "level": 1,
               "text": "Microservices Foundation primer — what you'll walk Wed PM",
-              "anchor": "microservices-foundation-primer-what-youll-walk-wed-pm"
+              "anchor": "microservices-foundation-primer--what-youll-walk-wed-pm"
             },
             {
               "level": 2,
@@ -876,7 +876,7 @@
             {
               "level": 1,
               "text": "Pair-Project repo init — what gets scaffolded Wed PM",
-              "anchor": "pair-project-repo-init-what-gets-scaffolded-wed-pm"
+              "anchor": "pair-project-repo-init--what-gets-scaffolded-wed-pm"
             },
             {
               "level": 2,
@@ -963,7 +963,7 @@
             {
               "level": 1,
               "text": "Brownfield-debt inventory — Wed PM continuation",
-              "anchor": "brownfield-debt-inventory-wed-pm-continuation"
+              "anchor": "brownfield-debt-inventory--wed-pm-continuation"
             },
             {
               "level": 2,
@@ -988,12 +988,12 @@
             {
               "level": 3,
               "text": "3.2 The catalogue entry — minimum viable fields",
-              "anchor": "32-the-catalogue-entry-minimum-viable-fields"
+              "anchor": "32-the-catalogue-entry--minimum-viable-fields"
             },
             {
               "level": 3,
               "text": "3.3 Impact × effort prioritisation matrix",
-              "anchor": "33-impact-effort-prioritisation-matrix"
+              "anchor": "33-impact--effort-prioritisation-matrix"
             },
             {
               "level": 3,
@@ -1003,7 +1003,7 @@
             {
               "level": 3,
               "text": "3.5 Deliberate / pedagogical debt vs accidental debt",
-              "anchor": "35-deliberate-pedagogical-debt-vs-accidental-debt"
+              "anchor": "35-deliberate--pedagogical-debt-vs-accidental-debt"
             },
             {
               "level": 3,
@@ -1050,12 +1050,12 @@
             {
               "level": 1,
               "text": "W1 Wed War-Room — What you're tackling today",
-              "anchor": "w1-wed-war-room-what-youre-tackling-today"
+              "anchor": "w1-wed-war-room--what-youre-tackling-today"
             },
             {
               "level": 2,
               "text": "What we're tackling today + why",
-              "anchor": "what-were-tackling-today-why"
+              "anchor": "what-were-tackling-today--why"
             },
             {
               "level": 2,
@@ -1087,12 +1087,12 @@
             {
               "level": 1,
               "text": "W1 Thu Pre-Session — LLM Engineering Essentials",
-              "anchor": "w1-thu-pre-session-llm-engineering-essentials"
+              "anchor": "w1-thu-pre-session--llm-engineering-essentials"
             },
             {
               "level": 2,
               "text": "1. Thu at a glance — LLM Engineering Essentials (5 min)",
-              "anchor": "1-thu-at-a-glance-llm-engineering-essentials-5-min"
+              "anchor": "1-thu-at-a-glance--llm-engineering-essentials-5-min"
             },
             {
               "level": 2,
@@ -1107,7 +1107,7 @@
             {
               "level": 2,
               "text": "4. Model selection criteria — Bedrock + Claude for the federal anchor (10 min)",
-              "anchor": "4-model-selection-criteria-bedrock-claude-for-the-federal-anchor-10-min"
+              "anchor": "4-model-selection-criteria--bedrock--claude-for-the-federal-anchor-10-min"
             },
             {
               "level": 2,
@@ -1149,7 +1149,7 @@
             {
               "level": 1,
               "text": "LLMs as engineering systems — production discipline over magic",
-              "anchor": "llms-as-engineering-systems-production-discipline-over-magic"
+              "anchor": "llms-as-engineering-systems--production-discipline-over-magic"
             },
             {
               "level": 2,
@@ -1226,7 +1226,7 @@
             {
               "level": 1,
               "text": "Hallucination failure modes — five categories and their mitigation layers",
-              "anchor": "hallucination-failure-modes-five-categories-and-their-mitigation-layers"
+              "anchor": "hallucination-failure-modes--five-categories-and-their-mitigation-layers"
             },
             {
               "level": 2,
@@ -1308,7 +1308,7 @@
             {
               "level": 1,
               "text": "Model selection criteria — Bedrock Claude for the federal anchor",
-              "anchor": "model-selection-criteria-bedrock-claude-for-the-federal-anchor"
+              "anchor": "model-selection-criteria--bedrock-claude-for-the-federal-anchor"
             },
             {
               "level": 2,
@@ -1385,7 +1385,7 @@
             {
               "level": 1,
               "text": "AWS Bedrock model invocation — InvokeModel signature, system prompt, configuration",
-              "anchor": "aws-bedrock-model-invocation-invokemodel-signature-system-prompt-configuration"
+              "anchor": "aws-bedrock-model-invocation--invokemodel-signature-system-prompt-configuration"
             },
             {
               "level": 2,
@@ -1425,7 +1425,7 @@
             {
               "level": 3,
               "text": "3.5 Prompt caching — what to know walking in",
-              "anchor": "35-prompt-caching-what-to-know-walking-in"
+              "anchor": "35-prompt-caching--what-to-know-walking-in"
             },
             {
               "level": 2,
@@ -1467,7 +1467,7 @@
             {
               "level": 1,
               "text": "Streaming responses — InvokeModelWithResponseStream + FastAPI SSE",
-              "anchor": "streaming-responses-invokemodelwithresponsestream-fastapi-sse"
+              "anchor": "streaming-responses--invokemodelwithresponsestream--fastapi-sse"
             },
             {
               "level": 2,
@@ -1497,7 +1497,7 @@
             {
               "level": 3,
               "text": "3.3 FastAPI StreamingResponse + SSE",
-              "anchor": "33-fastapi-streamingresponse-sse"
+              "anchor": "33-fastapi-streamingresponse--sse"
             },
             {
               "level": 3,
@@ -1507,7 +1507,7 @@
             {
               "level": 3,
               "text": "3.5 The streaming + structured outputs composition pitfall",
-              "anchor": "35-the-streaming-structured-outputs-composition-pitfall"
+              "anchor": "35-the-streaming--structured-outputs-composition-pitfall"
             },
             {
               "level": 2,
@@ -1549,7 +1549,7 @@
             {
               "level": 1,
               "text": "Retry logic and strategies — backoff, jitter, circuit-break, never-retry",
-              "anchor": "retry-logic-and-strategies-backoff-jitter-circuit-break-never-retry"
+              "anchor": "retry-logic-and-strategies--backoff-jitter-circuit-break-never-retry"
             },
             {
               "level": 2,
@@ -1574,12 +1574,12 @@
             {
               "level": 3,
               "text": "3.2 Exponential backoff with jitter — the math",
-              "anchor": "32-exponential-backoff-with-jitter-the-math"
+              "anchor": "32-exponential-backoff-with-jitter--the-math"
             },
             {
               "level": 3,
               "text": "3.3 Bounded attempts + circuit breaker",
-              "anchor": "33-bounded-attempts-circuit-breaker"
+              "anchor": "33-bounded-attempts--circuit-breaker"
             },
             {
               "level": 3,
@@ -1631,7 +1631,7 @@
             {
               "level": 1,
               "text": "Cost structure of LLMs — per-token economics + telemetry + caching levers",
-              "anchor": "cost-structure-of-llms-per-token-economics-telemetry-caching-levers"
+              "anchor": "cost-structure-of-llms--per-token-economics--telemetry--caching-levers"
             },
             {
               "level": 2,
@@ -1666,7 +1666,7 @@
             {
               "level": 3,
               "text": "3.4 Bedrock prompt caching — the Claude-specific cost lever",
-              "anchor": "34-bedrock-prompt-caching-the-claude-specific-cost-lever"
+              "anchor": "34-bedrock-prompt-caching--the-claude-specific-cost-lever"
             },
             {
               "level": 3,
@@ -1713,12 +1713,12 @@
             {
               "level": 1,
               "text": "W1 Thu War-Room — What you're tackling today",
-              "anchor": "w1-thu-war-room-what-youre-tackling-today"
+              "anchor": "w1-thu-war-room--what-youre-tackling-today"
             },
             {
               "level": 2,
               "text": "What we're tackling today + why",
-              "anchor": "what-were-tackling-today-why"
+              "anchor": "what-were-tackling-today--why"
             },
             {
               "level": 2,
@@ -1750,22 +1750,22 @@
             {
               "level": 1,
               "text": "W1 Fri Pre-Session — Structured outputs + production API integration",
-              "anchor": "w1-fri-pre-session-structured-outputs-production-api-integration"
+              "anchor": "w1-fri-pre-session--structured-outputs--production-api-integration"
             },
             {
               "level": 2,
               "text": "1. Structured JSON output — Pydantic and beyond (12 min)",
-              "anchor": "1-structured-json-output-pydantic-and-beyond-12-min"
+              "anchor": "1-structured-json-output--pydantic-and-beyond-12-min"
             },
             {
               "level": 2,
               "text": "2. Output validation gates — Pydantic + Bean Validation contract (10 min)",
-              "anchor": "2-output-validation-gates-pydantic-bean-validation-contract-10-min"
+              "anchor": "2-output-validation-gates--pydantic--bean-validation-contract-10-min"
             },
             {
               "level": 2,
               "text": "3. Context engineering — system prompts, dynamic assembly, compression (15 min)",
-              "anchor": "3-context-engineering-system-prompts-dynamic-assembly-compression-15-min"
+              "anchor": "3-context-engineering--system-prompts-dynamic-assembly-compression-15-min"
             },
             {
               "level": 3,
@@ -1785,12 +1785,12 @@
             {
               "level": 2,
               "text": "4. Prompt evaluations + lifecycle management (8 min)",
-              "anchor": "4-prompt-evaluations-lifecycle-management-8-min"
+              "anchor": "4-prompt-evaluations--lifecycle-management-8-min"
             },
             {
               "level": 2,
               "text": "5. Explicit HITL framing — Friday's named topic (8 min)",
-              "anchor": "5-explicit-hitl-framing-fridays-named-topic-8-min"
+              "anchor": "5-explicit-hitl-framing--fridays-named-topic-8-min"
             },
             {
               "level": 2,
@@ -1800,7 +1800,7 @@
             {
               "level": 2,
               "text": "7. First PR Adversarial Review (Light) — what to expect Fri (5 min)",
-              "anchor": "7-first-pr-adversarial-review-light-what-to-expect-fri-5-min"
+              "anchor": "7-first-pr-adversarial-review-light--what-to-expect-fri-5-min"
             },
             {
               "level": 2,
@@ -1817,7 +1817,7 @@
             {
               "level": 1,
               "text": "Structured JSON output — Pydantic and beyond",
-              "anchor": "structured-json-output-pydantic-and-beyond"
+              "anchor": "structured-json-output--pydantic-and-beyond"
             },
             {
               "level": 2,
@@ -1899,7 +1899,7 @@
             {
               "level": 1,
               "text": "Output validation gates — Pydantic + Bean Validation contract",
-              "anchor": "output-validation-gates-pydantic-bean-validation-contract"
+              "anchor": "output-validation-gates--pydantic--bean-validation-contract"
             },
             {
               "level": 2,
@@ -1934,12 +1934,12 @@
             {
               "level": 3,
               "text": "3d. The mapping table — keep it deliberate",
-              "anchor": "3d-the-mapping-table-keep-it-deliberate"
+              "anchor": "3d-the-mapping-table--keep-it-deliberate"
             },
             {
               "level": 3,
               "text": "3e. Contract testing — the third leg",
-              "anchor": "3e-contract-testing-the-third-leg"
+              "anchor": "3e-contract-testing--the-third-leg"
             },
             {
               "level": 2,
@@ -1981,7 +1981,7 @@
             {
               "level": 1,
               "text": "Context engineering — system prompts, dynamic assembly, compression",
-              "anchor": "context-engineering-system-prompts-dynamic-assembly-compression"
+              "anchor": "context-engineering--system-prompts-dynamic-assembly-compression"
             },
             {
               "level": 2,
@@ -2016,7 +2016,7 @@
             {
               "level": 3,
               "text": "3d. Token budgeting — fail closed",
-              "anchor": "3d-token-budgeting-fail-closed"
+              "anchor": "3d-token-budgeting--fail-closed"
             },
             {
               "level": 3,
@@ -2063,7 +2063,7 @@
             {
               "level": 1,
               "text": "Prompt evaluations + lifecycle management",
-              "anchor": "prompt-evaluations-lifecycle-management"
+              "anchor": "prompt-evaluations--lifecycle-management"
             },
             {
               "level": 2,
@@ -2145,7 +2145,7 @@
             {
               "level": 1,
               "text": "Explicit HITL framing — Friday's named topic",
-              "anchor": "explicit-hitl-framing-fridays-named-topic"
+              "anchor": "explicit-hitl-framing--fridays-named-topic"
             },
             {
               "level": 2,
@@ -2170,7 +2170,7 @@
             {
               "level": 3,
               "text": "3b. The reversibility × blast-radius framework",
-              "anchor": "3b-the-reversibility-blast-radius-framework"
+              "anchor": "3b-the-reversibility--blast-radius-framework"
             },
             {
               "level": 3,
@@ -2247,12 +2247,12 @@
             {
               "level": 3,
               "text": "3a. async def vs def in FastAPI — a real correctness issue",
-              "anchor": "3a-async-def-vs-def-in-fastapi-a-real-correctness-issue"
+              "anchor": "3a-async-def-vs-def-in-fastapi--a-real-correctness-issue"
             },
             {
               "level": 3,
               "text": "3b. The lifespan handler — long-lived resources",
-              "anchor": "3b-the-lifespan-handler-long-lived-resources"
+              "anchor": "3b-the-lifespan-handler--long-lived-resources"
             },
             {
               "level": 3,
@@ -2262,12 +2262,12 @@
             {
               "level": 3,
               "text": "3d. Spring WebClient — the Java complement",
-              "anchor": "3d-spring-webclient-the-java-complement"
+              "anchor": "3d-spring-webclient--the-java-complement"
             },
             {
               "level": 3,
               "text": "3e. The shape of the integration — async where, blocking where?",
-              "anchor": "3e-the-shape-of-the-integration-async-where-blocking-where"
+              "anchor": "3e-the-shape-of-the-integration--async-where-blocking-where"
             },
             {
               "level": 2,
@@ -2309,12 +2309,12 @@
             {
               "level": 1,
               "text": "W1 Fri War-Room — What you're tackling today",
-              "anchor": "w1-fri-war-room-what-youre-tackling-today"
+              "anchor": "w1-fri-war-room--what-youre-tackling-today"
             },
             {
               "level": 2,
               "text": "What we're tackling today + why",
-              "anchor": "what-were-tackling-today-why"
+              "anchor": "what-were-tackling-today--why"
             },
             {
               "level": 2,

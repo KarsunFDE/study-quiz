@@ -41,13 +41,15 @@ const DAY_DIRS = [
   { id: 'Friday',    short: 'Fri', dirPrefix: '5-Friday',    warRoomFile: 'D5' }
 ];
 
-/** GitHub-flavored markdown anchor slug. Mirrors gh-slugger. */
+/** GitHub-flavored markdown anchor slug. Mirrors github-slugger behaviour.
+ *  Important: GH does NOT collapse consecutive hyphens, so "a — b" becomes
+ *  "a--b" (the em-dash strips out, the two flanking spaces both become hyphens).
+ *  Same for slashes: "6R / 7R" → "6r--7r". Do not add a -+ collapse step. */
 function slugify(text) {
   return text.toLowerCase()
     .trim()
-    .replace(/[^\w\s-]/g, '')   // drop punctuation
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-');
+    .replace(/[^\w\s-]/g, '')   // drop punctuation (incl em/en dash, slash, etc.)
+    .replace(/\s/g, '-');       // every individual whitespace → a hyphen (no collapse)
 }
 
 function parseHeadings(md) {
