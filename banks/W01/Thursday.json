@@ -1,0 +1,1987 @@
+{
+  "meta": {
+    "week": "W01",
+    "day": "Thursday",
+    "dayLabel": "Thu 28 May",
+    "topics": [
+      "llm-engineering",
+      "five-disciplines",
+      "demo-to-prod-antipatterns",
+      "magic-box-framing",
+      "auditability",
+      "hallucination-categories",
+      "confabulation",
+      "stale-knowledge",
+      "over-confidence",
+      "format-drift",
+      "truncation",
+      "task-specific-evaluation",
+      "bedrock-anchor",
+      "fedramp",
+      "claude-model-catalog",
+      "model-selection",
+      "known-bad-model-ids",
+      "invoke-model-signature",
+      "system-prompt-as-artifact",
+      "model-id-configuration",
+      "prompt-caching",
+      "streaming-sse",
+      "ttft",
+      "streaming-structured-output-pitfall",
+      "retry-classification",
+      "exponential-backoff-jitter",
+      "circuit-breaker",
+      "content-filter-422",
+      "cost-telemetry",
+      "claude-cost-gradient",
+      "model-family-routing",
+      "war-room-incident-mode",
+      "codex-adversarial-light",
+      "hitl-federal"
+    ],
+    "sourceCount": 9,
+    "questionCount": 45,
+    "generated": "2026-05-27",
+    "typeMix": {
+      "mcq": 30,
+      "multi-select": 7,
+      "tf-justified": 8
+    }
+  },
+  "questions": [
+    {
+      "id": "W01-Thu-Q01",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "llm-engineering"
+      ],
+      "stem": "According to the Thursday day-shape, what is the discipline Thursday installs that Tuesday and Wednesday do not?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Treating every LLM call as a production-system component",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Comprehending an unfamiliar codebase quickly with Claude Code",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Drafting ADRs in the Nygard format for every architectural decision",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Comparing vendor platforms using a 6-dimension public-source matrix",
+          "correct": false
+        }
+      ],
+      "explanation": "Tuesday + Wednesday were onboarding + framing; Thursday is where production discipline starts — typed I/O, retry posture, cost telemetry, streaming for user-facing endpoints, configured model IDs. A and C describe Tue/Wed work; D is Wed AM's comparative discipline.",
+      "sources": [
+        {
+          "title": "Thu at a glance — LLM Engineering Essentials",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/1-DailyTopicOverview.md#1-thu-at-a-glance--llm-engineering-essentials-5-min",
+          "anchor": "1-thu-at-a-glance--llm-engineering-essentials-5-min"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q02",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "codex-adversarial-light"
+      ],
+      "stem": "Codex Adversarial Review (Light) starts running on every PR from Thursday onward per D-034. In W1's calibration, how should the team treat a P1 architectural-drift finding?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Treat it as a hard blocker — the PR cannot merge until the finding is closed",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Treat it as a security incident and escalate to the platform lead immediately",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Treat it as a coaching conversation starter rather than a merge gate",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Treat it as a documentation request to update the team's ADR catalog later",
+          "correct": false
+        }
+      ],
+      "explanation": "Per D-034, W1 Codex calibration is Light: most findings are framed as coaching, not blocking. P0 findings still block, but P1 architectural-drift items appear as conversation starters. A confuses Light with stricter calibration; C and D are not the intended posture.",
+      "sources": [
+        {
+          "title": "Thu at a glance — LLM Engineering Essentials",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/1-DailyTopicOverview.md#1-thu-at-a-glance--llm-engineering-essentials-5-min",
+          "anchor": "1-thu-at-a-glance--llm-engineering-essentials-5-min"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q03",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "llm-engineering",
+        "five-disciplines"
+      ],
+      "stem": "Which of the following are named as part of the Thursday LLM-engineering substrate that today's `ai-orchestrator` PR establishes? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A typed contract for input and output",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Retry policy distinguishing retryable from non-retryable errors",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Per-call cost telemetry tagged with feature and tenant from day one",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "RAG-grounded chunk retrieval against the FAR/DFARS corpus",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "Streaming for any user-facing endpoint",
+          "correct": true
+        }
+      ],
+      "explanation": "The Thursday discipline list explicitly names typed I/O, retry, cost telemetry, streaming, and config-driven model ID. RAG grounding is W2 material — it is the mitigation for confabulation but not part of the Thursday substrate. Marking D selected is the easy slip if you confuse Thursday's invocation work with W2's retrieval work.",
+      "sources": [
+        {
+          "title": "Thu at a glance — LLM Engineering Essentials",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/1-DailyTopicOverview.md#1-thu-at-a-glance--llm-engineering-essentials-5-min",
+          "anchor": "1-thu-at-a-glance--llm-engineering-essentials-5-min"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q04",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "magic-box-framing",
+        "auditability"
+      ],
+      "stem": "In a federal acquisitions context, treating the LLM as a 'magic box' is acceptable as long as the output is reviewed before being sent to the contracting officer.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — human review of the final output absorbs all LLM-specific risk",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — the audit obligation lives with the reviewer, not the system",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — Bedrock's FedRAMP boundary covers all auditability requirements automatically",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — federal audit demands the model ID, prompt version, input, output, token counts and timestamp per call; 'magic box' logging fails audit",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — federal regulations require zero LLM involvement in any drafting workflow whatsoever",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — magic-box framing only fails when streaming is enabled on the endpoint",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading explicitly contrasts 'the AI said draft this solicitation' (magic-box logging) with 'Sonnet 4.5 at temp 0.2, prompt v3, retrieved chunks [a,b,c], emitted output X, costing Y tokens' — the federal context demands the second shape. F2 overstates (the programme uses LLMs); F3 invents a streaming dependency that isn't in the reading.",
+      "sources": [
+        {
+          "title": "Why magic-box framing fails the federal context",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/2-llms-as-engineering-systems.md#33-why-magic-box-framing-fails-the-federal-context",
+          "anchor": "33-why-magic-box-framing-fails-the-federal-context"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q05",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "five-disciplines"
+      ],
+      "stem": "The reading frames each LLM-engineering discipline as a traditional API-integration pattern bent for an LLM-specific contour. Which parent pattern does the 'failure-mode classification' discipline extend?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "OpenAPI schemas and DTO validation in REST clients",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Exception taxonomy in traditional API-integration code",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Per-request observability in distributed-tracing pipelines",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "URL and endpoint configuration via environment variables",
+          "correct": false
+        }
+      ],
+      "explanation": "The table in §3.1 maps failure-mode classification (confabulation / stale / over-confidence / format-drift / truncation) to its parent pattern, exception taxonomy. A is the parent for typed I/O; B is the parent for cost telemetry; D is the parent for model-ID configuration — all are real disciplines, just for different rows in the table.",
+      "sources": [
+        {
+          "title": "The five engineering disciplines",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/2-llms-as-engineering-systems.md#31-the-five-engineering-disciplines",
+          "anchor": "31-the-five-engineering-disciplines"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q06",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "demo-to-prod-antipatterns"
+      ],
+      "stem": "Which of these is the 'free-text-plus-regex' antipattern named in the reading, and what is its failure mode in production?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Skipping per-call cost telemetry until v3 — fails by making retrofit work 10x more expensive than wiring it day one",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Hard-coding the model ID as a string literal — fails when the model is deprecated and requires a code change to roll forward",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Wrapping every call in try/except/sleep(1)/retry — fails by retrying 401s and amplifying outages with no jitter",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Asking the model for prose, regex-extracting items, hoping nothing is wrong — fails silently when a slightly different prose shape passes the regex",
+          "correct": true
+        }
+      ],
+      "explanation": "§3.2 names three antipatterns: free-text-plus-regex, naive retry-everything, and hard-coded model ID. The free-text version is the one described in A: a different prose shape passes the regex and produces wrong-but-syntactically-valid output. B is the hard-coded-ID antipattern; C is the naive-retry one — both are tempting distractors because they're real antipatterns from the same list.",
+      "sources": [
+        {
+          "title": "The antipatterns demo-quality code ships with",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/2-llms-as-engineering-systems.md#32-the-antipatterns-demo-quality-code-ships-with",
+          "anchor": "32-the-antipatterns-demo-quality-code-ships-with"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q07",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "five-disciplines",
+        "cost-telemetry"
+      ],
+      "stem": "Why does the reading insist cost telemetry be wired from the first commit rather than retrofitted later?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Retrofitting per-call cost and token telemetry into an established codebase costs roughly 5-10x the work of wiring it in",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Bedrock refuses to invoke without a telemetry header attached to the request body",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Per-call telemetry is required by FedRAMP regardless of any application-level concern",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Without telemetry, the model returns degraded output because cost cannot be checked at runtime",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading flags 5-10x retrofit cost as the load-bearing argument. A and D invent dependencies that don't exist in Bedrock or in the reading. C is the kind of plausible-sounding compliance overreach that gets eliminated only by reading the actual passage — FedRAMP doesn't dictate per-call telemetry shape; the engineering discipline does.",
+      "sources": [
+        {
+          "title": "Best Practices — LLMs as engineering systems",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/2-llms-as-engineering-systems.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q08",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "demo-to-prod-antipatterns"
+      ],
+      "stem": "Which of the following are named in §3.2 as demo-to-production antipatterns that today's `ai-orchestrator` PR is designed to replace? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Free-text-plus-regex parsing of model output",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Naive retry-everything wrappers around the LLM call",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Hard-coded model ID pasted into source code",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Embedding the system prompt as a Python string literal",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "Streaming responses to the Angular client via SSE",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.2 names exactly three antipatterns: free-text-plus-regex, naive retry, and hard-coded model ID. Loading the prompt from a file vs a literal is a separate best-practice from §5.5 of the invocation reading — not one of the three §3.2 antipatterns. Streaming is a required discipline, not an antipattern.",
+      "sources": [
+        {
+          "title": "The antipatterns demo-quality code ships with",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/2-llms-as-engineering-systems.md#32-the-antipatterns-demo-quality-code-ships-with",
+          "anchor": "32-the-antipatterns-demo-quality-code-ships-with"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q09",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "llm-engineering",
+        "five-disciplines"
+      ],
+      "stem": "Engineers who already have traditional API-integration disciplines internalised pick up the LLM-specific contours quickly; engineers who skipped the parent pattern often try to invent new disciplines from scratch.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — the disciplines are recontoured traditional patterns; reach for the parent pattern, then bend it for the LLM contour",
+          "correct": true
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — the LLM-specific disciplines are entirely new inventions of the 2025-2026 industry",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — only engineers with a Bedrock certification can pick up the LLM disciplines correctly",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — LLM-engineering disciplines are exotic enough that prior API experience offers no transfer",
+          "correct": false
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — traditional API experience actively misleads on the LLM-specific contours",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — the disciplines are all new in the 2026 industry and no parent pattern exists",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading is explicit: 'engineers who already have the parent pattern internalised pick up the LLM-specific contour in an afternoon... reach for the parent pattern; bend it for the LLM contour.' T2 inverts the claim; T3 invents a credentialing requirement; the F branch is wrong T/F.",
+      "sources": [
+        {
+          "title": "The five engineering disciplines",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/2-llms-as-engineering-systems.md#31-the-five-engineering-disciplines",
+          "anchor": "31-the-five-engineering-disciplines"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q10",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "hallucination-categories",
+        "confabulation"
+      ],
+      "stem": "Which hallucination category does 'the model drafts a solicitation citing 48 CFR 47.305-2 (b)(7) where the section exists but the (b)(7) sub-paragraph does not' belong to?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Stale knowledge — training cut-off older than the regulation amendment",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Format drift — the response shape diverges from the requested schema",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Confabulation — the model invents a fact that does not exist",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Truncation — the response hit the context-window cap mid-output",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.1 uses exactly this CFR (b)(7) scenario as the canonical confabulation example. Stale-knowledge (A) is the most tempting distractor because both feel like 'wrong fact', but the failure mode is different — confabulation invents what was never there; stale knowledge surfaces what is no longer current.",
+      "sources": [
+        {
+          "title": "Confabulation",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/3-hallucination-failure-modes.md#31-confabulation",
+          "anchor": "31-confabulation"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q11",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "hallucination-categories",
+        "format-drift"
+      ],
+      "stem": "The reading names format-drift hallucinations as the cheapest to catch in production. Which mitigation does it credit with that claim?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A RAG retrieval layer constrained to the FAR/DFARS corpus",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "A 5-line Pydantic strict-mode model at the call site",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "A faithfulness eval harness against held-out ground truth",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "An HITL gate routing all ungrounded outputs to human review",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.4 says: 'A 5-line Pydantic model is enough to catch every format-drift hallucination before downstream code sees the result.' B mitigates confabulation; C mitigates over-confidence; D mitigates confabulation in the federal context. All three are real mitigations — for different categories.",
+      "sources": [
+        {
+          "title": "Format drift",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/3-hallucination-failure-modes.md#34-format-drift",
+          "anchor": "34-format-drift"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q12",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "hallucination-categories"
+      ],
+      "stem": "Which of the following are named as the five hallucination categories in §3 of the hallucination failure-modes reading? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Confabulation",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Stale knowledge",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Format drift",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Truncation",
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": "Prompt injection by adversarial user input",
+          "correct": false
+        }
+      ],
+      "explanation": "The five named categories are: confabulation, stale knowledge, over-confidence in plausible outputs, format drift, and truncation. Prompt injection is a real risk surface (W4 AI Security covers it under OWASP LLM01), but it is not a hallucination category — it is an attack pattern, exercised against the model rather than emitted by it.",
+      "sources": [
+        {
+          "title": "Hallucination failure modes — Core Concepts",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/3-hallucination-failure-modes.md#3-core-concepts",
+          "anchor": "3-core-concepts"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q13",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "hallucination-categories",
+        "over-confidence"
+      ],
+      "stem": "Why does the reading name 'over-confidence in plausible outputs' as the hardest hallucination category to catch?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Over-confidence is filtered out by Pydantic strict-mode validation before downstream code sees it",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Over-confidence only occurs in Opus 4.5/4.6 outputs, which run too rarely to gather signal",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Over-confidence is invisible until the model hits a truncation boundary that breaks the misleading prose",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Confabulated authorities have tells (the citation does not exist); stale knowledge has tells (corpus and answer diverge); over-confidence is internally consistent and externally false",
+          "correct": true
+        }
+      ],
+      "explanation": "§3.3 explicitly contrasts the three categories on detectability: confabulation and stale knowledge have observable tells; over-confidence does not — the answer is internally coherent but contradicts the source. B and C invent failure conditions that don't exist in the reading. D confuses over-confidence with format drift (which Pydantic does catch).",
+      "sources": [
+        {
+          "title": "Over-confidence in plausible outputs",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/3-hallucination-failure-modes.md#33-over-confidence-in-plausible-outputs",
+          "anchor": "33-over-confidence-in-plausible-outputs"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q14",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "task-specific-evaluation"
+      ],
+      "stem": "The Stanford AI Index 2026 reports hallucination rates across 26 evaluated LLMs in 2025-2026 ranging from 22% to 94%. The cohort can plan against an industry-average hallucination rate drawn from this benchmark.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — the midpoint of the 22-94% range gives a defensible planning number",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — averaging across the 26 models smooths task-specific variance",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — federal contexts can adopt the lower bound (22%) as a conservative ceiling",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — the 4x spread is the lesson; task-specific evaluation against your task's ground truth is the only honest measurement",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — only the Lakera-cited number applies to federal contexts; the OneValley number applies to commercial",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — Stanford's AI Index methodology does not permit federal-context use without licensure",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading is explicit: the variance is the lesson; there is no single hallucination rate you can plan against; W2 builds an eval harness as the only honest characterisation. F2 invents a per-source carve-out that doesn't exist; F3 invents licensing terms; the T branch is the wrong T/F call.",
+      "sources": [
+        {
+          "title": "Hallucination failure modes — Introduction",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/3-hallucination-failure-modes.md#2-introduction",
+          "anchor": "2-introduction"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q15",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "hallucination-categories",
+        "truncation"
+      ],
+      "stem": "A FAR-clause summary task with retrieved chunks totalling 80% of the context window leaves only 20% for the response; the response cuts off mid-sentence. Which mitigation is the *primary* layer named for this category?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Explicit output-length budgets plus `max_tokens` sized with margin, paired with streaming-aware consumers",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Faithfulness evaluation against held-out ground-truth summaries",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Retrieval grounding against the canonical FAR/DFARS corpus",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Structured-output APIs constraining generation to a typed schema",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.5 names output-length budgets, `max_tokens` with margin, streaming-aware consumers, and defensive parsing as the truncation mitigations. A is the confabulation mitigation; B is the over-confidence mitigation; D is the format-drift mitigation. The trap is reaching for the most-discussed mitigation rather than the category-specific one.",
+      "sources": [
+        {
+          "title": "Truncation",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/3-hallucination-failure-modes.md#35-truncation",
+          "anchor": "35-truncation"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q16",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "hallucination-categories",
+        "confabulation"
+      ],
+      "stem": "Why does the reading name confabulation as the headline federal-acquisitions risk?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Confabulation rates on Bedrock Claude exceed 50% as published in the AWS Bedrock pricing page",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Confabulation outputs are syntactically invalid and crash downstream parsers in federal pipelines",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Procurement protests turn on cited authority; a confabulated FAR clause in a solicitation is procurement-protest exposure",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Confabulation is the only hallucination category that produces output longer than `max_tokens` permits",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.1 is explicit: 'Procurement protests turn on cited authority. A confabulated FAR clause cited in a solicitation is procurement-protest exposure. This is the category most often pointed to in why federal-context LLM deployments need HITL.' A invents pricing-page data; B confuses categories; D conflates confabulation with truncation.",
+      "sources": [
+        {
+          "title": "Confabulation",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/3-hallucination-failure-modes.md#31-confabulation",
+          "anchor": "31-confabulation"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q17",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "hallucination-categories",
+        "stale-knowledge"
+      ],
+      "stem": "The reading names the *trap* of stale-knowledge hallucinations. What is it?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The outputs always exceed `max_tokens` so the cut-off is visible in the log shape",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "The outputs are confidently phrased and sound right — they were right at the training cut-off but are no longer current",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "The outputs cite authorities that do not exist, making them indistinguishable from confabulation",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The outputs are emitted in JSON when prose was requested, breaking downstream pipelines silently",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.2 says: 'Stale-knowledge hallucinations are confidently phrased. They sound right. They were right at the training cut-off.' B is fabricated; C is the confabulation pattern (different category); D is format drift (different category).",
+      "sources": [
+        {
+          "title": "Stale knowledge",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/3-hallucination-failure-modes.md#32-stale-knowledge",
+          "anchor": "32-stale-knowledge"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q18",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "bedrock-anchor",
+        "fedramp"
+      ],
+      "stem": "The reading names three load-bearing reasons for Bedrock as the federal anchor. Which of these is the third, alongside FedRAMP boundary and model breadth on one IAM surface?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Bedrock includes built-in RAG retrieval against the FAR/DFARS corpus",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Bedrock includes Pydantic strict-mode response parsing at the API surface",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Bedrock automatically caches every prompt regardless of token-count threshold",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "GovCloud availability in us-gov-east-1 and us-gov-west-1 regions",
+          "correct": true
+        }
+      ],
+      "explanation": "§3.1 lists exactly three load-bearing reasons: FedRAMP boundary, model breadth on one IAM surface, and GovCloud availability. B, C, D invent capabilities Bedrock doesn't ship — Pydantic is a client-side library, prompt caching has token thresholds (4,096 for 4.5/4.6 models), and RAG is something teams build on top of Bedrock, not in it.",
+      "sources": [
+        {
+          "title": "The three load-bearing reasons for Bedrock",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/4-model-selection-criteria.md#31-the-three-load-bearing-reasons-for-bedrock",
+          "anchor": "31-the-three-load-bearing-reasons-for-bedrock"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q19",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "model-selection"
+      ],
+      "stem": "A grants-management portal receives 50,000 FOIA requests per month and needs each classified into one of 12 categories before routing. Which Claude tier does the reading recommend?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Haiku 4.5 — classification at scale, cost-dominated decision",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Sonnet 4.5 or 4.6 — the default workhorse covers any classification task",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Opus 4.5 or 4.6 — heaviest reasoning required for federal-context classification",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Self-hosted Llama — data residency for the most stringent contexts",
+          "correct": false
+        }
+      ],
+      "explanation": "The §7 hands-on answer key names Haiku 4.5 for this exact scenario: high-volume classification, cost-dominated, simple decision. Sonnet is the default for general production tasks but is overkill (and 5x cost) for routing classification. Opus is reserved for multi-step reasoning. Self-hosted is a W5+ conversation per §6.",
+      "sources": [
+        {
+          "title": "Hands-on Exercise — Model selection",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/4-model-selection-criteria.md#7-hands-on-exercise",
+          "anchor": "7-hands-on-exercise"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q20",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "known-bad-model-ids"
+      ],
+      "stem": "Codex Adversarial Review (Light) starts Thursday and will flag deprecated Bedrock model IDs. Which of these IDs are named in the §3.3 known-bad-pattern blocklist? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "anthropic.claude-v2",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "anthropic.claude-instant-v1",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "anthropic.claude-3-sonnet-20240229-v1:0",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "anthropic.claude-haiku-4-5-20251001-v1:0",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.3 names claude-v2 (deprecated), claude-instant-v1 (deprecated), and claude-3-sonnet-20240229 (superseded — still GA in some regions but newer Sonnets are the default for new code) as the blocklist items. D and E are current GA IDs and are the *correct* defaults for new code.",
+      "sources": [
+        {
+          "title": "Known-bad pattern blocklist",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/4-model-selection-criteria.md#33-known-bad-pattern-blocklist",
+          "anchor": "33-known-bad-pattern-blocklist"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q21",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "bedrock-anchor",
+        "fedramp"
+      ],
+      "stem": "For a pilot expecting to promote to federal production, starting on Anthropic's direct API in development is a fine choice as long as the Bedrock migration is planned for ATO time.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — Anthropic direct has compliance posture comparable to Bedrock at pilot stage",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — the pilot phase is exempt from the FedRAMP boundary requirement",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — the migration is a simple env-var swap if model-ID-from-config is honoured",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — federal pilots that start on direct providers hit the FedRAMP gate and get re-architected, typically losing 3-6 months",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — Anthropic direct cannot run in development environments at all",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — Bedrock is required by FAR Subpart 47.305 for all federal AI procurements",
+          "correct": false
+        }
+      ],
+      "explanation": "§5 of the model-selection reading documents the federal-pilot pattern: pilots starting on direct providers hit the FedRAMP gate and lose 3-6 months to re-architecture. F2 overstates (Anthropic direct works in dev); F3 invents a regulation that does not exist; the T branch is the wrong T/F call.",
+      "sources": [
+        {
+          "title": "Real-world Patterns — Bedrock-vs-direct decisions",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/4-model-selection-criteria.md#5-real-world-patterns",
+          "anchor": "5-real-world-patterns"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q22",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "model-selection"
+      ],
+      "stem": "Friday's scenario-alternatives prompt asks the cohort to defend Bedrock+Claude vs Gemini via Vertex AI. Which defence does the reading name as the Karsun-context tie-breaker?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Vertex AI has FedRAMP Low while Bedrock has FedRAMP High — a one-tier compliance gap",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Vertex AI does not support Claude models at all, eliminating breadth-on-one-surface",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "ReDuX is Bedrock-anchored — alignment with the Karsun production posture is a programme constraint, not a free choice",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Vertex AI requires per-tenant IAM bindings that fail under federal multi-tenant deployments",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.4 names two arguments against Vertex (Vertex has FedRAMP Moderate not Low; breadth-on-one-surface argument is weaker since Vertex routes to Google-only) and then names ReDuX-alignment as the *tie-breaker*. A misquotes the FedRAMP level (Moderate, not Low); B is false (Vertex doesn't host Claude, but the argument isn't about absence of breadth-on-one-surface in general); D is invented.",
+      "sources": [
+        {
+          "title": "Friday scenario-alternatives challenges",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/4-model-selection-criteria.md#34-the-friday-scenario-alternatives-challenges",
+          "anchor": "34-the-friday-scenario-alternatives-challenges"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q23",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "claude-model-catalog"
+      ],
+      "stem": "Per the canonical research brief cited Thursday, which Claude tier is named as the *default workhorse* for most production tasks?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Opus — heavyweight reasoning makes it the safest default",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Sonnet — balance of capability and cost; covers most production tasks",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Haiku — lowest cost so it should be the default unless a task explicitly demands more",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Opus 4.6 specifically — 1M-token context family makes it the right default for federal documents",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.2's table explicitly tags Sonnet 4.5/4.6 as 'default workhorse — most production tasks; balance of capability and cost'. Opus is reserved for W3 agentic work; Haiku for high-volume retrieval-time classification (W2). D conflates the 1M-token context family with default selection — capability ceiling does not dictate default.",
+      "sources": [
+        {
+          "title": "Current Claude model catalog on Bedrock",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/4-model-selection-criteria.md#32-current-claude-model-catalog-on-bedrock",
+          "anchor": "32-current-claude-model-catalog-on-bedrock"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q24",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "invoke-model-signature"
+      ],
+      "stem": "Which value must `anthropic_version` be pinned to in the Bedrock InvokeModel body for Claude, per the canonical research brief?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "anthropic-2025-04-01 — the latest dated revision pinned at the API surface",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "anthropic.claude-sonnet-4-5-20250929 — the model ID doubles as the version pin",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "claude-messages-v1 — the message-style endpoint identifier",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "bedrock-2023-05-31 — it is the only supported value the brief flags as current",
+          "correct": true
+        }
+      ],
+      "explanation": "§3.1 of the invocation reading and §6 of the same reading both pin `anthropic_version: \"bedrock-2023-05-31\"` as the only supported value. A invents a future version string; C confuses the messages style with the version pin; D confuses model ID with API version.",
+      "sources": [
+        {
+          "title": "The Bedrock InvokeModel signature for Claude",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/5-aws-bedrock-model-invocation.md#31-the-bedrock-invokemodel-signature-for-claude",
+          "anchor": "31-the-bedrock-invokemodel-signature-for-claude"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q25",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "system-prompt-as-artifact"
+      ],
+      "stem": "The reading argues a system prompt should be structured as named sections (persona, constraints, output_format, grounding) rather than as a free-form prose string. Which of these is NOT one of the three reasons given for the named-section shape?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Bedrock's content filter only fires on free-form prompts and exempts named-section structured prompts",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Each section has an evaluation strategy — snapshot tests, rule-based checks, retrieval-quality evals respectively",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Drift between section ownership is where prompts rot; the named-section shape makes drift visible",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Each section has a clear owner — persona is product, constraints are compliance, format is engineering, grounding is data engineering",
+          "correct": false
+        }
+      ],
+      "explanation": "The three reasons in §3.2 are exactly A, B, C — ownership, evaluation strategy, drift visibility. D is invented; Bedrock's content filter applies regardless of prompt structure. This is a 'which is NOT' MCQ — the correct answer is the one that doesn't appear in the reading.",
+      "sources": [
+        {
+          "title": "The system prompt as engineering artifact",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/5-aws-bedrock-model-invocation.md#32-the-system-prompt-as-engineering-artifact",
+          "anchor": "32-the-system-prompt-as-engineering-artifact"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q26",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "model-id-configuration"
+      ],
+      "stem": "The reading names four env-var-configured values on the application side. Which of these is named explicitly in §3.3?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "ANTHROPIC_VERSION — the dated API version pinned at runtime",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "LLM_PROMPT_PATH — the file path to the system prompt loaded at startup",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "LLM_MAX_TOKENS — the output cap default applied unless overridden per request",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "LLM_RETRY_BUDGET — the maximum attempt count for the retry wrapper",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.3 names exactly four env vars: LLM_MODEL_ID, AWS_REGION, LLM_MAX_TOKENS, LLM_TEMPERATURE. A pins anthropic_version in code (the brief); B is implied by the prompt-files-in-version-control pattern but isn't named as an env var; D is plausible but not in the configuration list.",
+      "sources": [
+        {
+          "title": "Configuration-driven model ID",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/5-aws-bedrock-model-invocation.md#33-configuration-driven-model-id",
+          "anchor": "33-configuration-driven-model-id"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q27",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "invoke-model-signature"
+      ],
+      "stem": "Which of these gaps in the starting `services/ai-orchestrator/app/main.py` does today's Thursday PR close (rather than deferring to Friday or later)? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "No system prompt — closed via the named-section system-prompt artifact today",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "No model-ID configuration — closed by env-var-loading the model ID today",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "No streaming — closed via InvokeModelWithResponseStream today",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "No structured-output schema — closed via Pydantic strict-mode tool use today",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "No cost tracking — closed via per-call log_usage today",
+          "correct": true
+        }
+      ],
+      "explanation": "§3.4's table is explicit: today's PR closes system prompt, model-ID config, streaming, retry, cost tracking, and finish_reason logging. The structured-output schema is deliberately deferred to Friday — today is 'make the call work production-shaped'; Friday is 'constrain the output shape'.",
+      "sources": [
+        {
+          "title": "The deliberate gaps in the starting state",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/5-aws-bedrock-model-invocation.md#34-the-deliberate-gaps-in-the-starting-state",
+          "anchor": "34-the-deliberate-gaps-in-the-starting-state"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q28",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "prompt-caching"
+      ],
+      "stem": "What is the minimum cache-checkpoint token threshold for Bedrock prompt caching on Claude 4.5 / 4.6 models?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "1,024 tokens — the threshold applied across all Claude generations on Bedrock",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "4,096 tokens — content shorter than this gets no caching benefit on 4.5/4.6 models",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "8,192 tokens — the half-context threshold for the 1M-context family",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "16,384 tokens — the threshold for cache-read pricing reductions to apply",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.5 names 4,096 tokens for 4.5/4.6 models and 1,024 tokens for 3.7 Sonnet / Sonnet 4.6 / Opus 4. A applies to the older 3.7/Opus-4 generation, not 4.5/4.6 — the easy slip if you only half-remember the table. C and D are invented numbers.",
+      "sources": [
+        {
+          "title": "Prompt caching — what to know walking in",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/5-aws-bedrock-model-invocation.md#35-prompt-caching--what-to-know-walking-in",
+          "anchor": "35-prompt-caching--what-to-know-walking-in"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q29",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "system-prompt-as-artifact"
+      ],
+      "stem": "Mature LLM-integration codebases keep prompts as Python string literals inside source code so that prompt edits ship in the same diff as the calling logic.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — same-diff prompt + code shipping is the discipline the reading endorses",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — version-controlled prompt files duplicate work git already does on source",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — Bedrock requires prompts to be inlined in the request body, ruling out file loading",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — mature codebases keep prompts in dedicated files (e.g. prompts/<feature>/<version>.md), enabling independent versioning, prompt diffing in PR, prompt-specific evaluation, and A/B comparison",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — prompts cannot legally be checked into version control under federal FOIA requirements",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — Bedrock requires prompts to be loaded from S3 buckets rather than from local files",
+          "correct": false
+        }
+      ],
+      "explanation": "§5 names 'Prompt files in version control, not in code' as the mature pattern, with four explicit benefits. F2 invents a FOIA constraint that does not exist; F3 invents an S3 requirement; the T branch is the wrong T/F call.",
+      "sources": [
+        {
+          "title": "Real-world Patterns — Prompt files in version control",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/5-aws-bedrock-model-invocation.md#5-real-world-patterns",
+          "anchor": "5-real-world-patterns"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q30",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "streaming-sse",
+        "ttft"
+      ],
+      "stem": "Which UX metric does the streaming reading name as the *real* metric that streaming is optimising for?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "TPS (tokens-per-second) — sustained throughput across the full generation",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "RPS (requests-per-second) — capacity the endpoint can sustain under load",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "TTLB (time-to-last-byte) — the full generation latency the client sees",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "TTFT (time-to-first-token) — Sonnet 4.5/4.6 typical is 0.5-2 seconds",
+          "correct": true
+        }
+      ],
+      "explanation": "§3.1 says: 'Time-to-first-token (TTFT) is the real UX metric — Sonnet 4.5/4.6 typical TTFT is 0.5-2s'. A, C, D are all real metrics for different purposes but are not the one the reading flags as the UX-defining number; tokens-per-second is throughput, not perceived responsiveness.",
+      "sources": [
+        {
+          "title": "Why streaming is non-negotiable for user-facing LLM endpoints",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/6-streaming-responses.md#31-why-streaming-is-non-negotiable-for-user-facing-llm-endpoints",
+          "anchor": "31-why-streaming-is-non-negotiable-for-user-facing-llm-endpoints"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q31",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "streaming-structured-output-pitfall"
+      ],
+      "stem": "Friday's PR introduces structured outputs. Which decision does W1 make about streaming-vs-structured-output composition, and why?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Endpoints that produce structured outputs are non-streaming; endpoints that produce free text are streaming — partial-JSON parsing is a complex surface deferred to W3",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Stream all endpoints including structured outputs; the FastAPI StreamingResponse handles partial-JSON parsing natively",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "All endpoints are non-streaming in W1; streaming is introduced uniformly in W2 with RAG",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Structured outputs are streamed using a JSON-Lines protocol over SSE, with one object per frame",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.5 names the composition pitfall and the W1 choice explicitly: streaming for free-text endpoints, non-streaming for structured-output endpoints. Partial-JSON parsing is its own engineering surface; W3 revisits when agentic patterns make it relevant. A invents native parsing; C inverts the actual W1 choice; D invents a JSON-Lines protocol.",
+      "sources": [
+        {
+          "title": "The streaming + structured outputs composition pitfall",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/6-streaming-responses.md#35-the-streaming--structured-outputs-composition-pitfall",
+          "anchor": "35-the-streaming--structured-outputs-composition-pitfall"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q32",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "streaming-sse"
+      ],
+      "stem": "Where does usage information (input + output tokens, stop reason) arrive in a Bedrock InvokeModelWithResponseStream call?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "In an HTTP response header set when the stream opens",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "In every content_block_delta event alongside the text delta",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "In the terminal message_stop or message_delta event at the end of the stream",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "In a separate REST call to a Bedrock usage endpoint after streaming completes",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.2 is explicit: 'Usage info... arrives in the final message_stop or message_delta event — not in the headers. The cost-telemetry pattern has to consume from the stream's end, not from the response object.' A is the easy wrong guess if you assume parity with non-streaming; B and D invent stream shapes.",
+      "sources": [
+        {
+          "title": "Bedrock InvokeModelWithResponseStream chunk shape",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/6-streaming-responses.md#32-bedrock-invokemodelwithresponsestream-chunk-shape",
+          "anchor": "32-bedrock-invokemodelwithresponsestream-chunk-shape"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q33",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "streaming-sse"
+      ],
+      "stem": "The browser-native EventSource API supports POST requests, so the Angular consumer can use it directly against a POST-shaped streaming endpoint.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — modern EventSource supports both GET and POST on all major browsers",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — the EventSource constructor accepts a method option in its config object",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — POST support was added in the WHATWG SSE specification update for streaming JSON bodies",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — EventSource is GET-only; POST-shaped streaming endpoints use fetch with a streaming ReadableStream consumer instead",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — EventSource does not exist; Angular always uses WebSockets for streaming",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — the Angular HttpClient is the only way to consume any SSE in Angular applications",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.4 names this constraint explicitly: 'EventSource does not support POST natively — the request is GET-only. For POST-shaped streaming endpoints, the Angular side uses fetch with a streaming ReadableStream consumer.' F2 and F3 are wrong-for-different-reasons; the T branch is the wrong T/F call.",
+      "sources": [
+        {
+          "title": "Angular EventSource consumer",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/6-streaming-responses.md#34-angular-eventsource-consumer",
+          "anchor": "34-angular-eventsource-consumer"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q34",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "streaming-sse"
+      ],
+      "stem": "Which terminator convention does the reading credit OpenAI with establishing and most SSE consumers (including Anthropic SDKs and Angular EventSource patterns) expect?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "data: [END_OF_STREAM] — a verbose terminator that names the event explicitly",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "data: [DONE] — the convention OpenAI established and SDKs / browser consumers expect",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "data: null — a JSON null payload signalling no further events follow",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "An empty data: frame followed by an explicit HTTP 204 status — a protocol-level rather than payload-level signal",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.3 names `[DONE]` as the OpenAI-established convention that 'most clients (including Anthropic SDKs and Angular EventSource consumers) expect'. A, C, D are plausible-sounding inventions; only `[DONE]` matches the industry default the reading flags.",
+      "sources": [
+        {
+          "title": "FastAPI StreamingResponse + SSE",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/6-streaming-responses.md#33-fastapi-streamingresponse--sse",
+          "anchor": "33-fastapi-streamingresponse--sse"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q35",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "retry-classification"
+      ],
+      "stem": "Bedrock returns 422 with a content-filter rejection message on attempt 1. What is the correct retry posture?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Retry with jittered backoff like any other transient failure",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Honor `Retry-After` if present; otherwise wait the default backoff and retry",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Retry once at half the default delay, then escalate to dead-letter if still failing",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Raise immediately as a distinct content-filter-rejection class — never retry",
+          "correct": true
+        }
+      ],
+      "explanation": "§3.1's table and §3.4's LLM-specific contour both classify 422 (Bedrock content filter) as never-retry; retrying produces identical rejection. §6's best-practice list says to surface LLM-specific error classes (content filter, model-ID error) distinctly. A, B, D all retry — wasting quota and producing misleading audit logs.",
+      "sources": [
+        {
+          "title": "Retryable vs never-retryable status codes",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/7-retry-logic-and-strategies.md#31-retryable-vs-never-retryable-status-codes",
+          "anchor": "31-retryable-vs-never-retryable-status-codes"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q36",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "exponential-backoff-jitter"
+      ],
+      "stem": "AWS's Builders' Library research quantifies the reduction in retry storms achievable from jitter alone (with no other change). What does the reading cite?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "60-80% reduction — the basis for jitter being mandatory rather than optional",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "40-50% reduction — the basis for jitter being a recommended best practice",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "20-30% reduction — useful at scale but rarely worth the implementation cost",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "90-95% reduction — so dramatic that jitter alone eliminates the need for backoff",
+          "correct": false
+        }
+      ],
+      "explanation": "§2 and §3.5 both cite 'AWS's own published research [3] reports 60-80% reduction in retry storms from jitter alone — the basis for jitter being mandatory rather than optional'. A and B understate; D overstates and incorrectly implies jitter replaces backoff (it complements it).",
+      "sources": [
+        {
+          "title": "The thundering-herd consideration",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/7-retry-logic-and-strategies.md#35-the-thundering-herd-consideration",
+          "anchor": "35-the-thundering-herd-consideration"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q37",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "retry-classification"
+      ],
+      "stem": "Which HTTP status codes does §3.1 classify as NEVER retryable? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "400 — Bad Request (malformed; retrying produces identical failure)",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "401 / 403 — Auth (credential or permission problem; retry will not fix it)",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "422 — Bedrock content filter rejection (retrying produces identical rejection)",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "429 — Rate-limited (provider explicitly signalling retry)",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "503 — Service Unavailable (transient server-side issue)",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.1's table names 400, 401/403, 404, and 422 as never-retryable. 429 is explicitly retryable (with backoff plus `Retry-After` honoured); 5xx codes are retryable as transient. The trap is mistaking 429 for an error code rather than reading it as a retry-with-delay signal.",
+      "sources": [
+        {
+          "title": "Retryable vs never-retryable status codes",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/7-retry-logic-and-strategies.md#31-retryable-vs-never-retryable-status-codes",
+          "anchor": "31-retryable-vs-never-retryable-status-codes"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q38",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "circuit-breaker"
+      ],
+      "stem": "The three-state circuit-breaker state machine wraps the LLM call. From the open state, what triggers a transition into the half-open probing state?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "An explicit health-check call returning 200 from the upstream Bedrock API",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "An operator manually toggling the breaker via an admin endpoint",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "A cool-down period elapsing (e.g., 30 seconds), after which one call is allowed through",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "The failure counter naturally decaying below the threshold over a 5-minute window",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.3 specifies the three states and transition: closed → open on threshold (e.g., 5 failures in 30s); open → half-open after a cool-down period (e.g., 30s); half-open → closed on success or → open on failure. A invents a health-check; C invents a manual toggle; D invents counter-decay semantics.",
+      "sources": [
+        {
+          "title": "Bounded attempts + circuit breaker",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/7-retry-logic-and-strategies.md#33-bounded-attempts--circuit-breaker",
+          "anchor": "33-bounded-attempts--circuit-breaker"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q39",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "exponential-backoff-jitter"
+      ],
+      "stem": "Bedrock returns 429 with `Retry-After: 5` on attempt 1, where the jittered backoff delay would normally be ~1 second. What delay should the client wait before retrying?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "1 second — the jittered backoff schedule is the authoritative source for client-side delay",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "5 seconds — honour Retry-After as a floor when it exceeds the jittered backoff",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "3 seconds — split the difference between the server's Retry-After and the client's jittered backoff",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "0.1 seconds — the minimum guard floor on jittered_delay() applied when client backoff is short",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.2's code idiom and §6's best-practice list both name 'honour `Retry-After` as a floor, not a ceiling. The server knows its own capacity; clients should respect the signal.' The §7 hands-on answer for the same 429+Retry-After:5 scenario gives 5 seconds explicitly. A ignores the server's signal; C invents a midpoint rule; D is the guard floor, applied differently.",
+      "sources": [
+        {
+          "title": "Exponential backoff with jitter — the math",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/7-retry-logic-and-strategies.md#32-exponential-backoff-with-jitter--the-math",
+          "anchor": "32-exponential-backoff-with-jitter--the-math"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q40",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "exponential-backoff-jitter",
+        "circuit-breaker"
+      ],
+      "stem": "When a streaming Bedrock call fails mid-stream, the retry wrapper should resume from the partial output and complete the remaining tokens rather than restart from the beginning.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — restart from the beginning wastes already-generated tokens",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — Bedrock InvokeModelWithResponseStream supports a resume token for partial-output continuation",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — partial-output recovery is a §6 best-practice in the retry reading",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — wrap the entire streaming call in retry; mid-stream failures abort and retry from the start. Partial-output recovery is its own engineering surface",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — streaming endpoints should not be retried at all; failure to the caller is the only correct behaviour",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — retries on streaming endpoints are blocked by Bedrock's IAM policy at the API surface",
+          "correct": false
+        }
+      ],
+      "explanation": "§6's best-practice list names exactly this: 'Wrap the entire streaming call in retry, not individual chunks. Mid-stream failures abort and restart; the alternative requires partial-output recovery that is its own engineering surface.' F2 overstates; F3 invents an IAM constraint; the T branch is the wrong T/F call.",
+      "sources": [
+        {
+          "title": "Best Practices — Retry",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/7-retry-logic-and-strategies.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q41",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "cost-telemetry"
+      ],
+      "stem": "What are the four minimum log fields the reading names as required on every LLM call?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Cache read tokens, cache write tokens, model ID, region",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Request ID, latency in milliseconds, finish reason, content filter rating",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Model ID, prompt version, temperature, top_p",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Model ID, input tokens, output tokens, feature plus tenant",
+          "correct": true
+        }
+      ],
+      "explanation": "§3.2 names exactly four required fields: model, input_tokens, output_tokens, and feature+tenant. The reading explicitly calls finish_reason, latency, request_id, cache_read_tokens 'optional additions'. B and D mix optional additions in as if required; C invents prompt_version as a minimum.",
+      "sources": [
+        {
+          "title": "The four log fields per call",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/8-cost-structure-of-llms.md#32-the-four-log-fields-per-call",
+          "anchor": "32-the-four-log-fields-per-call"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q42",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "cost-telemetry"
+      ],
+      "stem": "Stripe's LLM fraud-explanation feature surfaced a prompt-injection campaign through telemetry. Which signal flagged the attack before content-quality monitoring caught it?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Cost-per-request anomaly driven by inflated input-token counts from injected long prompts",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Output-token spikes from longer-than-usual model responses",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Increased latency on the fraud-explanation endpoint relative to baseline",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "A spike in 422 content-filter rejections from Bedrock",
+          "correct": false
+        }
+      ],
+      "explanation": "§5 cites Stripe's pattern: per-request cost telemetry surfaced the cost-per-request anomaly 6 hours before content-quality monitoring caught degraded output — injected long prompts spiked input tokens, which spiked cost. A confuses input with output; C and D are plausible-sounding alternatives that aren't what the case study reports.",
+      "sources": [
+        {
+          "title": "Real-world Patterns — Stripe prompt-injection-via-cost-anomaly",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/8-cost-structure-of-llms.md#5-real-world-patterns",
+          "anchor": "5-real-world-patterns"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q43",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "claude-cost-gradient",
+        "model-family-routing"
+      ],
+      "stem": "What is the roughly-quoted cost dispersion across Claude tiers (Opus / Sonnet / Haiku) per token that pays for runtime cost-routing in week one?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Roughly 2x — meaningful at scale but only when query volume is sustained",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Roughly 10x — the dispersion that motivates W3 agentic-routing patterns",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Roughly 5x — the routing logic pays for itself in week one in mature production deployments",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Roughly 50x — the model-tier gap that justifies Haiku as the default rather than Sonnet",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.3 and §5 both quote ~5x cost dispersion across tiers and credit routing-logic with paying for itself in week one. A understates; C and D overstate. The 5x number is what motivates Sonnet-as-default with Haiku for high-volume classification and Opus reserved for heavy reasoning.",
+      "sources": [
+        {
+          "title": "The Claude model-family cost gradient",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/8-cost-structure-of-llms.md#33-the-claude-model-family-cost-gradient",
+          "anchor": "33-the-claude-model-family-cost-gradient"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q44",
+      "type": "multi-select",
+      "difficulty": "synthesis",
+      "topics": [
+        "cost-telemetry"
+      ],
+      "stem": "A monitoring alert fires 'cost up 4x in 24 hours'. Which of these are named in §7 as plausible root causes the cohort should consider? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A prompt-injection campaign expanding input token counts on legitimate-looking traffic",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "An unbounded retry storm on a transient outage that consumes input tokens per retry",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Deployment of a new feature that calls the model at higher volume than budgeted",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Bedrock automatically rotating to a more expensive model tier when GovCloud capacity is constrained",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "A FedRAMP audit clause requiring 4x cost markup for compliance attestation",
+          "correct": false
+        }
+      ],
+      "explanation": "§7's answer key names exactly three plausible causes: prompt-injection campaign expanding inputs, unbounded retry storm, and over-budget feature deployment. D and E are fabricated — Bedrock does not auto-rotate tiers based on capacity, and no FedRAMP cost-markup clause exists.",
+      "sources": [
+        {
+          "title": "Hands-on Exercise — Cost",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/8-cost-structure-of-llms.md#7-hands-on-exercise",
+          "anchor": "7-hands-on-exercise"
+        }
+      ]
+    },
+    {
+      "id": "W01-Thu-Q45",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "war-room-incident-mode",
+        "hitl-federal"
+      ],
+      "stem": "The W1 Thu war-room scenario instructs the cohort to ship a working solicitation draft to the Contracting Officer by Friday even if it contains potentially hallucinated FAR clauses, on the grounds that 'shipping beats polish' in incident mode.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — incident mode prioritises delivery over correctness; the CO can verify clauses post-hoc",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — the cohort is explicitly graded on Friday-delivery throughput regardless of hallucination posture",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — Codex Adversarial Review only flags hallucinations at P2 severity in W1 Light calibration",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — the CO explicitly will not sign off on hallucinated FAR clauses, and the cohort's job is to write an honest gap analysis distinguishing what the platform can do this week from what it cannot yet",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — the war-room scenario forbids shipping any code to the CO under any condition during W1",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — the scenario requires the cohort to obtain GSA approval before any drafting workflow runs at all",
+          "correct": false
+        }
+      ],
+      "explanation": "The D4 war-room brief is explicit: 'She'll be a guinea pig for your platform — but she won't sign off on hallucinated FAR clauses.' The EOD deliverable is a cohort-authored gap analysis distinguishing shippable from not-shippable. F2 overstates the constraint; F3 invents a GSA approval step; the T branch inverts the discipline the war-room teaches.",
+      "sources": [
+        {
+          "title": "W1 Thu War-Room — What we're tackling today",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/war-room/D4.md#what-were-tackling-today--why",
+          "anchor": "what-were-tackling-today--why"
+        }
+      ]
+    }
+  ]
+}

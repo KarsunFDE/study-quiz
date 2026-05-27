@@ -1,0 +1,1986 @@
+{
+  "meta": {
+    "week": "W01",
+    "day": "Wednesday",
+    "dayLabel": "Wed 27 May",
+    "topics": [
+      "wed-shape",
+      "instant-runoff-voting",
+      "pair-project-repos",
+      "comparative-am",
+      "galentai-vs-redux",
+      "public-source-ci",
+      "four-stage-ci",
+      "source-tiers",
+      "horizontal-vs-vertical",
+      "comparative-matrix",
+      "analyst-frames",
+      "modesty-in-claims",
+      "bounded-contexts",
+      "jwt-propagation",
+      "claim-revalidation",
+      "correlation-ids",
+      "structured-logging",
+      "sync-vs-async",
+      "container-readiness",
+      "multi-stage-dockerfile",
+      "immutable-tags",
+      "healthcheck",
+      "volume-persistence",
+      "adr-nygard",
+      "adr-madr",
+      "commitment-vs-comparison-adr",
+      "directory-skeleton",
+      "continuous-git-history",
+      "fowler-quadrants",
+      "debt-catalogue-fields",
+      "impact-effort-matrix",
+      "no-fix-during-inventory",
+      "pedagogical-debt",
+      "bug-hunt-vs-catalogue",
+      "eod-deliverable"
+    ],
+    "sourceCount": 6,
+    "questionCount": 46,
+    "generated": "2026-05-27",
+    "typeMix": {
+      "mcq": 35,
+      "multi-select": 5,
+      "tf-justified": 6
+    }
+  },
+  "questions": [
+    {
+      "id": "W01-Wed-Q01",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "wed-shape"
+      ],
+      "stem": "Why does Wednesday absorb the canonical Tuesday-morning Microservices Foundation walkthrough into its PM block?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Memorial Day cost the cohort Monday, so canonical-Tue material slides into the Wed PM slot",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "The Galent presenter requested the schedule swap to fit a customer demo on Tuesday afternoon",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The instructor preferred to teach the mesh after pairs had committed their aspect",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "AWS Bedrock access for acquire-gov was not provisioned in time for a Tuesday walkthrough",
+          "correct": false
+        }
+      ],
+      "explanation": "The overview explicitly says the PM block is the canonical Tuesday-morning Microservices Foundation walkthrough, compressed into Wed PM because Memorial Day cost the cohort Monday. The 'after pairs committed' framing is plausible-sounding but never stated as the reason — the slide is calendar-driven, not pedagogy-driven.",
+      "sources": [
+        {
+          "title": "Microservices Foundation primer — what you'll walk Wed PM",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/1-DailyTopicOverview.md#3-microservices-foundation-primer--what-youll-walk-wed-pm-15-min",
+          "anchor": "3-microservices-foundation-primer--what-youll-walk-wed-pm-15-min"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q02",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "wed-shape",
+        "pair-project-repos"
+      ],
+      "stem": "At the 08:30 ceremony, what mechanic decides which pair claims which of the three pre-created repos?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Random draw — each pair pulls a sealed envelope at the start of the block",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Instructor assignment based on prior-night reflection answers submitted overnight",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "30-second pair pitches followed by a class instant-runoff vote",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "First-past-the-post show-of-hands vote in the order pairs pitched",
+          "correct": false
+        }
+      ],
+      "explanation": "The overview is explicit: final pairs are announced, each pair gives a 30-second pitch, and the cohort + instructor vote via instant-runoff to lock the claim order. First-past-the-post (C) is the plausible distractor, but IRV is the mechanic specifically chosen because it handles three-option ranked preference better.",
+      "sources": [
+        {
+          "title": "Wed at a glance — comparative AM + Microservices PM + Pair-Project init",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/1-DailyTopicOverview.md#1-wed-at-a-glance--comparative-am--microservices-pm--pair-project-init-5-min",
+          "anchor": "1-wed-at-a-glance--comparative-am--microservices-pm--pair-project-init-5-min"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q03",
+      "type": "multi-select",
+      "difficulty": "recall",
+      "topics": [
+        "pair-project-repos"
+      ],
+      "stem": "Which of the following are the three pre-created Cohort #1 pair-project repos on the KarsunFDE org? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "grants-portal-modern (anchored on Grants.gov)",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "contract-payment-flow (anchored on WAWF)",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "acquire-gov (the shared training brownfield)",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "foia-response-pipeline (anchored on FOIA.gov)",
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": "redux-accelerator-sandbox (Karsun ReDuX scaffolding)",
+          "correct": false
+        }
+      ],
+      "explanation": "The three pair-project repos are grants-portal-modern, contract-payment-flow, and foia-response-pipeline — each anchored to a real federal-acquisitions system. acquire-gov is the shared training brownfield (no pair builds on it directly); redux-accelerator-sandbox is fabricated.",
+      "sources": [
+        {
+          "title": "Pair-Project repo init — three eligible repos",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/1-DailyTopicOverview.md#4-pair-project-repo-init--what-gets-scaffolded-wed-pm-10-min",
+          "anchor": "4-pair-project-repo-init--what-gets-scaffolded-wed-pm-10-min"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q04",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "pair-project-repos"
+      ],
+      "stem": "A pair asks whether they can build their Pair Project directly on top of acquire-gov rather than spinning up a new repo. What does the Wed pre-session say?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Yes, if the pair commits to merging back to acquire-gov main before the W3 gate",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "No — acquire-gov is the shared training-project for cohort-wide modernization exercises; each pair's project lives in its own repo",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Yes, but only the FOIA pair may, because FOIA aligns most cleanly with acquire-gov's solicitation service",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Only if the instructor approves a fork during the 15:45 review block",
+          "correct": false
+        }
+      ],
+      "explanation": "The overview is unambiguous: no pair builds on acquire-gov itself — it is the shared training-project for modernization exercises across all six weeks, and each pair's Pair Project lives in its own dedicated repo running continuously Phase-1 → Phase-2. The 'instructor approves a fork' framing (D) is the trap for someone who half-remembers there is a 15:45 review.",
+      "sources": [
+        {
+          "title": "Pair-Project repo init — what gets scaffolded Wed PM",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/1-DailyTopicOverview.md#1-wed-at-a-glance--comparative-am--microservices-pm--pair-project-init-5-min",
+          "anchor": "1-wed-at-a-glance--comparative-am--microservices-pm--pair-project-init-5-min"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q05",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "comparative-am",
+        "galentai-vs-redux"
+      ],
+      "stem": "What posture does the instructor explicitly set at the top of the Wed AM comparative session?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "I have direct access to Karsun ReDuX internals via NDA, so claims about ReDuX architecture are first-hand",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "I have access to GalentAI's enterprise sandbox, so feature claims about Galent can be demonstrated live",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "I have a Galent presenter joining at 09:30 who will speak to internals not in the public record",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "I do NOT have access to either company's internals — everything we say is from publicly available sources",
+          "correct": true
+        }
+      ],
+      "explanation": "The pre-session quotes the instructor's posture verbatim: 'I do NOT have access to GalentAI internals. I do NOT have access to Karsun ReDuX internals. Everything is publicly available — websites, AWS Public Sector Blog, AWS Marketplace, press releases, conference talks.' This is itself the lesson — modesty-in-claims is the federal-engagement floor. The Galent-presenter distractor (D) is the trap for anyone who didn't notice D-052 cut the presenter.",
+      "sources": [
+        {
+          "title": "Reading for the comparative session — federal posture this AM teaches",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/1-DailyTopicOverview.md#2-reading-for-the-comparative-session--what-to-bring-an-opinion-on-15-min",
+          "anchor": "2-reading-for-the-comparative-session--what-to-bring-an-opinion-on-15-min"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q06",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "galentai-vs-redux",
+        "comparative-am"
+      ],
+      "stem": "GalentAI and Karsun ReDuX are direct competitors that a federal CIO is choosing between for the same acquisition.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — both are enterprise-AI platforms with overlapping target customers",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — both list AWS Marketplace as a sales channel, so they hit the same buyer queue",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — both lack FedRAMP authorization, so they are interchangeable for federal procurement today",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — GalentAI is horizontal-commercial (9 engines, 125+ agents, multi-LLM, no federal posture); Karsun ReDuX is federal-vertical mainframe-modernization (3-agent Bedrock-only). Different buyers, different problems",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — GalentAI has FedRAMP High and Karsun ReDuX does not, so they are not procurable through the same vehicle",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — Karsun ReDuX is OpenAI-based and GalentAI is Bedrock-only, so the LLM-vendor lock-in differs",
+          "correct": false
+        }
+      ],
+      "explanation": "The Wed pre-session and the comparative reading both call out the asymmetry: GalentAI is horizontal-commercial (broad use cases, multi-LLM) while Karsun ReDuX is federal-vertical mainframe-modernization on Bedrock only. The instructor's framing is that a buyer comparing them is asking the wrong question — and surfacing that is itself a legitimate finding. The FedRAMP-flip (f2) and LLM-flip (f3) are both factually wrong; neither has FedRAMP and ReDuX is Bedrock-only.",
+      "sources": [
+        {
+          "title": "The asymmetry to walk in with",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/1-DailyTopicOverview.md#2-reading-for-the-comparative-session--what-to-bring-an-opinion-on-15-min",
+          "anchor": "2-reading-for-the-comparative-session--what-to-bring-an-opinion-on-15-min"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q07",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "four-stage-ci",
+        "public-source-ci"
+      ],
+      "stem": "What is the standard four-stage process used by public-source competitive-intelligence professionals?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Plan, collect, analyse, disseminate",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Discover, validate, score, recommend",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Survey, interview, summarise, present",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Brainstorm, research, decide, document",
+          "correct": false
+        }
+      ],
+      "explanation": "The Wikipedia and Penn State guides converge on plan → collect → analyse → disseminate as the four-stage CI process. The FDE-flavoured version is intentionally light on collect (no weeks available) and heavy on disseminate (the comparative ADR follows the engagement for months). Discover/validate/score/recommend (B) is the plausible distractor — it sounds methodical but is not the canonical CI vocabulary.",
+      "sources": [
+        {
+          "title": "The four-stage CI process",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/2-reading-for-the-comparative-session.md#31-the-four-stage-ci-process",
+          "anchor": "31-the-four-stage-ci-process"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q08",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "source-tiers"
+      ],
+      "stem": "You are building a comparative matrix on two enterprise AI platforms. A founder's podcast appearance contains a feature claim that no other public source repeats. How should you treat that source?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "High-value — founder statements are first-party and authoritative for the matrix",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Moderate-value — podcasts are recorded sessions that reveal architectural decisions in the same tier as conference talks",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Flag-with-caveat — useful as a signal, but exclude the claim or note it as a follow-up question rather than citing it as primary",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "High-value — podcasts have show notes that count as published documents under the analyst's source-tier framework",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading classifies podcast interviews with founders as flag-with-caveat: useful for signals, dangerous as primary citations because they are unverified and easily contradicted. Conference talks (B) are moderate-value because they are recorded and reveal architecture decisions — podcasts do not get the same lift. The correct discipline is to soften or exclude the claim, not to cite it.",
+      "sources": [
+        {
+          "title": "Source tiers (high-value vs moderate-value vs flag-with-caveat)",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/2-reading-for-the-comparative-session.md#32-source-tiers-high-value-vs-moderate-value-vs-flag-with-caveat",
+          "anchor": "32-source-tiers-high-value-vs-moderate-value-vs-flag-with-caveat"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q09",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "source-tiers"
+      ],
+      "stem": "Which of these are classified as high-value, low-effort public sources in the comparative-session reading? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The vendor's own marketing website",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "AWS Marketplace or GSA Schedule listings",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Tweetstorms by company employees",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Analyst quadrants (Gartner Magic Quadrant, Forrester Wave)",
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": "G2 customer review sites",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading lists vendor websites, marketplace listings, public press releases, regulatory filings, and analyst quadrants in the high-value low-effort tier. G2 / Gartner Peer Insights / Capterra are explicitly moderate-value, and tweetstorms / social-media posts are flag-with-caveat — useful signals but dangerous as primary citations.",
+      "sources": [
+        {
+          "title": "Source tiers",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/2-reading-for-the-comparative-session.md#32-source-tiers-high-value-vs-moderate-value-vs-flag-with-caveat",
+          "anchor": "32-source-tiers-high-value-vs-moderate-value-vs-flag-with-caveat"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q10",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "horizontal-vs-vertical"
+      ],
+      "stem": "A CIO is evaluating two AI platforms. One is general-purpose multi-LLM; the other is industry-specific with deep workflow embedding. Why does the horizontal-vs-vertical distinction change the analysis?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It changes which vendors are in scope, but the comparison dimensions stay the same across both categorisations regardless of buyer",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "It changes the dimensions you compare on — horizontal wins on breadth/integration; vertical wins on accuracy/regulatory fit",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Vertical platforms are always strictly better than horizontal ones for any enterprise buyer in any industry segment",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "It does not — both categories should be scored on capability scope, deployment model, and pricing only, regardless of fit",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading is explicit: horizontal platforms compete on breadth, deployment speed, multi-LLM portability, and total cost across departments; vertical platforms compete on domain accuracy, certifications (FedRAMP/HIPAA/PCI), and workflow embedding. The dimensions differ — walking in with the wrong frame produces the wrong recommendation. The 'same dimensions either way' framing (A) is the trap.",
+      "sources": [
+        {
+          "title": "Horizontal vs vertical: why the dimensions differ",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/2-reading-for-the-comparative-session.md#33-horizontal-vs-vertical-why-the-dimensions-differ",
+          "anchor": "33-horizontal-vs-vertical-why-the-dimensions-differ"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q11",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "comparative-matrix"
+      ],
+      "stem": "The reading recommends ending every comparative analysis with what specific form of finding?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A verdict — 'X wins' — so the buyer has an unambiguous recommendation",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "An open-ended set of pros-and-cons with no recommendation attached",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "A scored ranking from 1 to 10 for each vendor across every dimension",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "A conditional finding of the form 'X is the default unless Y'",
+          "correct": true
+        }
+      ],
+      "explanation": "The best-practices section says conditional findings travel better than verdicts because they survive the most common rebuttal ('but what about Y'). The recommended one-sentence shape is 'X is the default unless Y' — it commits to a default while leaving honest space for the condition that would flip the recommendation. Open-ended pros/cons (D) is the plausible runner-up for an analyst trying to stay safe, but the reading explicitly calls that out as insufficient.",
+      "sources": [
+        {
+          "title": "Best Practices — conditional findings",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/2-reading-for-the-comparative-session.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q12",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "analyst-frames"
+      ],
+      "stem": "A vendor's absence from the most recent Forrester Wave or Gartner Magic Quadrant proves the product is weak.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — analyst inclusion criteria are the industry standard for product quality",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — vendors who care about their product always submit to every relevant analyst cycle",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — analyst absence means a product failed the analyst's evaluation, full stop",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — absence is evidence and a finding, but the cause may be too small, too new, too narrow, or a deliberate non-participation; many excellent niche platforms intentionally skip analyst submission cycles",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — analyst quadrants are unreliable so their data should be discarded entirely",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — analyst absence is irrelevant in any case and should never be discussed in a comparative ADR",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading treats analyst-quadrant absence as a question, not a verdict: absence is a data point that can mean the vendor is too small, too new, too narrow, or has deliberately opted out of analyst submission cycles. Each of those is a different finding. Treating absence as proof of weakness (the True branch) is the analyst-error the reading explicitly warns against.",
+      "sources": [
+        {
+          "title": "Analyst frames as sources and as evidence-of-absence",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/2-reading-for-the-comparative-session.md#35-analyst-frames-as-sources-and-as-evidence-of-absence",
+          "anchor": "35-analyst-frames-as-sources-and-as-evidence-of-absence"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q13",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "comparative-matrix",
+        "modesty-in-claims"
+      ],
+      "stem": "While drafting a vendor matrix you find no FedRAMP attestation on either vendor's public site. How should the matrix record this?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Document the absence explicitly with a retrieval date — absence is itself a finding, not a gap",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Mark both as 'FedRAMP authorized' since most enterprise AI vendors carry it implicitly",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Leave those cells blank — only positive evidence belongs in a matrix",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Drop the FedRAMP dimension from the matrix because evidence is missing",
+          "correct": false
+        }
+      ],
+      "explanation": "Best practice in the reading: document absence as explicitly as presence — 'No FedRAMP attestation found on public site as of 2026-05-26' is a finding, not a hole in the matrix. Dropping the dimension (D) is the tempting move because it cleans the spreadsheet, but it hides the most decision-relevant fact from the CIO.",
+      "sources": [
+        {
+          "title": "Best Practices — document absence",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/2-reading-for-the-comparative-session.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q14",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "bounded-contexts"
+      ],
+      "stem": "Two engineering teams propose splitting an existing monolith into one 'API service' and one 'database service'. What does the bounded-contexts framing say about this split?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It is a sound split because separating technical concerns is the canonical stated goal of microservices architecture in the DDD literature",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "It is the recommended split — keeping data access isolated improves the security posture and reduces blast radius for any breach in the API layer",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "It is unsound — boundaries on technical layers produce services that cannot ship independently; every business change ripples across both",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "It is fine if both services have separate on-call rotations and CI pipelines so the operational ownership is cleanly delineated across the two teams",
+          "correct": false
+        }
+      ],
+      "explanation": "Bounded contexts in DDD draw service boundaries along business capabilities (billing, support, identity), not technical layers (API, database, cache). The primer is explicit that splitting by layer produces services that cannot ship independently — every business change touches all three layers. The 'separate on-call' framing (D) is the trap for someone who confuses operational separation with architectural soundness.",
+      "sources": [
+        {
+          "title": "Bounded contexts: where service boundaries actually go",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/3-microservices-foundation-primer.md#31-bounded-contexts-where-service-boundaries-actually-go",
+          "anchor": "31-bounded-contexts-where-service-boundaries-actually-go"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q15",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "bounded-contexts"
+      ],
+      "stem": "The microservices primer lists three practical tests for whether a service boundary is sound. Which of these is NOT one of them?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Can the team owning the service deploy a change without coordinating with another team?",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Is the service implemented in the same programming language as the rest of the mesh?",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "When a feature request arrives, does it land cleanly inside one service?",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Does the language used inside the service stay internally consistent (one definition of 'Customer')?",
+          "correct": false
+        }
+      ],
+      "explanation": "The three named tests are independent deploy, internally consistent language, and clean single-service landing for features. Programming-language uniformity is never named as a soundness test — and in practice, the acquire-gov mesh deliberately spans three runtimes (Angular, Spring Boot, FastAPI). Language uniformity (D) is the trap for someone confusing 'monorepo discipline' with 'bounded-context discipline'.",
+      "sources": [
+        {
+          "title": "Three practical tests for boundary soundness",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/3-microservices-foundation-primer.md#31-bounded-contexts-where-service-boundaries-actually-go",
+          "anchor": "31-bounded-contexts-where-service-boundaries-actually-go"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q16",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "jwt-propagation"
+      ],
+      "stem": "In the three-checkpoint JWT propagation model, what are the three checkpoints in order?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Authentication, authorization, accounting (the AAA model)",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Header parsing, signature check, claim extraction — at the gateway only",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Login, session refresh, logout — the standard OAuth2 lifecycle",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Issuance at the IdP, edge validation at the gateway, re-validation (or token exchange) at each downstream service",
+          "correct": true
+        }
+      ],
+      "explanation": "The primer's three-checkpoint model is: (1) IdP issues the signed JWT, (2) gateway verifies signature/exp/audience/issuer against JWKS, (3) downstream service either re-validates, accepts a forwarded claim, or uses token exchange. The AAA model (A) is a different framework; the gateway-only framing (D) is the trap that mirrors the lazy-trust failure mode the reading warns against.",
+      "sources": [
+        {
+          "title": "Identity propagation: the three-checkpoint model",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/3-microservices-foundation-primer.md#32-identity-propagation-the-three-checkpoint-model",
+          "anchor": "32-identity-propagation-the-three-checkpoint-model"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q17",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "claim-revalidation",
+        "jwt-propagation"
+      ],
+      "stem": "A downstream Spring Boot service reads X-User-Id from a request header and writes an audit log entry on the strength of that header — never re-validating the JWT signature. Why is this a federal-context finding?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Audit logs on an unvalidated header are a forgery surface — any internal caller can spoof it, making the log a forgery surface in an ATO review",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "It violates RFC 7519's strict requirement that every downstream service re-sign every JWT it forwards before passing the request onward to any further peer",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "It produces minor performance overhead from the extra header-parsing work that downstream filters must do on every single inbound request",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The header name must be Authorization, not X-User-Id, per FedRAMP guidance issued in the most recent revision of the federal authentication baseline",
+          "correct": false
+        }
+      ],
+      "explanation": "The primer raises the federal-context angle explicitly: claim re-validation matters not only for security but for audit. If a downstream service writes 'user X performed action Y' on the strength of a header it never validated, the audit log is technically a forgery surface — and this is the kind of finding that surfaces in an Authorization-to-Operate review. The RFC-7519 framing (A) is fabricated; RFC 7519 does not require per-service re-signing.",
+      "sources": [
+        {
+          "title": "The federal context adds an extra dimension",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/3-microservices-foundation-primer.md#32-identity-propagation-the-three-checkpoint-model",
+          "anchor": "32-identity-propagation-the-three-checkpoint-model"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q18",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "correlation-ids"
+      ],
+      "stem": "Service A consumes an incoming HTTP request, then enqueues a message for Service B to process asynchronously. What does the correlation-ID contract require?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A's correlation ID propagates on synchronous HTTP outbound calls but not on queue messages — queues are out of scope",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "B should generate a fresh correlation ID when it dequeues the message, since it is a new logical request",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "A must put the correlation ID in the message envelope so B can recover it — async handoffs are the most common drop point",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "The correlation ID must be encrypted before being placed on the queue to prevent leakage",
+          "correct": false
+        }
+      ],
+      "explanation": "The primer is explicit: every service must read-and-propagate the correlation ID on every outbound call, and the most common drop point is an asynchronous handoff — if A doesn't put the ID in the message envelope, B cannot recover it. Fresh-ID-on-dequeue (B) is the failure mode that breaks distributed tracing precisely at the boundary where it matters most.",
+      "sources": [
+        {
+          "title": "Correlation IDs and distributed tracing",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/3-microservices-foundation-primer.md#33-correlation-ids-and-distributed-tracing",
+          "anchor": "33-correlation-ids-and-distributed-tracing"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q19",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "correlation-ids",
+        "structured-logging"
+      ],
+      "stem": "The primer distinguishes between a correlation ID and a trace ID. Which statement reflects their relationship correctly?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Correlation IDs are an obsolete pattern that trace IDs entirely replaced after OpenTelemetry 1.0 shipped its W3C-compatible trace-context propagation standard for production HTTP/gRPC meshes",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Trace IDs are sampled while logs usually are not — correlation IDs are what you grep production logs for; trace IDs are what you open in your APM tool",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Correlation IDs are per-span and trace IDs are per-request — the opposite of what most teams think when they first encounter the modern observability stack in a production system",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Trace IDs are emitted only by the gateway; correlation IDs are emitted only by downstream services, and the two streams are never reconciled in the production logging pipeline at runtime",
+          "correct": false
+        }
+      ],
+      "explanation": "The primer says modern systems carry both because traces are sampled but logs are not. The correlation ID is for grepping unsampled log lines; the trace ID opens in an APM tool to show a span tree for latency breakdown. The 'correlation IDs are obsolete' framing (A) is the trap for someone who learned only OpenTelemetry recently.",
+      "sources": [
+        {
+          "title": "Correlation IDs and distributed tracing",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/3-microservices-foundation-primer.md#33-correlation-ids-and-distributed-tracing",
+          "anchor": "33-correlation-ids-and-distributed-tracing"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q20",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "sync-vs-async"
+      ],
+      "stem": "Idempotency matters more for asynchronous (queue-based) inter-service calls than for synchronous (HTTP/gRPC) ones.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — queue redelivery is the default, not the exception, so idempotency is foundational on async paths; sync retries are bounded by the caller and can be more easily de-duplicated",
+          "correct": true
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — only async paths involve network calls so only async paths can experience duplicates",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — synchronous calls never need idempotency keys under any circumstance",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — idempotency is only relevant for read operations, which are inherently idempotent",
+          "correct": false
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — idempotency requirements are identical across both shapes because both can retry",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — synchronous paths require more idempotency discipline because their retry budgets are larger",
+          "correct": false
+        }
+      ],
+      "explanation": "The primer says idempotency matters in both shapes, but matters more in async because queue redelivery is the default, not the exception. On sync paths the caller controls retry behaviour (retry once, circuit-break on persistent failure); on async paths the queue may redeliver any message at any time, so every consumer must be idempotent. The 'sync paths never need idempotency' framing (t3) is the dangerous over-correction.",
+      "sources": [
+        {
+          "title": "Synchronous vs asynchronous paths",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/3-microservices-foundation-primer.md#34-synchronous-vs-asynchronous-paths",
+          "anchor": "34-synchronous-vs-asynchronous-paths"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q21",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "container-readiness",
+        "multi-stage-dockerfile"
+      ],
+      "stem": "Which of the four production-readiness criteria for a Dockerfile is correctly described?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Single-stage build: keep everything in one stage so the image is reproducible end-to-end",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Healthchecks: should hit a /live endpoint that returns 200 the moment the process starts",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Pinning to :latest: ensures the image always picks up the latest upstream security patches",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Multi-stage build: a first stage compiles, a second smaller stage copies only the artifacts and runs them",
+          "correct": true
+        }
+      ],
+      "explanation": "The primer's multi-stage definition is precisely build-then-runtime: smaller images, fewer vulnerabilities, faster pull-and-start. Single-stage (A) keeps the build toolchain in the runtime image — antipattern. `:latest` (C) is a time-bomb, not a security-patch lever. Healthchecks (D) must hit /ready, which returns 200 only after database connections and warm caches are ready — never /live which returns 200 too early.",
+      "sources": [
+        {
+          "title": "Containerisation: the production-readiness checklist",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/3-microservices-foundation-primer.md#35-containerisation-the-production-readiness-checklist",
+          "anchor": "35-containerisation-the-production-readiness-checklist"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q22",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "container-readiness",
+        "immutable-tags",
+        "healthcheck",
+        "volume-persistence"
+      ],
+      "stem": "Which of the following are Dockerfile or compose antipatterns flagged in the Wed microservices primer? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "FROM python:latest as the base image",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Multi-stage build with builder + slim runtime stages",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Postgres compose service with no persistent volume mounted",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "No HEALTHCHECK instruction on a service handling user-facing traffic",
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": "Pinning to python:3.11.7-slim with a digest hash",
+          "correct": false
+        }
+      ],
+      "explanation": "The primer's named antipatterns: :latest tags (time-bomb on upstream change), missing volumes on data services (docker-compose down -v wipes data), and missing healthchecks (orchestrator routes traffic before warm caches are ready, producing cascading 5xxs). Multi-stage builds and digest-pinned slim images are the production-shaped patterns the primer recommends.",
+      "sources": [
+        {
+          "title": "Containerisation: the production-readiness checklist",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/3-microservices-foundation-primer.md#35-containerisation-the-production-readiness-checklist",
+          "anchor": "35-containerisation-the-production-readiness-checklist"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q23",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "healthcheck"
+      ],
+      "stem": "A team adds a Docker HEALTHCHECK that hits /health/live, which returns 200 the moment the HTTP server binds. What failure mode does the primer warn this produces?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The orchestrator routes user traffic the instant the process starts — before database connections and warm caches are ready — and the first 30 seconds returns 5xx",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "The orchestrator never marks the container healthy because /live is the wrong endpoint name under the Docker Compose healthcheck specification version in use here",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The healthcheck loops infinitely because it never times out, locking up the Docker daemon and preventing any subsequent container starts on the same host for the duration",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Docker refuses to start the container at all because the /live endpoint name is reserved by convention for the Kubernetes readiness/liveness probe scheme rather than Docker",
+          "correct": false
+        }
+      ],
+      "explanation": "The primer states this exact failure mode: without a /ready-style healthcheck that reflects genuine readiness, the orchestrator routes traffic before downstream connections are established, producing cascading 5xxs in the first 30 seconds of every restart. The 'reserved for Kubernetes' framing (D) is invented.",
+      "sources": [
+        {
+          "title": "Containerisation: the production-readiness checklist",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/3-microservices-foundation-primer.md#35-containerisation-the-production-readiness-checklist",
+          "anchor": "35-containerisation-the-production-readiness-checklist"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q24",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "adr-nygard"
+      ],
+      "stem": "Which three sections form the canonical Nygard ADR template?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Problem, Solution, Risks",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Background, Approach, Outcome",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Context, Decision, Consequences",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Goals, Non-goals, Implementation",
+          "correct": false
+        }
+      ],
+      "explanation": "Nygard's 2011 form — short and durable — is Context (what forces are in play), Decision (the load-bearing line, one to two sentences), and Consequences (honest enumeration including negatives). Problem/Solution/Risks (A) is a different template; the others are also-plausible-sounding but invented for this question.",
+      "sources": [
+        {
+          "title": "The Nygard ADR template",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/4-pair-project-repo-init.md#31-the-nygard-adr-template",
+          "anchor": "31-the-nygard-adr-template"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q25",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "adr-nygard"
+      ],
+      "stem": "The pair-project-init reading calls one ADR section 'the load-bearing line' and another section 'the most useful one to revisit.' Which pairing is correct?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Status is the load-bearing line; Context is the most useful to revisit",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Decision is the load-bearing line; Consequences is the most useful to revisit (because that's where the honest downsides live)",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Context is the load-bearing line; Status is the most useful to revisit",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Consequences is the load-bearing line; Decision is the most useful to revisit",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading explicitly says Decision is the load-bearing line ('if a future reader reads only one line of this ADR, this is it') and that the Consequences section is the most useful part to revisit — an ADR with no downsides listed is one no one will revisit, and the downsides are precisely what later revisitors need. Swapping the two (D) is the half-remembering trap.",
+      "sources": [
+        {
+          "title": "The Nygard ADR template",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/4-pair-project-repo-init.md#31-the-nygard-adr-template",
+          "anchor": "31-the-nygard-adr-template"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q26",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "adr-madr",
+        "commitment-vs-comparison-adr"
+      ],
+      "stem": "When does the MADR (Markdown ADR) extended template earn its place over the short Nygard form?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Always — MADR is strictly better than Nygard so it should be used for every ADR",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Only when the ADR is for a security-critical decision under FedRAMP review",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "When the team has more than five engineers, MADR's metadata sections become necessary",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "When the decision has multiple defeated alternatives that would each have been defensible — the pros/cons table will be re-litigated",
+          "correct": true
+        }
+      ],
+      "explanation": "The reading is explicit: MADR earns its place when multiple live alternatives existed and the defeated ones would have been defensible. A 'Use PostgreSQL' decision in a project where only PostgreSQL was seriously considered does not benefit from MADR's full structure; a 'Bedrock vs OpenAI direct vs self-hosted Llama' decision benefits enormously because the alternatives will be re-litigated within months.",
+      "sources": [
+        {
+          "title": "MADR's extensions and when they earn their place",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/4-pair-project-repo-init.md#32-madrs-extensions-and-when-they-earn-their-place",
+          "anchor": "32-madrs-extensions-and-when-they-earn-their-place"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q27",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "commitment-vs-comparison-adr"
+      ],
+      "stem": "A pair commits ADR-0001 declaring 'this project will own the FOIA-response workflow end-to-end.' Which ADR shape best fits this decision?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Commitment ADR using Nygard — it locks scope with no comparison being made; the decision is to claim a scope",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Comparison ADR using MADR — the alternatives must be compared so the choice looks rigorous",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Status-only ADR — scope commitments don't need Context or Consequences",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Either form, since the two are interchangeable for the first ADR of a project",
+          "correct": false
+        }
+      ],
+      "explanation": "Commitment ADRs lock scope — the decision is to claim a scope, not to choose among alternatives. The reading warns that using comparison form for a commitment decision makes the decision look more contestable than it is. Nygard's short form is the right fit. The 'either form' framing (D) is the trap; the reading is explicit that mismatched form-to-function is the common error.",
+      "sources": [
+        {
+          "title": "Commitment ADRs vs comparison ADRs",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/4-pair-project-repo-init.md#33-commitment-adrs-vs-comparison-adrs",
+          "anchor": "33-commitment-adrs-vs-comparison-adrs"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q28",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "directory-skeleton"
+      ],
+      "stem": "Why does the pair-project reading recommend committing the empty directory skeleton (with .gitkeep files) in the first commit, before any feature code lands?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Because Git requires at least one file in every directory before any other commit can succeed",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Because GitHub Pages won't build a repo without a /docs directory present at the first commit",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Because it signals to every contributor and every code-generation tool where new artifacts go; a repo with no shape grows by accident",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Because automated security scanners require an /eval directory present from the first push",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading frames the empty skeleton as deliberate signalling: contributors and tools land artifacts where structure exists, so a repo that starts with deliberate shape converges faster than one that grows by accident. The Git-requires-files framing (A) is technically false (Git tracks files, not directories), and the GitHub-Pages and scanner framings are invented.",
+      "sources": [
+        {
+          "title": "The minimal viable directory skeleton",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/4-pair-project-repo-init.md#34-the-minimal-viable-directory-skeleton",
+          "anchor": "34-the-minimal-viable-directory-skeleton"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q29",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "instant-runoff-voting"
+      ],
+      "stem": "In an instant-runoff vote for three pair-project repos, what happens if no option has a majority on the first round?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The facilitator declares the option with the most first-place votes the winner — first-past-the-post takes over",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "The option with the fewest first-place votes is eliminated, and those voters' next-ranked choice is redistributed; repeat until a majority",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "The vote is rerun from scratch with new ballots until a majority emerges on the first round",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "All three options are declared co-winners and a coin flip allocates them",
+          "correct": false
+        }
+      ],
+      "explanation": "IRV's defining mechanic, per the reading and Wikipedia: count first-place votes; if no majority, eliminate the option with the fewest first-place votes and redistribute those voters' next-ranked choice; repeat until a majority emerges. First-past-the-post (A) is precisely the alternative the reading argues against for three-or-more-option choices.",
+      "sources": [
+        {
+          "title": "Instant-runoff voting as a small-group allocation mechanic",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/4-pair-project-repo-init.md#35-instant-runoff-voting-as-a-small-group-allocation-mechanic",
+          "anchor": "35-instant-runoff-voting-as-a-small-group-allocation-mechanic"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q30",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "instant-runoff-voting"
+      ],
+      "stem": "An IRV tiebreaker function should be agreed before the vote, not after.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — disputes about how to resolve a tie are intractable if the rule wasn't agreed in advance; the discipline is committing to the tiebreaker before the vote",
+          "correct": true
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — IRV is defined to require a coin-flip tiebreaker by Robert's Rules of Order, so the rule is already set",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — without an a-priori tiebreaker the vote technically violates the One-Person-One-Vote constraint",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — tiebreakers should always be decided by the most-senior person at the moment a tie occurs",
+          "correct": false
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — IRV is mathematically guaranteed never to produce a tie, so a tiebreaker is unnecessary",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — the cohort can vote on a tiebreaker after seeing the tie, which is more democratic",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading is explicit: a final tie is resolved by an explicit tiebreaker function agreed beforehand (coin flip, facilitator decides, draw lots) — the discipline is committing to the tiebreaker before the vote, not after. The 'vote on the tiebreaker after the tie' framing (f3) is the most tempting wrong answer because it feels democratic, but it produces precisely the intractable dispute the discipline exists to prevent.",
+      "sources": [
+        {
+          "title": "Instant-runoff voting as a small-group allocation mechanic",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/4-pair-project-repo-init.md#35-instant-runoff-voting-as-a-small-group-allocation-mechanic",
+          "anchor": "35-instant-runoff-voting-as-a-small-group-allocation-mechanic"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q31",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "continuous-git-history"
+      ],
+      "stem": "At the Phase-1 → Phase-2 transition (W3 Fri → W4 Mon), a pair considers spinning up a fresh repo to 'leave the experiment behind.' What does the reading say is lost by doing this?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Only the CI configuration — modern CI tools rebuild from scratch on each push so the cost of starting fresh is minimal in practice for any reasonably-sized project",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Nothing important — phase boundaries are the right moment for a clean restart so the architectural narrative resets cleanly into the new phase's design intent",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The GitHub stars and watcher count, which reset when a new repo is created, plus any community engagement accumulated during the prior phase across the org",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The commit-by-commit history explaining why the project arrived at its current shape, and the blame trail letting contributors trace any line back to context",
+          "correct": true
+        }
+      ],
+      "explanation": "The reading identifies exactly two losses from a fresh-start: (a) the commit-by-commit history that explains why the project arrived at its current shape, and (b) the blame trail that lets contributors trace lines back to context. The alternative is tags marking phase transitions (v0-prototype, v1-production) on the same repo. The 'CI config only' framing (A) is the small-stakes distractor; the real cost is architectural narrative.",
+      "sources": [
+        {
+          "title": "Continuous git history vs the 'fresh start' temptation",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/4-pair-project-repo-init.md#36-continuous-git-history-vs-the-fresh-start-temptation",
+          "anchor": "36-continuous-git-history-vs-the-fresh-start-temptation"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q32",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "continuous-git-history"
+      ],
+      "stem": "If a project should not 'start fresh' at a phase transition, what is the recommended alternative?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Keep the same repository across phases and mark phase transitions with tags (v0-prototype, v1-production); use branches for risky experiments",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Mirror the repo to a new remote and force-push a squashed history that starts at phase 2",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Rebase the entire history onto a new initial commit that hides the phase-1 work",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Archive the phase-1 repo as a tarball and reference it from a phase-2 README link",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading's alternative is precisely this: same repo, tags for phase transitions, branches for risky experiments. The git history becomes the architectural narrative — readable in git log --oneline, queryable with git blame, traceable through git log --follow across file renames. Mirroring with force-push (B) and rebasing to hide history (C) destroy the same blame trail the discipline preserves.",
+      "sources": [
+        {
+          "title": "Continuous git history vs the 'fresh start' temptation",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/4-pair-project-repo-init.md#36-continuous-git-history-vs-the-fresh-start-temptation",
+          "anchor": "36-continuous-git-history-vs-the-fresh-start-temptation"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q33",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "fowler-quadrants"
+      ],
+      "stem": "Martin Fowler's four-quadrant technical-debt framing crosses which two axes?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Production-impact × test-coverage",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "High-effort vs low-effort × high-impact vs low-impact",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Deliberate vs inadvertent × reckless vs prudent",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Security vs performance × architectural vs cosmetic",
+          "correct": false
+        }
+      ],
+      "explanation": "Fowler's two axes are deliberate-vs-inadvertent (did the team know they were taking on debt?) and reckless-vs-prudent (was the debt taken on with discipline or without?). The other framing (C) is the impact-effort matrix from §3.3 — also in the reading but used for prioritisation, not Fowler's quadrants. Mixing them is the most common half-remembering trap.",
+      "sources": [
+        {
+          "title": "Fowler's four-quadrant technical-debt framing",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/5-brownfield-debt-inventory.md#31-fowlers-four-quadrant-technical-debt-framing",
+          "anchor": "31-fowlers-four-quadrant-technical-debt-framing"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q34",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "fowler-quadrants"
+      ],
+      "stem": "A team chose to skip writing integration tests during an aggressive launch sprint, knowing the discipline was needed but accepting the risk. In Fowler's framing, which quadrant does this debt occupy?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Inadvertent-prudent — the team did the best they could with the information available",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Deliberate-reckless — someone chose to skip discipline they knew was needed; the fix is cultural, not technical",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Inadvertent-reckless — the team did not know what they did not know",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Deliberate-prudent — the team took a calculated shortcut to hit a deadline and recorded the consequences",
+          "correct": false
+        }
+      ],
+      "explanation": "The team knew the discipline was needed AND chose to skip it WITHOUT recording consequences — that is the deliberate-reckless quadrant, the most dangerous one, requiring a cultural fix. Deliberate-prudent (D) is the plausible runner-up: it sounds similar but requires the team to have recorded the consequences and scheduled the fix, which the stem explicitly excludes.",
+      "sources": [
+        {
+          "title": "Fowler's four-quadrant technical-debt framing",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/5-brownfield-debt-inventory.md#31-fowlers-four-quadrant-technical-debt-framing",
+          "anchor": "31-fowlers-four-quadrant-technical-debt-framing"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q35",
+      "type": "multi-select",
+      "difficulty": "recall",
+      "topics": [
+        "debt-catalogue-fields"
+      ],
+      "stem": "Which of these are minimum-viable fields the brownfield-debt reading says a catalogue entry must capture? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Location (file path + line range, or service + module)",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Impact dimension (production / security / observability / cost / dev-experience / compliance)",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Estimated lines-of-code in the affected service",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Target horizon (next sprint / this quarter / next major modernisation / never)",
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": "Number of GitHub stars on the affected open-source dependency",
+          "correct": false
+        }
+      ],
+      "explanation": "Location, Impact dimension, and Target horizon are all named in the §3.2 minimum-viable shape — alongside ID, Title, Symptom, Severity, Effort estimate, Suspected fix vector, Quadrant, and Discovered context. LOC counts and GitHub-star counts are fabricated. Three fields the reading flags as load-bearing: Impact dimension, Target horizon, and Quadrant.",
+      "sources": [
+        {
+          "title": "The catalogue entry — minimum viable fields",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/5-brownfield-debt-inventory.md#32-the-catalogue-entry--minimum-viable-fields",
+          "anchor": "32-the-catalogue-entry--minimum-viable-fields"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q36",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "debt-catalogue-fields",
+        "fowler-quadrants"
+      ],
+      "stem": "Why does the brownfield-debt reading call out the Quadrant field as the one teams are most tempted to skip — and the one most worth keeping?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Because the Quadrant field requires a third-party assessment vendor with audited Fowler-quadrant training to fill in correctly, which most internal engineering teams lack",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Because the Quadrant field is the only one required by FedRAMP debt-inventory templates, which means leaving it blank fails the federal compliance audit on cataloguing rigour",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Because the Quadrant field is the only one used downstream by automated prioritisation tools, which means leaving it blank silently drops the item from later scheduling",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Because filling it in requires admitting the team's own contribution to the debt — and that honesty changes the response (cultural vs scheduled vs education-plus-refactor)",
+          "correct": true
+        }
+      ],
+      "explanation": "The reading is direct: the temptation to skip Quadrant is strong because it requires admitting the team's own contribution to the debt; that is exactly why it is worth keeping. The same code-level symptom in deliberate-reckless vs inadvertent-prudent drives different conversations and different remediation paths. The 'third-party vendor' and FedRAMP framings (A, D) are invented.",
+      "sources": [
+        {
+          "title": "The catalogue entry — minimum viable fields",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/5-brownfield-debt-inventory.md#32-the-catalogue-entry--minimum-viable-fields",
+          "anchor": "32-the-catalogue-entry--minimum-viable-fields"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q37",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "impact-effort-matrix"
+      ],
+      "stem": "On an impact × effort matrix, where does the reading place items it calls 'tech-debt that is not actually debt' — items that should be catalogued but not scheduled?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Low impact, high effort — documenting them is enough",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "High impact, high effort — strategic investments",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Low impact, low effort — background hygiene",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "High impact, low effort — quick wins",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading is explicit that the low-impact/high-effort quadrant is the most important one to recognise: items there are theoretically debt but practically a poor use of engineering time, and documenting them is enough. Treating every catalogued item as something that must be fixed is how cataloguing exercises destroy themselves. Quick wins (A) are the opposite quadrant and the most-scheduled bucket.",
+      "sources": [
+        {
+          "title": "Impact × effort prioritisation matrix",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/5-brownfield-debt-inventory.md#33-impact--effort-prioritisation-matrix",
+          "anchor": "33-impact--effort-prioritisation-matrix"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q38",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "no-fix-during-inventory"
+      ],
+      "stem": "During the W1 brownfield-debt inventory you spot a missing healthcheck and can land the fix in five minutes. The discipline says you should fix it now and note 'fixed during inventory' in the catalogue.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — fixing small items as you find them is more efficient than coming back later",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — the catalogue should track the post-fix state of the system so engineering managers see the cleanup progress live",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — any item that takes under ten minutes to fix should be excluded from the catalogue entirely",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — log the item, write a one-line suspected fix vector, move on; the five-minute fix usually isn't, and fixing mid-pass destroys the catalogue's ability to characterise the system before any team intervened",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — only the on-call engineer is permitted to land production fixes, even small ones",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — Git pre-commit hooks should block any commit that touches a file referenced in the catalogue",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading names two reasons not to fix during inventory: (1) the five-minute fix usually isn't — it has a non-trivial regression risk in brownfield code where 'broken' behaviour is sometimes load-bearing, and (2) inventory loses honesty when items get fixed mid-pass because the catalogue can no longer characterise the system's untouched state, which is the input to modernisation planning. The 'more efficient now' framing (t1) is the gut reaction the discipline exists to resist.",
+      "sources": [
+        {
+          "title": "The 'do not fix during inventory' discipline",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/5-brownfield-debt-inventory.md#34-the-do-not-fix-during-inventory-discipline",
+          "anchor": "34-the-do-not-fix-during-inventory-discipline"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q39",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "pedagogical-debt"
+      ],
+      "stem": "While inventorying acquire-gov, a cohort member finds a debt item the instructor explicitly named (e.g., the `:latest`-tag antipattern in the solicitation-service Dockerfile). How should the catalogue entry treat it?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Exclude it from the catalogue — items the instructor names are out of scope for the cohort's discovery work",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Log it like any other accidental debt item, with the same severity and target-horizon fields",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Log it with a note flagging it as pedagogical — scheduled for week-4 modernisation block — so it doesn't get confused with organic accidental debt in planning",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Fix it immediately — deliberate-debt items are exempt from the no-fix-during-inventory rule",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading explicitly distinguishes deliberate / pedagogical debt from accidental debt in training scaffolds: pedagogical debt is logged with a note ('pedagogical — scheduled for week-N modernisation block'), accidental debt is logged with normal prioritisation. Mixing the two confuses planning later. The fix-it-now framing (D) doubles down on the very rule §3.4 establishes.",
+      "sources": [
+        {
+          "title": "Deliberate / pedagogical debt vs accidental debt",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/5-brownfield-debt-inventory.md#35-deliberate--pedagogical-debt-vs-accidental-debt",
+          "anchor": "35-deliberate--pedagogical-debt-vs-accidental-debt"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q40",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "bug-hunt-vs-catalogue"
+      ],
+      "stem": "Bug-hunting and debt-cataloguing both involve reading code looking for problems. What does the reading say is the cognitive difference?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Bug-hunting is done individually as a solo trace; debt-cataloguing is done in pairs so two readers cross-check each entry before any item lands in the shared catalogue",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Bug-hunting rewards depth (trace one issue end-to-end, reproduce, write the test); debt-cataloguing rewards breadth (skim widely, note many problems in one line each)",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Bug-hunting uses linters and static analysis tooling; debt-cataloguing only uses manual code reading because automation cannot capture intent or quadrant placement reliably",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Bug-hunting is exclusively for production code paths and runtime issues; debt-cataloguing is exclusively for test-code hygiene, scaffolding, and CI-pipeline workflow concerns",
+          "correct": false
+        }
+      ],
+      "explanation": "The §3.6 framing is exact: bug-hunting rewards depth, debt-cataloguing rewards breadth. A team that confuses the two ends the day with one bug fully understood and twenty unwritten catalogue entries — when the exercise was meant to produce twenty entries. The tooling-based framing (C) is the tempting trap because it sounds technical, but the difference is cognitive mode, not tools.",
+      "sources": [
+        {
+          "title": "The cognitive trap: bug-hunting vs debt-cataloguing",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/5-brownfield-debt-inventory.md#36-the-cognitive-trap-bug-hunting-vs-debt-cataloguing",
+          "anchor": "36-the-cognitive-trap-bug-hunting-vs-debt-cataloguing"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q41",
+      "type": "multi-select",
+      "difficulty": "recall",
+      "topics": [
+        "eod-deliverable"
+      ],
+      "stem": "By Wed 17:00, the EOD deliverable in the D3 war-room brief requires four things to land. Which of these are on that list? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Three comparative ADRs — one per pair, in each pair's claimed repo",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Three Pair-Project repos scaffolded (README + ADR-0001 + specs/week-1.md skeleton)",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "A working RAG eval harness in each pair's eval/ directory",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "weeks/W01/brownfield-debt.md extended to 7+ items total",
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": "A deployed CI/CD pipeline pushing the pair repo to AWS Bedrock",
+          "correct": false
+        }
+      ],
+      "explanation": "The D3 war-room brief's four EOD items are: 3 comparative ADRs, 3 scaffolded repos, brownfield-debt extended to 7+ items, and 3 Karsun federal-acquisitions aspects committed without duplicates. The RAG eval harness lands W2 Fri per the overview's directory skeleton; a deployed CI/CD pipeline lands W2+ — neither belongs at Wed 17:00.",
+      "sources": [
+        {
+          "title": "W1 Wed War-Room — EOD deliverable (Wed 17:00)",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/war-room/D3.md#eod-deliverable-wed-1700",
+          "anchor": "eod-deliverable-wed-1700"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q42",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "eod-deliverable",
+        "wed-shape"
+      ],
+      "stem": "What is the fourth required EOD item beyond the three comparative ADRs, the three scaffolded repos, and the extended brownfield-debt list?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A live demo of acquire-gov stack running on every pair's laptop",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "A Bedrock model-access verification screenshot from each pair",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "A signed copy of the FedRAMP-readiness checklist from the instructor",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Three Karsun federal-acquisitions aspects committed (no duplicates) via each pair's ADR-0001",
+          "correct": true
+        }
+      ],
+      "explanation": "The fourth deliverable is the no-duplicate Karsun-aspect commitment via ADR-0001 — the IRV ceremony in the morning and the ADRs at 14:50–15:45 together enforce that each of the three pairs has claimed a distinct aspect. Bedrock model-access verification (D) is real but a Tuesday task per the W1 PLAN.md, not the Wed EOD line.",
+      "sources": [
+        {
+          "title": "W1 Wed War-Room — EOD deliverable (Wed 17:00)",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/war-room/D3.md#eod-deliverable-wed-1700",
+          "anchor": "eod-deliverable-wed-1700"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q43",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "eod-deliverable",
+        "pair-project-repos"
+      ],
+      "stem": "Two pairs both pitch for grants-portal-modern as their first-pick aspect. Both pairs can claim it as long as each pair commits its own ADR-0001 in its own fork.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — forking decouples the two repos so duplicate aspects are fine",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — the cohort only needs three repos scaffolded, not three distinct aspects",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — duplicate aspects are explicitly allowed when the underlying federal system has enough surface area for two pairs",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — Wed's EOD list requires three distinct aspects committed with no duplicates; the IRV mechanic exists precisely to resolve contested first-picks",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — forking is technically prohibited in the KarsunFDE org's GitHub settings",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — only one pair may use the grants-portal-modern repo name, but the others can re-use the aspect with different repo names",
+          "correct": false
+        }
+      ],
+      "explanation": "The EOD deliverable line is explicit: 'Three Karsun federal-acquisitions aspects committed (no duplicates) via each pair's ADR-0001.' The IRV ceremony at 08:30 is designed to resolve contested first-picks — pairs that lose IRV go to their second-or-third-ranked option. The 'forking decouples it' framing (t1) misses that the cohort-level constraint is on aspects, not on repos.",
+      "sources": [
+        {
+          "title": "EOD deliverable + 08:30 ceremony",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/war-room/D3.md#eod-deliverable-wed-1700",
+          "anchor": "eod-deliverable-wed-1700"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q44",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "pair-project-repos",
+        "continuous-git-history"
+      ],
+      "stem": "Why does the overview emphasise that 'today's commits matter' — that the pair-project repo runs continuously from Phase 1 (W1 Thu → W3 Fri) through Phase 2 (W4 → W6)?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Because Phase 2 modernization is driven BY what Phase 1 surfaced — pairs do not get a fresh start at W4, so the architectural narrative across both phases must be intact",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Because the instructor inspects only the most recent commit at the W6 gate, so older commits are evaluated based on the freshness signal they carry into the gate review",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Because GitHub Actions can only build repos with continuous histories, and a fresh-start at W4 would invalidate every CI workflow file imported from the Phase 1 directory tree",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Because Phase 2 begins by squashing all Phase 1 commits into a single starting commit, which then becomes the lineage anchor for every subsequent commit in the modernization phase",
+          "correct": false
+        }
+      ],
+      "explanation": "The overview is explicit: same git history; Phase 1 is AI adoption INTO the brownfield; Phase 2 is modernization DRIVEN BY what Phase 1 surfaced. You do not get a fresh start at W4. The pair-project init reading reinforces this with its 'continuous git history vs fresh start' section. The 'instructor only checks the latest commit' framing (A) is the trap for someone who hasn't internalised that the history IS the deliverable.",
+      "sources": [
+        {
+          "title": "Continuous Phase-1-through-Phase-2",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/1-DailyTopicOverview.md#4-pair-project-repo-init--what-gets-scaffolded-wed-pm-10-min",
+          "anchor": "4-pair-project-repo-init--what-gets-scaffolded-wed-pm-10-min"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q45",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "wed-shape"
+      ],
+      "stem": "The Wed PM walkthrough surfaces several deliberate-debt items the instructor names live. Which of these is one of the named acquire-gov items?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A FastAPI route that returns Pydantic validation errors as 500s instead of 422s",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "An Angular component that hard-codes a Bedrock model ID in a template",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "A Spring Boot service skipping JWT claim re-validation after the gateway (debt item 1)",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "A docker-compose.yml that pins Postgres to version 9.5 (out of support)",
+          "correct": false
+        }
+      ],
+      "explanation": "The overview names four anchor debt items the instructor surfaces live: item 1 (Spring Boot service skipping claim re-validation), item 6 (logging-format inconsistency across services), item 7 (healthcheck + Postgres-volume gap), item 11 (`:latest`-tag antipattern). The other three options are fabricated patterns that sound plausible for a brownfield mesh but are not in the curriculum's named-debt list.",
+      "sources": [
+        {
+          "title": "Brownfield-debt inventory — Wed PM continuation",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/1-DailyTopicOverview.md#5-brownfield-debt-inventory--wed-pm-continuation-5-min",
+          "anchor": "5-brownfield-debt-inventory--wed-pm-continuation-5-min"
+        }
+      ]
+    },
+    {
+      "id": "W01-Wed-Q46",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "galentai-vs-redux",
+        "modesty-in-claims"
+      ],
+      "stem": "The Wed overview frames the load-bearing pedagogical anchor as: 'You are not building a from-scratch federal-AI platform. You are building the thing that, if validated, becomes a ReDuX accelerator on your pair's specific federal-acquisitions aspect.' What does this frame commit each pair to?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Building a hard fork of the Karsun ReDuX codebase with their pair's federal-acquisitions aspect baked into the core 3-agent loop and contributed back to the upstream Karsun repo by W6 Fri",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Mapping Phase-1 + Phase-2 work against the 3-agent ReDuX loop tuned per aspect — Blueprint-dominant for grants, Modernization-dominant for contracts, Verifier-dominant for FOIA",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Replacing the acquire-gov ai-orchestrator with a direct ReDuX integration by the W3 Fri Phase-1 gate, then layering modernization work on top of that integration during Phase 2",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Publishing their pair's work to AWS Marketplace as a competing offering to ReDuX before the W6 gate, with the pair acting as the sales channel for any procurement-grade buyer interest",
+          "correct": false
+        }
+      ],
+      "explanation": "The overview is explicit about the mapping: Phase 1 + Phase 2 of the Pair Project map against the 3-agent ReDuX loop, tuned per aspect — Blueprint dominates for grants, Modernization for contracts (WAWF), Verifier for FOIA. The 'fork ReDuX' framing (A) and 'publish to Marketplace' framing (D) are the over-literal traps for someone who hasn't internalised that ReDuX is the destination shape, not the codebase being built.",
+      "sources": [
+        {
+          "title": "The load-bearing pedagogical anchor",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/1-DailyTopicOverview.md#2-reading-for-the-comparative-session--what-to-bring-an-opinion-on-15-min",
+          "anchor": "2-reading-for-the-comparative-session--what-to-bring-an-opinion-on-15-min"
+        }
+      ]
+    }
+  ]
+}

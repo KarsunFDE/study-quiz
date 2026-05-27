@@ -1,0 +1,1928 @@
+{
+  "meta": {
+    "week": "W01",
+    "day": "Friday",
+    "dayLabel": "Fri 29 May",
+    "topics": [
+      "structured-output",
+      "pydantic-v2",
+      "extra-forbid",
+      "field-validators",
+      "validation-context",
+      "structure-enforcement-tiers",
+      "fail-loud",
+      "two-layer-validation",
+      "bean-validation",
+      "jackson-config",
+      "contract-testing",
+      "context-engineering",
+      "system-prompt-architecture",
+      "dynamic-context-assembly",
+      "context-compression",
+      "token-budgeting",
+      "resolved-prompt-logging",
+      "prompt-versioning",
+      "prompt-registry",
+      "eval-harness",
+      "rollout-strategies",
+      "eval-pyramid",
+      "hitl-spectrum",
+      "reversibility-blast-radius",
+      "workflow-vs-runtime-hitl",
+      "seven-hitl-touchpoints",
+      "hitl-failure-modes",
+      "async-def-vs-def",
+      "fastapi-lifespan",
+      "httpx-asyncclient",
+      "spring-webclient",
+      "polyglot-integration-shape",
+      "first-pr-adversarial-review",
+      "war-room-incident-triage"
+    ],
+    "sourceCount": 8,
+    "questionCount": 45,
+    "generated": "2026-05-27",
+    "typeMix": {
+      "mcq": 33,
+      "multi-select": 6,
+      "tf-justified": 6
+    }
+  },
+  "questions": [
+    {
+      "id": "W01-Fri-Q01",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "structured-output",
+        "pydantic-v2"
+      ],
+      "stem": "Per Friday's structured-output reading, what is the production contract for an LLM call?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A typed Pydantic model with strict-mode configuration, not a raw string",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "A JSON string parsed inside a try/except that returns defaults on failure",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "A free-form text response wrapped in a TypedDict for documentation",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "A protobuf message validated by a downstream consumer service only",
+          "correct": false
+        }
+      ],
+      "explanation": "The Key Takeaways are explicit: the production contract is a typed Pydantic model with strict-mode config — not a string. B is the swallow-the-error anti-pattern the reading names by name; C/D describe adjacent serialisation strategies that are not what the reading prescribes.",
+      "sources": [
+        {
+          "title": "Structured JSON output — Key Takeaways",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/2-structured-json-output-pydantic.md#8-key-takeaways",
+          "anchor": "8-key-takeaways"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q02",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "pydantic-v2",
+        "extra-forbid"
+      ],
+      "stem": "Why does the reading insist on `extra=\"forbid\"` for every LLM-output Pydantic model?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It speeds up validation by skipping unknown-field deserialisation paths",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "It is required by Pydantic v2 — models without it fail to instantiate at import time",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "It surfaces schema drift instead of swallowing it; without it, regressions go invisible",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "It enables the Pydantic Rust core to compile validators ahead of time",
+          "correct": false
+        }
+      ],
+      "explanation": "The Key Takeaways frame `extra=\"forbid\"` as the gate that makes drift visible — without it, an LLM returning extra keys passes validation silently and downstream code breaks weeks later. A/B/D invent unrelated performance or required-config claims that the reading does not make.",
+      "sources": [
+        {
+          "title": "Structured JSON output — Key Takeaways",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/2-structured-json-output-pydantic.md#8-key-takeaways",
+          "anchor": "8-key-takeaways"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q03",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "pydantic-v2",
+        "validation-context"
+      ],
+      "stem": "A field validator needs the request's tenant allow-list. According to the Pydantic v2 reading, how must the caller pass that allow-list so the validator actually sees it?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Through the direct constructor: `PolicyQuery(tenant_id=..., context={...})`",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Through `PolicyQuery.model_validate(data, context={...})`",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "By assigning the dict to a module-level global before constructing the model",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "By subclassing `ValidationInfo` and overriding its `context` property at runtime",
+          "correct": false
+        }
+      ],
+      "explanation": "The gotcha the reading flags explicitly: context only flows through `model_validate(data, context=...)`. The direct constructor accepts the kwargs but silently drops context, so the validator sees an empty dict and passes when it should reject. A is the tempting near-miss — the call shape looks plausible to anyone who half-skimmed the section.",
+      "sources": [
+        {
+          "title": "Context-aware validation",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/2-structured-json-output-pydantic.md#3c-context-aware-validation",
+          "anchor": "3c-context-aware-validation"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q04",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "pydantic-v2",
+        "field-validators"
+      ],
+      "stem": "Per the Pydantic v2 reading, which decorator handles cross-field invariants like \"check_out must be after check_in\"?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "`@field_validator(\"check_out\")` running after parse with the full model passed in",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "`@cross_field_validator` introduced specifically for the v2 Rust core",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "`@root_validator` from the v1 idiom that was kept for backward compatibility",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "`@model_validator(mode=\"after\")` operating on the already-parsed instance",
+          "correct": true
+        }
+      ],
+      "explanation": "The reading shows `@model_validator(mode=\"after\")` as the v2 idiom for cross-field checks — it runs on the parsed instance and can inspect any field. A misuses `@field_validator`, which scopes to one field; C names a deprecated v1 decorator that is gone in v2; D is fabricated.",
+      "sources": [
+        {
+          "title": "Validators for semantic invariants",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/2-structured-json-output-pydantic.md#3b-validators-for-semantic-invariants",
+          "anchor": "3b-validators-for-semantic-invariants"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q05",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "structure-enforcement-tiers"
+      ],
+      "stem": "Friday's PR work targets which of the three structure-enforcement tiers as its baseline?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Tier 2 — parser-library (parse-and-validate with retry feedback)",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Tier 1 — prompt-only, asking the model nicely for JSON in the system prompt",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Tier 3 — provider-native structured output that constrains decoding at inference time",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Tier 0 — regex-only string scraping for the values the application needs",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3d names tier 2 (parse-and-validate) as Friday's baseline; tier 3 (Bedrock structured output) lands in W2 once provider-specific behaviour gets pinned. A is the unreliable starting point the reading argues against; C is the future state; D is invented.",
+      "sources": [
+        {
+          "title": "Three levels of structure enforcement",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/2-structured-json-output-pydantic.md#3d-three-levels-of-structure-enforcement",
+          "anchor": "3d-three-levels-of-structure-enforcement"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q06",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "fail-loud",
+        "eval-harness"
+      ],
+      "stem": "A team wraps Pydantic parsing in a try/except that substitutes default values on `ValidationError`. Why does the reading call this an anti-pattern even though it never crashes?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Pydantic's Rust core throws a different exception type that the bare-except will miss",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Default values violate the immutability guarantee that `frozen=True` provides on instances",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "It hides regressions from the eval harness, which is the system that catches drift before users do",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "The defaults will pass strict-mode validation but fail Jakarta Bean Validation downstream",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3e is explicit: silent fallback disarms the eval harness — every drift in model output, every prompt-break, every model-version rollover disappears into the default path and the system is quietly broken six weeks later. B/C/D invent technical reasons that the reading does not give.",
+      "sources": [
+        {
+          "title": "Fail loud, not silent",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/2-structured-json-output-pydantic.md#3e-fail-loud-not-silent",
+          "anchor": "3e-fail-loud-not-silent"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q07",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "pydantic-v2",
+        "extra-forbid"
+      ],
+      "stem": "Which of the following are Best Practices the structured-output reading prescribes for LLM-output Pydantic models? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Set `extra=\"forbid\"` on every LLM-output model",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Mark models `frozen=True` so downstream code cannot mutate validated data",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Catch all `ValidationError` exceptions at the boundary and substitute safe defaults",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Pin Pydantic to a major-only constraint like `pydantic` (no version pin) to always get fixes",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "Pass tenant/user context via `model_validate(data, context=...)`, never the constructor",
+          "correct": true
+        }
+      ],
+      "explanation": "A, B, and E are pulled directly from §6 Best Practices. C is the swallow-the-error anti-pattern the reading names by name. D contradicts the prescription to pin `>=2.10,<3.0` — leaving the constraint open invites minor-version surprises in production.",
+      "sources": [
+        {
+          "title": "Best Practices — structured output",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/2-structured-json-output-pydantic.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q08",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "structure-enforcement-tiers"
+      ],
+      "stem": "True or False: Provider-native structured output (tier 3) is uniformly faster than parser-library validation (tier 2), so Friday should adopt it instead of tier 2.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — constrained decoding is always faster than parse-then-retry",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — Bedrock's tier-3 path skips Pydantic entirely so latency drops to zero",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — the Pydantic Rust core only kicks in on tier 3, so tier 2 is unconditionally slower",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — tier 3 has a first-call grammar-compile cost (~10s) and is provider-specific; the reading defers tier 3 to W2 deliberately",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — tier 3 was deprecated by all major providers in early 2026 and is no longer recommended",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — tier 3 only works for fine-tuned models, which Bedrock Claude is not",
+          "correct": false
+        }
+      ],
+      "explanation": "The statement is false. §3d notes that tier 3 has a first-call grammar-compile cost (~10s) and pins provider-specific behaviour the cohort hasn't yet committed to — that's why W1 Fri targets tier 2 and W2 introduces tier 3 once Bedrock specifics get nailed down. F2/F3 invent facts the reading does not state.",
+      "sources": [
+        {
+          "title": "Three levels of structure enforcement",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/2-structured-json-output-pydantic.md#3d-three-levels-of-structure-enforcement",
+          "anchor": "3d-three-levels-of-structure-enforcement"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q09",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "two-layer-validation"
+      ],
+      "stem": "Why does Friday's PR validate the same payload in both the Python `ai-orchestrator` and the Spring `solicitation-service`?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Spring's Bean Validation runs faster than Pydantic, so duplicating catches more cases per second",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Defence in depth — transport corruption, deserialisation gaps, and schema drift each defeat single-layer validation",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Federal-acquisitions policy requires the same data to be validated by two different languages by audit rule",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Pydantic only catches type errors; Bean Validation catches the business rules Pydantic ignores",
+          "correct": false
+        }
+      ],
+      "explanation": "§3a names three failure modes — transport corruption, deserialisation gap, schema drift — each of which a single layer cannot catch. D mischaracterises both libraries (Pydantic does enforce business rules via validators); A invents a performance claim; C invents a policy that the reading does not cite.",
+      "sources": [
+        {
+          "title": "Why two layers?",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/3-output-validation-gates.md#3a-why-two-layers",
+          "anchor": "3a-why-two-layers"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q10",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "bean-validation",
+        "jackson-config"
+      ],
+      "stem": "Pydantic uses `extra=\"forbid\"` to reject unexpected fields. What's the closest Jakarta-side analogue called out in the reading?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "`@NotBlank` on every record component to reject unknown-name fields",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "`@Validated` at the controller level which auto-rejects extra JSON keys",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Bean Validation's `@ExtraForbid` annotation introduced in Jakarta 3.0",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Jackson's `fail-on-unknown-properties` config (per-class `@JsonIgnoreProperties` or global `spring.jackson.deserialization.fail-on-unknown-properties=true`)",
+          "correct": true
+        }
+      ],
+      "explanation": "§3d's mapping table calls this out: Bean Validation has no native equivalent to `extra=\"forbid\"`, so you control it at the Jackson deserialisation layer — either per-class or globally. A confuses whitespace-rejection with unknown-field rejection; B confuses controller-level binding with deserialisation policy; D is fabricated.",
+      "sources": [
+        {
+          "title": "The mapping table — keep it deliberate",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/3-output-validation-gates.md#3d-the-mapping-table--keep-it-deliberate",
+          "anchor": "3d-the-mapping-table--keep-it-deliberate"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q11",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "bean-validation"
+      ],
+      "stem": "A Pydantic field uses `Field(..., min_length=1)` on a string. A Java engineer mirrors it with `@NotBlank`. The reading flags this as a subtle mismatch — why?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "`@NotBlank` is stricter — it also rejects pure-whitespace strings, so a Pydantic-accepted `\"   \"` will fail on the Java side",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "`@NotBlank` is looser — it only checks non-null, not length, so empty strings will pass Bean Validation but fail Pydantic",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "`@NotBlank` requires `@Valid` to be on the field, not the parameter, and Spring's docs miss this detail",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "`@NotBlank` only applies to `CharSequence` subtypes and silently no-ops on `String` records",
+          "correct": false
+        }
+      ],
+      "explanation": "The mapping-table callout: `@NotBlank` is stricter than `min_length=1` because it also rejects whitespace-only strings. If the Pydantic side does not strip whitespace, legitimate-looking inputs fire on the Java side. B reverses the relationship; C/D fabricate behaviour the reading does not describe.",
+      "sources": [
+        {
+          "title": "The mapping table — keep it deliberate",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/3-output-validation-gates.md#3d-the-mapping-table--keep-it-deliberate",
+          "anchor": "3d-the-mapping-table--keep-it-deliberate"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q12",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "bean-validation"
+      ],
+      "stem": "When a `@Valid @RequestBody` payload fails validation, which exception does Spring throw — and what should an FDE do with it?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "`ValidationException` — let it propagate to a default `500 Internal Server Error` page",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "`ConstraintViolationException` — log the violation and return the original request body as `200 OK`",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "`MethodArgumentNotValidException` — surface it via `@ControllerAdvice` as a structured `400` naming the offending fields",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "`HttpMessageNotReadableException` — convert it to `422 Unprocessable Entity` with a custom message",
+          "correct": false
+        }
+      ],
+      "explanation": "§3c is explicit: Spring throws `MethodArgumentNotValidException` on `@Valid`-failing `@RequestBody` payloads, and the Best Practices say to surface it through `@ControllerAdvice` as a structured `400` with field-level detail. C names the constraint-violation flavour that fires on `@Validated` service methods, not `@Valid` request bodies; A/D mismatch handler and status.",
+      "sources": [
+        {
+          "title": "Consumer-side: Jakarta Bean Validation",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/3-output-validation-gates.md#3c-consumer-side-jakarta-bean-validation",
+          "anchor": "3c-consumer-side-jakarta-bean-validation"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q13",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "contract-testing"
+      ],
+      "stem": "A teammate argues the producer/consumer validation is redundant and proposes deleting the Spring side. Per §3e, what should you point them at instead?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A shared schema in protobuf so both languages can codegen — drops the need for either Pydantic or Bean Validation",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "A contract test in CI that round-trips representative valid and invalid payloads through both layers",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "An OpenAPI specification that the AI service auto-generates from the Spring controller",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "A pre-commit hook that diffs the Pydantic and Bean Validation regex strings on every commit",
+          "correct": false
+        }
+      ],
+      "explanation": "§3e prescribes contract testing as the third leg that keeps the two layers honest — round-trip valid payloads (both accept), constraint-violating payloads (both reject on the same field), and payloads with extra fields (both reject). D is closer but is one specific tactic; the reading asks for full round-trip tests, not just regex diffing.",
+      "sources": [
+        {
+          "title": "Contract testing — the third leg",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/3-output-validation-gates.md#3e-contract-testing--the-third-leg",
+          "anchor": "3e-contract-testing--the-third-leg"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q14",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "two-layer-validation",
+        "bean-validation"
+      ],
+      "stem": "Per §3a, which of the following are failure modes that motivate the double-validation pattern? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Transport corruption — a field is truncated or re-encoded en route",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Deserialisation gap — producer and consumer JSON libraries disagree on edge cases",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Schema drift — the producer changes its schema without coordinating with the consumer",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Network DDoS — duplicate validation absorbs the cost of repeated retries from attackers",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "Locale ambiguity — float-to-string round-trips lose precision in non-en-US locales",
+          "correct": false
+        }
+      ],
+      "explanation": "A/B/C are the three failure modes the reading enumerates by name in §3a. D/E are not in the reading — DDoS absorption is not the purpose of validation gates, and locale-driven precision loss isn't called out (the deserialisation-gap line covers JSON edge cases more generally).",
+      "sources": [
+        {
+          "title": "Why two layers?",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/3-output-validation-gates.md#3a-why-two-layers",
+          "anchor": "3a-why-two-layers"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q15",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "two-layer-validation"
+      ],
+      "stem": "True or False: With provider-native structured output (tier 3) guaranteeing schema compliance, consumer-side Bean Validation becomes redundant and can be removed.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — constrained decoding makes a malformed payload impossible, so the second layer adds no value",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — the producer's structured-output contract is binding on the consumer by JSON-schema spec",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — Spring's Jackson layer auto-validates against the producer's exported schema in 2026",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — even with structured output, application-level validation for semantic correctness and transport/deserialisation gaps remains necessary",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — tier 3 was deprecated in early 2026 and is no longer supported on Bedrock Claude",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — Bean Validation runs at a different OSI layer than structured output, so they cannot replace each other by definition",
+          "correct": false
+        }
+      ],
+      "explanation": "The §3a guidance is direct: even when using structured-output APIs that guarantee schema compliance, application-level semantic validation remains necessary because transport corruption and deserialisation gaps live below the model's output guarantee. F2 invents a deprecation; F3 invents an OSI-layer framing the reading does not use.",
+      "sources": [
+        {
+          "title": "Why two layers?",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/3-output-validation-gates.md#3a-why-two-layers",
+          "anchor": "3a-why-two-layers"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q16",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "context-engineering"
+      ],
+      "stem": "How does the reading distinguish *prompt engineering* from *context engineering*?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Prompt engineering is for chat applications; context engineering is for agentic systems only",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Prompt engineering happens at training time; context engineering happens at inference time",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Prompt engineering uses XML tags; context engineering uses Markdown headings exclusively",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Prompt engineering crafts a string; context engineering builds a system that assembles the right string from typed sources, repeatably and within budgets",
+          "correct": true
+        }
+      ],
+      "explanation": "§8 Key Takeaways are explicit: prompt engineering is string-level craft; context engineering is the system-level discipline of assembling that string deterministically from typed sources within token budgets. The other options invent distinctions (medium, lifecycle stage, application type) that the reading does not make.",
+      "sources": [
+        {
+          "title": "Context engineering — Key Takeaways",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/4-context-engineering-system-prompts-dynamic-assembly-compression.md#8-key-takeaways",
+          "anchor": "8-key-takeaways"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q17",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "system-prompt-architecture"
+      ],
+      "stem": "§3a names three properties worth tracking for each named section of a system prompt. Which set matches the reading?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Owner, change history, eval set",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Tokens, cost-per-call, latency budget",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Language, framework, deployment target",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Author, reviewer, approval date",
+          "correct": false
+        }
+      ],
+      "explanation": "§3a is explicit: owner (a specific team), change history (sections evolve at different cadences), and eval set (different sections need different tests). B/C/D describe adjacent concerns — they matter for prompts in general but aren't the named properties for sections specifically.",
+      "sources": [
+        {
+          "title": "System prompt as architecture",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/4-context-engineering-system-prompts-dynamic-assembly-compression.md#3a-system-prompt-as-architecture",
+          "anchor": "3a-system-prompt-as-architecture"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q18",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "dynamic-context-assembly"
+      ],
+      "stem": "The canonical assembly pipeline in §3b ends with the *token-budget enforcer*. Why is that step the last gate before the model call?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Because the model SDK runs its own truncation at the boundary regardless of what the application does",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Because the tokenizer is too slow to run more than once per request, so it's batched at the end",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Because retrieval, tool outputs, memory, and template rendering can each push the assembled view over the window, so the final fit-check has to see them all",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Because earlier pipeline stages run on different machines and only the final stage has access to the model's true context-window size",
+          "correct": false
+        }
+      ],
+      "explanation": "The pipeline diagram puts intent → retrieval → tools → memory → template → token-budget last for a reason: each prior stage contributes tokens the budget step must reconcile. The other options invent operational constraints (tokenizer speed, SDK truncation, distributed-system topology) that the reading does not describe.",
+      "sources": [
+        {
+          "title": "Dynamic context assembly",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/4-context-engineering-system-prompts-dynamic-assembly-compression.md#3b-dynamic-context-assembly",
+          "anchor": "3b-dynamic-context-assembly"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q19",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "context-compression"
+      ],
+      "stem": "A long-running multi-turn agent must keep older context available but at lower fidelity, while keeping the most recent turns verbatim. Which compression pattern from §3c fits?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Sliding window — drop the oldest turns when context approaches the limit",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Hierarchical compression — keep recent verbatim, mid-age as summaries, long-ago as meta-summaries",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Retrieval-replaces-history — re-retrieve documents per turn instead of carrying them",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Naive ratio cuts — drop 30% of every section uniformly when over budget",
+          "correct": false
+        }
+      ],
+      "explanation": "§3c calls hierarchical compression out specifically as the pattern for long sessions where older context still carries value at lower fidelity. A loses information silently; B is a different pattern aimed at knowledge-heavy tasks; D is the failure mode the §3d budgeting guidance argues against.",
+      "sources": [
+        {
+          "title": "Context compression patterns",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/4-context-engineering-system-prompts-dynamic-assembly-compression.md#3c-context-compression-patterns",
+          "anchor": "3c-context-compression-patterns"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q20",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "token-budgeting"
+      ],
+      "stem": "§3d names two anti-patterns for token-budget enforcement. Per the reading, what's the correct shape?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Let the model SDK truncate at the boundary so the application doesn't have to know the window size",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Cut each section by the same percentage when the assembled view is over budget",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Always drop the grounding section first because it has the most tokens and the least architectural ownership",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Assign each section a priority and a minimum token count; drop low-priority sections entirely and fail closed if even the minimums don't fit",
+          "correct": true
+        }
+      ],
+      "explanation": "§3d names silent truncation and naive ratio cuts as the two failure modes; the correct shape is fail-closed-with-priorities. D is tempting because grounding often is large, but the reading prescribes priorities (which grounding may or may not have low priority on, depending on the task), not a fixed drop-grounding-first rule.",
+      "sources": [
+        {
+          "title": "Token budgeting — fail closed",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/4-context-engineering-system-prompts-dynamic-assembly-compression.md#3d-token-budgeting--fail-closed",
+          "anchor": "3d-token-budgeting--fail-closed"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q21",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "resolved-prompt-logging"
+      ],
+      "stem": "Per §3e, what is the single most useful production observability practice for a context-engineered system?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Logging the resolved prompt — the final assembled string the model actually saw — at a sample rate",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Logging the template name and section-owner emails for every request to support paging",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Logging the user query and the model's first response token to support latency dashboards",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Logging the full conversation history per tenant to support replay-driven debugging",
+          "correct": false
+        }
+      ],
+      "explanation": "§3e is direct: log the resolved prompt — not the template — at a sample rate, because debugging a bad output is impossible without knowing what the model actually saw. B/C/D describe partial telemetry that doesn't reconstruct the final assembled string.",
+      "sources": [
+        {
+          "title": "Logging the resolved prompt",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/4-context-engineering-system-prompts-dynamic-assembly-compression.md#3e-logging-the-resolved-prompt",
+          "anchor": "3e-logging-the-resolved-prompt"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q22",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "context-engineering",
+        "system-prompt-architecture"
+      ],
+      "stem": "True or False: Per Friday's reading, a flat string system prompt with no named sections is acceptable as long as the prompt is short and one team owns it.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — short single-owner prompts don't need sectioning until they grow",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — sectioning is only needed when the prompt exceeds 1,000 tokens",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — for one-shot tasks (no chat history), flat strings are the recommended idiom",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — sections have different change cadences and test strategies (snapshot vs retrieval-eval); flat strings hide all three even at small sizes",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — Pydantic refuses to validate prompt strings that lack section tags",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — Anthropic's API rejects free-form system prompts on Bedrock as of 2026",
+          "correct": false
+        }
+      ],
+      "explanation": "§8 Key Takeaways are explicit: different sections have different owners, change cadences, and eval strategies — flat strings hide all three. The reading argues for sections by discipline, not by size threshold. F2/F3 invent technical rejections that don't exist.",
+      "sources": [
+        {
+          "title": "Context engineering — Key Takeaways",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/4-context-engineering-system-prompts-dynamic-assembly-compression.md#8-key-takeaways",
+          "anchor": "8-key-takeaways"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q23",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "prompt-versioning"
+      ],
+      "stem": "The prompt-versioning reading recommends semver for prompts. What change warrants a MAJOR bump?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Fixing a typo or softening tone in a constraints sentence",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Tightening a constraint to improve behaviour while keeping the same output shape",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "A format or policy change that breaks downstream consumers of the prompt's output",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Re-ordering the named sections of the system prompt without changing their content",
+          "correct": false
+        }
+      ],
+      "explanation": "§3a maps semver to prompts: MAJOR for format/policy changes that break downstream consumers, MINOR for behaviour improvements that stay backward-compatible, PATCH for typos/tone. B is MINOR, A is PATCH, D doesn't change consumer-visible behaviour.",
+      "sources": [
+        {
+          "title": "Prompts as artifacts",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/5-prompt-evaluations-lifecycle-management.md#3a-prompts-as-artifacts",
+          "anchor": "3a-prompts-as-artifacts"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q24",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "prompt-registry"
+      ],
+      "stem": "In the flat-file prompt-registry shape used by the cohort, what role does `METADATA.yaml` play?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It stores the eval-harness rubric scores per prompt version",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "It is the version pointer — bumping it (e.g., prod from v2 to v2.1) is the deploy",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "It contains the LLM-as-judge prompt used to score every other prompt in the registry",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "It is the changelog file the team writes in plain English after every prompt edit",
+          "correct": false
+        }
+      ],
+      "explanation": "§3b is explicit: `METADATA.yaml` carries the per-environment version pointer; changing the pointer is the deploy. Git history serves as the audit trail. A/C/D describe adjacent artefacts (rubric scores, judge prompts, changelogs) that aren't what the file is for in this registry.",
+      "sources": [
+        {
+          "title": "The prompt registry",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/5-prompt-evaluations-lifecycle-management.md#3b-the-prompt-registry",
+          "anchor": "3b-the-prompt-registry"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q25",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "eval-harness"
+      ],
+      "stem": "§3c names five parts of an eval harness. Logiciel's 2026 guide flags one as the load-bearing piece that distinguishes an eval harness from \"we ran some examples once.\" Which is it?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Cases — a hand-curated set of representative inputs with expected behaviour",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Scoring — per-case scoring functions, deterministic or LLM-as-judge",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Operating cadence — weekly trend review, monthly case-coverage review, quarterly rubric review",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Regression alerts — failing CI / alerting when scores drop below threshold or previous-version score",
+          "correct": true
+        }
+      ],
+      "explanation": "§3c calls regression alerts out by name as the load-bearing piece per Logiciel's 2026 guide — without them, you have a script someone ran once, not a system. D is the part teams most often skip, but the reading does not name it as the distinguishing piece; that title belongs to alerts.",
+      "sources": [
+        {
+          "title": "The eval harness",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/5-prompt-evaluations-lifecycle-management.md#3c-the-eval-harness",
+          "anchor": "3c-the-eval-harness"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q26",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "rollout-strategies"
+      ],
+      "stem": "A team wants to test a prompt change whose effect depends on user behaviour they cannot reproduce offline. Per §3d, which rollout strategy fits?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A/B test — 50/50 random traffic split, measure differential impact on a business metric",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Shadow mode — run candidate in parallel, score both, return only the live prompt's output",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Canary — route 1–5% of traffic to the new prompt and watch real-world metrics",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Big-bang cutover — flip the version pointer at midnight and watch dashboards the next day",
+          "correct": false
+        }
+      ],
+      "explanation": "§3d maps strategies to risk profiles: shadow for high-risk changes you cannot afford to ship; canary for changes confident-in-shadow with real-world variables like cost or latency; A/B for changes whose answer depends on user behaviour. C is the near-miss because it does run live, but A/B's 50/50 split is what measures differential impact on user behaviour — canary's small sample can't.",
+      "sources": [
+        {
+          "title": "A/B and shadow rollouts",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/5-prompt-evaluations-lifecycle-management.md#3d-ab-and-shadow-rollouts",
+          "anchor": "3d-ab-and-shadow-rollouts"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q27",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "eval-harness",
+        "eval-pyramid"
+      ],
+      "stem": "Per §3e, which scorer types belong at the base (fast/cheap) of the eval pyramid? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Schema-validity checks (does the output parse against the JSON schema?)",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Regex matches for required strings or banned tokens",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Human-reviewer scoring against a rubric on a curated subset",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "LLM-as-judge semantic-faithfulness rating against a reference text",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "Simple invariant assertions (e.g., \"output is a non-empty list\")",
+          "correct": true
+        }
+      ],
+      "explanation": "The pyramid base is fast deterministic checks — schema validity, regex matches, simple invariants — that run on every commit. LLM-as-judge sits in the middle layer (nightly / PR); human review sits at the top (weekly, curated). C/D are valid scorer types, just not at the base.",
+      "sources": [
+        {
+          "title": "The eval pyramid",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/5-prompt-evaluations-lifecycle-management.md#3e-the-eval-pyramid",
+          "anchor": "3e-the-eval-pyramid"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q28",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "eval-harness",
+        "fail-loud"
+      ],
+      "stem": "Best Practices §6 warns against one specific shortcut. Which is it?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Mixing scorer types (deterministic + LLM-judge + human) — it dilutes the signal",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Versioning prompts with semver before the team has more than ten prompts",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Bypassing the eval gate \"just this once\" for a hotfix — the hotfix is the case the harness was built to catch",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Running evals on production sampled traffic — it leaks PII into the eval set",
+          "correct": false
+        }
+      ],
+      "explanation": "§6 says explicitly: never bypass the eval gate for a hotfix; the hotfix is exactly the kind of change the harness exists to catch. A and D invert what the reading prescribes (mix scorer types, run evals on production traffic). C contradicts \"build the eval harness before you need it.\"",
+      "sources": [
+        {
+          "title": "Best Practices — prompt evaluations",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/5-prompt-evaluations-lifecycle-management.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q29",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "eval-harness"
+      ],
+      "stem": "True or False: Running the eval harness only on commits that touch prompt files is sufficient — if no prompt changed, no eval is needed.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — eval cost only pays off when something changes, so skip it otherwise",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — prompt-only triggering is the recommendation from Braintrust's 2026 guide",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — running on every CI build wastes Bedrock spend the cohort cannot justify",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — model drift happens without prompt changes, so evals should also run on a schedule against production sampled traffic",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — eval harnesses must run on every git push, even on documentation-only commits, per Logiciel's guide",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — Pydantic-validated prompts auto-trigger an eval on every model invocation",
+          "correct": false
+        }
+      ],
+      "explanation": "Best Practices §6: run evals on a schedule against production sampled traffic, not just on commits — model drift happens without prompt changes (model rollovers, provider behaviour shifts). F2 fabricates an extreme rule; F3 invents a Pydantic feature that does not exist.",
+      "sources": [
+        {
+          "title": "Best Practices — prompt evaluations",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/5-prompt-evaluations-lifecycle-management.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q30",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "hitl-spectrum"
+      ],
+      "stem": "Per §3a, what is the difference between Human-in-the-Loop (HITL) and Human-on-the-Loop (HOTL)?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "HITL is a security control; HOTL is a quality control — both run synchronously at the agent boundary",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "HITL approves each action before execution; HOTL acts autonomously but notifies a human who can intervene",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "HITL applies to LLM outputs; HOTL applies to traditional ML model outputs",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "HITL requires a workflow gate; HOTL requires a runtime interrupt — they map 1:1 onto the two gate shapes",
+          "correct": false
+        }
+      ],
+      "explanation": "§3a is explicit: HITL blocks until human approval; HOTL acts but notifies for challenge — the cost of a wrong action becomes the cost of detecting and reverting it, not zero. D conflates the spectrum with the gate-shape distinction in §3c; B and C invent incorrect categorical splits.",
+      "sources": [
+        {
+          "title": "The HITL spectrum",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/6-explicit-hitl-framing.md#3a-the-hitl-spectrum",
+          "anchor": "3a-the-hitl-spectrum"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q31",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "reversibility-blast-radius"
+      ],
+      "stem": "Per the reversibility × blast-radius matrix in §3b, an agent action that is *irreversible* with a *large blast radius* falls into which cell?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Full autonomy with sampled audit logging",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Human-on-the-Loop — notify and allow fast revert",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "LLM-as-judge — let a second model approve the action",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Human-in-the-Loop — block and require approval before execution",
+          "correct": true
+        }
+      ],
+      "explanation": "§3b's matrix puts irreversible × large blast in the HITL cell — payments, notifications to external parties, contract awards. A is the reversible-small-blast cell; B is one of the in-between cells; D is the §3a fourth-mode the reading treats as a defensible-but-imperfect substitute, not the matrix answer.",
+      "sources": [
+        {
+          "title": "The reversibility × blast-radius framework",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/6-explicit-hitl-framing.md#3b-the-reversibility--blast-radius-framework",
+          "anchor": "3b-the-reversibility--blast-radius-framework"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q32",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "reversibility-blast-radius"
+      ],
+      "stem": "The reading says \"confidence is not a substitute for reversibility.\" What's the underlying argument?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Confidence calibration is the very property that fails silently — a confident wrong agent is more dangerous than an uncertain one",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Model confidence scores are not exposed by Bedrock's Claude API, so they cannot be used as a gate input",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Confidence is computed per-token, so it cannot be aggregated to a single action-level decision threshold",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Confidence is the input the LLM-as-judge mode uses, and that mode is the failure case to avoid",
+          "correct": false
+        }
+      ],
+      "explanation": "§3b spells out: confidence calibration itself fails silently, so a confident wrong action carries more risk than an uncertain right one — gate on action shape (reversibility, blast radius), not on the agent's self-reported certainty. A/C are technical-sounding distractors that the reading does not make.",
+      "sources": [
+        {
+          "title": "The reversibility × blast-radius framework",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/6-explicit-hitl-framing.md#3b-the-reversibility--blast-radius-framework",
+          "anchor": "3b-the-reversibility--blast-radius-framework"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q33",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "workflow-vs-runtime-hitl"
+      ],
+      "stem": "Per §3c, what's the operational difference between a workflow gate and a runtime interrupt?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Workflow gates are synchronous; runtime interrupts are async-only and require LangGraph",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Workflow gates are for single-agent systems; runtime interrupts are required for any multi-agent system",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Workflow gates approve a plan up front; runtime interrupts pause mid-execution at specific tool calls or decisions",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Workflow gates are owned by product; runtime interrupts are owned by safety — they cannot share approver roles",
+          "correct": false
+        }
+      ],
+      "explanation": "§3c is explicit: workflow gates approve the *plan*, runtime interrupts pause *execution*. The reading notes they have different audit-trail and resume-semantics requirements. B/C/D invent constraints (multi-agent need, sync/async limits, ownership boundaries) that the reading does not impose.",
+      "sources": [
+        {
+          "title": "Workflow gates vs. runtime interrupts",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/6-explicit-hitl-framing.md#3c-workflow-gates-vs-runtime-interrupts",
+          "anchor": "3c-workflow-gates-vs-runtime-interrupts"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q34",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "seven-hitl-touchpoints"
+      ],
+      "stem": "Per §3d, which of the following are named touchpoints in the cohort's seven-HITL arc? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "W2 Thu — RAG fallback (how does the agent handle its own ignorance?)",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "W3 Thu — LangGraph deep-dive (implement `interrupt` and design resume-from-state semantics)",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "W4 Wed — OWASP LLM06 (Excessive Agency) re-asserts HITL as a security control",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "W2 Mon — Plan Day vendor-comparative re-vote on a new Bedrock model family",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "W6 Thu — Final Defense HITL retrospective in front of the Karsun review panel",
+          "correct": false
+        }
+      ],
+      "explanation": "A/B/C are pulled directly from the seven-touchpoint enumeration. D conflates the vendor-comparative discipline (a different programme thread) with HITL; E invents a touchpoint in W6 Thu — the seventh is W5 Wed's AIOps authority boundaries, not a Final Defense item.",
+      "sources": [
+        {
+          "title": "The seven HITL touchpoints in this cohort",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/6-explicit-hitl-framing.md#3d-the-seven-hitl-touchpoints-in-this-cohort",
+          "anchor": "3d-the-seven-hitl-touchpoints-in-this-cohort"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q35",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "hitl-failure-modes"
+      ],
+      "stem": "Per §3e, what is *rubber-stamping* and how do you measure it?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Approvers ignore the gate UI and approve via CLI bypass — measured by counting CLI vs UI approvals",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Humans approve too many low-information requests, so high-information ones get approved on autopilot — measured by the rate of approvals that took less than N seconds to read",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Engineers add `requires_hitl(action) = True` for every action — measured by the percentage of actions gated",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The agent learns to phrase requests to maximise approval rate — measured by the divergence between agent intent and human-edited outputs",
+          "correct": false
+        }
+      ],
+      "explanation": "§3e defines rubber-stamping as the failure mode of over-gated systems where humans approve on autopilot, and prescribes the \"approvals that took less than N seconds to read\" rate as the leading indicator. C describes a related design failure (gating too much), but the measurement is the time-to-approve rate, not the gate count.",
+      "sources": [
+        {
+          "title": "The two failure modes to avoid",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/6-explicit-hitl-framing.md#3e-the-two-failure-modes-to-avoid",
+          "anchor": "3e-the-two-failure-modes-to-avoid"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q36",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "hitl-spectrum"
+      ],
+      "stem": "True or False: Using a second LLM to approve another LLM's action (\"LLM-as-judge\") is operationally equivalent to HITL and can be used as a drop-in substitute when human approvers aren't available.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — judge models in 2026 are calibrated well enough to replace human approval one-for-one",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — NIST AI RMF formally accepts LLM-as-judge as a substitute for HITL",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — LangGraph's `interrupt` primitive runs a judge model by default if no human is configured",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — LLM-as-judge is a defensible middle ground but carries correlated-error risk between actor and judge; it is not the same as HITL",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — LLM-as-judge requires a separate Bedrock account by federal-acquisitions policy",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — LLM-as-judge only applies to text outputs, never to tool-call decisions",
+          "correct": false
+        }
+      ],
+      "explanation": "§3a names LLM-as-judge as a defensible middle ground when human gating is operationally infeasible, but flags its core failure mode — correlated errors between the actor model and the judge model — and explicitly states it is *not* the same as HITL. F2/F3 invent policy and capability claims not in the reading.",
+      "sources": [
+        {
+          "title": "The HITL spectrum",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/6-explicit-hitl-framing.md#3a-the-hitl-spectrum",
+          "anchor": "3a-the-hitl-spectrum"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q37",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "async-def-vs-def"
+      ],
+      "stem": "Per the async-integration reading, which FastAPI bug occurs most often in cohort code?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Using `def` for an endpoint that calls `httpx.AsyncClient.get` — the awaitable never resolves and the request times out",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Returning a coroutine from a `def` endpoint without awaiting it — FastAPI silently serialises the coroutine repr to JSON",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Mixing `async def` and `def` endpoints on the same `FastAPI` instance — the ASGI server refuses to start",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Calling blocking I/O inside an `async def` endpoint — the function looks async but stalls the event loop for every concurrent request",
+          "correct": true
+        }
+      ],
+      "explanation": "§3a is explicit: the most common production fault in async Python code is blocking I/O inside `async def` — the function shape implies async, the call doesn't yield, the event loop stalls. A reverses the bug; C invents a startup failure; D invents a serialisation behaviour.",
+      "sources": [
+        {
+          "title": "`async def` vs `def` in FastAPI",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/7-async-fastapi-integration-with-spring-boot.md#3a-async-def-vs-def-in-fastapi--a-real-correctness-issue",
+          "anchor": "3a-async-def-vs-def-in-fastapi--a-real-correctness-issue"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q38",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "fastapi-lifespan"
+      ],
+      "stem": "Per §3b, which FastAPI pattern replaces the deprecated `@app.on_event(\"startup\")` / `@app.on_event(\"shutdown\")` decorators?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The `lifespan` async context manager passed as `FastAPI(lifespan=...)`",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "A pair of pytest fixtures with module-level scope (`@pytest.fixture(scope=\"module\")`)",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "ASGI middleware registered via `app.add_middleware(LifespanMiddleware)`",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "A `@dataclass` carrying `setup()` and `teardown()` methods passed to `uvicorn.run`",
+          "correct": false
+        }
+      ],
+      "explanation": "§3b is explicit: the on_event decorators are deprecated; `lifespan` is the ASGI-protocol replacement. The pattern is `@asynccontextmanager` on a function that yields once between startup and shutdown, then passed to the `FastAPI` constructor. B/C/D are plausible-sounding alternatives that don't exist as canonical replacements.",
+      "sources": [
+        {
+          "title": "The lifespan handler",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/7-async-fastapi-integration-with-spring-boot.md#3b-the-lifespan-handler--long-lived-resources",
+          "anchor": "3b-the-lifespan-handler--long-lived-resources"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q39",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "httpx-asyncclient"
+      ],
+      "stem": "Why does the reading insist on a single shared `httpx.AsyncClient` built in `lifespan` rather than constructing one per request?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Per-request `AsyncClient` instances leak file descriptors that the GC does not reclaim, causing OOM in long-running services",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Per-request instances are flagged by mypy as a typing violation because `AsyncClient` is `Final` in 2026",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Per-request instances defeat HTTP connection pooling, TLS reuse, and HTTP/2 multiplexing — the very benefits that justify httpx in the first place",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Per-request instances cannot be injected via `Depends(...)` because httpx clients are not pickleable",
+          "correct": false
+        }
+      ],
+      "explanation": "§3c is explicit: instantiating a new client per request defeats connection pooling, TLS reuse, and HTTP/2 multiplexing — the three benefits httpx provides. Multiple 2026 tutorials open with this as the bug to avoid. A/C/D invent technical claims not in the reading.",
+      "sources": [
+        {
+          "title": "httpx.AsyncClient for outbound HTTP",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/7-async-fastapi-integration-with-spring-boot.md#3c-httpxasyncclient-for-outbound-http",
+          "anchor": "3c-httpxasyncclient-for-outbound-http"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q40",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "spring-webclient"
+      ],
+      "stem": "Per §3d, what's the load-bearing mistake to avoid when configuring Spring's `WebClient` in a request-handling thread?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Constructing a new `WebClient.Builder` per call instead of injecting a centralised bean",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Calling `.block()` on the `Mono` from request-handling threads — it converts the non-blocking client into a blocking one and defeats its purpose",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Setting only one `.timeout(...)` at the end of the chain instead of layering connect/read/response timeouts",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Failing to set `MediaType.APPLICATION_JSON_VALUE` as the default Content-Type header",
+          "correct": false
+        }
+      ],
+      "explanation": "§3d names three recommendations and calls `.block()` on request threads out specifically as the one that defeats WebClient's purpose — it converts non-blocking into blocking. A and B are real recommendations (centralise the bean, layer timeouts) but neither is named the load-bearing mistake; D is a syntax detail, not a discipline.",
+      "sources": [
+        {
+          "title": "Spring WebClient — the Java complement",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/7-async-fastapi-integration-with-spring-boot.md#3d-spring-webclient--the-java-complement",
+          "anchor": "3d-spring-webclient--the-java-complement"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q41",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "polyglot-integration-shape"
+      ],
+      "stem": "Per §3e, why is \"Spring blocks; FastAPI is async-all-the-way\" the defensible W1 starting shape?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Bedrock's SDK only exposes async methods in 2026, so the Python side has no synchronous option even if it wanted one",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Spring's blocking `RestTemplate` is faster than `WebClient` for single calls, so blocking is the throughput-optimal choice",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "FastAPI cannot be deployed behind a non-blocking Spring service due to ASGI/Servlet interop limits",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The LLM-latency hop is the most important to keep non-blocking, and the Java caller's single-call shape can accept the per-thread cost in exchange for simpler code",
+          "correct": true
+        }
+      ],
+      "explanation": "§3e is direct: the LLM latency makes the Python-upstream hop the most important non-blocking path, and the Java side's W1 single-call shape tolerates `.block()` deliberately. W3's multi-agent work pushes the Java side toward async-end-to-end. B reverses the performance claim; C invents an interop limit; D fabricates an SDK constraint.",
+      "sources": [
+        {
+          "title": "The shape of the integration",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/7-async-fastapi-integration-with-spring-boot.md#3e-the-shape-of-the-integration--async-where-blocking-where",
+          "anchor": "3e-the-shape-of-the-integration--async-where-blocking-where"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q42",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "fastapi-lifespan",
+        "httpx-asyncclient",
+        "spring-webclient"
+      ],
+      "stem": "Which of the following are Best Practices from §6 of the async-integration reading? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Build long-lived clients (HTTP, DB, model) once in the `lifespan` handler and share them via `app.state` or DI",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Layer timeouts at connect, read, and overall-response levels — not just a single end-of-chain timeout",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Use `@app.on_event(\"startup\")` in new code because `lifespan` is still considered experimental",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Centralise the Spring `WebClient` bean configuration and inject it everywhere; avoid creating clients on-the-fly",
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": "Call blocking I/O freely inside `async def` — FastAPI auto-migrates the call to a threadpool under the hood",
+          "correct": false
+        }
+      ],
+      "explanation": "A, B, and D come directly from §6. C reverses the §3b prescription (the on_event decorators are deprecated, not the recommended path). E contradicts §3a — blocking I/O inside `async def` stalls the event loop, and FastAPI does not auto-migrate calls.",
+      "sources": [
+        {
+          "title": "Best Practices — async integration",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/7-async-fastapi-integration-with-spring-boot.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q43",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "war-room-incident-triage",
+        "hitl-spectrum"
+      ],
+      "stem": "Per the W1 Fri war-room brief, what three concerns converge in the 09:00 escalation framing?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Cost (overnight Bedrock spend), reliability (retry + idempotency + cost-per-request logging), and HITL (1st of 7 touchpoints)",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Pair-assignment, vendor-comparative re-vote, and brownfield-debt inventory",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Auth0 token expiry, correlation-ID misuse, and a failing CI build on the develop branch",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "RAG retrieval quality, eval-harness coverage, and a model-version rollover that broke the schema",
+          "correct": false
+        }
+      ],
+      "explanation": "The war-room brief is explicit: cost (the $340 overnight spend), reliability (continuing Thu's discipline with more rigour), and HITL (the 1st-of-7 programme touchpoint). A is Wed's work; C invents a Tue-flavoured triage; D belongs to W2.",
+      "sources": [
+        {
+          "title": "W1 Fri war-room — what we're tackling today",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/war-room/D5.md#what-were-tackling-today--why",
+          "anchor": "what-were-tackling-today--why"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q44",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "war-room-incident-triage"
+      ],
+      "stem": "The Fri war-room mentions a draft that cited \"48 CFR 47.305-2,\" a FAR paragraph that doesn't exist. Per the brief, how is this hallucination handled today, given that RAG ships next week?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Patch the prompt to forbid FAR citations entirely until RAG arrives, then re-enable in W2",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Roll back to Thursday's PR and freeze new feature work until the hallucination is resolved",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Manage it today via the existing tools, and document it as the concrete problem RAG will solve so W2 Mon's Plan Day frames RAG as the answer to *this* incident",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Escalate the hallucination to the federal-acquisitions ethics board for incident review",
+          "correct": false
+        }
+      ],
+      "explanation": "The brief is explicit: the hallucination has to be managed today even though RAG (the real fix) ships next week, and it is documented as the concrete problem RAG will solve. W2 Mon Plan Day uses it as the framing example — not an abstract topic. A/C/D invent over-correcting responses the brief does not prescribe.",
+      "sources": [
+        {
+          "title": "Reference — W2 handoff",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/war-room/D5.md#reference",
+          "anchor": "reference"
+        }
+      ]
+    },
+    {
+      "id": "W01-Fri-Q45",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "first-pr-adversarial-review",
+        "war-room-incident-triage"
+      ],
+      "stem": "Per the Daily Topic Overview's §7, at Light strictness what does the First PR Adversarial Review do — and what does it NOT do?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It blocks the merge if any ADR rationale is missing or any HITL boundary is undefined",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "It flags missing ADR rationale, unclear success criteria, and undefined HITL boundary as PR comments; findings are not blocking gates and pairs respond with a fix or an explicit deferral",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "It rewrites the PR description to add the missing context the reviewer thinks is required",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "It only reviews diffs in `prompts/` and `evals/` directories; everything else is W4 Full strictness",
+          "correct": false
+        }
+      ],
+      "explanation": "§7 is explicit at Light strictness: Codex flags issues as PR *comments*, not blocking gates; pairs respond with a fix or an explicit deferral with reasoning. A overstates the strictness (W4 Full does block; W1 Light does not). C invents a rewrite capability; D invents a scope limit that isn't in the reading.",
+      "sources": [
+        {
+          "title": "First PR Adversarial Review (Light)",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/1-DailyTopicOverview.md#7-first-pr-adversarial-review-light--what-to-expect-fri-5-min",
+          "anchor": "7-first-pr-adversarial-review-light--what-to-expect-fri-5-min"
+        }
+      ]
+    }
+  ]
+}
