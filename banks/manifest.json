@@ -1,0 +1,75 @@
+{
+  "generated": "2026-05-27",
+  "weeks": {
+    "W01": {
+      "title": "W1 Onboarding + LLM Essentials",
+      "dateRange": "Tue 26 May – Fri 29 May 2026",
+      "weekReady": false,
+      "days": [
+        { "id": "Tuesday",   "label": "Tue 26 May", "ready": true,  "questionCount": 45 },
+        { "id": "Wednesday", "label": "Wed 27 May", "ready": false, "questionCount": 0 },
+        { "id": "Thursday",  "label": "Thu 28 May", "ready": false, "questionCount": 0 },
+        { "id": "Friday",    "label": "Fri 29 May", "ready": false, "questionCount": 0 }
+      ]
+    },
+    "W02": {
+      "title": "W2 RAG Architecture",
+      "dateRange": "Mon 1 Jun – Fri 5 Jun 2026",
+      "weekReady": false,
+      "days": [
+        { "id": "Monday",    "label": "Mon 1 Jun", "ready": false, "questionCount": 0 },
+        { "id": "Tuesday",   "label": "Tue 2 Jun", "ready": false, "questionCount": 0 },
+        { "id": "Wednesday", "label": "Wed 3 Jun", "ready": false, "questionCount": 0 },
+        { "id": "Thursday",  "label": "Thu 4 Jun", "ready": false, "questionCount": 0 },
+        { "id": "Friday",    "label": "Fri 5 Jun", "ready": false, "questionCount": 0 }
+      ]
+    },
+    "W03": {
+      "title": "W3 Agentic Systems (Phase 1 gate)",
+      "dateRange": "Mon 8 Jun – Fri 12 Jun 2026",
+      "weekReady": false,
+      "days": [
+        { "id": "Monday",    "label": "Mon 8 Jun",  "ready": false, "questionCount": 0 },
+        { "id": "Tuesday",   "label": "Tue 9 Jun",  "ready": false, "questionCount": 0 },
+        { "id": "Wednesday", "label": "Wed 10 Jun", "ready": false, "questionCount": 0 },
+        { "id": "Thursday",  "label": "Thu 11 Jun", "ready": false, "questionCount": 0 },
+        { "id": "Friday",    "label": "Fri 12 Jun", "ready": false, "questionCount": 0 }
+      ]
+    },
+    "W04": {
+      "title": "W4 AI-Native SDLC + Security + Modernization",
+      "dateRange": "Mon 15 Jun – Fri 19 Jun 2026",
+      "weekReady": false,
+      "days": [
+        { "id": "Monday",    "label": "Mon 15 Jun", "ready": false, "questionCount": 0 },
+        { "id": "Tuesday",   "label": "Tue 16 Jun", "ready": false, "questionCount": 0 },
+        { "id": "Wednesday", "label": "Wed 17 Jun", "ready": false, "questionCount": 0 },
+        { "id": "Thursday",  "label": "Thu 18 Jun", "ready": false, "questionCount": 0 },
+        { "id": "Friday",    "label": "Fri 19 Jun", "ready": false, "questionCount": 0 }
+      ]
+    },
+    "W05": {
+      "title": "W5 AIOps anchor week",
+      "dateRange": "Mon 22 Jun – Fri 26 Jun 2026",
+      "weekReady": false,
+      "days": [
+        { "id": "Monday",    "label": "Mon 22 Jun", "ready": false, "questionCount": 0 },
+        { "id": "Tuesday",   "label": "Tue 23 Jun", "ready": false, "questionCount": 0 },
+        { "id": "Wednesday", "label": "Wed 24 Jun", "ready": false, "questionCount": 0 },
+        { "id": "Thursday",  "label": "Thu 25 Jun", "ready": false, "questionCount": 0 },
+        { "id": "Friday",    "label": "Fri 26 Jun", "ready": false, "questionCount": 0 }
+      ]
+    },
+    "W06": {
+      "title": "W6 Client Deliverability (Final Defense Thu)",
+      "dateRange": "Mon 29 Jun – Thu 2 Jul 2026",
+      "weekReady": false,
+      "days": [
+        { "id": "Monday",    "label": "Mon 29 Jun", "ready": false, "questionCount": 0 },
+        { "id": "Tuesday",   "label": "Tue 30 Jun", "ready": false, "questionCount": 0 },
+        { "id": "Wednesday", "label": "Wed 1 Jul",  "ready": false, "questionCount": 0 },
+        { "id": "Thursday",  "label": "Thu 2 Jul",  "ready": false, "questionCount": 0 }
+      ]
+    }
+  }
+}

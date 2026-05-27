@@ -1,0 +1,2339 @@
+{
+  "week": "W01",
+  "days": {
+    "Tuesday": {
+      "short": "Tue",
+      "files": [
+        {
+          "path": "W01/pre-session/2-Tuesday/1-DailyTopicOverview.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/1-DailyTopicOverview.md",
+          "title": "W1 Tue Orientation Reading — Programme arc + Claude Code + acquire-gov + Wed comparative prep",
+          "headings": [
+            {
+              "level": 1,
+              "text": "W1 Tue Orientation Reading — Programme arc + Claude Code + acquire-gov + Wed comparative prep",
+              "anchor": "w1-tue-orientation-reading-programme-arc-claude-code-acquire-gov-wed-comparative-prep"
+            },
+            {
+              "level": 2,
+              "text": "1. What this intensive is — programme arc + the 12 FDE situations (10 min)",
+              "anchor": "1-what-this-intensive-is-programme-arc-the-12-fde-situations-10-min"
+            },
+            {
+              "level": 2,
+              "text": "2. Claude Code as comprehension accelerant — install, auth, plugins, custom skills (12 min)",
+              "anchor": "2-claude-code-as-comprehension-accelerant-install-auth-plugins-custom-skills-12-min"
+            },
+            {
+              "level": 2,
+              "text": "3. The acquire-gov training repo — clone, compose, the 4-service mesh (12 min)",
+              "anchor": "3-the-acquire-gov-training-repo-clone-compose-the-4-service-mesh-12-min"
+            },
+            {
+              "level": 2,
+              "text": "4. Auth + observability foundations — OAuth2/JWT + structured logging + correlation IDs (10 min)",
+              "anchor": "4-auth-observability-foundations-oauth2jwt-structured-logging-correlation-ids-10-min"
+            },
+            {
+              "level": 2,
+              "text": "5. CI/CD + Bedrock prerequisites — GHA workflows, AWS SSO, model access verification (8 min)",
+              "anchor": "5-cicd-bedrock-prerequisites-gha-workflows-aws-sso-model-access-verification-8-min"
+            },
+            {
+              "level": 2,
+              "text": "6. Brownfield debt — what you start surfacing today (12 min)",
+              "anchor": "6-brownfield-debt-what-you-start-surfacing-today-12-min"
+            },
+            {
+              "level": 2,
+              "text": "7. Prep for Wed — Karsun x GalentAI public-source reading list (12 min)",
+              "anchor": "7-prep-for-wed-karsun-x-galentai-public-source-reading-list-12-min"
+            },
+            {
+              "level": 2,
+              "text": "What W1 Tue actually looks like",
+              "anchor": "what-w1-tue-actually-looks-like"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/2-Tuesday/2-what-this-intensive-is-programme-arc-plus-the-12-fde-situations.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/2-what-this-intensive-is-programme-arc-plus-the-12-fde-situations.md",
+          "title": "What this intensive is — programme arc + the 12 FDE situations",
+          "headings": [
+            {
+              "level": 1,
+              "text": "What this intensive is — programme arc + the 12 FDE situations",
+              "anchor": "what-this-intensive-is-programme-arc-the-12-fde-situations"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3.1 The Forward Deployed Engineer role — three definitions worth holding together",
+              "anchor": "31-the-forward-deployed-engineer-role-three-definitions-worth-holding-together"
+            },
+            {
+              "level": 3,
+              "text": "3.2 The three-phase programme arc",
+              "anchor": "32-the-three-phase-programme-arc"
+            },
+            {
+              "level": 3,
+              "text": "3.3 The 12 FDE situations — the vocabulary the programme operates in",
+              "anchor": "33-the-12-fde-situations-the-vocabulary-the-programme-operates-in"
+            },
+            {
+              "level": 3,
+              "text": "3.4 Why demand exploded in 2024-2025",
+              "anchor": "34-why-demand-exploded-in-2024-2025"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/2-Tuesday/3-claude-code-as-comprehension-accelerant.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/3-claude-code-as-comprehension-accelerant.md",
+          "title": "Claude Code as comprehension accelerant — install, auth, plugins, custom skills",
+          "headings": [
+            {
+              "level": 1,
+              "text": "Claude Code as comprehension accelerant — install, auth, plugins, custom skills",
+              "anchor": "claude-code-as-comprehension-accelerant-install-auth-plugins-custom-skills"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3.1 The four extensibility surfaces",
+              "anchor": "31-the-four-extensibility-surfaces"
+            },
+            {
+              "level": 3,
+              "text": "3.2 Why this matters for federal clients",
+              "anchor": "32-why-this-matters-for-federal-clients"
+            },
+            {
+              "level": 3,
+              "text": "3.3 SKILL.md anatomy",
+              "anchor": "33-skillmd-anatomy"
+            },
+            {
+              "level": 3,
+              "text": "3.4 MCP servers — when to add one",
+              "anchor": "34-mcp-servers-when-to-add-one"
+            },
+            {
+              "level": 3,
+              "text": "3.5 Hooks as security guardrails",
+              "anchor": "35-hooks-as-security-guardrails"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/2-Tuesday/4-the-acquire-gov-training-repo.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/4-the-acquire-gov-training-repo.md",
+          "title": "The training repo — microservices mesh, container-first, four services across three runtimes",
+          "headings": [
+            {
+              "level": 1,
+              "text": "The training repo — microservices mesh, container-first, four services across three runtimes",
+              "anchor": "the-training-repo-microservices-mesh-container-first-four-services-across-three-runtimes"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3.1 North-south vs east-west — the two traffic axes",
+              "anchor": "31-north-south-vs-east-west-the-two-traffic-axes"
+            },
+            {
+              "level": 3,
+              "text": "3.2 What an API gateway actually does",
+              "anchor": "32-what-an-api-gateway-actually-does"
+            },
+            {
+              "level": 3,
+              "text": "3.3 What a service mesh adds beyond a gateway",
+              "anchor": "33-what-a-service-mesh-adds-beyond-a-gateway"
+            },
+            {
+              "level": 3,
+              "text": "3.4 Container-first as the run-time discipline",
+              "anchor": "34-container-first-as-the-run-time-discipline"
+            },
+            {
+              "level": 3,
+              "text": "3.5 Why microservices at all — the modernization angle",
+              "anchor": "35-why-microservices-at-all-the-modernization-angle"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/2-Tuesday/5-auth-and-observability-foundations.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/5-auth-and-observability-foundations.md",
+          "title": "Auth + observability foundations — OAuth2/JWT + structured logging + correlation IDs",
+          "headings": [
+            {
+              "level": 1,
+              "text": "Auth + observability foundations — OAuth2/JWT + structured logging + correlation IDs",
+              "anchor": "auth-observability-foundations-oauth2jwt-structured-logging-correlation-ids"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3.1 The request-flow story",
+              "anchor": "31-the-request-flow-story"
+            },
+            {
+              "level": 3,
+              "text": "3.2 What the gateway actually checks — four claims",
+              "anchor": "32-what-the-gateway-actually-checks-four-claims"
+            },
+            {
+              "level": 3,
+              "text": "3.3 The structured-logging discipline",
+              "anchor": "33-the-structured-logging-discipline"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/2-Tuesday/6-ci-cd-and-bedrock-prerequisites.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/6-ci-cd-and-bedrock-prerequisites.md",
+          "title": "CI/CD + cloud-LLM prerequisites — GHA workflows, OIDC-to-cloud, model-access verification",
+          "headings": [
+            {
+              "level": 1,
+              "text": "CI/CD + cloud-LLM prerequisites — GHA workflows, OIDC-to-cloud, model-access verification",
+              "anchor": "cicd-cloud-llm-prerequisites-gha-workflows-oidc-to-cloud-model-access-verification"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3.1 The antipattern: long-lived cloud keys as CI secrets",
+              "anchor": "31-the-antipattern-long-lived-cloud-keys-as-ci-secrets"
+            },
+            {
+              "level": 3,
+              "text": "3.2 What OIDC-to-cloud actually does",
+              "anchor": "32-what-oidc-to-cloud-actually-does"
+            },
+            {
+              "level": 3,
+              "text": "3.3 The IAM trust policy — where scoping actually happens",
+              "anchor": "33-the-iam-trust-policy-where-scoping-actually-happens"
+            },
+            {
+              "level": 3,
+              "text": "3.4 The workflow side — three load-bearing lines",
+              "anchor": "34-the-workflow-side-three-load-bearing-lines"
+            },
+            {
+              "level": 3,
+              "text": "3.5 Cloud-LLM model access — a separate concern",
+              "anchor": "35-cloud-llm-model-access-a-separate-concern"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/2-Tuesday/7-brownfield-debt-what-you-start-surfacing-today.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/7-brownfield-debt-what-you-start-surfacing-today.md",
+          "title": "Brownfield debt — what an inventory is and how to do one",
+          "headings": [
+            {
+              "level": 1,
+              "text": "Brownfield debt — what an inventory is and how to do one",
+              "anchor": "brownfield-debt-what-an-inventory-is-and-how-to-do-one"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3.1 Greenfield vs brownfield in one diagram",
+              "anchor": "31-greenfield-vs-brownfield-in-one-diagram"
+            },
+            {
+              "level": 3,
+              "text": "3.2 What \"technical debt\" actually means",
+              "anchor": "32-what-technical-debt-actually-means"
+            },
+            {
+              "level": 3,
+              "text": "3.3 The five debt categories every brownfield system has",
+              "anchor": "33-the-five-debt-categories-every-brownfield-system-has"
+            },
+            {
+              "level": 3,
+              "text": "3.4 The inventory-first principle",
+              "anchor": "34-the-inventory-first-principle"
+            },
+            {
+              "level": 3,
+              "text": "3.5 The six standard inventory dimensions",
+              "anchor": "35-the-six-standard-inventory-dimensions"
+            },
+            {
+              "level": 3,
+              "text": "3.6 The 6R / 7R framing",
+              "anchor": "36-the-6r-7r-framing"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/2-Tuesday/8-prep-for-wed-karsun-x-galentai-public-source-reading-list.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/8-prep-for-wed-karsun-x-galentai-public-source-reading-list.md",
+          "title": "Prep for Wed — public-source comparative discipline (vendor due diligence as FDE skill)",
+          "headings": [
+            {
+              "level": 1,
+              "text": "Prep for Wed — public-source comparative discipline (vendor due diligence as FDE skill)",
+              "anchor": "prep-for-wed-public-source-comparative-discipline-vendor-due-diligence-as-fde-skill"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3.1 Why vendor-supplied materials are structurally biased",
+              "anchor": "31-why-vendor-supplied-materials-are-structurally-biased"
+            },
+            {
+              "level": 3,
+              "text": "3.2 Standard public-source channels",
+              "anchor": "32-standard-public-source-channels"
+            },
+            {
+              "level": 3,
+              "text": "3.3 The 6-dimension comparative matrix",
+              "anchor": "33-the-6-dimension-comparative-matrix"
+            },
+            {
+              "level": 3,
+              "text": "3.4 What \"good\" looks like as a deliverable",
+              "anchor": "34-what-good-looks-like-as-a-deliverable"
+            },
+            {
+              "level": 3,
+              "text": "3.5 Disciplines borrowed from M&A due diligence",
+              "anchor": "35-disciplines-borrowed-from-ma-due-diligence"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/war-room/D2.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/war-room/D2.md",
+          "title": "W1 Tue War-Room — What you're tackling today",
+          "headings": [
+            {
+              "level": 1,
+              "text": "W1 Tue War-Room — What you're tackling today",
+              "anchor": "w1-tue-war-room-what-youre-tackling-today"
+            },
+            {
+              "level": 2,
+              "text": "What we're tackling today + why",
+              "anchor": "what-were-tackling-today-why"
+            },
+            {
+              "level": 2,
+              "text": "What to know walking in",
+              "anchor": "what-to-know-walking-in"
+            },
+            {
+              "level": 2,
+              "text": "EOD deliverable (Tue 16:00)",
+              "anchor": "eod-deliverable-tue-1600"
+            },
+            {
+              "level": 2,
+              "text": "Reference",
+              "anchor": "reference"
+            }
+          ]
+        }
+      ]
+    },
+    "Wednesday": {
+      "short": "Wed",
+      "files": [
+        {
+          "path": "W01/pre-session/3-Wednesday/1-DailyTopicOverview.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/1-DailyTopicOverview.md",
+          "title": "W1 Wed Pre-Session — Comparative AM + Microservices PM + Pair-Project init",
+          "headings": [
+            {
+              "level": 1,
+              "text": "W1 Wed Pre-Session — Comparative AM + Microservices PM + Pair-Project init",
+              "anchor": "w1-wed-pre-session-comparative-am-microservices-pm-pair-project-init"
+            },
+            {
+              "level": 2,
+              "text": "1. Wed at a glance — comparative AM + Microservices PM + Pair-Project init (5 min)",
+              "anchor": "1-wed-at-a-glance-comparative-am-microservices-pm-pair-project-init-5-min"
+            },
+            {
+              "level": 2,
+              "text": "2. Reading for the comparative session — what to bring an opinion on (15 min)",
+              "anchor": "2-reading-for-the-comparative-session-what-to-bring-an-opinion-on-15-min"
+            },
+            {
+              "level": 2,
+              "text": "3. Microservices Foundation primer — what you'll walk Wed PM (15 min)",
+              "anchor": "3-microservices-foundation-primer-what-youll-walk-wed-pm-15-min"
+            },
+            {
+              "level": 2,
+              "text": "4. Pair-Project repo init — what gets scaffolded Wed PM (10 min)",
+              "anchor": "4-pair-project-repo-init-what-gets-scaffolded-wed-pm-10-min"
+            },
+            {
+              "level": 2,
+              "text": "5. Brownfield-debt inventory — Wed PM continuation (5 min)",
+              "anchor": "5-brownfield-debt-inventory-wed-pm-continuation-5-min"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/3-Wednesday/2-reading-for-the-comparative-session.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/2-reading-for-the-comparative-session.md",
+          "title": "Reading for the comparative session — what to bring an opinion on",
+          "headings": [
+            {
+              "level": 1,
+              "text": "Reading for the comparative session — what to bring an opinion on",
+              "anchor": "reading-for-the-comparative-session-what-to-bring-an-opinion-on"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3.1 The four-stage CI process",
+              "anchor": "31-the-four-stage-ci-process"
+            },
+            {
+              "level": 3,
+              "text": "3.2 Source tiers (high-value vs moderate-value vs flag-with-caveat)",
+              "anchor": "32-source-tiers-high-value-vs-moderate-value-vs-flag-with-caveat"
+            },
+            {
+              "level": 3,
+              "text": "3.3 Horizontal vs vertical: why the dimensions differ",
+              "anchor": "33-horizontal-vs-vertical-why-the-dimensions-differ"
+            },
+            {
+              "level": 3,
+              "text": "3.4 Standard dimensions for an enterprise-AI-platform matrix",
+              "anchor": "34-standard-dimensions-for-an-enterprise-ai-platform-matrix"
+            },
+            {
+              "level": 3,
+              "text": "3.5 Analyst frames as sources and as evidence-of-absence",
+              "anchor": "35-analyst-frames-as-sources-and-as-evidence-of-absence"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/3-Wednesday/3-microservices-foundation-primer.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/3-microservices-foundation-primer.md",
+          "title": "Microservices Foundation primer — what you'll walk Wed PM",
+          "headings": [
+            {
+              "level": 1,
+              "text": "Microservices Foundation primer — what you'll walk Wed PM",
+              "anchor": "microservices-foundation-primer-what-youll-walk-wed-pm"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3.1 Bounded contexts: where service boundaries actually go",
+              "anchor": "31-bounded-contexts-where-service-boundaries-actually-go"
+            },
+            {
+              "level": 3,
+              "text": "3.2 Identity propagation: the three-checkpoint model",
+              "anchor": "32-identity-propagation-the-three-checkpoint-model"
+            },
+            {
+              "level": 3,
+              "text": "3.3 Correlation IDs and distributed tracing",
+              "anchor": "33-correlation-ids-and-distributed-tracing"
+            },
+            {
+              "level": 3,
+              "text": "3.4 Synchronous vs asynchronous paths",
+              "anchor": "34-synchronous-vs-asynchronous-paths"
+            },
+            {
+              "level": 3,
+              "text": "3.5 Containerisation: the production-readiness checklist",
+              "anchor": "35-containerisation-the-production-readiness-checklist"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/3-Wednesday/4-pair-project-repo-init.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/4-pair-project-repo-init.md",
+          "title": "Pair-Project repo init — what gets scaffolded Wed PM",
+          "headings": [
+            {
+              "level": 1,
+              "text": "Pair-Project repo init — what gets scaffolded Wed PM",
+              "anchor": "pair-project-repo-init-what-gets-scaffolded-wed-pm"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3.1 The Nygard ADR template",
+              "anchor": "31-the-nygard-adr-template"
+            },
+            {
+              "level": 3,
+              "text": "3.2 MADR's extensions and when they earn their place",
+              "anchor": "32-madrs-extensions-and-when-they-earn-their-place"
+            },
+            {
+              "level": 3,
+              "text": "3.3 Commitment ADRs vs comparison ADRs",
+              "anchor": "33-commitment-adrs-vs-comparison-adrs"
+            },
+            {
+              "level": 3,
+              "text": "3.4 The minimal viable directory skeleton",
+              "anchor": "34-the-minimal-viable-directory-skeleton"
+            },
+            {
+              "level": 3,
+              "text": "3.5 Instant-runoff voting as a small-group allocation mechanic",
+              "anchor": "35-instant-runoff-voting-as-a-small-group-allocation-mechanic"
+            },
+            {
+              "level": 3,
+              "text": "3.6 Continuous git history vs the \"fresh start\" temptation",
+              "anchor": "36-continuous-git-history-vs-the-fresh-start-temptation"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/3-Wednesday/5-brownfield-debt-inventory.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/3-Wednesday/5-brownfield-debt-inventory.md",
+          "title": "Brownfield-debt inventory — Wed PM continuation",
+          "headings": [
+            {
+              "level": 1,
+              "text": "Brownfield-debt inventory — Wed PM continuation",
+              "anchor": "brownfield-debt-inventory-wed-pm-continuation"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3.1 Fowler's four-quadrant technical-debt framing",
+              "anchor": "31-fowlers-four-quadrant-technical-debt-framing"
+            },
+            {
+              "level": 3,
+              "text": "3.2 The catalogue entry — minimum viable fields",
+              "anchor": "32-the-catalogue-entry-minimum-viable-fields"
+            },
+            {
+              "level": 3,
+              "text": "3.3 Impact × effort prioritisation matrix",
+              "anchor": "33-impact-effort-prioritisation-matrix"
+            },
+            {
+              "level": 3,
+              "text": "3.4 The \"do not fix during inventory\" discipline",
+              "anchor": "34-the-do-not-fix-during-inventory-discipline"
+            },
+            {
+              "level": 3,
+              "text": "3.5 Deliberate / pedagogical debt vs accidental debt",
+              "anchor": "35-deliberate-pedagogical-debt-vs-accidental-debt"
+            },
+            {
+              "level": 3,
+              "text": "3.6 The cognitive trap: bug-hunting vs debt-cataloguing",
+              "anchor": "36-the-cognitive-trap-bug-hunting-vs-debt-cataloguing"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/war-room/D3.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/war-room/D3.md",
+          "title": "W1 Wed War-Room — What you're tackling today",
+          "headings": [
+            {
+              "level": 1,
+              "text": "W1 Wed War-Room — What you're tackling today",
+              "anchor": "w1-wed-war-room-what-youre-tackling-today"
+            },
+            {
+              "level": 2,
+              "text": "What we're tackling today + why",
+              "anchor": "what-were-tackling-today-why"
+            },
+            {
+              "level": 2,
+              "text": "What to know walking in",
+              "anchor": "what-to-know-walking-in"
+            },
+            {
+              "level": 2,
+              "text": "EOD deliverable (Wed 17:00)",
+              "anchor": "eod-deliverable-wed-1700"
+            },
+            {
+              "level": 2,
+              "text": "Reference",
+              "anchor": "reference"
+            }
+          ]
+        }
+      ]
+    },
+    "Thursday": {
+      "short": "Thu",
+      "files": [
+        {
+          "path": "W01/pre-session/4-Thursday/1-DailyTopicOverview.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/1-DailyTopicOverview.md",
+          "title": "W1 Thu Pre-Session — LLM Engineering Essentials",
+          "headings": [
+            {
+              "level": 1,
+              "text": "W1 Thu Pre-Session — LLM Engineering Essentials",
+              "anchor": "w1-thu-pre-session-llm-engineering-essentials"
+            },
+            {
+              "level": 2,
+              "text": "1. Thu at a glance — LLM Engineering Essentials (5 min)",
+              "anchor": "1-thu-at-a-glance-llm-engineering-essentials-5-min"
+            },
+            {
+              "level": 2,
+              "text": "2. LLMs as engineering systems, not magic (8 min)",
+              "anchor": "2-llms-as-engineering-systems-not-magic-8-min"
+            },
+            {
+              "level": 2,
+              "text": "3. Hallucination failure modes (10 min)",
+              "anchor": "3-hallucination-failure-modes-10-min"
+            },
+            {
+              "level": 2,
+              "text": "4. Model selection criteria — Bedrock + Claude for the federal anchor (10 min)",
+              "anchor": "4-model-selection-criteria-bedrock-claude-for-the-federal-anchor-10-min"
+            },
+            {
+              "level": 2,
+              "text": "5. AWS Bedrock model invocation (10 min)",
+              "anchor": "5-aws-bedrock-model-invocation-10-min"
+            },
+            {
+              "level": 2,
+              "text": "6. Streaming responses (8 min)",
+              "anchor": "6-streaming-responses-8-min"
+            },
+            {
+              "level": 2,
+              "text": "7. Retry logic and strategies (8 min)",
+              "anchor": "7-retry-logic-and-strategies-8-min"
+            },
+            {
+              "level": 2,
+              "text": "8. Cost structure of LLMs (8 min)",
+              "anchor": "8-cost-structure-of-llms-8-min"
+            },
+            {
+              "level": 2,
+              "text": "What you'll do W1 Thu",
+              "anchor": "what-youll-do-w1-thu"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/4-Thursday/2-llms-as-engineering-systems.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/2-llms-as-engineering-systems.md",
+          "title": "LLMs as engineering systems — production discipline over magic",
+          "headings": [
+            {
+              "level": 1,
+              "text": "LLMs as engineering systems — production discipline over magic",
+              "anchor": "llms-as-engineering-systems-production-discipline-over-magic"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3.1 The five engineering disciplines",
+              "anchor": "31-the-five-engineering-disciplines"
+            },
+            {
+              "level": 3,
+              "text": "3.2 The antipatterns demo-quality code ships with",
+              "anchor": "32-the-antipatterns-demo-quality-code-ships-with"
+            },
+            {
+              "level": 3,
+              "text": "3.3 Why \"magic box\" framing fails the federal context",
+              "anchor": "33-why-magic-box-framing-fails-the-federal-context"
+            },
+            {
+              "level": 3,
+              "text": "3.4 The discipline-graph for the next six weeks",
+              "anchor": "34-the-discipline-graph-for-the-next-six-weeks"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/4-Thursday/3-hallucination-failure-modes.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/3-hallucination-failure-modes.md",
+          "title": "Hallucination failure modes — five categories and their mitigation layers",
+          "headings": [
+            {
+              "level": 1,
+              "text": "Hallucination failure modes — five categories and their mitigation layers",
+              "anchor": "hallucination-failure-modes-five-categories-and-their-mitigation-layers"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3.1 Confabulation",
+              "anchor": "31-confabulation"
+            },
+            {
+              "level": 3,
+              "text": "3.2 Stale knowledge",
+              "anchor": "32-stale-knowledge"
+            },
+            {
+              "level": 3,
+              "text": "3.3 Over-confidence in plausible outputs",
+              "anchor": "33-over-confidence-in-plausible-outputs"
+            },
+            {
+              "level": 3,
+              "text": "3.4 Format drift",
+              "anchor": "34-format-drift"
+            },
+            {
+              "level": 3,
+              "text": "3.5 Truncation",
+              "anchor": "35-truncation"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/4-Thursday/4-model-selection-criteria.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/4-model-selection-criteria.md",
+          "title": "Model selection criteria — Bedrock Claude for the federal anchor",
+          "headings": [
+            {
+              "level": 1,
+              "text": "Model selection criteria — Bedrock Claude for the federal anchor",
+              "anchor": "model-selection-criteria-bedrock-claude-for-the-federal-anchor"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3.1 The three load-bearing reasons for Bedrock",
+              "anchor": "31-the-three-load-bearing-reasons-for-bedrock"
+            },
+            {
+              "level": 3,
+              "text": "3.2 Current Claude model catalog on Bedrock",
+              "anchor": "32-current-claude-model-catalog-on-bedrock"
+            },
+            {
+              "level": 3,
+              "text": "3.3 Known-bad pattern blocklist",
+              "anchor": "33-known-bad-pattern-blocklist"
+            },
+            {
+              "level": 3,
+              "text": "3.4 The Friday scenario-alternatives challenges",
+              "anchor": "34-the-friday-scenario-alternatives-challenges"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/4-Thursday/5-aws-bedrock-model-invocation.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/5-aws-bedrock-model-invocation.md",
+          "title": "AWS Bedrock model invocation — InvokeModel signature, system prompt, configuration",
+          "headings": [
+            {
+              "level": 1,
+              "text": "AWS Bedrock model invocation — InvokeModel signature, system prompt, configuration",
+              "anchor": "aws-bedrock-model-invocation-invokemodel-signature-system-prompt-configuration"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3.1 The Bedrock InvokeModel signature for Claude",
+              "anchor": "31-the-bedrock-invokemodel-signature-for-claude"
+            },
+            {
+              "level": 3,
+              "text": "3.2 The system prompt as engineering artifact",
+              "anchor": "32-the-system-prompt-as-engineering-artifact"
+            },
+            {
+              "level": 3,
+              "text": "3.3 Configuration-driven model ID",
+              "anchor": "33-configuration-driven-model-id"
+            },
+            {
+              "level": 3,
+              "text": "3.4 The deliberate gaps in the starting state",
+              "anchor": "34-the-deliberate-gaps-in-the-starting-state"
+            },
+            {
+              "level": 3,
+              "text": "3.5 Prompt caching — what to know walking in",
+              "anchor": "35-prompt-caching-what-to-know-walking-in"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/4-Thursday/6-streaming-responses.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/6-streaming-responses.md",
+          "title": "Streaming responses — InvokeModelWithResponseStream + FastAPI SSE",
+          "headings": [
+            {
+              "level": 1,
+              "text": "Streaming responses — InvokeModelWithResponseStream + FastAPI SSE",
+              "anchor": "streaming-responses-invokemodelwithresponsestream-fastapi-sse"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3.1 Why streaming is non-negotiable for user-facing LLM endpoints",
+              "anchor": "31-why-streaming-is-non-negotiable-for-user-facing-llm-endpoints"
+            },
+            {
+              "level": 3,
+              "text": "3.2 Bedrock InvokeModelWithResponseStream chunk shape",
+              "anchor": "32-bedrock-invokemodelwithresponsestream-chunk-shape"
+            },
+            {
+              "level": 3,
+              "text": "3.3 FastAPI StreamingResponse + SSE",
+              "anchor": "33-fastapi-streamingresponse-sse"
+            },
+            {
+              "level": 3,
+              "text": "3.4 Angular EventSource consumer",
+              "anchor": "34-angular-eventsource-consumer"
+            },
+            {
+              "level": 3,
+              "text": "3.5 The streaming + structured outputs composition pitfall",
+              "anchor": "35-the-streaming-structured-outputs-composition-pitfall"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/4-Thursday/7-retry-logic-and-strategies.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/7-retry-logic-and-strategies.md",
+          "title": "Retry logic and strategies — backoff, jitter, circuit-break, never-retry",
+          "headings": [
+            {
+              "level": 1,
+              "text": "Retry logic and strategies — backoff, jitter, circuit-break, never-retry",
+              "anchor": "retry-logic-and-strategies-backoff-jitter-circuit-break-never-retry"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3.1 Retryable vs never-retryable status codes",
+              "anchor": "31-retryable-vs-never-retryable-status-codes"
+            },
+            {
+              "level": 3,
+              "text": "3.2 Exponential backoff with jitter — the math",
+              "anchor": "32-exponential-backoff-with-jitter-the-math"
+            },
+            {
+              "level": 3,
+              "text": "3.3 Bounded attempts + circuit breaker",
+              "anchor": "33-bounded-attempts-circuit-breaker"
+            },
+            {
+              "level": 3,
+              "text": "3.4 LLM-specific retry contours",
+              "anchor": "34-llm-specific-retry-contours"
+            },
+            {
+              "level": 3,
+              "text": "3.5 The thundering-herd consideration",
+              "anchor": "35-the-thundering-herd-consideration"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/4-Thursday/8-cost-structure-of-llms.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/4-Thursday/8-cost-structure-of-llms.md",
+          "title": "Cost structure of LLMs — per-token economics + telemetry + caching levers",
+          "headings": [
+            {
+              "level": 1,
+              "text": "Cost structure of LLMs — per-token economics + telemetry + caching levers",
+              "anchor": "cost-structure-of-llms-per-token-economics-telemetry-caching-levers"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3.1 Why per-call cost telemetry belongs in version one",
+              "anchor": "31-why-per-call-cost-telemetry-belongs-in-version-one"
+            },
+            {
+              "level": 3,
+              "text": "3.2 The four log fields per call",
+              "anchor": "32-the-four-log-fields-per-call"
+            },
+            {
+              "level": 3,
+              "text": "3.3 The Claude model-family cost gradient",
+              "anchor": "33-the-claude-model-family-cost-gradient"
+            },
+            {
+              "level": 3,
+              "text": "3.4 Bedrock prompt caching — the Claude-specific cost lever",
+              "anchor": "34-bedrock-prompt-caching-the-claude-specific-cost-lever"
+            },
+            {
+              "level": 3,
+              "text": "3.5 The W5 AIOps cost surface depends on today's telemetry",
+              "anchor": "35-the-w5-aiops-cost-surface-depends-on-todays-telemetry"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/war-room/D4.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/war-room/D4.md",
+          "title": "W1 Thu War-Room — What you're tackling today",
+          "headings": [
+            {
+              "level": 1,
+              "text": "W1 Thu War-Room — What you're tackling today",
+              "anchor": "w1-thu-war-room-what-youre-tackling-today"
+            },
+            {
+              "level": 2,
+              "text": "What we're tackling today + why",
+              "anchor": "what-were-tackling-today-why"
+            },
+            {
+              "level": 2,
+              "text": "What to know walking in",
+              "anchor": "what-to-know-walking-in"
+            },
+            {
+              "level": 2,
+              "text": "EOD deliverable (Thu 17:00)",
+              "anchor": "eod-deliverable-thu-1700"
+            },
+            {
+              "level": 2,
+              "text": "Reference",
+              "anchor": "reference"
+            }
+          ]
+        }
+      ]
+    },
+    "Friday": {
+      "short": "Fri",
+      "files": [
+        {
+          "path": "W01/pre-session/5-Friday/1-DailyTopicOverview.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/1-DailyTopicOverview.md",
+          "title": "W1 Fri Pre-Session — Structured outputs + production API integration",
+          "headings": [
+            {
+              "level": 1,
+              "text": "W1 Fri Pre-Session — Structured outputs + production API integration",
+              "anchor": "w1-fri-pre-session-structured-outputs-production-api-integration"
+            },
+            {
+              "level": 2,
+              "text": "1. Structured JSON output — Pydantic and beyond (12 min)",
+              "anchor": "1-structured-json-output-pydantic-and-beyond-12-min"
+            },
+            {
+              "level": 2,
+              "text": "2. Output validation gates — Pydantic + Bean Validation contract (10 min)",
+              "anchor": "2-output-validation-gates-pydantic-bean-validation-contract-10-min"
+            },
+            {
+              "level": 2,
+              "text": "3. Context engineering — system prompts, dynamic assembly, compression (15 min)",
+              "anchor": "3-context-engineering-system-prompts-dynamic-assembly-compression-15-min"
+            },
+            {
+              "level": 3,
+              "text": "3a. System prompt as architecture",
+              "anchor": "3a-system-prompt-as-architecture"
+            },
+            {
+              "level": 3,
+              "text": "3b. Dynamic context assembly",
+              "anchor": "3b-dynamic-context-assembly"
+            },
+            {
+              "level": 3,
+              "text": "3c. Context compression patterns",
+              "anchor": "3c-context-compression-patterns"
+            },
+            {
+              "level": 2,
+              "text": "4. Prompt evaluations + lifecycle management (8 min)",
+              "anchor": "4-prompt-evaluations-lifecycle-management-8-min"
+            },
+            {
+              "level": 2,
+              "text": "5. Explicit HITL framing — Friday's named topic (8 min)",
+              "anchor": "5-explicit-hitl-framing-fridays-named-topic-8-min"
+            },
+            {
+              "level": 2,
+              "text": "6. Async FastAPI integration with Spring Boot (8 min)",
+              "anchor": "6-async-fastapi-integration-with-spring-boot-8-min"
+            },
+            {
+              "level": 2,
+              "text": "7. First PR Adversarial Review (Light) — what to expect Fri (5 min)",
+              "anchor": "7-first-pr-adversarial-review-light-what-to-expect-fri-5-min"
+            },
+            {
+              "level": 2,
+              "text": "What you'll do W1 Fri",
+              "anchor": "what-youll-do-w1-fri"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/5-Friday/2-structured-json-output-pydantic.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/2-structured-json-output-pydantic.md",
+          "title": "Structured JSON output — Pydantic and beyond",
+          "headings": [
+            {
+              "level": 1,
+              "text": "Structured JSON output — Pydantic and beyond",
+              "anchor": "structured-json-output-pydantic-and-beyond"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3a. Pydantic v2 model declaration",
+              "anchor": "3a-pydantic-v2-model-declaration"
+            },
+            {
+              "level": 3,
+              "text": "3b. Validators for semantic invariants",
+              "anchor": "3b-validators-for-semantic-invariants"
+            },
+            {
+              "level": 3,
+              "text": "3c. Context-aware validation",
+              "anchor": "3c-context-aware-validation"
+            },
+            {
+              "level": 3,
+              "text": "3d. Three levels of structure enforcement",
+              "anchor": "3d-three-levels-of-structure-enforcement"
+            },
+            {
+              "level": 3,
+              "text": "3e. Fail loud, not silent",
+              "anchor": "3e-fail-loud-not-silent"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/5-Friday/3-output-validation-gates.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/3-output-validation-gates.md",
+          "title": "Output validation gates — Pydantic + Bean Validation contract",
+          "headings": [
+            {
+              "level": 1,
+              "text": "Output validation gates — Pydantic + Bean Validation contract",
+              "anchor": "output-validation-gates-pydantic-bean-validation-contract"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3a. Why two layers?",
+              "anchor": "3a-why-two-layers"
+            },
+            {
+              "level": 3,
+              "text": "3b. Producer-side: Pydantic v2 strict mode",
+              "anchor": "3b-producer-side-pydantic-v2-strict-mode"
+            },
+            {
+              "level": 3,
+              "text": "3c. Consumer-side: Jakarta Bean Validation",
+              "anchor": "3c-consumer-side-jakarta-bean-validation"
+            },
+            {
+              "level": 3,
+              "text": "3d. The mapping table — keep it deliberate",
+              "anchor": "3d-the-mapping-table-keep-it-deliberate"
+            },
+            {
+              "level": 3,
+              "text": "3e. Contract testing — the third leg",
+              "anchor": "3e-contract-testing-the-third-leg"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/5-Friday/4-context-engineering-system-prompts-dynamic-assembly-compression.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/4-context-engineering-system-prompts-dynamic-assembly-compression.md",
+          "title": "Context engineering — system prompts, dynamic assembly, compression",
+          "headings": [
+            {
+              "level": 1,
+              "text": "Context engineering — system prompts, dynamic assembly, compression",
+              "anchor": "context-engineering-system-prompts-dynamic-assembly-compression"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3a. System prompt as architecture",
+              "anchor": "3a-system-prompt-as-architecture"
+            },
+            {
+              "level": 3,
+              "text": "3b. Dynamic context assembly",
+              "anchor": "3b-dynamic-context-assembly"
+            },
+            {
+              "level": 3,
+              "text": "3c. Context compression patterns",
+              "anchor": "3c-context-compression-patterns"
+            },
+            {
+              "level": 3,
+              "text": "3d. Token budgeting — fail closed",
+              "anchor": "3d-token-budgeting-fail-closed"
+            },
+            {
+              "level": 3,
+              "text": "3e. Logging the resolved prompt",
+              "anchor": "3e-logging-the-resolved-prompt"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/5-Friday/5-prompt-evaluations-lifecycle-management.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/5-prompt-evaluations-lifecycle-management.md",
+          "title": "Prompt evaluations + lifecycle management",
+          "headings": [
+            {
+              "level": 1,
+              "text": "Prompt evaluations + lifecycle management",
+              "anchor": "prompt-evaluations-lifecycle-management"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3a. Prompts as artifacts",
+              "anchor": "3a-prompts-as-artifacts"
+            },
+            {
+              "level": 3,
+              "text": "3b. The prompt registry",
+              "anchor": "3b-the-prompt-registry"
+            },
+            {
+              "level": 3,
+              "text": "3c. The eval harness",
+              "anchor": "3c-the-eval-harness"
+            },
+            {
+              "level": 3,
+              "text": "3d. A/B and shadow rollouts",
+              "anchor": "3d-ab-and-shadow-rollouts"
+            },
+            {
+              "level": 3,
+              "text": "3e. The eval pyramid",
+              "anchor": "3e-the-eval-pyramid"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/5-Friday/6-explicit-hitl-framing.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/6-explicit-hitl-framing.md",
+          "title": "Explicit HITL framing — Friday's named topic",
+          "headings": [
+            {
+              "level": 1,
+              "text": "Explicit HITL framing — Friday's named topic",
+              "anchor": "explicit-hitl-framing-fridays-named-topic"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3a. The HITL spectrum",
+              "anchor": "3a-the-hitl-spectrum"
+            },
+            {
+              "level": 3,
+              "text": "3b. The reversibility × blast-radius framework",
+              "anchor": "3b-the-reversibility-blast-radius-framework"
+            },
+            {
+              "level": 3,
+              "text": "3c. Workflow gates vs. runtime interrupts",
+              "anchor": "3c-workflow-gates-vs-runtime-interrupts"
+            },
+            {
+              "level": 3,
+              "text": "3d. The seven HITL touchpoints in this cohort",
+              "anchor": "3d-the-seven-hitl-touchpoints-in-this-cohort"
+            },
+            {
+              "level": 3,
+              "text": "3e. The two failure modes to avoid",
+              "anchor": "3e-the-two-failure-modes-to-avoid"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/pre-session/5-Friday/7-async-fastapi-integration-with-spring-boot.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/5-Friday/7-async-fastapi-integration-with-spring-boot.md",
+          "title": "Async FastAPI integration with Spring Boot",
+          "headings": [
+            {
+              "level": 1,
+              "text": "Async FastAPI integration with Spring Boot",
+              "anchor": "async-fastapi-integration-with-spring-boot"
+            },
+            {
+              "level": 2,
+              "text": "1. Learning Objectives",
+              "anchor": "1-learning-objectives"
+            },
+            {
+              "level": 2,
+              "text": "2. Introduction",
+              "anchor": "2-introduction"
+            },
+            {
+              "level": 2,
+              "text": "3. Core Concepts",
+              "anchor": "3-core-concepts"
+            },
+            {
+              "level": 3,
+              "text": "3a. async def vs def in FastAPI — a real correctness issue",
+              "anchor": "3a-async-def-vs-def-in-fastapi-a-real-correctness-issue"
+            },
+            {
+              "level": 3,
+              "text": "3b. The lifespan handler — long-lived resources",
+              "anchor": "3b-the-lifespan-handler-long-lived-resources"
+            },
+            {
+              "level": 3,
+              "text": "3c. httpx.AsyncClient for outbound HTTP",
+              "anchor": "3c-httpxasyncclient-for-outbound-http"
+            },
+            {
+              "level": 3,
+              "text": "3d. Spring WebClient — the Java complement",
+              "anchor": "3d-spring-webclient-the-java-complement"
+            },
+            {
+              "level": 3,
+              "text": "3e. The shape of the integration — async where, blocking where?",
+              "anchor": "3e-the-shape-of-the-integration-async-where-blocking-where"
+            },
+            {
+              "level": 2,
+              "text": "4. Generic Implementation",
+              "anchor": "4-generic-implementation"
+            },
+            {
+              "level": 2,
+              "text": "5. Real-world Patterns",
+              "anchor": "5-real-world-patterns"
+            },
+            {
+              "level": 2,
+              "text": "6. Best Practices",
+              "anchor": "6-best-practices"
+            },
+            {
+              "level": 2,
+              "text": "7. Hands-on Exercise",
+              "anchor": "7-hands-on-exercise"
+            },
+            {
+              "level": 2,
+              "text": "8. Key Takeaways",
+              "anchor": "8-key-takeaways"
+            },
+            {
+              "level": 2,
+              "text": "Sources",
+              "anchor": "sources"
+            }
+          ]
+        },
+        {
+          "path": "W01/war-room/D5.md",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/war-room/D5.md",
+          "title": "W1 Fri War-Room — What you're tackling today",
+          "headings": [
+            {
+              "level": 1,
+              "text": "W1 Fri War-Room — What you're tackling today",
+              "anchor": "w1-fri-war-room-what-youre-tackling-today"
+            },
+            {
+              "level": 2,
+              "text": "What we're tackling today + why",
+              "anchor": "what-were-tackling-today-why"
+            },
+            {
+              "level": 2,
+              "text": "What to know walking in",
+              "anchor": "what-to-know-walking-in"
+            },
+            {
+              "level": 2,
+              "text": "EOD deliverable (Fri 17:30)",
+              "anchor": "eod-deliverable-fri-1730"
+            },
+            {
+              "level": 2,
+              "text": "Reference",
+              "anchor": "reference"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

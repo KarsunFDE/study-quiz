@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Quiz — Karsun FDE Study</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="css/site.css" />
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen">
+
+<header class="border-b border-slate-200 bg-white sticky top-0 z-10">
+  <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between text-sm">
+    <a href="index.html" class="text-slate-500 hover:text-slate-900">← Exit</a>
+    <div id="scope" class="font-medium"></div>
+    <div class="flex items-center gap-4">
+      <span id="progress-counter" class="text-slate-500">0 / 0</span>
+      <span id="timer" class="font-mono text-slate-700">--:--</span>
+    </div>
+  </div>
+  <div class="h-1 bg-slate-200">
+    <div id="progress-bar" class="h-full bg-emerald-500 transition-all" style="width:0%"></div>
+  </div>
+</header>
+
+<main class="max-w-3xl mx-auto px-4 py-8">
+
+  <article id="card" class="bg-white border border-slate-200 rounded-lg p-6">
+    <div id="qmeta" class="text-xs text-slate-500 mb-2"></div>
+    <h2 id="stem" class="text-lg font-medium leading-snug mb-5"></h2>
+    <form id="answer-form" class="space-y-2"></form>
+
+    <button id="submit-btn" type="button"
+      class="mt-6 bg-slate-900 text-white rounded px-4 py-2 text-sm disabled:opacity-40"
+      disabled>Submit answer</button>
+
+    <section id="explanation" class="hidden mt-6 border-t border-slate-200 pt-5">
+      <div id="verdict" class="text-sm font-semibold mb-2"></div>
+      <p id="explain-text" class="text-slate-700 text-sm leading-relaxed mb-4"></p>
+      <div id="sources" class="text-sm"></div>
+      <button id="next-btn" type="button"
+        class="mt-5 bg-emerald-600 text-white rounded px-4 py-2 text-sm">Next →</button>
+    </section>
+  </article>
+
+</main>
+
+<script type="module" src="js/progress.js"></script>
+<script type="module" src="js/bank-loader.js"></script>
+<script type="module" src="js/distributed.js"></script>
+<script type="module" src="js/app.js"></script>
+<script type="module" src="js/runner.js"></script>
+</body>
+</html>

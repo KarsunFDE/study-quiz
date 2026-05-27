@@ -1,0 +1,1923 @@
+{
+  "meta": {
+    "week": "W01",
+    "day": "Tuesday",
+    "dayLabel": "Tue 26 May",
+    "topics": [
+      "fde-role",
+      "fde-situations",
+      "programme-arc",
+      "claude-code",
+      "mcp",
+      "skills",
+      "subagents",
+      "hooks",
+      "microservices-boundaries",
+      "api-gateway",
+      "service-mesh",
+      "container-first",
+      "modernization-6r",
+      "oauth2-jwt",
+      "jwt-claims",
+      "correlation-ids",
+      "structured-logging",
+      "traceparent",
+      "oidc-cicd",
+      "iam-trust-policy",
+      "bedrock-model-access",
+      "brownfield-debt",
+      "debt-categories",
+      "inventory-discipline",
+      "vendor-comparison",
+      "public-sources",
+      "bias-detection"
+    ],
+    "sourceCount": 9,
+    "questionCount": 45,
+    "generated": "2026-05-27",
+    "typeMix": {
+      "mcq": 33,
+      "multi-select": 6,
+      "tf-justified": 6
+    }
+  },
+  "questions": [
+    {
+      "id": "W01-Tue-Q01",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "fde-role"
+      ],
+      "stem": "In Palantir's vocabulary, what differentiates a Forward Deployed Engineer from a traditional 'Dev'?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "An FDE builds many capabilities for one customer",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "An FDE builds one capability for many customers; a Dev builds many capabilities for one customer",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "An FDE works remotely; a Dev works on-site at the office",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "An FDE writes documentation; a Dev writes production code",
+          "correct": false
+        }
+      ],
+      "explanation": "The Pragmatic Engineer framing is explicit: a Dev builds one capability for many customers (a product feature), while an FDE builds many capabilities for one customer, in their environment. The reversed-direction distractor (A) is the common trap if you only half-remember the contrast.",
+      "sources": [
+        {
+          "title": "FDE role — three definitions worth holding together",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/2-what-this-intensive-is-programme-arc-plus-the-12-fde-situations.md#31-the-forward-deployed-engineer-role-three-definitions-worth-holding-together",
+          "anchor": "31-the-forward-deployed-engineer-role-three-definitions-worth-holding-together"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q02",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "fde-role"
+      ],
+      "stem": "Which of these best characterises the FDE's primary deliverable at a client engagement?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A recommendation slide deck the client implements",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "A signed Statement of Work for the next phase of consulting",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Working code in the client's environment that the client runs after the FDE leaves",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "A reference architecture document for the client's internal team",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading contrasts FDEs explicitly with sales engineers (whose deliverable is the sale), management consultants (slide decks), and solutions architects (reference architectures). The FDE's deliverable is working code in production. A is the consultant antipattern; D is the solutions-architect one — both are tempting because they describe adjacent roles.",
+      "sources": [
+        {
+          "title": "FDE role — three definitions worth holding together",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/2-what-this-intensive-is-programme-arc-plus-the-12-fde-situations.md#31-the-forward-deployed-engineer-role-three-definitions-worth-holding-together",
+          "anchor": "31-the-forward-deployed-engineer-role-three-definitions-worth-holding-together"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q03",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "programme-arc"
+      ],
+      "stem": "Which phase of the three-phase Karsun-FDE programme arc does the 6-week intensive sit inside?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Phase 3 — on-the-job development",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Phase 2 — the intensive itself",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Phase 1 — pre-cohort foundation",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Phase 0 — recruiting and screening",
+          "correct": false
+        }
+      ],
+      "explanation": "Phase 1 is the async pre-cohort foundation (Java/Python, Git, LLM intro), Phase 2 is this 6-week intensive, Phase 3 is six months of on-the-job development with monthly coach check-ins. Phase 0 is not part of the named arc.",
+      "sources": [
+        {
+          "title": "The three-phase programme arc",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/2-what-this-intensive-is-programme-arc-plus-the-12-fde-situations.md#32-the-three-phase-programme-arc",
+          "anchor": "32-the-three-phase-programme-arc"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q04",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "fde-situations"
+      ],
+      "stem": "Which of the following are named in the 12 FDE situations vocabulary used across the programme? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Tech-stack comprehension",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Requirements synthesis",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Pair programming style preference",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "6R and system mapping",
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": "Hiring loop design",
+          "correct": false
+        }
+      ],
+      "explanation": "The 12 situations are: data comprehension, tech-stack comprehension, requirements synthesis, estimation, 6R/system mapping, NFRs, cloud thinking, DevOps thinking, database thinking, security thinking, architecture thinking, design thinking. Pair-programming style and hiring-loop design are not in the vocabulary — they may be valuable engineering concerns, but they aren't the FDE-situation framing the programme uses.",
+      "sources": [
+        {
+          "title": "The 12 FDE situations",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/2-what-this-intensive-is-programme-arc-plus-the-12-fde-situations.md#33-the-12-fde-situations-the-vocabulary-the-programme-operates-in",
+          "anchor": "33-the-12-fde-situations-the-vocabulary-the-programme-operates-in"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q05",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "fde-role",
+        "fde-situations"
+      ],
+      "stem": "Claude Code's value at a federal client is that it writes more code per hour than a junior engineer.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "Yes — code-generation throughput is the explicit Day-1 metric in the reading",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "Yes — the reading frames Claude Code's value as a replacement for engineering effort",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "Yes — the FDE situations list 'code-generation speed' as situation #4",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "The value is faster comprehension of unfamiliar systems — replacing grep with English questions you verify against source",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "The value is that Claude Code blocks production deploys until tests pass",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "The value is that Claude Code automatically generates ADRs for every architectural decision",
+          "correct": false
+        }
+      ],
+      "explanation": "The Claude Code reading frames the muscle being trained as ask-the-codebase-questions-and-verify, not generate-code-faster. Federal codebases are often years-old, original engineers gone, READMEs stale; the comprehension-accelerant property is the value. Code generation is incidental.",
+      "sources": [
+        {
+          "title": "Claude Code — Introduction",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/3-claude-code-as-comprehension-accelerant.md#2-introduction",
+          "anchor": "2-introduction"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q06",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "claude-code"
+      ],
+      "stem": "Which of the four Claude Code extensibility surfaces is appropriate for a workflow that 'must execute every time, regardless of model interpretation' — for example, blocking commits that contain AWS access keys?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Custom Skill (slash-command workflow)",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "MCP server (external-system bridge)",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Subagent (isolated context window)",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Hook (PreToolUse on Bash)",
+          "correct": true
+        }
+      ],
+      "explanation": "The morphllm 2026 guide quoted in the reading names the principle: 'Hooks guarantee execution; prompts do not.' Skills are model-routed and may be skipped under context pressure. Hooks are shell scripts that fire deterministically on every matching event — the right surface for security guardrails. MCP servers expose external tools; Subagents isolate context.",
+      "sources": [
+        {
+          "title": "Why this matters for federal clients",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/3-claude-code-as-comprehension-accelerant.md#32-why-this-matters-for-federal-clients",
+          "anchor": "32-why-this-matters-for-federal-clients"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q07",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "claude-code",
+        "mcp"
+      ],
+      "stem": "You walk into an unfamiliar Karsun client repo on Day 1. Which two files should you read first to understand what's wired into Claude Code?",
+      "choices": [
+        {
+          "id": "a",
+          "text": ".mcp.json and .claude/settings.json",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "package.json and Dockerfile",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "README.md and CONTRIBUTING.md",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": ".env and .gitignore",
+          "correct": false
+        }
+      ],
+      "explanation": "The Best Practices section says it explicitly: '.mcp.json' lists external systems Claude can access, and '.claude/settings.json' declares active hooks. Together they reveal the system's external surface plus its guardrails. README/CONTRIBUTING are descriptive but not Claude-Code-configurative; .env is blocked from reads by default.",
+      "sources": [
+        {
+          "title": "Best Practices",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/3-claude-code-as-comprehension-accelerant.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q08",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "claude-code",
+        "skills"
+      ],
+      "stem": "A Skill's SKILL.md has a vague description field like 'deploy stuff'. What is the most likely consequence?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Claude will treat it as a high-priority skill and auto-invoke for every deploy-related task",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Claude will refuse to load it until the description is rewritten",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Claude will ignore it at routing time and the skill will only run when invoked manually",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Claude will rewrite the description automatically based on the skill body",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading quotes the 2026 ofox.ai guide: 'Write skill descriptions like API tool definitions — they're the contract Claude uses for routing.' Vague descriptions get ignored at auto-routing; the skill becomes manual-only. Distractors A/B/D anthropomorphise behaviour Claude doesn't have.",
+      "sources": [
+        {
+          "title": "SKILL.md anatomy",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/3-claude-code-as-comprehension-accelerant.md#33-skillmd-anatomy",
+          "anchor": "33-skillmd-anatomy"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q09",
+      "type": "multi-select",
+      "difficulty": "synthesis",
+      "topics": [
+        "claude-code",
+        "hooks"
+      ],
+      "stem": "Which of the following are appropriate use cases for a `PreToolUse` hook in Claude Code? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Blocking reads of .env, *.pem, and *.key files",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Blocking `cat .env` or `printenv` invocations in Bash",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Orchestrating a multi-step PR-review workflow with stakeholder sign-off",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Blocking writes that contain JWT / AWS-key / PEM-block patterns",
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": "Connecting Claude to a Jira ticketing system",
+          "correct": false
+        }
+      ],
+      "explanation": "Hooks are appropriate when you need deterministic execution — secret-file blocks, dangerous-command blocks, write-pattern checks. Multi-step workflows belong in Skills (judgement required). External-system connectivity belongs in MCP servers. C and E are the classic surface-mismatch traps.",
+      "sources": [
+        {
+          "title": "Hooks as security guardrails",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/3-claude-code-as-comprehension-accelerant.md#35-hooks-as-security-guardrails",
+          "anchor": "35-hooks-as-security-guardrails"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q10",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "claude-code",
+        "subagents"
+      ],
+      "stem": "What is the canonical reason to delegate work to a Subagent instead of running it in the main Claude conversation?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Subagents have access to tools the main conversation can't use",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Heavy parallel work runs in an isolated context window",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Subagents are billed at a lower rate than the main conversation",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Subagents bypass all hooks and run with full privileges",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading describes subagents as 'sub-conversation with its own context window' — appropriate for batch / parallel / heavy work that would otherwise crowd out the main task. The Riot 'balance-tester subagent' example is the canonical pattern. D is dangerously wrong — subagents respect hooks.",
+      "sources": [
+        {
+          "title": "Real-world Patterns",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/3-claude-code-as-comprehension-accelerant.md#5-real-world-patterns",
+          "anchor": "5-real-world-patterns"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q11",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "microservices-boundaries",
+        "api-gateway"
+      ],
+      "stem": "Which traffic axis does an API gateway primarily handle in a microservices system?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "East-west — service-to-service communication inside the network",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Database-only traffic between application tiers and the storage layer",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "All inter-process communication, including same-host messaging",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "North-south — external clients (browsers, mobile, partners) to backend services",
+          "correct": true
+        }
+      ],
+      "explanation": "Kong's framing quoted in the reading: 'An API gateway handles north-south traffic (client-to-service), while a service mesh manages east-west traffic (service-to-service).' These two axes need different controls because they have different threat models and latency budgets.",
+      "sources": [
+        {
+          "title": "North-south vs east-west",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/4-the-acquire-gov-training-repo.md#31-north-south-vs-east-west-the-two-traffic-axes",
+          "anchor": "31-north-south-vs-east-west-the-two-traffic-axes"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q12",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "api-gateway"
+      ],
+      "stem": "Which of these are capabilities an API gateway provides at the edge of a microservices system, per the reading? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Authentication (JWT/OAuth2, mTLS, API keys)",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Per-tenant rate limiting and quota enforcement",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Automatic database schema migrations",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Tenant resolution (JWT claim or hostname → tenant)",
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": "Background job scheduling (cron-style)",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading's gateway-capabilities table lists auth, rate limiting, routing/versioning, tenant resolution, payload transformation, observability, and circuit-breaking. Schema migrations belong to the database/IaC layer; background-job scheduling is a worker concern. Both C and E are domain-plausible but live outside the gateway's responsibility.",
+      "sources": [
+        {
+          "title": "What an API gateway actually does",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/4-the-acquire-gov-training-repo.md#32-what-an-api-gateway-actually-does",
+          "anchor": "32-what-an-api-gateway-actually-does"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q13",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "service-mesh"
+      ],
+      "stem": "For a 4-service training system like `acquire-gov`, what does the reading say about deploying a service mesh?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Overengineering — mesh operational cost doesn't pay off below ~15 services",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "A service mesh is mandatory for any system with more than one service",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "A service mesh replaces the API gateway in small systems",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "A service mesh is required for FedRAMP authorization",
+          "correct": false
+        }
+      ],
+      "explanation": "The CloudNativeNow trend quoted in the reading: the mesh's cost (control-plane management, sidecar overhead) does not pay off until ~15+ services. For four services, gateway + direct service-to-service is sufficient. D is invented — FedRAMP makes no mesh requirement.",
+      "sources": [
+        {
+          "title": "What a service mesh adds beyond a gateway",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/4-the-acquire-gov-training-repo.md#33-what-a-service-mesh-adds-beyond-a-gateway",
+          "anchor": "33-what-a-service-mesh-adds-beyond-a-gateway"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q14",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "container-first"
+      ],
+      "stem": "Inside a docker-compose network, how should the `api-gateway` service reach `orders-service` running in another container on port 8081?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "http://localhost:8081 — the compose network proxies it transparently",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "http://host.docker.internal:8081",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "http://orders-service:8081 — using the container's compose-DNS name",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "http://127.0.0.1:8081 with the container ID as a header",
+          "correct": false
+        }
+      ],
+      "explanation": "Inside the compose network, services resolve each other by container/service name — `orders-service:8081`. The reading is explicit: 'localhost inside a container is the container itself.' A and D both attempt to use loopback addressing which would point to the gateway container, not orders.",
+      "sources": [
+        {
+          "title": "Container-first as the run-time discipline",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/4-the-acquire-gov-training-repo.md#34-container-first-as-the-run-time-discipline",
+          "anchor": "34-container-first-as-the-run-time-discipline"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q15",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "microservices-boundaries",
+        "modernization-6r"
+      ],
+      "stem": "A monolith can be 6R-mapped just as flexibly as a microservices mesh.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "Yes — 6R applies uniformly to any application regardless of architecture",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "Yes — the 6Rs are about business outcomes, not deployment shape",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "Yes — monoliths can be migrated piece-by-piece using strangler-fig pattern",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "6R is per-service in microservices but all-or-nothing in monoliths — every 6R decision becomes a single yearlong bet",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "Monoliths require Retire as the only R; nothing else applies",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "6R is for cloud-native systems only",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading frames the modernization angle explicitly: a monolith makes 'replatform one piece' a year-long migration; microservices makes it a two-week PR. 6R applied to a service is mix-and-match; applied to a monolith it is an all-or-nothing decision. That's the structural difference. T3 is tempting because strangler-fig exists, but it's a way to *decompose* the monolith first — not a way to 6R the monolith as-is.",
+      "sources": [
+        {
+          "title": "Why microservices at all — the modernization angle",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/4-the-acquire-gov-training-repo.md#35-why-microservices-at-all-the-modernization-angle",
+          "anchor": "35-why-microservices-at-all-the-modernization-angle"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q16",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "jwt-claims"
+      ],
+      "stem": "Per the reading, which four JWT claims/checks does every JWT-validating API gateway perform?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "signature, scope, role, tenant",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "signature, iss, aud, exp",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "issuer, audience, scope, nonce",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "signature, exp, nbf, jti",
+          "correct": false
+        }
+      ],
+      "explanation": "Signature (anti-tampering), `iss` (correct issuer), `aud` (this API, not a sibling), `exp` (still fresh). The reading calls these the ~95% of the security story. Scope/role/tenant are application-level concerns; nbf/jti exist in RFC 7519 but aren't the gateway's four canonical checks.",
+      "sources": [
+        {
+          "title": "What the gateway actually checks — four claims",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/5-auth-and-observability-foundations.md#32-what-the-gateway-actually-checks-four-claims",
+          "anchor": "32-what-the-gateway-actually-checks-four-claims"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q17",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "jwt-claims"
+      ],
+      "stem": "Why does checking `aud` (audience) matter — what does it specifically protect against?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Tokens whose signature was forged by a third party",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Tokens missing the `Bearer` prefix in the Authorization header",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Tokens that have expired in transit between client and gateway",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Tokens issued by your trusted IdP, but for a different application of yours",
+          "correct": true
+        }
+      ],
+      "explanation": "Audience prevents cross-API token reuse: a token issued by your IdP for the reporting API should not be accepted by the orders API. Signature handles forgery; exp handles expiry; the Bearer prefix is parsing, not validation. The classic failure mode — accepting `iss` and `exp` but skipping `aud` — lets every sibling-API token in.",
+      "sources": [
+        {
+          "title": "Best Practices (auth)",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/5-auth-and-observability-foundations.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q18",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "jwt-claims"
+      ],
+      "stem": "The api-gateway validates a JWT successfully and forwards the request to the orders-service. Should orders-service re-validate the JWT or trust the gateway's decision?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Re-validate (at minimum re-check iss + aud) — defence-in-depth against gateway compromise",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Trust the gateway — re-validation duplicates work and adds latency for no security gain",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Trust the gateway only if mTLS is used between gateway and service",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Only re-validate when the request modifies state (POST/PUT/DELETE), not on reads",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading is explicit: downstream services must not blindly trust forwarded headers. Defence-in-depth requires re-validation (or at minimum iss + aud check). The 'lazy-trust failure mode' is the most common authorisation flaw auditors flag. C is the tempting half-right — mTLS authenticates the transport but doesn't validate the *user* token.",
+      "sources": [
+        {
+          "title": "Best Practices (auth)",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/5-auth-and-observability-foundations.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q19",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "correlation-ids",
+        "structured-logging"
+      ],
+      "stem": "What does a correlation ID enable in a distributed microservices system that's impossible without it?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Authenticating the user without checking JWT",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Encrypting log payloads at rest in CloudWatch",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Stitching N service log streams back to a single inbound request",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Replaying the request idempotently if the gateway crashes",
+          "correct": false
+        }
+      ],
+      "explanation": "Microsoft's playbook (quoted in the reading): a correlation ID makes it 'easier to correlate logs across multiple components.' Without it, you have N separate log streams with no shared identifier. Encryption, auth, and idempotent replay are unrelated concerns that may co-exist but aren't what the correlation ID solves.",
+      "sources": [
+        {
+          "title": "The structured-logging discipline",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/5-auth-and-observability-foundations.md#33-the-structured-logging-discipline",
+          "anchor": "33-the-structured-logging-discipline"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q20",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "structured-logging"
+      ],
+      "stem": "A monolith's free-text logs work fine because you can grep one stream. Why doesn't that approach scale to a 6-service microservices system?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "grep is too slow on log files larger than 100MB",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Each service logs at its own cadence with no shared identifier",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Microservices systems can't use grep because logs are binary-encoded",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Each service uses a different logging framework and they're not interoperable",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading: 'service A logs ... then service B logs ... with no obvious connection between them in the interleaved log output.' The fix is structured (JSON) logs + correlation ID — *both* parts. A and C are technically wrong; D is overstated (frameworks differ but logs can still be aggregated).",
+      "sources": [
+        {
+          "title": "The structured-logging discipline",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/5-auth-and-observability-foundations.md#33-the-structured-logging-discipline",
+          "anchor": "33-the-structured-logging-discipline"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q21",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "traceparent"
+      ],
+      "stem": "Which header is the OpenTelemetry-standard carrier for distributed-trace context across service boundaries?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "X-Trace-ID",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Authorization",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "X-Forwarded-For",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "traceparent (W3C)",
+          "correct": true
+        }
+      ],
+      "explanation": "The W3C `traceparent` header is the OpenTelemetry/W3C standard for propagating trace ID + span ID across services. The reading recommends pairing it with `X-Correlation-ID` for tooling-vendor portability. `X-Trace-ID` is a vendor-specific variant that predates the W3C standard.",
+      "sources": [
+        {
+          "title": "The structured-logging discipline",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/5-auth-and-observability-foundations.md#33-the-structured-logging-discipline",
+          "anchor": "33-the-structured-logging-discipline"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q22",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "oidc-cicd"
+      ],
+      "stem": "A `.github/workflows/deploy.yml` uses `aws-access-key-id: ${{ secrets.AWS_KEY }}`. What's the primary security failure mode the OIDC pattern addresses?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Long-lived credentials leak via CI logs and outlast departed employees",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "The IAM key gets rotated too often and breaks deploys",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "GitHub Secrets has a 64KB size limit",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "AWS doesn't support IAM users for programmatic access anymore",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading lists the failure modes: secrets leak through CI logs, exfiltrated from developer machines, get committed by mistake; credentials remain valid until manually rotated; departed-employee access lingers because there's no expiry. OIDC replaces this with per-workflow-run short-lived tokens. C and D are invented; A is the inverse problem.",
+      "sources": [
+        {
+          "title": "The antipattern: long-lived cloud keys as CI secrets",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/6-ci-cd-and-bedrock-prerequisites.md#31-the-antipattern-long-lived-cloud-keys-as-ci-secrets",
+          "anchor": "31-the-antipattern-long-lived-cloud-keys-as-ci-secrets"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q23",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "oidc-cicd"
+      ],
+      "stem": "Converting a workflow from long-lived AWS keys to OIDC requires which of the following workflow-side changes? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Add `permissions: id-token: write` to the workflow",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Replace `aws-access-key-id`/`aws-secret-access-key` with `role-to-assume: arn:aws:iam::...:role/...`",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Remove the `secrets.AWS_KEY`/`AWS_SECRET` references",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Add a self-hosted runner — OIDC isn't supported on GitHub-hosted runners",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "Set `runs-on: aws-runners` instead of `ubuntu-latest`",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading's hands-on exercise answer enumerates A/B/C exactly. D is wrong — GitHub-hosted runners are the standard OIDC client; in fact most OIDC docs assume them. E is invented.",
+      "sources": [
+        {
+          "title": "The workflow side — three load-bearing lines",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/6-ci-cd-and-bedrock-prerequisites.md#34-the-workflow-side-three-load-bearing-lines",
+          "anchor": "34-the-workflow-side-three-load-bearing-lines"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q24",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "oidc-cicd"
+      ],
+      "stem": "What is the default session-credential lifetime returned by AWS STS `AssumeRoleWithWebIdentity` when no override is set?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "15 minutes",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "12 hours",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "1 hour",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Until the workflow completes",
+          "correct": false
+        }
+      ],
+      "explanation": "AWS STS defaults to 3600 s (1 hour); valid range is 15 min (900 s) to 12 hr (43200 s). The reading recommends defaulting to the lowest tolerable value for the deploy — 15–60 min for most jobs.",
+      "sources": [
+        {
+          "title": "The workflow side — three load-bearing lines",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/6-ci-cd-and-bedrock-prerequisites.md#34-the-workflow-side-three-load-bearing-lines",
+          "anchor": "34-the-workflow-side-three-load-bearing-lines"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q25",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "iam-trust-policy"
+      ],
+      "stem": "An IAM role's trust policy has `StringLike: \"token.actions.githubusercontent.com:sub\": \"repo:my-org/my-repo:*\"`. Why is this a security concern the reading flags?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "`StringLike` is deprecated; use `StringEquals` only",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Any branch (including feature branches and forks) can assume the role — defeats OIDC scoping",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "It doesn't include the `aud` claim, so STS will reject all assumptions",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "It uses an `arn:aws:iam` prefix instead of the OIDC-specific prefix",
+          "correct": false
+        }
+      ],
+      "explanation": "The freecodecamp guide quoted in the reading flags exactly this: leaving `:sub` as `repo:org/repo:*` (wildcard branch) defeats the scoping argument. Trust policies should scope to the specific branch (or branch pattern) that should be allowed to deploy. A is invented; C and D are syntactically wrong.",
+      "sources": [
+        {
+          "title": "The IAM trust policy — where scoping actually happens",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/6-ci-cd-and-bedrock-prerequisites.md#33-the-iam-trust-policy-where-scoping-actually-happens",
+          "anchor": "33-the-iam-trust-policy-where-scoping-actually-happens"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q26",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "bedrock-model-access"
+      ],
+      "stem": "Your application's IAM role grants `bedrock:InvokeModel`, but calls to Claude on Bedrock fail with a model-access error in the response body (not an IAM AccessDenied). What layer is the problem at?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Code-level IAM — re-attach the policy",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Network — the VPC doesn't have a Bedrock endpoint",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Region — Claude isn't available in any AWS region",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Account-level model entitlement",
+          "correct": true
+        }
+      ],
+      "explanation": "Two layers: IAM-level permission and account-level entitlement. IAM failures return AccessDeniedException; entitlement failures return a model-access message. The smoke test is `aws bedrock list-foundation-models` — if Anthropic models don't appear, it's an entitlement ticket. C is wrong (Claude is available in us-east-1 and others); D is a real concern but not what the response-body error indicates.",
+      "sources": [
+        {
+          "title": "Cloud-LLM model access — a separate concern",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/6-ci-cd-and-bedrock-prerequisites.md#35-cloud-llm-model-access-a-separate-concern",
+          "anchor": "35-cloud-llm-model-access-a-separate-concern"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q27",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "bedrock-model-access"
+      ],
+      "stem": "Granting `bedrock:InvokeModel` to your application's IAM role is sufficient to start calling Claude models on Bedrock.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "Yes — `bedrock:InvokeModel` is the only IAM action required for end-to-end Bedrock access",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "Yes — Anthropic models are enabled by default in all AWS accounts since 2024",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "Yes — once IAM grants the action, the AWS provider handles model availability transparently",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "Account-level model entitlement (Bedrock console 'Model access' page) must also be granted — IAM permission alone returns model-access errors",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "You also need a Bedrock VPC endpoint, regardless of model entitlement",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "Bedrock requires a long-lived API key in addition to IAM",
+          "correct": false
+        }
+      ],
+      "explanation": "Two layers, both must hold: account-level entitlement (Bedrock console approves Anthropic-model access) + code-level IAM (the application's role can call bedrock:InvokeModel). One without the other produces the canonical Day-1 mystery — 'permissions look right but calls fail.'",
+      "sources": [
+        {
+          "title": "Cloud-LLM model access — a separate concern",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/6-ci-cd-and-bedrock-prerequisites.md#35-cloud-llm-model-access-a-separate-concern",
+          "anchor": "35-cloud-llm-model-access-a-separate-concern"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q28",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "brownfield-debt"
+      ],
+      "stem": "Per the reading, why is brownfield engineering the default mode of work at a federal-systems integrator?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Federal clients carry inherited stacks, live SLAs, and legacy data — greenfield is exceptional",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Federal contracts forbid greenfield builds by statute",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Federal agencies pay more for brownfield work than greenfield work",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Greenfield projects require FedRAMP authorisation; brownfield doesn't",
+          "correct": false
+        }
+      ],
+      "explanation": "The IBM Think framing: brownfield projects build on existing systems 'without starting from zero.' At federal clients, the constraints — live users, SLAs, legacy data, inherited stack — make greenfield exceptional. The engineering muscles for brownfield (comprehension, risk modelling, incremental change) are what the programme trains.",
+      "sources": [
+        {
+          "title": "Brownfield debt — Introduction",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/7-brownfield-debt-what-you-start-surfacing-today.md#2-introduction",
+          "anchor": "2-introduction"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q29",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "debt-categories"
+      ],
+      "stem": "Which of these are among the five canonical debt categories the reading identifies in any brownfield system? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Code-level (anti-patterns, dead code, duplicated logic)",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Architecture-level (wrong service boundaries, gateway-bypass paths)",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Branding-level (outdated marketing materials)",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Dependency / supply-chain (outdated library versions, EOL frameworks)",
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": "Pricing-tier (incorrect SaaS pricing rules)",
+          "correct": false
+        }
+      ],
+      "explanation": "The five canonical: code-level, architecture-level, infrastructure/deployment, dependency/supply-chain, security/compliance. McKinsey adds a sixth — knowledge debt (senior engineers carrying systems in their heads). Branding and pricing are business concerns, not technical-debt categories.",
+      "sources": [
+        {
+          "title": "The five debt categories every brownfield system has",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/7-brownfield-debt-what-you-start-surfacing-today.md#33-the-five-debt-categories-every-brownfield-system-has",
+          "anchor": "33-the-five-debt-categories-every-brownfield-system-has"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q30",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "inventory-discipline"
+      ],
+      "stem": "What does the reading call the dominant antipattern in modernization conversations?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Investing in too many junior engineers instead of senior ones",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Over-investing in greenfield rewrites instead of incremental improvement",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Jumping to fix visible debt without first inventorying the landscape — produces whack-a-mole",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Mandating Agile methodology when Waterfall would fit better",
+          "correct": false
+        }
+      ],
+      "explanation": "McKinsey calls it the 'vicious cycle': every fix produces two new urgencies because changes ripple through unmapped dependencies. The arXiv survey: teams jump to *visible* debt without holding the rest of the landscape in view. Inventory precedes prioritisation, which precedes fixing.",
+      "sources": [
+        {
+          "title": "The inventory-first principle",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/7-brownfield-debt-what-you-start-surfacing-today.md#34-the-inventory-first-principle",
+          "anchor": "34-the-inventory-first-principle"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q31",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "inventory-discipline"
+      ],
+      "stem": "The six standard inventory dimensions in the reading are: artefact, location, category, severity, effort, and ___?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Assigned engineer",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Suggested R (mapping to 6R/7R)",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Estimated cost in dollars",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Detected date (when first found)",
+          "correct": false
+        }
+      ],
+      "explanation": "The six are: artefact, location, category, severity, effort, suggested-R. Suggested-R explicitly maps each debt item to one of Retain/Rehost/Replatform/Refactor/Repurchase/Retire so prioritisation can happen later. A/C/D are reasonable extra dimensions but aren't the canonical six.",
+      "sources": [
+        {
+          "title": "The six standard inventory dimensions",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/7-brownfield-debt-what-you-start-surfacing-today.md#35-the-six-standard-inventory-dimensions",
+          "anchor": "35-the-six-standard-inventory-dimensions"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q32",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "inventory-discipline"
+      ],
+      "stem": "Which of these is a properly-formed inventory item per the reading's bar?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "'Improve security'",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "'Modernize the backend'",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "'Add more test coverage'",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "'JWT signature validation skipped if header malformed in api-gateway/SecurityConfig.java:41'",
+          "correct": true
+        }
+      ],
+      "explanation": "The reading's Best Practices: 'Inventory items are short and specific. \"Improve security\" is not an inventory item; \"JWT signature validation skipped if header malformed in `api-gateway/SecurityConfig.java:41`\" is.' The others are aspirational goals, not actionable items with location.",
+      "sources": [
+        {
+          "title": "Best Practices (brownfield)",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/7-brownfield-debt-what-you-start-surfacing-today.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q33",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "modernization-6r"
+      ],
+      "stem": "In a four-service brownfield system, the same modernization initiative can produce different 6R verdicts per service (e.g., Retain the gateway, Replatform the evaluation-service, Retire the legacy reporting-service). Why does the reading emphasise this?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Because per-service decomposition enables per-service 6R",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Because the 6R framework requires at least three different Rs per project",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Because federal procurement statutes require multiple R verdicts in every contract",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Because mixing Rs reduces the project's overall risk score on the audit",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading: '6R is per-service, not per-application.' A microservices mesh lets you Retain one service, Refactor another, Retire a third — each decision is bounded. A monolith collapses to a single all-or-nothing 6R bet. A and C are invented constraints; D mis-frames audit scoring.",
+      "sources": [
+        {
+          "title": "The 6R / 7R framing",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/7-brownfield-debt-what-you-start-surfacing-today.md#36-the-6r-7r-framing",
+          "anchor": "36-the-6r-7r-framing"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q34",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "debt-categories"
+      ],
+      "stem": "Static analysis tools alone are sufficient to discover all categories of technical debt in a brownfield system.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "Yes — modern SAST tools cover all five debt categories with high accuracy",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "Yes — if you also pair static analysis with dependency-scanners like Dependabot",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "Yes — most architecture-level debt eventually shows up as code smells static analysis can catch",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "Static analysis can't see architecture-level debt (wrong service boundaries, missing layers) or knowledge debt — these only surface through inventory, interviews, and reading the system end-to-end",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "Static analysis tools are deprecated as of 2025 and shouldn't be relied on",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "Static analysis only works on Java, not Python or JavaScript",
+          "correct": false
+        }
+      ],
+      "explanation": "The arXiv survey quoted in the reading: 'A large portion of technical debt … cannot be mined by analysing source code.' Static analysis covers code-style and dependency-version debt; it does not surface architectural mistakes, *missing* artefacts (documentation that should exist), or knowledge debt. Those require inventory + interviews.",
+      "sources": [
+        {
+          "title": "What 'technical debt' actually means",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/7-brownfield-debt-what-you-start-surfacing-today.md#32-what-technical-debt-actually-means",
+          "anchor": "32-what-technical-debt-actually-means"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q35",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "vendor-comparison",
+        "bias-detection"
+      ],
+      "stem": "What does the reading identify as the *structural* reason vendor-supplied comparative materials are biased — independent of vendor intent?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Vendors hire marketing agencies who use deceptive design patterns",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Vendors don't have engineers good enough to produce honest comparatives",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The aggregate of self-promotion materials is selected for the vendor's interests",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Federal procurement law prohibits vendors from comparing themselves to competitors",
+          "correct": false
+        }
+      ],
+      "explanation": "Thomson Reuters quote in the reading: 'even when a vendor is honest, the aggregate of their marketing materials produces a skewed picture because every individual artefact is selected for the vendor's interests.' The three named biases — selection (only wins published), framing (vendor names favourable axes), confounding (stats without apples-to-apples baselines) — compound structurally.",
+      "sources": [
+        {
+          "title": "Why vendor-supplied materials are structurally biased",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/8-prep-for-wed-karsun-x-galentai-public-source-reading-list.md#31-why-vendor-supplied-materials-are-structurally-biased",
+          "anchor": "31-why-vendor-supplied-materials-are-structurally-biased"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q36",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "public-sources"
+      ],
+      "stem": "Per the reading, which of these are 'standard public-source channels' for vendor due diligence the FDE should use? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "SEC filings (10-K, 10-Q) for public companies",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "G2 / TrustRadius / Gartner Peer Insights customer reviews",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "The vendor's sales-engineer's LinkedIn DMs",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Government contract awards (USAspending.gov, FPDS)",
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": "Engineering blogs (vendor + customer)",
+          "correct": true
+        }
+      ],
+      "explanation": "The reading lists nine standard channels: SEC filings, acquisition/fundraising announcements, government-contract data, marketplace listings, customer reviews, engineering blogs, conference talks, archived web, open positions. Backchannel DMs aren't public-source and aren't a defensible due-diligence input.",
+      "sources": [
+        {
+          "title": "Standard public-source channels",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/8-prep-for-wed-karsun-x-galentai-public-source-reading-list.md#32-standard-public-source-channels",
+          "anchor": "32-standard-public-source-channels"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q37",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "public-sources",
+        "bias-detection"
+      ],
+      "stem": "What does the reading mean by 'triangulate every load-bearing claim across three independent channels'?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Cross-check the claim against the vendor's own marketing, their sales team, and their solutions architects — three internal voices",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Find the claim in at least three sources that don't depend on each other (e.g., a customer engineering blog + a G2 review + a government-contract award)",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Re-read the vendor's website three times to confirm the wording is consistent",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Run the vendor's product through three different test environments before drawing conclusions",
+          "correct": false
+        }
+      ],
+      "explanation": "IBCA's M&A discipline quoted in the reading: 'triangulate across at least three independent channels for any claim.' The key word is *independent* — a vendor's own claim + their conference talk are not independent. Customer voices + government data + third-party reviews are. A confuses 'three sources' with 'three independent sources' — the typical trap.",
+      "sources": [
+        {
+          "title": "Standard public-source channels",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/8-prep-for-wed-karsun-x-galentai-public-source-reading-list.md#32-standard-public-source-channels",
+          "anchor": "32-standard-public-source-channels"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q38",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "vendor-comparison"
+      ],
+      "stem": "A vendor-comparison matrix has all six dimensions populated, but several cells say 'Better' or 'Unknown' without source citations. What does the reading call this artefact?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "An FDE-grade artefact ready to send to the client",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "A complete deliverable provided dimension weighting is also added",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "An acceptable first draft to iterate on with the vendor's salesperson",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Slides, not evidence — defensible matrices source every cell and name gaps explicitly",
+          "correct": true
+        }
+      ],
+      "explanation": "The reading: 'Comparative matrices without sources are slides; comparative matrices with sources are evidence.' And 'Gaps are named, not hidden' — explicit 'Not publicly disclosed' invites the client conversation about how to fill them. Unsourced 'Better/Worse/Unknown' is the slide-deck antipattern.",
+      "sources": [
+        {
+          "title": "What 'good' looks like as a deliverable",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/8-prep-for-wed-karsun-x-galentai-public-source-reading-list.md#34-what-good-looks-like-as-a-deliverable",
+          "anchor": "34-what-good-looks-like-as-a-deliverable"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q39",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "fde-situations"
+      ],
+      "stem": "An FDE writes 'I am doing tech-stack comprehension on the api-gateway right now' at the top of a work block. What discipline does the reading say this expresses?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Naming the FDE situation explicitly",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Time-tracking for billable hours",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Standup-status reporting for the daily 09:00 meeting",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Compliance with FedRAMP audit-trail requirements",
+          "correct": false
+        }
+      ],
+      "explanation": "Best Practices section: 'Always name the FDE situation you're in at the top of every work block.' Naming forces clarity on what kind of work you're doing — comprehension vs build vs communication. The other options are tangential concerns that don't capture the reading's framing.",
+      "sources": [
+        {
+          "title": "Best Practices (FDE role)",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/2-what-this-intensive-is-programme-arc-plus-the-12-fde-situations.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q40",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "fde-role"
+      ],
+      "stem": "Per the Pragmatic Engineer 2024 framing, why did the FDE role explode in demand around 2024-2025?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Universities started producing FDE-named computer-science degree tracks",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "AWS released a FedRAMP-High Bedrock offering that needed embedded integration support",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Enterprises bought LLM products faster than internal teams could integrate them",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Remote-work norms made it cheaper to embed engineers at client sites",
+          "correct": false
+        }
+      ],
+      "explanation": "The 2024-2025 LLM enterprise-buying wave outpaced internal integration capacity. The same pattern that drove Palantir's FDE practice in the 2010s (complex-platform integration needs embedded engineers) drove OpenAI's / Anthropic's / Ramp's hiring waves in 2024-25. The Everest Group analysis frames this as a structural shift — vendors of 'platform' software *must* run an FDE practice to scale bookings.",
+      "sources": [
+        {
+          "title": "Why demand exploded in 2024-2025",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/2-what-this-intensive-is-programme-arc-plus-the-12-fde-situations.md#34-why-demand-exploded-in-2024-2025",
+          "anchor": "34-why-demand-exploded-in-2024-2025"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q41",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "claude-code",
+        "mcp"
+      ],
+      "stem": "MCP servers and custom Skills serve interchangeable purposes — you can swap one for the other based on engineering preference.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "Yes — both extend Claude Code and the choice is mostly cosmetic",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "Yes — Skills can do everything MCP servers do, just with more configuration",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "Yes — MCP servers are deprecated in favour of Skills as of 2026",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "MCP servers expose external-system tools; Skills are multi-step workflows operating on those tools — different layers, complementary, not interchangeable",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "MCP servers run in the cloud; Skills run locally — they can't talk to each other",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "Skills require a paid Claude Code subscription; MCP servers are free",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading's Best Practices spell it out: MCP for tool-level access to external systems; Skill for multi-step workflows. The Shopify migration example is canonical — MCP server connects to Shopify Admin API (the *what's reachable*), Skill orchestrates the theme-conversion workflow (the *what to do*). Different layers; both usually needed.",
+      "sources": [
+        {
+          "title": "Best Practices (Claude Code)",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/3-claude-code-as-comprehension-accelerant.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q42",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "jwt-claims",
+        "correlation-ids"
+      ],
+      "stem": "In the request-flow story, who is responsible for minting the correlation ID — and when?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The downstream service mints it when receiving the first request",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "The API gateway mints it (or accepts a strict-format upstream value) before forwarding",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "The SPA mints it on the client side before sending the request",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The identity provider mints it when issuing the JWT",
+          "correct": false
+        }
+      ],
+      "explanation": "Best Practices: 'Mint a correlation ID at the gateway if the request didn't come with one. Accept an upstream-supplied ID only if it matches a strict format (UUID v4).' The gateway is the right place — it's the single ingress where every request passes through. Letting downstream services mint independently produces split-history; client-side IDs are untrusted; IdPs aren't on the request path.",
+      "sources": [
+        {
+          "title": "Best Practices (auth)",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/5-auth-and-observability-foundations.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q43",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "microservices-boundaries"
+      ],
+      "stem": "You're reading a `docker-compose.yml` and notice the `orders-service` uses `ports: [\"8081:8081\"]` rather than `expose: [\"8081\"]`. What does the reading suggest this is a red flag for?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The service will fail its healthcheck because ports must always be internal",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "The service can't be reached from inside the compose network",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The service is using a deprecated docker-compose v2 syntax",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The service is exposed to the docker host directly, enabling gateway-bypass",
+          "correct": true
+        }
+      ],
+      "explanation": "Best Practices: 'Expose services to the docker network with expose (internal-only) instead of ports (host-mapped) unless you need direct access.' A host-mapped port on a backend service is a gateway-bypass route — that pattern is flagged as Brownfield Debt item #5 in the example inventory. B/C/D mis-characterise the compose syntax.",
+      "sources": [
+        {
+          "title": "Best Practices (microservices)",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/pre-session/2-Tuesday/4-the-acquire-gov-training-repo.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q44",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "war-room-tour"
+      ],
+      "stem": "Tuesday's war-room is in 'tour' mode rather than 'incident' mode. What's the practical difference per the brief?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Tour walks the codebase as comprehension practice; incident-driven war-rooms start Thursday",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Tour mode has a 90-minute time limit; incident mode is open-ended",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Tour mode is graded; incident mode is ungraded practice",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Tour mode runs entirely on the instructor's laptop; cohort doesn't open their editors",
+          "correct": false
+        }
+      ],
+      "explanation": "The Tue war-room brief: 'Mode: Tour, not Incident. Day 1 isn't a client emergency. The instructor walks the codebase and shows how an FDE uses Claude Code to comprehend an unfamiliar system fast. Real incident-driven war-rooms start Thu.' The other options invent constraints not in the brief.",
+      "sources": [
+        {
+          "title": "Tue war-room",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/war-room/D2.md#w1-tue-war-room-what-youre-tackling-today",
+          "anchor": "w1-tue-war-room-what-youre-tackling-today"
+        }
+      ]
+    },
+    {
+      "id": "W01-Tue-Q45",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "war-room-tour"
+      ],
+      "stem": "What three artefacts must land by Tue 16:00 per the war-room EOD deliverable?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A passing CI build + Claude Code login + Docker compose up succeeding",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "A pull request to the acquire-gov repo + a Confluence page + a Slack post",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "A diagnostic answer + weakest sub-stack named + one thing you want to be better at by W6",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "An ADR + a brownfield inventory + a pair-assignment vote",
+          "correct": false
+        }
+      ],
+      "explanation": "The EOD deliverable section names three things: (1) diagnostic answer — one paragraph naming the question you would have asked Claude to comprehend the codebase fastest, (2) the weakest sub-stack from the stack tour, (3) one thing you want to be better at by W6 (private 1:1 doc). C/D are tomorrow's work; B uses Slack which isn't in the toolchain for Cohort #1.",
+      "sources": [
+        {
+          "title": "EOD deliverable (Tue 16:00)",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W01/war-room/D2.md#eod-deliverable-tue-1600",
+          "anchor": "eod-deliverable-tue-1600"
+        }
+      ]
+    }
+  ]
+}

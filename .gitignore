@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+*.log
+.vscode/
+.idea/
+
+# Local content clone (not part of this repo)
+KarsunFDE-content/

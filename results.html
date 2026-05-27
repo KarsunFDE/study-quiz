@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Results — Karsun FDE Study</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="css/site.css" />
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen">
+
+<header class="border-b border-slate-200 bg-white">
+  <div class="max-w-3xl mx-auto px-4 py-3 flex justify-between text-sm">
+    <a href="index.html" class="text-slate-500 hover:text-slate-900">← Dashboard</a>
+    <span id="who-foot" class="text-slate-500"></span>
+  </div>
+</header>
+
+<main class="max-w-3xl mx-auto px-4 py-8">
+
+  <section class="bg-white border border-slate-200 rounded-lg p-6 mb-6">
+    <div class="text-xs uppercase tracking-wide text-slate-500 mb-1" id="result-scope"></div>
+    <div class="flex items-end gap-4">
+      <div class="text-5xl font-semibold" id="result-pct">—</div>
+      <div class="pb-1">
+        <div class="text-sm text-slate-600"><span id="result-correct">0</span> of <span id="result-total">0</span> correct</div>
+        <div class="text-xs text-slate-400" id="result-time">—</div>
+      </div>
+    </div>
+
+    <div class="mt-6 flex flex-wrap gap-2">
+      <button id="retry-same" class="bg-slate-900 text-white rounded px-3 py-1.5 text-sm">Take again (new shuffle)</button>
+      <button id="retry-distributed" class="hidden bg-emerald-600 text-white rounded px-3 py-1.5 text-sm">Distributed retry (focus weak spots)</button>
+      <a href="index.html" class="border border-slate-300 rounded px-3 py-1.5 text-sm">Done</a>
+    </div>
+  </section>
+
+  <section class="bg-white border border-slate-200 rounded-lg p-6 mb-6">
+    <h3 class="text-lg font-semibold mb-3">Topics to revisit</h3>
+    <div id="weak-topics" class="flex flex-wrap gap-2 text-sm"></div>
+  </section>
+
+  <section class="bg-white border border-slate-200 rounded-lg p-6">
+    <h3 class="text-lg font-semibold mb-1">Targeted reading list</h3>
+    <p class="text-sm text-slate-500 mb-4">Sources tied to questions you missed. Open in a new tab.</p>
+    <ul id="reading-list" class="space-y-2 text-sm"></ul>
+  </section>
+
+</main>
+
+<script type="module" src="js/progress.js"></script>
+<script type="module" src="js/results.js"></script>
+</body>
+</html>
