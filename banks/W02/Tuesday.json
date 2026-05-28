@@ -1,0 +1,1964 @@
+{
+  "meta": {
+    "week": "W02",
+    "day": "Tuesday",
+    "dayLabel": "Tue 2 Jun",
+    "topics": [
+      "ann-vs-enn",
+      "atlas-vector-search",
+      "bi-encoder-vs-cross-encoder",
+      "bm25-sparse-retrieval",
+      "cascade-rerank",
+      "chunk-context-loss",
+      "chunk-metadata",
+      "citation-grounding",
+      "cohere-rerank",
+      "context-dilution",
+      "context-precision",
+      "context-recall",
+      "corpus-source-precedence",
+      "dense-retrieval",
+      "dual-source-omission",
+      "eval-harness",
+      "fabricated-citation",
+      "faithfulness",
+      "filter-fields",
+      "flat-file-golden-set",
+      "hybrid-retrieval",
+      "langchain-v1-composition",
+      "last-revised-staleness",
+      "lcel-pipe-antipattern",
+      "llm-as-judge",
+      "naive-rag-failure-modes",
+      "numcandidates",
+      "paraphrase-mismatch",
+      "pre-filter-vs-post-filter",
+      "ragas-metrics",
+      "ragas-faithfulness-only-antipattern",
+      "rerank-latency-budget",
+      "response-envelope",
+      "retrieve-50-rerank-5",
+      "rrf-reciprocal-rank-fusion",
+      "tenant-isolation",
+      "triage-tree",
+      "unsupported-citation"
+    ],
+    "sourceCount": 7,
+    "questionCount": 45,
+    "generated": "2026-05-27",
+    "typeMix": {
+      "mcq": 33,
+      "multi-select": 6,
+      "tf-justified": 6
+    }
+  },
+  "questions": [
+    {
+      "id": "W02-Tue-Q01",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "naive-rag-failure-modes"
+      ],
+      "stem": "Per Tuesday's overview reading, which three failure modes show up in the morning vendor-Q&A war-room when a naive top-k dense retriever is pointed at FAR + DFARS?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Dual-source omission, paraphrase mismatch, and chunk-context loss",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Index corruption, ANN graph staleness, and tenant leakage",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Embedding drift, prompt injection, and judge bias",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Schema drift, vocabulary collapse, and freshness mismatch",
+          "correct": false
+        }
+      ],
+      "explanation": "The W2 Tue overview names exactly three failure modes in the FAR vs DFARS worked example: dual-source omission (corpus missing the DFARS supplement), paraphrase / synonym mismatch (query uses 'due date', clauses use 'submission timing'), and chunk-context loss (a 'Notwithstanding paragraph (1)...' chunk returned without its parent). Option D is the runner-up if you blend the right vocabulary with the wrong concepts.",
+      "sources": [
+        {
+          "title": "Why naive RAG breaks \u2014 failure modes you'll see Tuesday morning",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/1-DailyTopicOverview.md#1-why-naive-rag-breaks--failure-modes-youll-see-tuesday-morning-10-min",
+          "anchor": "1-why-naive-rag-breaks--failure-modes-youll-see-tuesday-morning-10-min"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q02",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "naive-rag-failure-modes",
+        "chunk-context-loss"
+      ],
+      "stem": "A chunk reading only 'Notwithstanding paragraph (1)...' is returned by the retriever and confuses the LLM. Which failure mode does the 'Why naive RAG breaks' reading classify this as?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Context dilution \u2014 too many chunks crowded out the relevant one",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Paraphrase mismatch \u2014 the chunk uses different vocabulary than the query",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Chunk-context loss \u2014 the chunk lost the parent text it depends on",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Source omission \u2014 the parent paragraph is not in the corpus at all",
+          "correct": false
+        }
+      ],
+      "explanation": "Chunk-context loss is explicitly the failure where the chunk was retrieved correctly but the surrounding context (paragraph (1)) did not travel with it, making the chunk meaningless. Source omission (D) is the tempting near-miss \u2014 but here the parent IS in the corpus; it just wasn't attached to the retrieved chunk. The reading uses 'Notwithstanding paragraph (1)...' as its canonical example.",
+      "sources": [
+        {
+          "title": "Chunk-context loss \u2014 Why naive RAG breaks",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/2-why-naive-rag-breaks.md#retrieval-side-failure-modes",
+          "anchor": "retrieval-side-failure-modes"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q03",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "naive-rag-failure-modes"
+      ],
+      "stem": "Per the 'Why naive RAG breaks' reading, when RAG goes wrong in production, retrieval is the failure point roughly what fraction of the time?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "About 25% \u2014 generation is the dominant failure surface",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "About 73% \u2014 retrieval is the failure point far more often than generation",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "About 50% \u2014 retrieval and generation fail at roughly the same rate",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "About 90% \u2014 retrieval almost never delivers correctly",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading cites the Lushbinary 2026 RAG Production Guide for the counterintuitive number: retrieval is the failure point roughly 73% of the time, not generation. Option C is the natural 'about half' guess if you skim \u2014 but the whole point of the stat is that the split is lopsided, which is why 'the LLM hallucinated' is usually misdiagnosed.",
+      "sources": [
+        {
+          "title": "Introduction \u2014 Why naive RAG breaks",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/2-why-naive-rag-breaks.md#2-introduction",
+          "anchor": "2-introduction"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q04",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "triage-tree",
+        "naive-rag-failure-modes"
+      ],
+      "stem": "Following the failure-mode triage tree in 'Why naive RAG breaks', a RAG answer comes back wrong. The relevant document IS in the corpus but the right chunk did NOT appear in the top-k. The query used a paraphrase the corpus doesn't use. What's the fix?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Swap the model \u2014 the LLM clearly hallucinated",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Tighten the 'ground only in context' prompt \u2014 knowledge conflict is at play",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Reduce k to mitigate lost-in-the-middle in the generation stage",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Paraphrase / vocabulary fix \u2014 adopt hybrid retrieval (lexical + dense)",
+          "correct": true
+        }
+      ],
+      "explanation": "The triage tree walks top-down: source present in corpus \u2192 retrieval missed \u2192 query vocabulary differs from corpus \u2192 hybrid retrieval fix. The whole point of walking the tree is to avoid jumping to D (a generation-stage fix) when the failure is retrieval-side. Option D is the runner-up because lost-in-the-middle is a real failure mode \u2014 but the tree puts retrieval failures above generation failures.",
+      "sources": [
+        {
+          "title": "Generic Implementation \u2014 failure-mode triage tree",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/2-why-naive-rag-breaks.md#4-generic-implementation",
+          "anchor": "4-generic-implementation"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q05",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "naive-rag-failure-modes"
+      ],
+      "stem": "Which of the following are RETRIEVAL-side failure modes per the 'Why naive RAG breaks' reading? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Source omission",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Paraphrase / vocabulary mismatch",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Chunk-context loss",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Lost-in-the-middle",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "Composed claims",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading's Core Concepts splits failures into retrieval-side and generation-side. Retrieval-side: source omission, paraphrase/vocab mismatch, chunk-context loss, and context dilution. Generation-side: lost-in-the-middle, knowledge conflict, and composed claims. D and E are real failure modes \u2014 but they live in the generation stage and are not what to check first.",
+      "sources": [
+        {
+          "title": "Core Concepts \u2014 Retrieval-side vs generation-side failure modes",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/2-why-naive-rag-breaks.md#3-core-concepts",
+          "anchor": "3-core-concepts"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q06",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "naive-rag-failure-modes"
+      ],
+      "stem": "'When a RAG answer is wrong, the right first diagnostic step is to swap the language model.' True or false, and why?",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True \u2014 modern foundation models differ enough that a swap is the cheapest fix to try first",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True \u2014 generation is the failure surface ~73% of the time per the production guide cited",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True \u2014 once retrieval is in place, the model is the only remaining variable to change",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False \u2014 retrieval is the failure point ~73% of the time, so the triage tree walks retrieval checks (source, retriever, chunk-context, dilution) BEFORE reaching for generation-stage fixes like model swap",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False \u2014 swapping the model is forbidden by the LangChain v1.0 posture in the reading",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False \u2014 model swaps require approval from a contracting officer in federal acquisitions",
+          "correct": false
+        }
+      ],
+      "explanation": "The 'Why naive RAG breaks' reading is explicit: retrieval is the failure point ~73% of the time, and the triage tree walks top-down from corpus presence through retriever recall through chunking before considering generation-stage fixes. Jumping to a model swap skips the cheaper, more diagnostic checks at the top. T2 is the wrong-branch trap that flips the 73% number; F2 invents a posture; F3 invents a procurement rule.",
+      "sources": [
+        {
+          "title": "Introduction + triage tree \u2014 Why naive RAG breaks",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/2-why-naive-rag-breaks.md#2-introduction",
+          "anchor": "2-introduction"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q07",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "naive-rag-failure-modes",
+        "context-dilution"
+      ],
+      "stem": "Per the 'Why naive RAG breaks' reading, what is the failure mode when retrieval returns five chunks but only two are relevant and the LLM drifts off-target?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Context dilution \u2014 the noise chunks pull the answer off-target even when the relevant chunks are present",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Knowledge conflict \u2014 the model's pretraining knowledge competes with the retrieved chunks",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Source omission \u2014 the right document is missing from the corpus",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Composed claims \u2014 the model assembles a sentence not supported by any single chunk",
+          "correct": false
+        }
+      ],
+      "explanation": "Context dilution is defined as the case where the relevant chunks ARE present but signal-to-noise drops because irrelevant chunks crowd the context window. Reranking exists specifically to target this failure. Composed claims (D) is the plausible runner-up because both involve the model 'going wrong with context present' \u2014 but composed claims is a generation-side faithfulness issue, while dilution is a retrieval/k-choice issue.",
+      "sources": [
+        {
+          "title": "Retrieval-side failure modes",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/2-why-naive-rag-breaks.md#retrieval-side-failure-modes",
+          "anchor": "retrieval-side-failure-modes"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q08",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "dense-retrieval",
+        "bm25-sparse-retrieval"
+      ],
+      "stem": "A user query contains the exact clause ID 'FAR 52.212-4(a)(2)'. Which retriever shape is most likely to surface the correct clause, per the dense-vs-sparse-vs-hybrid reading?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "ENN over the dense index \u2014 exact nearest neighbour gives true recall for rare tokens by brute force",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Dense / vector \u2014 embeddings handle paraphrase robustly, so a clause ID is well-handled too",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Sparse / BM25 \u2014 lexical match wins on exact-token queries like clause IDs that dense embeddings fuzz away",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Re-rank only \u2014 skip retrieval and send the whole corpus through a cross-encoder reranker",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading is explicit: dense retrieval fuzzes away rare tokens like clause IDs, SKUs, and statute references; sparse / BM25 catches them because it indexes literal tokens. ENN (C) sounds related (exact!) but ENN only changes the search algorithm over the SAME embedding space \u2014 it doesn't help when the token is fuzzed in the embedding itself. The whole motivation for hybrid retrieval is that dense and sparse have complementary failure surfaces.",
+      "sources": [
+        {
+          "title": "Sparse retrieval (BM25) \u2014 Retrieval strategies",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/3-retrieval-strategies-dense-sparse-hybrid.md#sparse-retrieval-bm25",
+          "anchor": "sparse-retrieval-bm25"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q09",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "rrf-reciprocal-rank-fusion"
+      ],
+      "stem": "What is the field-standard default value for the constant `k` in the Reciprocal Rank Fusion formula `1 / (k + rank)`?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "k = 5 \u2014 small enough that the top of each list still dominates the merged ranking",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "k = 60 \u2014 large enough small rank changes do not dominate, small enough top still counts",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "k = 100 \u2014 matches the typical numCandidates value used in ANN retrieval",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "k = 1 \u2014 the inverse-rank baseline, so rank 1 contributes exactly 0.5 to the score",
+          "correct": false
+        }
+      ],
+      "explanation": "Both the dense/sparse/hybrid reading and the Tuesday overview pin k = 60 as the field-standard default \u2014 large enough to smooth out small rank changes, small enough that the top of each list still has discriminative weight. The reading explicitly says 'do not tune it as the first lever.' The other values are instructive distractors a half-remembering learner might guess.",
+      "sources": [
+        {
+          "title": "Hybrid retrieval \u2014 Worked RRF example",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/3-retrieval-strategies-dense-sparse-hybrid.md#hybrid-retrieval",
+          "anchor": "hybrid-retrieval"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q10",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "rrf-reciprocal-rank-fusion"
+      ],
+      "stem": "Why does Reciprocal Rank Fusion use ranks rather than raw retriever scores when merging dense and sparse hit lists?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Because score-based fusion would weight the dense retriever more heavily by default than the sparse one",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Because RRF is the only fusion strategy currently licensed for use with Atlas Vector Search in production",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Because ranks are smaller integers and reduce floating-point precision risk on the merge sum",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Because BM25 and cosine scores live on incompatible scales, making score normalisation fragile",
+          "correct": true
+        }
+      ],
+      "explanation": "The reading explains weighted score fusion sounds simple but is fragile in practice because BM25 scores and cosine similarities live on incompatible scales with different empirical per-query distributions. RRF is score-scale agnostic \u2014 it works whether BM25 is in [0,25] or cosine is in [-1,1] \u2014 which is why every major vector DB ships it as the recommended hybrid fusion strategy. A is wrong; B fabricates a licensing claim; D is a non-issue.",
+      "sources": [
+        {
+          "title": "Hybrid retrieval \u2014 Reciprocal Rank Fusion (RRF)",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/3-retrieval-strategies-dense-sparse-hybrid.md#hybrid-retrieval",
+          "anchor": "hybrid-retrieval"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q11",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "rrf-reciprocal-rank-fusion"
+      ],
+      "stem": "Given the worked example in the reading \u2014 Dense returns [Doc-A, Doc-B, Doc-C] and BM25 returns [Doc-C, Doc-A, Doc-D] \u2014 which document tops the final RRF ranking at k=60?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Doc-A \u2014 appears in both lists at ranks 1 and 2, giving the highest summed reciprocal-rank score",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Doc-C \u2014 appears at rank 1 in BM25 and is therefore the top-most exact-token match",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Doc-B \u2014 its single high rank in dense outweighs Doc-A's split appearance",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Doc-D \u2014 RRF reverses the typical hybrid intuition and rewards single-list appearance",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading does the math explicitly: Doc-A = 1/61 + 1/62 \u2248 0.03252; Doc-C = 1/63 + 1/61 \u2248 0.03226. Doc-A edges Doc-C because Doc-A's two ranks (1, 2) sum slightly higher than Doc-C's (1, 3). The lesson is RRF's structural bias toward documents BOTH retrievers agree on \u2014 and that single-rank-1 (Doc-C) loses to dual-mid-rank when the top ranks are competitive.",
+      "sources": [
+        {
+          "title": "Worked RRF example",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/3-retrieval-strategies-dense-sparse-hybrid.md#worked-rrf-example",
+          "anchor": "worked-rrf-example"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q12",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "langchain-v1-composition",
+        "lcel-pipe-antipattern"
+      ],
+      "stem": "Per the LangChain v1.0 posture in the hybrid-retrieval reading (D-033), which composition pattern is the recommended way to compose hybrid retrieval steps?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "LCEL `dense | sparse | rerank` pipe syntax as the architectural backbone",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "A `Chain` class subclass per pipeline, instantiated via `Chain.from_components(...)`",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Plain Python function composition \u2014 call each step as a function, hold results in variables",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "An async generator pipeline with `yield from` between retrieval stages",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading's [!instructor-review] callout flags LCEL `|` pipes and `Chain` class advocacy as blocklisted anti-patterns (`langchain-lcel-pipe`, `langchain-chain-class`). The v1.0 posture is plain Python composition: `dense_hits = dense_retriever.search(...)` then `merged = rrf_merge(dense_hits, sparse_hits)`. LangChain primitives are fine at the leaves (the actual retriever calls). A is the runner-up only because LCEL pipes still appear in tutorials.",
+      "sources": [
+        {
+          "title": "Hybrid composition \u2014 plain Python, not framework pipes",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/3-retrieval-strategies-dense-sparse-hybrid.md#hybrid-composition--plain-python-not-framework-pipes",
+          "anchor": "hybrid-composition--plain-python-not-framework-pipes"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q13",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "dense-retrieval"
+      ],
+      "stem": "Per the dense-vs-sparse-vs-hybrid reading, which of the following are STRENGTHS of dense retrieval? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Paraphrase robustness \u2014 semantically similar phrasings still match",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Synonym handling without explicit synonym lists",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Intent-level matching across rephrasings of the same question",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Exact-token recall on rare identifiers like clause IDs and SKUs",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "Interpretability \u2014 you can explain why a document ranked where it did",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading explicitly lists paraphrase robustness, synonym handling, multilingual matching, and intent-level matching as dense strengths. Exact-token recall (D) is BM25's strength \u2014 dense fuzzes rare tokens away. Interpretability (E) is also BM25's strength \u2014 you can explain a BM25 ranking from term frequencies; dense rankings come from opaque embedding-space geometry.",
+      "sources": [
+        {
+          "title": "Dense retrieval \u2014 Retrieval strategies",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/3-retrieval-strategies-dense-sparse-hybrid.md#dense-retrieval",
+          "anchor": "dense-retrieval"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q14",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "hybrid-retrieval"
+      ],
+      "stem": "'Production retrievers in 2026 ship hybrid as the default because dense and sparse have COMPLEMENTARY failure surfaces.' True or false, and what's the load-bearing reason?",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True \u2014 dense retrieval is uniformly worse, so adding BM25 is pure win at every query class",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True \u2014 dense misses what sparse catches (rare tokens, exact phrases) and sparse misses what dense catches (paraphrase, synonyms), so together they cover most of the failure surface either alone misses",
+          "correct": true
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True \u2014 RRF requires hybrid by definition; no production system is allowed to ship dense-only",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False \u2014 hybrid is recommended only when corpus exceeds 10M chunks; below that dense is the default",
+          "correct": false
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False \u2014 the reading recommends sparse as the default and treats dense as the optimisation",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False \u2014 only Atlas-hosted corpora ship hybrid as default; self-hosted vector stores still default to dense-only",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading's framing: the two retrievers fail on different query shapes, so together they cover most of the failure surface either alone misses \u2014 that's the textbook 'complementary failure surfaces' argument. T1 is the wrong-branch trap that misstates dense as 'uniformly worse'; T3 invents a rule; F1/F2/F3 invent thresholds and overrides that aren't in the reading.",
+      "sources": [
+        {
+          "title": "Hybrid retrieval",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/3-retrieval-strategies-dense-sparse-hybrid.md#hybrid-retrieval",
+          "anchor": "hybrid-retrieval"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q15",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "bi-encoder-vs-cross-encoder"
+      ],
+      "stem": "Per the re-ranking fundamentals reading, what is the architectural difference between a bi-encoder retriever and a cross-encoder reranker?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A bi-encoder uses two GPUs in parallel; a cross-encoder uses one GPU sequentially",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "A bi-encoder embeds query and document SEPARATELY and compares the vectors",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "A bi-encoder always uses cosine similarity; a cross-encoder always uses dot-product",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "A bi-encoder is open-weight; a cross-encoder is closed-API by definition",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading is explicit on this: the bi-encoder embeds q and each d independently (e_q, e_d, then a cheap similarity), which is what makes ANN fast \u2014 document embeddings are precomputed once. The cross-encoder concatenates (q, d) and runs them through together, so attention can model interactions between specific query and document tokens. That's what makes it more accurate but more expensive. The other options invent distinctions that don't exist.",
+      "sources": [
+        {
+          "title": "Bi-encoder vs cross-encoder",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/4-reranking-fundamentals.md#bi-encoder-vs-cross-encoder",
+          "anchor": "bi-encoder-vs-cross-encoder"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q16",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "cascade-rerank",
+        "retrieve-50-rerank-5"
+      ],
+      "stem": "What is the standard 'retrieve-N-rerank-K' cascade shape named in the re-ranking fundamentals reading?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "retrieve 10, rerank 10 \u2014 pass through the same set with no narrowing",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "retrieve 1000, rerank 100 \u2014 very wide pool with a deep top-k returned",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "retrieve 5, rerank 50 \u2014 let reranking expand the candidate pool after retrieval",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "retrieve 50, rerank to 5 \u2014 bi-encoder casts a wide cheap net, cross-encoder scores those 50",
+          "correct": true
+        }
+      ],
+      "explanation": "The 'cascade' section of the reading names this exactly: retrieve 50, rerank 5. Below ~20 candidates the reranker has too narrow a pool; above ~100 the reranker latency dominates and marginal recall flattens. ~5 for the LLM keeps context-dilution from eating the precision the reranker just paid for. D inverts the shape; A and B miss the cost-asymmetry insight that motivates the cascade.",
+      "sources": [
+        {
+          "title": "The cascade \u2014 retrieve 50, rerank 5",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/4-reranking-fundamentals.md#the-cascade--retrieve-50-rerank-5",
+          "anchor": "the-cascade--retrieve-50-rerank-5"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q17",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "cascade-rerank",
+        "context-dilution"
+      ],
+      "stem": "Per the re-ranking reading, why is ~5 (not 20) the typical number of chunks handed to the LLM after reranking?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Because past ~5\u20138 chunks the LLM attention thins and context dilution eats the precision",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Because the Cohere Rerank-3 API rate-limits each request to 5 documents per call",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Because Bedrock Claude billing rounds tokens at chunks of 5 per inference",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Because BGE-reranker-v2-m3 only outputs scores for its top-5 candidates per call",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading ties the small-k choice to the context-dilution failure mode covered in the 'Why naive RAG breaks' reading: past ~5\u20138 chunks the LLM's attention thins and the relevance lift from reranking is traded back away. A, C, and D invent vendor or platform constraints that don't exist; the right answer is a generation-side architectural argument, not a billing or API limit.",
+      "sources": [
+        {
+          "title": "The cascade \u2014 retrieve 50, rerank 5",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/4-reranking-fundamentals.md#the-cascade--retrieve-50-rerank-5",
+          "anchor": "the-cascade--retrieve-50-rerank-5"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q18",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "cohere-rerank",
+        "rerank-latency-budget"
+      ],
+      "stem": "A team has a 300ms total retrieval latency budget for a user-facing chatbot. The retriever alone takes 80ms. They're considering Cohere Rerank-3, which the reading notes adds 100\u2013300ms per request. What does the reading recommend?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Always add the reranker \u2014 accuracy wins over latency every time at a federal client",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Add the reranker and remove the LLM call to claw back the latency",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Measure the reranker's actual lift on a held-out QA set against the latency budget",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Swap to ENN over the dense index \u2014 exact recall removes the need for reranking",
+          "correct": false
+        }
+      ],
+      "explanation": "The 'When to skip reranking' section names exactly this case: strict latency budgets (sub-300ms total) may simply not fit a reranker, in which case the move is a stronger retriever rather than a reranker. The discipline is 'measure, not assume.' A blindly adds latency; C removes the necessary LLM call; D confuses exact-recall over an embedding with the bi-encoder/cross-encoder split \u2014 ENN doesn't change the relevance-modelling story.",
+      "sources": [
+        {
+          "title": "When to skip reranking",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/4-reranking-fundamentals.md#when-to-skip-reranking",
+          "anchor": "when-to-skip-reranking"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q19",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "cohere-rerank"
+      ],
+      "stem": "Which characterisation of the three live reranker patterns in 2026 matches the re-ranking fundamentals reading?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Only Cohere Rerank-3 is production-grade; everything else listed remains research-only experimental",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Managed APIs, self-hosted open-weight, and in-prompt LLM rerank \u2014 with in-prompt as the flexible fallback",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Only self-hosted open-weight rerankers are recommended; managed APIs are forbidden outright in all regulated environments",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "In-prompt LLM rerank is the recommended default for RAG because it is the most flexible option available",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading lists exactly three patterns and characterises in-prompt LLM rerank as 'slowest, most flexible, easiest to abuse' \u2014 useful as a fallback or custom-criteria layer, not a default. Managed and self-hosted are the workhorse choices, traded off on cost and data residency. B and C overstate the position; D directly contradicts the reading's 'not a default' line on in-prompt rerank.",
+      "sources": [
+        {
+          "title": "Reranker model landscape",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/4-reranking-fundamentals.md#reranker-model-landscape",
+          "anchor": "reranker-model-landscape"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q20",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "cascade-rerank",
+        "rerank-latency-budget"
+      ],
+      "stem": "Per the re-ranking fundamentals reading, in which situations does it make sense to SKIP a cross-encoder reranker? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "When your retriever is already producing the right top-5, measured on a held-out QA set",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "When queries are dominated by short exact-token lookups and BM25 is already doing the work",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "When latency constraints are strict (sub-300ms total budget) and the reranker simply doesn't fit",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "When the corpus is regulatory and answers carry audit risk",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "When you use BGE-reranker-v2-m3 because open-weight models cannot rerank reliably",
+          "correct": false
+        }
+      ],
+      "explanation": "The 'When to skip reranking' section names three cases verbatim: retriever already right, exact-token-dominated queries (BM25 wins), strict latency. D is the OPPOSITE \u2014 high-stakes domains are the strongest case to KEEP the reranker because the lift is worth the latency. E is false on its face \u2014 BGE-reranker-v2-m3 is the open-weight reference the reading recommends when cost or residency demands self-hosting.",
+      "sources": [
+        {
+          "title": "When to skip reranking",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/4-reranking-fundamentals.md#when-to-skip-reranking",
+          "anchor": "when-to-skip-reranking"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q21",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "bi-encoder-vs-cross-encoder",
+        "cascade-rerank"
+      ],
+      "stem": "'A cross-encoder reranker could replace the retriever entirely if you have enough compute \u2014 just score (query, document) for every document in the corpus.' True or false, and why?",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True \u2014 given sufficient GPU you can rerank the whole corpus exactly",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True \u2014 that is exactly what Cohere Rerank-3 does at the API level",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True \u2014 this is the 'exact rerank' pattern the reading recommends",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False \u2014 the cost asymmetry is the point of the cascade. Bi-encoder embeddings are precomputed ONCE at indexing time; cross-encoders require a fresh forward pass per (q, d) pair. Running cross-encoder over the whole corpus is N forward passes per query \u2014 infeasible at production scale",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False \u2014 cross-encoders are forbidden in federal acquisitions retrieval pipelines by FAR 52.212-4",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False \u2014 Atlas Vector Search blocks any aggregation stage that exceeds 50 candidate documents",
+          "correct": false
+        }
+      ],
+      "explanation": "The cost asymmetry is the entire architectural argument: bi-encoders precompute document embeddings once at index time; cross-encoders cannot be precomputed and require a fresh forward pass for every (q, d) pair. The cascade exists precisely so the expensive cross-encoder only runs on the ~50 candidates the cheap retriever pre-filtered. F2 and F3 invent regulatory and platform constraints that aren't in the reading.",
+      "sources": [
+        {
+          "title": "Bi-encoder vs cross-encoder",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/4-reranking-fundamentals.md#bi-encoder-vs-cross-encoder",
+          "anchor": "bi-encoder-vs-cross-encoder"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q22",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "citation-grounding",
+        "fabricated-citation"
+      ],
+      "stem": "Per the citation-grounding reading, what distinguishes a 'fabricated' citation from an 'unsupported' one?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Fabricated citations are flagged by the UI; unsupported citations are not",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Fabricated citations are caught by RAGAS faithfulness; unsupported citations are not",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Fabricated citations happen with closed-source models only; unsupported with open-weight only",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "A fabricated citation points to a chunk or document that does NOT exist in the retrieved set",
+          "correct": true
+        }
+      ],
+      "explanation": "The reading defines a three-level hierarchy: fabricated (the cited chunk/document doesn't exist), unsupported (the chunk is real but doesn't support the claim), and grounded (real chunk that genuinely supports the claim). The distinction matters because the verification techniques differ \u2014 chunk-presence sanity check catches fabricated; LLM-judge faithfulness catches unsupported. Option B is the runner-up but is wrong: structural chunk-presence catches fabricated FOR FREE; faithfulness catches unsupported.",
+      "sources": [
+        {
+          "title": "What 'grounded' actually means",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/5-citation-grounding.md#what-grounded-actually-means",
+          "anchor": "what-grounded-actually-means"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q23",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "chunk-metadata",
+        "citation-grounding"
+      ],
+      "stem": "Per the citation-grounding reading, which statement about chunk metadata is correct?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "You cannot retrofit citations into a corpus that did not carry source IDs through ingestion",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "You can retrofit citation metadata onto a corpus after ingestion if the source files are still available",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Chunk metadata only matters for the UI layer; retrieval and generation can ignore it",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Modern vector stores generate chunk metadata automatically at index-build time",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading is explicit: 'Attach chunk metadata at ingestion time, not as an afterthought \u2014 you cannot retrofit citations into a corpus that did not carry source IDs through ingestion.' If the IDs and source pointers were not embedded in the ingest step, the data simply is not there to retrofit. A is the optimistic-but-wrong intuition; C contradicts the end-to-end metadata-flow diagram; D fabricates an auto-generation feature.",
+      "sources": [
+        {
+          "title": "Required chunk metadata",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/5-citation-grounding.md#required-chunk-metadata",
+          "anchor": "required-chunk-metadata"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q24",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "citation-grounding",
+        "response-envelope"
+      ],
+      "stem": "The citation-grounding reading recommends running 'cheap structural verification' on every response synchronously. Which check is named as one of the highest-leverage defences?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Re-running the full eval harness against every user-facing response synchronously",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "A second LLM judge call asking 'is this answer correct?' before returning the response",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Chunk-presence sanity check \u2014 every chunk_id in the envelope must exist in the retrieved set",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "A pgvector consistency scan over the entire corpus after every individual query is served",
+          "correct": false
+        }
+      ],
+      "explanation": "The 'Verifying citations are real' section names the chunk-presence sanity check explicitly as 'trivially cheap; should be on by default.' If the model invents a chunk_id, this catches it immediately without any LLM call. A runs the wrong tool synchronously; C invents a slow, expensive check the reading flags as overuse; D fabricates a platform behaviour.",
+      "sources": [
+        {
+          "title": "Verifying citations are real, not theatre",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/5-citation-grounding.md#verifying-citations-are-real-not-theatre",
+          "anchor": "verifying-citations-are-real-not-theatre"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q25",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "chunk-metadata"
+      ],
+      "stem": "Per the citation-grounding reading, which of the following are part of the MINIMUM chunk metadata required for a citation-bearing RAG system? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "chunk_id \u2014 stable identifier for the retrieved span",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "source_id \u2014 the document the chunk came from",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "last_revised \u2014 when the underlying source was last updated",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "section / anchor \u2014 where in the source document the chunk lives",
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": "model_temperature \u2014 what temperature the generation LLM was called at",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading lists the minimum metadata set: chunk_id, source_id, source_type, last_revised, section/anchor, and retrieval_score (useful for diagnostics, not for the UI). Model temperature (E) is a generation-time parameter unrelated to chunk metadata \u2014 it doesn't travel with the chunk through retrieval. The whole point of the metadata set is that it must travel with the chunk from ingestion through to UI.",
+      "sources": [
+        {
+          "title": "Required chunk metadata",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/5-citation-grounding.md#required-chunk-metadata",
+          "anchor": "required-chunk-metadata"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q26",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "citation-grounding",
+        "last-revised-staleness"
+      ],
+      "stem": "Per the citation-grounding reading, what is the recommended way to handle stale `last_revised` dates in the UI?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Hide stale citations from the user entirely so the rendered answer looks more confident overall",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Surface a freshness warning \u2014 tell the user the source may be out of date rather than hiding it",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Block the response entirely if any cited chunk exceeds a domain-specific freshness threshold by even one day",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Rewrite the answer using a fresher source even if it contradicts the original cited chunk content",
+          "correct": false
+        }
+      ],
+      "explanation": "The 'Source freshness and precedence' section is explicit: surface the staleness, do not hide it. The user is told the source may be out of date; the model is not pretending. Hiding (A) destroys trust; hard-blocking (B) overshoots and breaks usability; silent rewriting (D) is a faithfulness failure waiting to happen. The discipline is to make the freshness visible.",
+      "sources": [
+        {
+          "title": "Source freshness and precedence",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/5-citation-grounding.md#source-freshness-and-precedence",
+          "anchor": "source-freshness-and-precedence"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q27",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "corpus-source-precedence",
+        "response-envelope"
+      ],
+      "stem": "The citation-grounding reading's financial-advisory pattern encodes regulatory-vs-product-guide precedence WHERE in the pipeline?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Inside the LLM prompt itself, by instructing the model in system text to 'always prefer regulatory sources over guides'",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Inside the vector index, by giving regulatory chunks a higher numCandidates allocation at query time",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Inside the embedding model itself, by training it offline to score regulatory chunks higher than others",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Inside the response-envelope assembly layer \u2014 a deterministic post-processor uses source_type to apply precedence",
+          "correct": true
+        }
+      ],
+      "explanation": "The financial-advisory real-world pattern is explicit: the LLM produces a draft answer with cited chunks, then deterministic post-processing applies the precedence rule using `source_type`. Best Practices reinforce this: 'Encode source precedence in deterministic post-processing, not in the LLM prompt \u2014 precedence rules tend to be domain-specific and audit-relevant, and post-processing is easier to test.' A is the runner-up because it sounds reasonable but is the explicitly-disrecommended path.",
+      "sources": [
+        {
+          "title": "Real-world Patterns \u2014 Financial advisory chatbot",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/5-citation-grounding.md#5-real-world-patterns",
+          "anchor": "5-real-world-patterns"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q28",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "response-envelope"
+      ],
+      "stem": "'It's fine to refactor the citation response-envelope schema later if downstream consumers complain \u2014 schemas evolve naturally.' True or false, and why?",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True \u2014 Pydantic makes envelope refactors free at runtime",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True \u2014 only the UI consumes the envelope, so a single point of change is straightforward",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True \u2014 the federal-acquisitions audit only checks the inline citations, not the envelope shape",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False \u2014 the envelope is the contract between the RAG service and the UI, HITL gate, audit log, AND eval harness; locking it early matters because every downstream consumer assumed the previous shape and refactoring is painful",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False \u2014 JSON schemas are immutable once published to GitHub",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False \u2014 only Cohere Rerank-3 responses can be reshaped freely; envelope JSON cannot",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading's 'response envelope' section explicitly says: 'Lock the envelope shape early; refactoring it later is painful because every consumer assumed the previous shape.' Best Practices reinforces: 'Lock the response-envelope schema early and version it; every downstream consumer (UI, HITL gate, audit log, eval harness) assumes a stable shape.' T2 is the wrong-branch trap that imagines only the UI reads the envelope \u2014 when in fact at least four downstream consumers do.",
+      "sources": [
+        {
+          "title": "The response envelope",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/5-citation-grounding.md#the-response-envelope",
+          "anchor": "the-response-envelope"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q29",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "ragas-metrics",
+        "faithfulness"
+      ],
+      "stem": "Per the retrieval-evaluation reading, what does the RAGAS-style 'faithfulness' metric measure?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Whether the generated answer makes claims supported by the retrieved chunks \u2014 judged claim-by-claim",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Whether retrieval returned all of the ground-truth chunks needed to answer the query",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Whether the generated answer addresses the original question that was asked end-to-end",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Whether the chunks retrieved were actually relevant and used by the LLM (vs over-retrieval drift)",
+          "correct": false
+        }
+      ],
+      "explanation": "Faithfulness is specifically about whether each atomic claim in the generated answer is supported by the retrieved context. The reading defines it as claim-decomposition followed by per-claim support judgement. Option A is answer relevance; B is context recall; D is context precision. The reading's whole 'four metrics' framing is that conflating these is the failure mode.",
+      "sources": [
+        {
+          "title": "Why four metrics, not one",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/6-retrieval-evaluation-and-ragas-metrics.md#why-four-metrics-not-one",
+          "anchor": "why-four-metrics-not-one"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q30",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "ragas-faithfulness-only-antipattern",
+        "context-recall"
+      ],
+      "stem": "Per the [!instructor-review] callout in the retrieval-evaluation reading, what is the failure mode that high-faithfulness-alone misses but context recall would catch?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The reranker added significant latency without any measurable lift on the held-out QA evaluation set",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "The model invented a chunk_id that does not exist anywhere in the retrieved set of chunks",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The retriever missed a critical chunk, so the model wrote a faithful but incomplete answer",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "The Atlas index was built with the wrong numDimensions for the embedding model output dimension",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading's 'The four metrics interact' worked example is exactly this scenario: high faithfulness + low context recall = the model wrote a faithful answer to incomplete retrieval; the user gets half an answer and faithfulness alone reports green. That's the structural reason the instructor-review callout names `ragas-faithfulness-only` as a known-bad-pattern. B is a chunk-presence check (fabricated citation), C is a reranker measurement, D is an index-build issue \u2014 none of which faithfulness vs recall is about.",
+      "sources": [
+        {
+          "title": "Why four metrics, not one",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/6-retrieval-evaluation-and-ragas-metrics.md#why-four-metrics-not-one",
+          "anchor": "why-four-metrics-not-one"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q31",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "ragas-metrics"
+      ],
+      "stem": "Per the retrieval-evaluation reading, which of the following are the RAGAS-style metrics taught as a required SET? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Faithfulness",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Context recall",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Context precision",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Answer relevance",
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": "Bedrock token-cost-per-query",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading is explicit that all four (faithfulness, context recall, context precision, answer relevance) are taught as a required set per the programme spec \u2014 single-metric eval is a known anti-pattern. Token cost is a real operational metric but lives in cost-modelling, not RAGAS-style retrieval evaluation. The whole 'four metrics interact' section explains why dropping any one of these four leaves an undetected failure mode.",
+      "sources": [
+        {
+          "title": "Why four metrics, not one",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/6-retrieval-evaluation-and-ragas-metrics.md#why-four-metrics-not-one",
+          "anchor": "why-four-metrics-not-one"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q32",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "flat-file-golden-set",
+        "eval-harness"
+      ],
+      "stem": "Per the retrieval-evaluation reading, what does each golden-set row in `qa.jsonl` need at minimum?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "id, prompt, completion \u2014 the same shape as a typical fine-tuning dataset row would use",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "id, question, expected_chunks, expected_answer_substrings, and tags for per-class slicing",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Just an id and a free-text expected answer; the LLM judge handles everything else automatically",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "A LangSmith trace_id reference and a precomputed vector embedding of the original question text",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading's example rows show id, question, expected_chunks (which chunk IDs should be retrieved), expected_answer_substrings (cheap structural check), and tags (so per-tag slicing tells you 'regression on hard queries' vs 'regression on easy'). Option D presupposes LangSmith \u2014 but the reading explicitly defers LangSmith to W5 in favour of the flat-file pattern first.",
+      "sources": [
+        {
+          "title": "The flat-file golden dataset",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/6-retrieval-evaluation-and-ragas-metrics.md#the-flat-file-golden-dataset",
+          "anchor": "the-flat-file-golden-dataset"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q33",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "flat-file-golden-set"
+      ],
+      "stem": "The retrieval-evaluation reading warns against one approach to building a golden dataset. Which?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Sampling representative real queries from production logs and tagging them",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Pure manual \u2014 domain expert authors every row by hand",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Synthetic candidate generation followed by domain-expert curation and editing",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Pure synthetic \u2014 LLM generates the questions AND validates them with no human in the loop",
+          "correct": true
+        }
+      ],
+      "explanation": "The 'Synthetic + curated, not synthetic-only' section is explicit: pure synthetic evaluates the model against the kind of questions the model itself produces \u2014 a known failure mode. The recommended pattern is synthetic generation + human validation, which is exactly C (a correct approach, not the warning). The healthcare real-world pattern even quantifies it \u2014 human validation caught ~18% of LLM-generated questions as clinically meaningless or dangerous.",
+      "sources": [
+        {
+          "title": "Synthetic + curated, not synthetic-only",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/6-retrieval-evaluation-and-ragas-metrics.md#synthetic--curated-not-synthetic-only",
+          "anchor": "synthetic--curated-not-synthetic-only"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q34",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "eval-harness"
+      ],
+      "stem": "Per the retrieval-evaluation reading, why must a RAG eval harness be wired into CI and not run only on-demand?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Because RAG regressions are silent \u2014 a broken retriever returns confident wrong answers, not exceptions",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Because LangSmith requires CI integration for billing and usage accounting purposes",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Because Atlas Vector Search rejects retriever code updates without an attached eval report from CI",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Because OpenAI's text-embedding-3-large requires regression-test attestation before any production swap",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading names this exactly: 'RAG regressions are silent... CI is the only thing standing between that change and production.' Options A, C, and D invent platform or vendor constraints \u2014 none are in the reading. The silent-regression argument is the load-bearing reason CI matters here, not a compliance checkbox.",
+      "sources": [
+        {
+          "title": "Wiring into CI",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/6-retrieval-evaluation-and-ragas-metrics.md#wiring-into-ci",
+          "anchor": "wiring-into-ci"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q35",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "llm-as-judge"
+      ],
+      "stem": "'LLM-as-judge metrics like faithfulness should be trusted blindly because the judge model has access to both the answer and the retrieved chunks.' True or false, and why?",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True \u2014 judges with access to retrieved chunks cannot drift",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True \u2014 RAGAS guarantees calibrated faithfulness scores across model families",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True \u2014 judges run on the same model as generation, so they share the same view of correctness",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False \u2014 LLM-as-judge has known failure modes (judge bias toward the model-under-test, domain mismatch, per-row cost) and the common mitigation is a smaller cheaper judge plus a small human-labelled calibration sample to detect judge drift over time",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False \u2014 LLM-as-judge is banned by federal-acquisitions policy",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False \u2014 judges can only score retrieval, never generation",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading's 'LLM-as-judge \u2014 when to trust it' section names judge bias toward model-under-test, domain mismatch, and per-call cost as known failure modes, and recommends a smaller cheaper judge plus a human-labelled calibration sample. T3 is the wrong-branch trap (running judge on the same model is exactly the bias risk); F2 and F3 invent constraints.",
+      "sources": [
+        {
+          "title": "LLM-as-judge \u2014 when to trust it",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/6-retrieval-evaluation-and-ragas-metrics.md#llm-as-judge--when-to-trust-it",
+          "anchor": "llm-as-judge--when-to-trust-it"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q36",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "atlas-vector-search",
+        "filter-fields"
+      ],
+      "stem": "Per the Atlas index-management reading, when can a `filter` field be added to an Atlas Vector Search index for use in `$vectorSearch.filter` clauses?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "At query time by passing it inside the `$vectorSearch.filter` clause; declaration is entirely optional",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "At any time via `$alterSearchIndex` \u2014 Atlas auto-rebuilds the HNSW graph in the background once triggered",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Only at index-creation time \u2014 a filter field not declared at index-creation cannot be filtered on",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Only when the corpus exceeds 10 million vectors \u2014 smaller corpora do not require any declared filter fields",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading is explicit: 'A filter field that is not declared at index-creation time cannot be filtered on at query time \u2014 you get a runtime error.' This is what lets Atlas push the filter down into the ANN graph traversal so the filter doesn't become a post-filter. B and C are the optimistic-but-wrong guesses if you assume MongoDB schemas evolve freely. D fabricates a corpus-size threshold.",
+      "sources": [
+        {
+          "title": "Index field types \u2014 vector and filter",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/7-atlas-index-management-and-design-artifacts.md#index-field-types--vector-and-filter",
+          "anchor": "index-field-types--vector-and-filter"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q37",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "pre-filter-vs-post-filter",
+        "tenant-isolation"
+      ],
+      "stem": "A B2B SaaS team uses a `$match` AFTER `$vectorSearch` to strip out wrong-tenant results. Under load, small workspaces start returning zero results. What is the load-bearing reason the post-filter pattern fails per the Atlas reading?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "$match has consistently higher latency than $vectorSearch in Atlas aggregation pipelines under load",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Tenant correctness \u2014 vector search returns the global top-k, then $match strips wrong-tenant results, so small tenants get starved",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "$match invalidates the cosine-similarity score, so the resulting ranking becomes unreliable for the user",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "MongoDB Atlas does not support `$match` after `$vectorSearch` in any aggregation pipeline at all currently",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading explains this exactly: post-filter means the vector search returns the global top-k, then $match strips wrong-tenant results \u2014 so small tenants can be starved because their chunks were below the global cutoff. The fix is declaring the tenant field as a `filter` at index-creation so the filter is pushed down INTO the ANN graph traversal. A is wrong about latency rank; C invents a score issue; D contradicts standard Atlas pipeline composition.",
+      "sources": [
+        {
+          "title": "Pre-filter vs post-filter \u2014 why this is load-bearing",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/7-atlas-index-management-and-design-artifacts.md#pre-filter-vs-post-filter--why-this-is-load-bearing",
+          "anchor": "pre-filter-vs-post-filter--why-this-is-load-bearing"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q38",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "ann-vs-enn",
+        "atlas-vector-search"
+      ],
+      "stem": "Per the Atlas index reading, when is ENN (Exact Nearest Neighbour) the right choice over ANN?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Whenever exact recall is required by a federal-acquisitions clause",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "On any corpus of any size where audit trails matter",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Whenever the embedding model is unit-normalised \u2014 ENN respects normalisation, ANN does not",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "On small corpora (typically thousands of vectors, not millions)",
+          "correct": true
+        }
+      ],
+      "explanation": "The reading is explicit: ENN's brute-force linear scan is only viable for small corpora (thousands, not millions). The healthcare real-world pattern uses ENN over a small high-precision protocol index and ANN over the larger general-medical literature corpus \u2014 choosing per query type. A and B overstate; D invents a property that doesn't exist (ANN and ENN both work with whatever similarity metric the index is configured for).",
+      "sources": [
+        {
+          "title": "ANN vs ENN",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/7-atlas-index-management-and-design-artifacts.md#ann-vs-enn",
+          "anchor": "ann-vs-enn"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q39",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "numcandidates"
+      ],
+      "stem": "Per the Atlas reading, what is the recommended STARTING heuristic for `numCandidates` given `limit: 5`?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "numCandidates: 100 \u2014 at least 20\u00d7 the limit; tune up when filter selectivity is high",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "numCandidates: 5 \u2014 match the configured limit value exactly with no overhead",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "numCandidates: 10000 \u2014 always go as deep as possible for production-grade retrieval correctness",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "numCandidates: 1 \u2014 let the ANN algorithm choose the candidate pool size itself dynamically",
+          "correct": false
+        }
+      ],
+      "explanation": "MongoDB's recommended heuristic is `numCandidates >= 20 \u00d7 limit`, with the reading noting that high-selectivity filters (small tenant in large index, strict date cutoffs) may need 50\u00d7 or 100\u00d7. The right discipline is to measure recall on a held-out QA set at different values and pick the lowest that meets the recall floor. C is the brute-force overreach; A and D mis-set the dial entirely.",
+      "sources": [
+        {
+          "title": "numCandidates \u2014 the recall-latency dial",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/7-atlas-index-management-and-design-artifacts.md#numcandidates--the-recall-latency-dial",
+          "anchor": "numcandidates--the-recall-latency-dial"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q40",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "atlas-vector-search",
+        "filter-fields"
+      ],
+      "stem": "Which of the following are declared at INDEX-CREATION time in an Atlas Vector Search `createSearchIndex` declaration, per the reading's example? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "numDimensions \u2014 must match the embedding model's output dimension",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "similarity metric (cosine / dotProduct / euclidean) \u2014 must match the embedding model's normalisation",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "The list of filter fields the queries will use (tenant_id, doc_type, last_revised)",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "numCandidates \u2014 pinned in the index, not set per-query",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "The embedding model's API key",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading's example index declaration includes the `vector` field with numDimensions + similarity, plus every `filter` field a query will use. `numCandidates` is a PER-QUERY parameter on `$vectorSearch`, not an index-time declaration \u2014 and option D's distractor exists because learners often conflate index-time settings with query-time settings. E is just out of scope (API keys live in secrets, not in index definitions).",
+      "sources": [
+        {
+          "title": "Index field types \u2014 vector and filter / Generic Implementation",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/7-atlas-index-management-and-design-artifacts.md#index-field-types--vector-and-filter",
+          "anchor": "index-field-types--vector-and-filter"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q41",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "atlas-vector-search"
+      ],
+      "stem": "'Swapping the embedding model from a 768-dim model to a 1024-dim model is a small config change \u2014 just update numDimensions and keep using the existing index.' True or false, and why?",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True \u2014 Atlas auto-migrates vectors when numDimensions changes",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True \u2014 vector indexes are dimension-agnostic at the storage layer",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True \u2014 only the similarity metric matters; dimensions are advisory",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False \u2014 embedding-model swaps REQUIRE a full re-index because the vector space changes. The recommended pattern is parallel-index migration: build the new index alongside the old, mirror writes, validate, cut over queries, drop the old. Never rebuild in place",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False \u2014 dimension mismatches are caught at index-creation but the swap still corrupts in-flight queries",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False \u2014 only Titan v2 supports re-indexing; OpenAI embeddings cannot be swapped",
+          "correct": false
+        }
+      ],
+      "explanation": "The 'Index build, rebuild, and cost' section is explicit: 'Embedding-model swaps REQUIRE a full re-index because the vector space changes \u2014 plan as a parallel-index swap (build new, switch queries when ready, drop old).' The e-commerce real-world pattern is the worked example. F3 invents a vendor constraint; T1/T2/T3 misstate how vector spaces work \u2014 embeddings from a 768-dim model are not numerically meaningful in a 1024-dim index.",
+      "sources": [
+        {
+          "title": "Index build, rebuild, and cost",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/7-atlas-index-management-and-design-artifacts.md#index-build-rebuild-and-cost",
+          "anchor": "index-build-rebuild-and-cost"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q42",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "atlas-vector-search"
+      ],
+      "stem": "Per the Atlas reading, what is the recommended ADR discipline when the eval harness shows context precision drops at k > 8?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Bury the finding in the eval-run JSON output and just move on \u2014 ADRs only capture the initial up-front decisions",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Rewrite the entire ADR document from scratch to reflect every newly discovered empirical finding",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Annotate the hybrid-retrieval ADR with the dated finding \u2014 ADRs are LIVING documents that grow as you implement",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Open a brand-new ADR document for every empirical finding observed; ADRs are immutable once accepted",
+          "correct": false
+        }
+      ],
+      "explanation": "The 'ADRs as living documents' section is explicit: annotate-as-you-implement is the discipline that makes ADRs useful. The example named in the reading is exactly this \u2014 'when the eval harness shows context precision drops at k > 8, that empirical finding annotates the hybrid-retrieval ADR's Why-we-chose-5 section.' A is the process-tax failure mode; C is wasteful; D treats ADRs as immutable, which is the OPPOSITE of the living-document discipline.",
+      "sources": [
+        {
+          "title": "ADRs as living documents",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/7-atlas-index-management-and-design-artifacts.md#adrs-as-living-documents",
+          "anchor": "adrs-as-living-documents"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q43",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "dual-source-omission",
+        "corpus-source-precedence"
+      ],
+      "stem": "The overview reading's worked example involves a vendor asking about proposal due dates: 'Section L.4 says 30 days; FAR 15.208(a) says 30 calendar days; DFARS 215.371-4 references different timing for streamlined acquisitions over $7.5M.' What does naive dense top-k over FAR alone produce, per the reading?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Returns no result and asks the contracting officer to clarify, which is the correct HITL #2 behaviour",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Confidently returns FAR 15.208(a) and misses the DFARS supplement entirely",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Returns DFARS 215.371-4 because dense embeddings prefer supplement clauses by default",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Crashes the retriever because dual-source corpora are not supported by Atlas Vector Search",
+          "correct": false
+        }
+      ],
+      "explanation": "The overview names this exactly: naive dense top-k over FAR alone returns FAR 15.208(a) confidently, misses DFARS, the platform auto-publishes the plausible answer, and OIG eventually finds an audit issue. This is the load-bearing example for why DUAL-corpus citation grounding with `corpus_source` metadata + precedence (48 CFR \u00a7201.104) is the day's discipline. B describes desired HITL behaviour but it's not what NAIVE top-k does; C and D fabricate behaviours.",
+      "sources": [
+        {
+          "title": "Why naive RAG breaks \u2014 failure modes you'll see Tuesday morning",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/1-DailyTopicOverview.md#1-why-naive-rag-breaks--failure-modes-youll-see-tuesday-morning-10-min",
+          "anchor": "1-why-naive-rag-breaks--failure-modes-youll-see-tuesday-morning-10-min"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q44",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "citation-grounding",
+        "corpus-source-precedence"
+      ],
+      "stem": "Per the Tuesday overview, which four fields make up the dual-source citation envelope shape committed at the morning war-room?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "model_id, prompt_id, completion_id, and trace_id",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "chunk-ID, embedding_vector, retrieval_score, and BM25_score",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "tenant_id, agency_id, document_id, and clause_id",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "chunk-ID, clause-ID, corpus_source (`far` or `dfars`), and last_revised",
+          "correct": true
+        }
+      ],
+      "explanation": "The overview's topic 4 lists these four exact fields as what every clause-quote must trace to: chunk-ID, clause-ID (e.g., 'FAR 15.208(a)'), corpus_source ('far' or 'dfars'), and last_revised date. The whole point is that clause precedence (48 CFR \u00a7201.104 \u2014 DFARS supplements FAR for DoD acquisitions) can only be encoded if the chunks carry their corpus source. B mixes diagnostics; C mixes tenancy; D is observability for the LLM call, not citation.",
+      "sources": [
+        {
+          "title": "Citation grounding \u2014 every quote ties to chunk-ID + clause-ID + last_revised",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/1-DailyTopicOverview.md#4-citation-grounding--every-quote-ties-to-a-chunk-id--clause-id--last_revised-10-min",
+          "anchor": "4-citation-grounding--every-quote-ties-to-a-chunk-id--clause-id--last_revised-10-min"
+        }
+      ]
+    },
+    {
+      "id": "W02-Tue-Q45",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "atlas-vector-search",
+        "filter-fields",
+        "tenant-isolation"
+      ],
+      "stem": "Per the Tuesday overview, the `agency_id` filter field is declared on which collections at Atlas index time \u2014 and NOT on which?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Declared on tenant-scoped collections (Solicitation, Proposal, AuditEvent)",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Declared on every collection in the database \u2014 universal tenancy is the only safe default",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Declared on ClauseLibraryEntry only; tenant-scoped collections use Auth0 enforcement instead",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Never declared at index time; agency_id is always applied as a `$match` post-filter",
+          "correct": false
+        }
+      ],
+      "explanation": "Topic 6 of the overview is explicit on this split: `agency_id` lives on tenant-scoped collections (Solicitation, Proposal, AuditEvent) because those are the agency-owned artifacts, but ClauseLibraryEntry is cross-tenant \u2014 every agency reads the same FAR clauses, so it would be wrong (and break correctness) to scope clauses per agency. Wed's war-room exercises a cross-tenant leak scare on exactly this split. C inverts the rule; D contradicts the pre-filter discipline the day teaches.",
+      "sources": [
+        {
+          "title": "Atlas index management + design-planning artifacts",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/2-Tuesday/1-DailyTopicOverview.md#6-atlas-index-management--design-planning-artifacts-7-min",
+          "anchor": "6-atlas-index-management--design-planning-artifacts-7-min"
+        }
+      ]
+    }
+  ]
+}

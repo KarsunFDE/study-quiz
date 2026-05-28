@@ -15,13 +15,13 @@
     "W02": {
       "title": "W2 RAG Architecture",
       "dateRange": "Mon 1 Jun – Fri 5 Jun 2026",
-      "weekReady": false,
+      "weekReady": true,
       "days": [
-        { "id": "Monday",    "label": "Mon 1 Jun", "ready": false, "questionCount": 0 },
-        { "id": "Tuesday",   "label": "Tue 2 Jun", "ready": false, "questionCount": 0 },
-        { "id": "Wednesday", "label": "Wed 3 Jun", "ready": false, "questionCount": 0 },
-        { "id": "Thursday",  "label": "Thu 4 Jun", "ready": false, "questionCount": 0 },
-        { "id": "Friday",    "label": "Fri 5 Jun", "ready": false, "questionCount": 0 }
+        { "id": "Monday",    "label": "Mon 1 Jun", "ready": true, "questionCount": 46 },
+        { "id": "Tuesday",   "label": "Tue 2 Jun", "ready": true, "questionCount": 45 },
+        { "id": "Wednesday", "label": "Wed 3 Jun", "ready": true, "questionCount": 45 },
+        { "id": "Thursday",  "label": "Thu 4 Jun", "ready": true, "questionCount": 45 },
+        { "id": "Friday",    "label": "Fri 5 Jun", "ready": true, "questionCount": 45 }
       ]
     },
     "W03": {

@@ -1,0 +1,1959 @@
+{
+  "meta": {
+    "week": "W02",
+    "day": "Wednesday",
+    "dayLabel": "Wed 3 Jun",
+    "topics": [
+      "anti-patterns",
+      "audit-grade-citation",
+      "bm25-fallback",
+      "cache-key-design",
+      "cohere-rerank",
+      "context-truncation",
+      "contextual-compression",
+      "corpus-completeness",
+      "corpus-gap-fallback",
+      "correlation-ids",
+      "cost-of-precision",
+      "deterministic-fallback",
+      "do-we-ship-dashboard",
+      "embedding-cache",
+      "embedding-drift",
+      "faithfulness-gate",
+      "hnsw-tuning",
+      "human-in-the-loop",
+      "isolation-models",
+      "langchain-v1-composition",
+      "multi-query-retrieval",
+      "multi-tenant-retrieval",
+      "namespaces-anti-pattern",
+      "numcandidates",
+      "observability",
+      "opentelemetry-spans",
+      "parent-child-chunking",
+      "post-filter-trap",
+      "pre-filter-tenancy",
+      "ragas-metrics",
+      "recall-loss",
+      "reranking-cascade",
+      "response-cache",
+      "response-envelope",
+      "retrieval-cache",
+      "semantic-caching",
+      "silo-pool-bridge",
+      "structured-logging",
+      "three-stage-cascade",
+      "web-research-discipline"
+    ],
+    "sourceCount": 8,
+    "questionCount": 45,
+    "generated": "2026-05-27",
+    "typeMix": {
+      "mcq": 33,
+      "multi-select": 6,
+      "tf-justified": 6
+    }
+  },
+  "questions": [
+    {
+      "id": "W02-Wed-Q01",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "parent-child-chunking"
+      ],
+      "stem": "Parent-child indexing in Wednesday's reading is described as the response to which specific retrieval-failure mode?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Context loss when a sub-paragraph reads in isolation",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Vocabulary mismatch between query and corpus",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Token bloat from boilerplate cross-references",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Recall collapse from a too-narrow candidate pool",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 1 names three failure modes (context loss, vocabulary mismatch, token bloat) and maps each to a pattern. Parent-child indexing addresses context loss — the embedding hits the right sub-paragraph but the LLM answer is fragmentary without surrounding context. Multi-query is the vocabulary-mismatch pattern; contextual compression is the token-bloat pattern.",
+      "sources": [
+        {
+          "title": "Parent-child chunking + multi-query + contextual compression",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/2-advanced-rag-retrieval-patterns.md#parent-child-indexing-small-to-big",
+          "anchor": "parent-child-indexing-small-to-big"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q02",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "multi-query-retrieval",
+        "reranking-cascade"
+      ],
+      "stem": "Why does Wednesday's reading insist multi-query retrieval be paired with a downstream reranker?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The reranker is what produces the paraphrases in the first place",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Multi-query queries need a reranker to translate paraphrases back to the original query",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The union of retrieval sets trades precision for recall, and the reranker restores precision",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Without the reranker the paraphrase LLM call would not return JSON",
+          "correct": false
+        }
+      ],
+      "explanation": "Multi-query unions the retrieval sets of N paraphrased queries: recall improves, precision drops because more wrong candidates enter the pool. The cross-encoder reranker restores precision before generation. Tutorials that show multi-query without a reranker downstream are incomplete.",
+      "sources": [
+        {
+          "title": "Multi-query retrieval",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/2-advanced-rag-retrieval-patterns.md#multi-query-retrieval",
+          "anchor": "multi-query-retrieval"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q03",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "contextual-compression"
+      ],
+      "stem": "Wednesday's reading names two contextual-compression filter implementations. When does it recommend the LLM-based extractor over the embeddings filter?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Always — the LLM extractor is more accurate and that always wins",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Only when the embeddings filter measurably underperforms on the eval set",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "When the corpus is multilingual, since embeddings filters can't span languages",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Only on queries that exceed the LLM's context window",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading defaults to the embeddings filter (cheap, batchable, dense-vector similarity) and reaches for an LLM-based extractor only when measurable underperformance shows up on the eval set. Cost differs by roughly an order of magnitude. The 'always more accurate so always use it' framing ignores that cost.",
+      "sources": [
+        {
+          "title": "Contextual compression",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/2-advanced-rag-retrieval-patterns.md#contextual-compression",
+          "anchor": "contextual-compression"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q04",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "langchain-v1-composition"
+      ],
+      "stem": "Per the Wednesday reading, what is the v1.0-correct composition shape for the three advanced patterns?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "An LLMChain wrapping each component in sequence",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "LCEL pipe operators as the central composition mechanism",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "RetrievalQA.from_chain_type(...).run(query) entry points",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Plain Python function calls invoked with .invoke()",
+          "correct": true
+        }
+      ],
+      "explanation": "Per D-033, LangChain v1.0 removed the Chain class and demoted the LCEL pipe operator. The composition is plain Python with each component called via .invoke(). The other three options are flagged v0.x patterns (langchain-chain-class, langchain-lcel-pipe, langchain-chaining-verb in known-bad-patterns).",
+      "sources": [
+        {
+          "title": "Composition as plain Python",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/7-rag-pipeline-composition-and-observability.md#composition-as-plain-python",
+          "anchor": "composition-as-plain-python"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q05",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "parent-child-chunking"
+      ],
+      "stem": "In a MongoDB Atlas parent-child retriever, which stage hydrates the matched children into their parent documents?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A $lookup stage chained onto the $vectorSearch aggregation",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "A $match stage applied before $vectorSearch on parent_ref",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "A $facet stage that splits the result by parent_ref",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "A $group stage that rolls children into the matching parent",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading specifies that in Atlas, hydration runs as a $lookup stage chained onto $vectorSearch — vector search returns child IDs, $lookup pulls in their parents and the system deduplicates. $match runs filters, $facet runs parallel pipelines, $group aggregates — none of those is the hydration step.",
+      "sources": [
+        {
+          "title": "Parent-child indexing",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/1-DailyTopicOverview.md#1-parent-child-chunking--multi-query--contextual-compression--three-patterns-for-when-top-k-fails-15-min",
+          "anchor": "1-parent-child-chunking--multi-query--contextual-compression--three-patterns-for-when-top-k-fails-15-min"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q06",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "reranking-cascade",
+        "three-stage-cascade"
+      ],
+      "stem": "What does the canonical three-stage cascade in Wednesday's reranking reading look like?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Retrieve top-5, rerank to top-3, then generate",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Generate first, rerank the citations, then refine retrieval",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Retrieve 50-200, rerank to 10-50, send top-3-10 to LLM",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Embed, vector-search, and let the LLM rerank all candidates",
+          "correct": false
+        }
+      ],
+      "explanation": "The canonical shape is retrieve N (50-200) -> rerank M (10-50) -> top-k (3-10) to LLM. Stage 1 maximizes recall (wide net), Stage 2 maximizes precision on candidates, Stage 3 is the LLM as implicit reranker via citation. 'Retrieve top-5, rerank to 3' under-fetches and gives the cross-encoder nothing to do.",
+      "sources": [
+        {
+          "title": "The three-stage cascade",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/3-reranking-cascade-designs.md#the-three-stage-cascade",
+          "anchor": "the-three-stage-cascade"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q07",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "recall-loss",
+        "reranking-cascade"
+      ],
+      "stem": "Wednesday's reading describes a 'recall-loss' failure mode in reranking. What is it?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The vector store stops returning hits when numCandidates exceeds the limit",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "The reranker drops recall between Stage 1 and Stage 2 to win precision on the top-k",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "The reranker cache is invalidated and recall is rebuilt from scratch",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The LLM forgets the chunks between retrieval and generation",
+          "correct": false
+        }
+      ],
+      "explanation": "Recall@N pre-rerank may be 0.94 while Recall@k post-rerank is 0.78 — the reranker traded recall for top-k precision. Acceptable for single-answer QA, disastrous for multi-hop questions that need both supporting docs. The diagnostic is the eval triangle (NDCG, recall-pre vs post, p95 latency).",
+      "sources": [
+        {
+          "title": "The recall-loss failure mode",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/3-reranking-cascade-designs.md#the-recall-loss-failure-mode",
+          "anchor": "the-recall-loss-failure-mode"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q08",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "cohere-rerank"
+      ],
+      "stem": "Which reranker does the Wednesday reading name as the W2 default and the lead candidate for W02-SA-2?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "BGE-Reranker-v2-m3 self-hosted on a GPU node",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Jina Reranker called via the Jina hosted API",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "An in-prompt Claude Haiku rerank as tier-3",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Cohere Rerank 3.5 invoked on AWS Bedrock",
+          "correct": true
+        }
+      ],
+      "explanation": "Wednesday's section 2 names Cohere Rerank 3.5 on Bedrock as the W2 default and the lead W02-SA-2 candidate (managed, ~150-300ms for 20 docs, 5-15% quality lift on regulatory text). BGE and in-prompt LLM rerank are alternatives on the same spectrum; Jina is mentioned only in passing.",
+      "sources": [
+        {
+          "title": "Three reranker options on the spectrum",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/3-reranking-cascade-designs.md#three-reranker-options-on-the-spectrum",
+          "anchor": "three-reranker-options-on-the-spectrum"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q09",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "cost-of-precision"
+      ],
+      "stem": "What does the cost-of-precision curve in Wednesday's reading say about retrieving 100 vs 200 candidates once Recall@50 is already above 95%?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Doubling N buys very little additional recall — the curve flattens",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Doubling N doubles recall — the curve is linear in this regime",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Doubling N halves precision because more wrong candidates enter",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Doubling N triggers a forced index rebuild before the next query",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 'The cost-of-precision curve' is explicit: once Recall@N is above 95%, going wider at Stage 1 buys very little — the missing 5% tends to be queries where the embedding fundamentally doesn't model the intent. Throwing more candidates won't fix an embedding-space problem. Tune Stage 2 (M) instead.",
+      "sources": [
+        {
+          "title": "The cost-of-precision curve",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/3-reranking-cascade-designs.md#the-cost-of-precision-curve",
+          "anchor": "the-cost-of-precision-curve"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q10",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "pre-filter-tenancy",
+        "multi-tenant-retrieval"
+      ],
+      "stem": "Which pattern does Wednesday's reading say is the only acceptable one for tenancy enforcement in a pool isolation model?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Per-tenant namespaces routing queries to the right shard",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Query-level post-filter applied via $match after $vectorSearch",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Index-level pre-filter declared at index-creation time",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Application-layer filter checks before the search call",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 'Why pre-filter and post-filter are not equivalent' is explicit: index-level pre-filter is the only acceptable pattern for tenancy in pool isolation. Post-filter can return zero for legitimate queries while the unfiltered candidate pool was contaminated. Namespaces enforce routing not access control. Application-layer alone is one bug from a leak.",
+      "sources": [
+        {
+          "title": "Why pre-filter and post-filter are not equivalent",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/4-multi-tenant-retrieval-boundaries.md#why-pre-filter-and-post-filter-are-not-equivalent",
+          "anchor": "why-pre-filter-and-post-filter-are-not-equivalent"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q11",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "post-filter-trap"
+      ],
+      "stem": "Wednesday names a specific silent failure when numCandidates is too low and post-filter is used for tenancy. What is it?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The system raises a TenantFilterError that halts the query pipeline",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "The system returns zero hits for legitimate queries while the unfiltered pool internally crossed the boundary",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "The system rebuilds the index automatically with the missing filter field",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The system writes a CRITICAL audit event and refuses to serve",
+          "correct": false
+        }
+      ],
+      "explanation": "When kNN candidates were contaminated with other tenants' docs and the post-filter then strips them, legitimate queries get zero results while the index quietly served the leak internally. No error fires; no automatic rebuild; no audit event by default. That silent zero-result is the diagnostic.",
+      "sources": [
+        {
+          "title": "Why pre-filter and post-filter are not equivalent",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/4-multi-tenant-retrieval-boundaries.md#why-pre-filter-and-post-filter-are-not-equivalent",
+          "anchor": "why-pre-filter-and-post-filter-are-not-equivalent"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q12",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "isolation-models",
+        "silo-pool-bridge"
+      ],
+      "stem": "Which isolation model does Wednesday's reading say most production SaaS converges on past about Year Two?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Silo — every tenant gets its own physical index",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Pool — all tenants share one index with a tenant filter",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Federated — one query fans out across per-region indexes",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Bridge — pool for small tenants, silo for those that warrant it",
+          "correct": true
+        }
+      ],
+      "explanation": "Section 'Three isolation models' explicitly names bridge (pool for the long tail, silo for tenants that exceed a threshold or have specific compliance needs) as what most production SaaS converges on past Year Two. Silo is operationally painful at scale; pool is cost-efficient default; bridge is the mature endpoint.",
+      "sources": [
+        {
+          "title": "Three isolation models",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/4-multi-tenant-retrieval-boundaries.md#three-isolation-models",
+          "anchor": "three-isolation-models"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q13",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "namespaces-anti-pattern"
+      ],
+      "stem": "Wednesday flags 'namespaces alone for multi-tenancy' as a known-bad-pattern. What is the correct framing instead?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Namespaces + per-tenant indexes + IAM-level access controls together",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Namespaces + a global encryption key shared by all tenants",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Namespaces + an application-layer regex check on tenant IDs",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Namespaces + a daily audit script that flags cross-tenant queries",
+          "correct": false
+        }
+      ],
+      "explanation": "The known-bad-pattern pinecone-namespaces-as-multitenancy says namespaces alone enforce only query routing, not access control. The correct framing combines namespaces with per-tenant indexes and IAM-level access controls — three layers, not one.",
+      "sources": [
+        {
+          "title": "The namespaces alone anti-pattern",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/4-multi-tenant-retrieval-boundaries.md#the-namespaces-alone-anti-pattern",
+          "anchor": "the-namespaces-alone-anti-pattern"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q14",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "multi-tenant-retrieval"
+      ],
+      "stem": "In acquire-gov, which collection is described as cross-tenant and therefore does NOT carry an agency_id filter field?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Solicitation — in-progress agency drafts",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Proposal — vendor submissions to an agency",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "ClauseLibraryEntry — the shared FAR/DFARS corpus",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "AuditEvent — per-agency action logs",
+          "correct": false
+        }
+      ],
+      "explanation": "The FAR/DFARS clause library is the same for every agency, so ClauseLibraryEntry is cross-tenant and deliberately omits agency_id. Solicitation, Proposal, AuditEvent, and Cpar are tenant-scoped and carry agency_id as a filter field declared at index-creation time.",
+      "sources": [
+        {
+          "title": "Implementation primitives across the major stores",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/4-multi-tenant-retrieval-boundaries.md#implementation-primitives-across-the-major-stores",
+          "anchor": "implementation-primitives-across-the-major-stores"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q15",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "cache-key-design",
+        "response-cache"
+      ],
+      "stem": "Wednesday's response-cache key shape includes tenant_id, model_version, and prompt_version. Why model_version?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "So each tenant pays for its own model invocation budget",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "So the cache automatically misses when the model rolls over",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "So the cache can switch backends between Bedrock and OpenAI",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "So semantic-similarity scoring uses the correct embedding model",
+          "correct": false
+        }
+      ],
+      "explanation": "model_version is in the cache key so a model rollover automatically misses all previous entries — stale answers from the old model don't survive into the new model's serving window. tenant_id prevents cross-tenant leakage; prompt_version invalidates on prompt-template changes.",
+      "sources": [
+        {
+          "title": "Cache keys and the tenancy trap",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/5-rag-caching-and-index-management.md#cache-keys-and-the-tenancy-trap",
+          "anchor": "cache-keys-and-the-tenancy-trap"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q16",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "semantic-caching"
+      ],
+      "stem": "Why does Wednesday's reading insist the semantic-similarity threshold be calibrated against an eval set rather than picked from a blog post?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The eval set is what triggers Redis to load the cache module",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Blog-post thresholds always assume cosine and most caches use dot product",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Calibration runs faster than blog-post lookups in CI",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Too low gives false-positive hits returning wrong answers; too high collapses to exact-match",
+          "correct": true
+        }
+      ],
+      "explanation": "Section 'Exact-match versus semantic caching' is explicit: threshold too low (0.7) yields false-positive cache hits returning wrong responses; too high (0.99) collapses to exact-match performance. Calibrate against labeled query pairs marked 'should share an answer' vs 'should not'.",
+      "sources": [
+        {
+          "title": "Exact-match versus semantic caching",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/5-rag-caching-and-index-management.md#exact-match-versus-semantic-caching",
+          "anchor": "exact-match-versus-semantic-caching"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q17",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "hnsw-tuning"
+      ],
+      "stem": "Which HNSW parameter does Wednesday say is query-time and free to change without an index rebuild?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "numCandidates — candidate pool examined per query",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "efConstruction — candidate list size during build",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "m — number of bidirectional connections per node",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "filter — the field type declared at index creation",
+          "correct": false
+        }
+      ],
+      "explanation": "m and efConstruction are build-time parameters that require an index rebuild to change. numCandidates is set per query and free to change. The filter type is declared at index creation and changing it requires an online index rebuild.",
+      "sources": [
+        {
+          "title": "Vector-index management revisited: HNSW tuning",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/5-rag-caching-and-index-management.md#vector-index-management-revisited-hnsw-tuning",
+          "anchor": "vector-index-management-revisited-hnsw-tuning"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q18",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "numcandidates"
+      ],
+      "stem": "Wednesday names three signals to raise numCandidates. Which of these is one of them?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Tenant count grows past a fixed threshold of namespaces",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "The corpus rolls over to a new embedding model version",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Pre-filter selectivity narrows the pool and result counts come up short",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "The response cache hit rate drops below 40%",
+          "correct": false
+        }
+      ],
+      "explanation": "The three named signals are: pre-filter is highly selective and result count comes up short; rerank quality is plateauing (give the cross-encoder more to work with); recall against an exact-NN reference is below target. Tenant counts, model rollovers, and cache hit rate don't drive numCandidates tuning.",
+      "sources": [
+        {
+          "title": "Vector-index management revisited: HNSW tuning",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/5-rag-caching-and-index-management.md#vector-index-management-revisited-hnsw-tuning",
+          "anchor": "vector-index-management-revisited-hnsw-tuning"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q19",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "bm25-fallback",
+        "deterministic-fallback"
+      ],
+      "stem": "Why does Wednesday's reading name BM25 as the standard empty-result fallback when $vectorSearch returns zero hits?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "BM25 is the only sparse-search algorithm Atlas supports out of the box",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "BM25 catches literal-match queries (rare identifiers, exact tokens) that dense vectors underweight",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "BM25 caches its results in Redis automatically, saving the round-trip",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "BM25 hides the failure from the user so refusal rate stays low",
+          "correct": false
+        }
+      ],
+      "explanation": "Dense and sparse retrievers fail on different queries. BM25 catches the cases where the discriminating tokens are rare proper nouns, error codes, or statute numbers that dense embeddings underweight. The point of the fallback is to recover those, not to hide failures.",
+      "sources": [
+        {
+          "title": "Empty-result fallback: BM25 sparse search",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/6-deterministic-fallback-patterns.md#empty-result-fallback-bm25-sparse-search",
+          "anchor": "empty-result-fallback-bm25-sparse-search"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q20",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "faithfulness-gate",
+        "ragas-metrics"
+      ],
+      "stem": "Why does Wednesday call faithfulness-alone an incomplete confidence metric for RAG?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Because it conflicts with NDCG ranking and cannot be combined with it",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Because it can only score answers shorter than 200 tokens at a time",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Because it requires an LLM judge that is slow at production volume",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Because it misses context-recall failures and answer-relevance failures",
+          "correct": true
+        }
+      ],
+      "explanation": "The known-bad-pattern ragas-faithfulness-only is explicit: faithfulness measures whether the answer's claims appear in retrieved chunks, but it cannot see context-recall failures (the corpus didn't contain the right doc) or answer-relevance failures (the answer is faithful but doesn't answer the question). Use all four RAGAS dimensions.",
+      "sources": [
+        {
+          "title": "Low-confidence fallback: faithfulness gate",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/6-deterministic-fallback-patterns.md#low-confidence-fallback-faithfulness-gate",
+          "anchor": "low-confidence-fallback-faithfulness-gate"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q21",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "corpus-gap-fallback"
+      ],
+      "stem": "Per Wednesday's reading, what is the production-correct response when the system detects a corpus gap?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Refuse explicitly, name the gap, and escalate to a human reviewer",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Answer from the model's parametric knowledge with a low-confidence flag",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Retry retrieval with a wider numCandidates until something is returned",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Return the nearest semantic neighbor with a 'best match' disclaimer",
+          "correct": false
+        }
+      ],
+      "explanation": "The corpus-gap fallback is the highest-value because a confident wrong answer about a fact the corpus could-but-doesn't ground is the most damaging outcome. The production-correct response is explicit refusal with the gap named and a route to human escalation. 'Answer from training data' is the very failure mode RAG was built to prevent.",
+      "sources": [
+        {
+          "title": "Corpus-gap fallback: explicit refusal with escalation",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/6-deterministic-fallback-patterns.md#corpus-gap-fallback-explicit-refusal-with-escalation",
+          "anchor": "corpus-gap-fallback-explicit-refusal-with-escalation"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q22",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "human-in-the-loop",
+        "corpus-gap-fallback"
+      ],
+      "stem": "How does Wednesday's reading frame human review in a production RAG system?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "As exception handling for queries the pipeline cannot serve",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "As a debug feature disabled before production rollout",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "As a first-class designed-for path, not an exception",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "As a tier-3 reranker that scores high-stakes queries last",
+          "correct": false
+        }
+      ],
+      "explanation": "The 2026 industry consensus per Wednesday: fallbacks are not exception handlers, they are first-class operational paths designed alongside the happy path. Human review is one of three named fallback paths and tees up Thursday's HITL #2 topic — the human is one of the deterministic fallback paths.",
+      "sources": [
+        {
+          "title": "Human review as a designed-for path",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/6-deterministic-fallback-patterns.md#human-review-as-a-designed-for-path",
+          "anchor": "human-review-as-a-designed-for-path"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q23",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "correlation-ids"
+      ],
+      "stem": "Why does Wednesday call the correlation ID the load-bearing primitive for RAG pipeline observability?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It encodes the tenant_id so observability stays scoped to one tenant",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "It is the only primitive that ties all events of one request across services and stages",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "It is the cache key Redis uses for the embedding-cache lookup",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "It signs spans so the tracing backend can verify their integrity",
+          "correct": false
+        }
+      ],
+      "explanation": "Without correlation IDs, debugging a distributed RAG pipeline is archeology. The ID travels with the request through every stage and ties together log events, metric labels, downstream calls. Tenant scoping is separate; cache keys include other fields; span integrity is not the correlation ID's role.",
+      "sources": [
+        {
+          "title": "Correlation IDs as the cross-stage primitive",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/7-rag-pipeline-composition-and-observability.md#correlation-ids-as-the-cross-stage-primitive",
+          "anchor": "correlation-ids-as-the-cross-stage-primitive"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q24",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "opentelemetry-spans"
+      ],
+      "stem": "Per Wednesday's reading, why do production teams set internal RAG span-naming conventions like rag.retrieve.vector and rag.rerank?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Because cost-attribution dashboards group only by exact span-name match",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Because OpenTelemetry requires span names to start with the service domain",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Because LangSmith rejects spans that aren't prefixed with rag.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Because the GenAI SIG's OTel semantic conventions for RAG attributes are still in draft",
+          "correct": true
+        }
+      ],
+      "explanation": "Wednesday is explicit: no stable OTel semantic conventions for RAG-specific span attributes exist yet — the GenAI SIG is working on them. In the meantime, production teams establish coherent internal conventions and apply them consistently. The other claims are not made by the reading.",
+      "sources": [
+        {
+          "title": "Span boundaries and OpenTelemetry",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/7-rag-pipeline-composition-and-observability.md#span-boundaries-and-opentelemetry",
+          "anchor": "span-boundaries-and-opentelemetry"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q25",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "do-we-ship-dashboard"
+      ],
+      "stem": "Which is one of the four signals Wednesday names as gating the 'do we ship?' decision for a RAG pipeline change?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Per-stage hit-rate across cache layers and fallback paths",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Total CPU utilization on the application tier",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Number of git commits per author on the change",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Database connection-pool saturation at p99",
+          "correct": false
+        }
+      ],
+      "explanation": "The four ship signals are: per-stage latency (p50/p95/p99), per-stage cost, per-stage hit-rate (caches + fallbacks), and refusal rate with cause breakdown. CPU, git commits, and DB pool saturation are general-infra concerns but not the four named signals.",
+      "sources": [
+        {
+          "title": "The do we ship dashboard",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/7-rag-pipeline-composition-and-observability.md#the-do-we-ship-dashboard",
+          "anchor": "the-do-we-ship-dashboard"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q26",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "context-truncation",
+        "anti-patterns"
+      ],
+      "stem": "What is the diagnostic Wednesday names for silent context truncation?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Sample 1% of prompts and replay them against the eval set",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Check the token-budget config file on every deploy",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Log chunks_retrieved vs chunks_sent_to_llm and alert when they diverge",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Compare the LLM response length against the prompt length",
+          "correct": false
+        }
+      ],
+      "explanation": "Silent truncation is silent because nothing crashes. The diagnostic is two explicit counters — chunks_retrieved (from retrieval) and chunks_sent_to_llm (after prompt assembly) — with an alert when they diverge. The fix is then to raise the budget, compress, or reduce k.",
+      "sources": [
+        {
+          "title": "Anti-pattern 1: silent context truncation",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/8-rag-anti-patterns.md#anti-pattern-1-silent-context-truncation",
+          "anchor": "anti-pattern-1-silent-context-truncation"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q27",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "audit-grade-citation"
+      ],
+      "stem": "Wednesday describes the audit-grade citation pattern. Which is its essential discipline?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Every retrieved chunk gets a human-readable summary in the answer",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Every retrieved chunk has a deterministic ID emitted in the answer and logged for trace",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "The LLM paraphrases each cited source in its own words",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The audit log stores the full retrieved chunk text alongside the answer",
+          "correct": false
+        }
+      ],
+      "explanation": "Audit-grade requires deterministic chunk IDs (hash of source+offset or stable DB UUID), included in the prompt, emitted by the LLM in citations, and written to the audit log. The point is machine-traceability — 'according to the policy on data retention…' without a chunk_id is not auditable.",
+      "sources": [
+        {
+          "title": "Anti-pattern 3: citation without chunk ID",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/8-rag-anti-patterns.md#anti-pattern-3-citation-without-chunk-id",
+          "anchor": "anti-pattern-3-citation-without-chunk-id"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q28",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "embedding-drift",
+        "anti-patterns"
+      ],
+      "stem": "What is the migration playbook Wednesday names for upgrading the embedding model?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Truncate old vectors to the new model's dimension count",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Rolling re-embed across the corpus while serving both models",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Embed new docs with the new model, leave old docs as-is",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Parallel index, validate on eval set, then atomic alias swap",
+          "correct": true
+        }
+      ],
+      "explanation": "The reading is explicit: provision new index, re-embed corpus with the new model, run the eval set against both old and new, atomic alias swap on validation pass, keep old for rollback one cycle. The rolling-upgrade option produced the fintech post-mortem in Section 5.",
+      "sources": [
+        {
+          "title": "Anti-pattern 4: schema drift between embedding model and stored vectors",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/8-rag-anti-patterns.md#anti-pattern-4-schema-drift-between-embedding-model-and-stored-vectors",
+          "anchor": "anti-pattern-4-schema-drift-between-embedding-model-and-stored-vectors"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q29",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "web-research-discipline"
+      ],
+      "stem": "Per Wednesday's framing for the afternoon /web-research slot, what discipline marks an ADR draft as actually complete?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Naming the dimension on which the chosen tech loses to the alternatives",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Naming three sources that all agree the chosen tech is best",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Naming the cohort lead who approved the choice in standup",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Naming a public benchmark that the chosen tech tops",
+          "correct": false
+        }
+      ],
+      "explanation": "Wednesday's framing is sharp: if a pair can name only strengths of the chosen tech and not the dimension on which it loses, the research is incomplete. The Friday Live Defense rubric weights 'honest acknowledgment of trade-offs' as a separate dimension from 'correct choice'.",
+      "sources": [
+        {
+          "title": "Framing the afternoon /web-research slot",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/8-rag-anti-patterns.md#framing-the-afternoon-web-research-slot",
+          "anchor": "framing-the-afternoon-web-research-slot"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q30",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "anti-patterns"
+      ],
+      "stem": "Per Wednesday's reading, when production RAG systems fail, roughly what percent of failures trace to retrieval rather than generation?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "About 50% — retrieval and generation share blame",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "About 25% — generation hallucinations dominate failures",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "About 73% — retrieval is the dominant failure point",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "About 90% — generation is essentially never the root cause",
+          "correct": false
+        }
+      ],
+      "explanation": "Wednesday's introduction cites the consistent industry number: roughly 73% of production RAG failures trace to retrieval, not generation. Generation looks like the visible failure (a confident wrong answer); retrieval is the root cause. Hence the morning focus on advanced retrieval patterns.",
+      "sources": [
+        {
+          "title": "RAG anti-patterns introduction",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/8-rag-anti-patterns.md#2-introduction",
+          "anchor": "2-introduction"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q31",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "multi-tenant-retrieval",
+        "pre-filter-tenancy"
+      ],
+      "stem": "Which acquire-gov ticket does Wednesday say closes at the W2 boundary via the Atlas index-level pre-filter?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Item 5 — LLMChain.run() entry points migrated to .invoke()",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Item 10 — multi-tenant retrieval boundary at the index layer",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Item 7 — JWT correlation-id propagation across services",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Item 12 — async ingestion dead-letter queue wiring",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3 of the daily overview names Item 10 explicitly: multi-tenant retrieval boundary closes at the index level when agency_id becomes a filter field. Item 5 is the Chain-class migration (Thursday). Items 7 and 12 are not the closure target here.",
+      "sources": [
+        {
+          "title": "Multi-tenant retrieval boundaries — Item 10",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/1-DailyTopicOverview.md#3-multi-tenant-retrieval-boundaries--item-10-load-bearing-for-farfedramp-12-min",
+          "anchor": "3-multi-tenant-retrieval-boundaries--item-10-load-bearing-for-farfedramp-12-min"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q32",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "retrieval-cache",
+        "cache-key-design"
+      ],
+      "stem": "In Wednesday's three cache layers, what makes the retrieval cache key correctly tenant-safe?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Hashing the query text plus a fixed cluster-wide secret",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Hashing only the query embedding to keep keys short",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Hashing the query text and adding a daily salt for rotation",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Hashing query_text combined with the filter set including agency_id",
+          "correct": true
+        }
+      ],
+      "explanation": "The retrieval-cache key shape is sha256(query_text + filter_hash). The filter hash must include agency_id, otherwise the cache reproduces the Item 10 boundary violation inside Redis — get this wrong and the cache becomes the tenancy bug.",
+      "sources": [
+        {
+          "title": "Caching patterns for hot queries",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/1-DailyTopicOverview.md#4-caching-patterns-for-hot-queries--atlas-index-management-revisited-10-min",
+          "anchor": "4-caching-patterns-for-hot-queries--atlas-index-management-revisited-10-min"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q33",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "embedding-cache"
+      ],
+      "stem": "Per the daily overview, which cache layer is described as safe to share across tenants when the embedded text is FAR/DFARS corpus content?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The embedding cache for cross-tenant clause-library queries",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "The response cache as long as the prompt version matches",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The retrieval cache when numCandidates is high enough",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The Solicitation collection cache scoped to one agency",
+          "correct": false
+        }
+      ],
+      "explanation": "FAR/DFARS text is universal, so its embeddings are the same across agencies and the embedding cache is safe to share across tenants. The response cache is tenant-scoped by construction (answers can include tenant chunks). The retrieval cache's filter hash must include agency_id even on FAR queries to be safe.",
+      "sources": [
+        {
+          "title": "Caching patterns for hot queries",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/1-DailyTopicOverview.md#4-caching-patterns-for-hot-queries--atlas-index-management-revisited-10-min",
+          "anchor": "4-caching-patterns-for-hot-queries--atlas-index-management-revisited-10-min"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q34",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "multi-tenant-retrieval",
+        "defense-in-depth"
+      ],
+      "stem": "Which of the following are layers in Wednesday's defense-in-depth model for multi-tenant retrieval? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Application layer passes the caller's verified tenant context",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Storage layer requires a tenant filter declared at index-creation time",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Identity layer scopes credentials per tenant so a leak cannot pivot",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Audit layer writes every retrieval with tenant, filter, and result count",
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": "Network layer randomizes the IP of each tenant's request path",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading names exactly four defense-in-depth layers: application, storage, identity, and audit. Any one can fail; the boundary holds because no single failure crosses all four. Network-IP randomization is not part of the named architecture.",
+      "sources": [
+        {
+          "title": "Defense in depth",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/4-multi-tenant-retrieval-boundaries.md#defense-in-depth",
+          "anchor": "defense-in-depth"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q35",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "anti-patterns"
+      ],
+      "stem": "Which of these RAG anti-patterns are explicitly named in Wednesday's top-5 list? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Silent context truncation when assembling the prompt",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Confidence logged as a string rather than the numeric score",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Citation without a chunk ID the audit log can resolve",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Async ingestion without a dead-letter queue",
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": "Per-tenant API keys instead of a single shared service principal",
+          "correct": false
+        }
+      ],
+      "explanation": "The top-5 anti-patterns are silent context truncation, confidence-as-string, citation without chunk ID, schema drift between embedding and stored vectors, and async ingestion without dead-letter. Per-tenant keys are a recommended pattern, not an anti-pattern.",
+      "sources": [
+        {
+          "title": "RAG anti-patterns",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/1-DailyTopicOverview.md#7-rag-anti-patterns--framing-for-the-afternoon-web-research-slot-8-min",
+          "anchor": "7-rag-anti-patterns--framing-for-the-afternoon-web-research-slot-8-min"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q36",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "deterministic-fallback"
+      ],
+      "stem": "Which of these are named fallback paths in Wednesday's deterministic-fallback reading? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Empty-result fallback to BM25 sparse search",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Low-confidence fallback gated by faithfulness threshold",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Corpus-gap fallback with explicit refusal and escalation",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Model-rollover fallback to a previous embedding version",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "Index-rebuild fallback when a filter field is missing",
+          "correct": false
+        }
+      ],
+      "explanation": "The reading names three fallback paths in cost-ordered escalation: BM25 on empty result, faithfulness gate on low confidence, explicit refusal+escalation on corpus gap. Model-rollover and index-rebuild are operations, not fallback paths in this taxonomy.",
+      "sources": [
+        {
+          "title": "Deterministic fallback patterns",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/6-deterministic-fallback-patterns.md#3-core-concepts",
+          "anchor": "3-core-concepts"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q37",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "observability",
+        "do-we-ship-dashboard"
+      ],
+      "stem": "Which of these are among the four 'do we ship?' signals Wednesday names for a RAG release decision? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Per-stage latency at p50, p95, and p99",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Per-stage cost including tokens and reranker invocations",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Per-stage hit-rate across caches and fallback paths",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Refusal rate with breakdown by cause",
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": "Number of v0.x LangChain imports remaining in the codebase",
+          "correct": false
+        }
+      ],
+      "explanation": "The four signals are: per-stage latency (p50/p95/p99), per-stage cost, per-stage hit-rate, refusal rate with cause breakdown. v0.x import counts are a separate code-hygiene metric, not part of the ship-dashboard.",
+      "sources": [
+        {
+          "title": "The do we ship dashboard",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/7-rag-pipeline-composition-and-observability.md#the-do-we-ship-dashboard",
+          "anchor": "the-do-we-ship-dashboard"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q38",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "langchain-v1-composition"
+      ],
+      "stem": "Which patterns does Wednesday flag as pre-v1.0 framings to substitute with plain-Python composition? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "RetrievalQA.from_chain_type(...).run(query) entry points",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "LCEL pipe operators positioned as the foundation of composition",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "LLMChain wrapping a prompt+model as a unit",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Calling each component's .invoke() method directly",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "Sequential variable assignment with normal Python control flow",
+          "correct": false
+        }
+      ],
+      "explanation": "The three flagged v0.x patterns are langchain-chain-class (.run() entry points, LLMChain wrappers, RetrievalQA chains), langchain-lcel-pipe (LCEL as the foundational composition), and langchain-chaining-verb. The v1.0 substitutes are .invoke() and sequential variable assignment.",
+      "sources": [
+        {
+          "title": "Composition as plain Python",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/7-rag-pipeline-composition-and-observability.md#composition-as-plain-python",
+          "anchor": "composition-as-plain-python"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q39",
+      "type": "multi-select",
+      "difficulty": "synthesis",
+      "topics": [
+        "web-research-discipline"
+      ],
+      "stem": "Which scenario-alternatives prompts are loaded for Wednesday's afternoon /web-research slot? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "W02-SA-1 — Vector store choice across Atlas / pgvector / Pinecone",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "W02-SA-2 — Hybrid-retrieval strategy across dense / hybrid / contextual",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "W02-SA-3 — Embedding-model selection across Titan / OpenAI / BGE",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "W02-SA-4 — Agentic-orchestration framework selection",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "W02-SA-5 — Identity provider for Auth0 vs Cognito",
+          "correct": false
+        }
+      ],
+      "explanation": "Per D-040 and the daily overview section 7, the three prompts loaded for Wednesday afternoon are W02-SA-1 (vector store), W02-SA-2 (hybrid retrieval), W02-SA-3 (embedding model). Agentic orchestration arrives in W3; Auth0/Cognito is not a W02 scenario.",
+      "sources": [
+        {
+          "title": "RAG anti-patterns + framing for the afternoon /web-research slot",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/1-DailyTopicOverview.md#7-rag-anti-patterns--framing-for-the-afternoon-web-research-slot-8-min",
+          "anchor": "7-rag-anti-patterns--framing-for-the-afternoon-web-research-slot-8-min"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q40",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "pre-filter-tenancy"
+      ],
+      "stem": "True or False: For multi-tenant RAG in a pool isolation model, post-filter applied via $match after $vectorSearch is acceptable as long as numCandidates is high enough.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — raising numCandidates eliminates the post-filter zero-result failure",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — post-filter is cheaper to deploy and Atlas optimizes it equivalently",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — application-layer filtering is the actual boundary, post-filter is redundant",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — only index-level pre-filter is acceptable; post-filter can return zero for legitimate queries while the unfiltered pool internally contained other tenants' data",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — post-filter requires a recurring nightly index rebuild that Atlas does not support",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — post-filter only works on string fields and tenant IDs are always UUIDs",
+          "correct": false
+        }
+      ],
+      "explanation": "Index-level pre-filter is the only acceptable tenancy pattern. Post-filter fails two ways: a forgotten filter quietly leaks, and even when applied, a low numCandidates returns zero hits because the unfiltered candidate pool was dominated by other tenants. Raising numCandidates does not fix this; the boundary needs to be at the index plan, not after candidate generation.",
+      "sources": [
+        {
+          "title": "Why pre-filter and post-filter are not equivalent",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/4-multi-tenant-retrieval-boundaries.md#why-pre-filter-and-post-filter-are-not-equivalent",
+          "anchor": "why-pre-filter-and-post-filter-are-not-equivalent"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q41",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "recall-loss",
+        "reranking-cascade"
+      ],
+      "stem": "True or False: Adding a cross-encoder reranker can decrease end-to-end answer quality even when its own ranking metrics improve.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — the reranker can drop recall@k between Stage 1 and Stage 2 while raising NDCG, breaking multi-hop queries that needed both supporting documents",
+          "correct": true
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — rerankers always add latency that the LLM cannot recover from",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — cross-encoder scores are not commensurable with bi-encoder cosine similarity",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — rerankers only sort, they never change the candidate set",
+          "correct": false
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — a quality-positive reranker is by definition end-to-end positive",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — Cohere Rerank 3.5 specifically is calibrated against recall-loss",
+          "correct": false
+        }
+      ],
+      "explanation": "The recall-loss failure mode: Recall@N pre-rerank may be 0.94 while Recall@k post-rerank is 0.78. NDCG can rise while recall falls — fine for single-answer QA, disastrous for multi-hop. The eval triangle (NDCG, recall-pre vs post, p95) is the named diagnostic.",
+      "sources": [
+        {
+          "title": "The recall-loss failure mode",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/3-reranking-cascade-designs.md#the-recall-loss-failure-mode",
+          "anchor": "the-recall-loss-failure-mode"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q42",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "corpus-gap-fallback",
+        "deterministic-fallback"
+      ],
+      "stem": "True or False: A production RAG system with zero refusals over a sustained window is a sign the system is working perfectly.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — zero refusals means the corpus covers every query the users send",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — refusals are an exception path and should be rare in steady state",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — the faithfulness gate has been correctly tuned to maximize answer rate",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — zero refusals means the system is either lying (returning ungrounded answers) or trivial (no real corpus-gap signal)",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — refusal rate is gated by the BM25 budget and zero just means BM25 is disabled",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — the FedRAMP audit explicitly requires a non-zero refusal rate per quarter",
+          "correct": false
+        }
+      ],
+      "explanation": "Wednesday's reading: a healthy refusal rate is non-zero and stable. Zero refusals means the system is lying — shipping confidently wrong answers — or trivial. A rising refusal rate on a topic cluster is the corpus-growth signal. Refusal is a first-class operational path, not exception handling.",
+      "sources": [
+        {
+          "title": "Human review as a designed-for path",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/6-deterministic-fallback-patterns.md#human-review-as-a-designed-for-path",
+          "anchor": "human-review-as-a-designed-for-path"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q43",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "embedding-cache"
+      ],
+      "stem": "True or False: An embedding cache for FAR/DFARS clause-library queries is safe to share across all agencies on the acquire-gov platform.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — the FAR/DFARS corpus text is universal across agencies, and the same query produces the same embedding regardless of which agency made the call",
+          "correct": true
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — Redis itself enforces tenant isolation through namespace keys",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — embeddings are encrypted at rest and cannot be read across tenants",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — every cache layer including embeddings must be tenant-scoped under FedRAMP",
+          "correct": false
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — Titan v2 embeddings include tenant metadata that would leak across the cache",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — TTL semantics differ per agency and shared keys would expire incorrectly",
+          "correct": false
+        }
+      ],
+      "explanation": "Wednesday is explicit: FAR/DFARS is universal across agencies, the embedding is the same regardless of caller, and the embedding cache is safe to share cross-tenant for that corpus. Tenant-private text (user queries containing confidential terms) still requires tenant-scoped embedding caching. Response and retrieval caches must always be tenant-scoped.",
+      "sources": [
+        {
+          "title": "Cache keys and the tenancy trap",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/5-rag-caching-and-index-management.md#cache-keys-and-the-tenancy-trap",
+          "anchor": "cache-keys-and-the-tenancy-trap"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q44",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "langchain-v1-composition",
+        "observability"
+      ],
+      "stem": "True or False: Composing a RAG pipeline as plain Python function calls is a stylistic choice with no observability consequence.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — observability is purely a runtime concern decoupled from composition style",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — LangSmith hooks both LCEL pipes and plain Python equivalently",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — OTel spans are emitted by the SDK regardless of orchestration shape",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — composition shape determines what you can debug; plain Python exposes per-stage boundaries to every observability primitive your platform already supports without framework-mediated tracing",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — plain Python is required because LCEL pipes silently swallow exceptions in production",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — Atlas requires plain Python composition to enforce pre-filter declarations",
+          "correct": false
+        }
+      ],
+      "explanation": "Wednesday is explicit: the composition shape determines what you can debug. A pipeline hiding stage boundaries behind framework abstractions makes the framework's tracing your only window. Plain Python exposes each stage as a normal function call so structured logs, OTel, and metrics all work without ceremony.",
+      "sources": [
+        {
+          "title": "Composition as plain Python",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/7-rag-pipeline-composition-and-observability.md#composition-as-plain-python",
+          "anchor": "composition-as-plain-python"
+        }
+      ]
+    },
+    {
+      "id": "W02-Wed-Q45",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "anti-patterns",
+        "embedding-drift"
+      ],
+      "stem": "True or False: When an embedding-model upgrade is rolled out, new documents can be embedded with the new model while older documents stay with the previous model until the next maintenance window.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — rolling upgrades minimize indexing cost and downtime",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — cosine similarity tolerates small dimensional drift between vectors",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — newer vectors dominate ranking so older mismatched ones do not matter",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — embedding-model upgrades must be atomic: parallel index, validate on the eval set, then alias swap, because mixed-dimension or mixed-model vectors break similarity scoring",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False — Atlas refuses to write vectors of mixed dimensions into the same index field",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False — Bedrock automatically retroactively re-embeds the corpus on model rollover",
+          "correct": false
+        }
+      ],
+      "explanation": "Anti-pattern 4 (schema drift) is explicit: embedding-model upgrades are schema migrations and must be atomic. Parallel index, validate, alias swap. The fintech post-mortem in section 5 is the cautionary tale — rolling upgrades degraded RAG quality silently for three weeks. Mixed models in one index produce garbage similarity scores.",
+      "sources": [
+        {
+          "title": "Anti-pattern 4: schema drift between embedding model and stored vectors",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/3-Wednesday/8-rag-anti-patterns.md#anti-pattern-4-schema-drift-between-embedding-model-and-stored-vectors",
+          "anchor": "anti-pattern-4-schema-drift-between-embedding-model-and-stored-vectors"
+        }
+      ]
+    }
+  ]
+}

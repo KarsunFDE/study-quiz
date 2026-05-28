@@ -1,0 +1,1981 @@
+{
+  "meta": {
+    "week": "W02",
+    "day": "Monday",
+    "dayLabel": "Mon 1 Jun",
+    "topics": [
+      "accountability-inversion",
+      "adr-discipline",
+      "atlas-vector-search",
+      "bedrock-titan-embeddings",
+      "chunking-strategies",
+      "citation-grounding",
+      "co-disqualifier",
+      "embedding-dimensionality",
+      "embedding-models",
+      "langchain-v1",
+      "matryoshka-mrl",
+      "moscow-prioritisation",
+      "multi-tenant-pre-filter",
+      "naive-vs-production-rag",
+      "numcandidates-tuning",
+      "parent-child-chunking",
+      "plan-day-discipline",
+      "rag-architecture",
+      "rag-evaluation",
+      "scope-envelope",
+      "six-design-dimensions",
+      "spec-driven-dev",
+      "stakeholder-framing",
+      "vector-index-definition",
+      "vectorsearch-aggregation",
+      "w6h-pattern"
+    ],
+    "sourceCount": 7,
+    "questionCount": 46,
+    "generated": "2026-05-27",
+    "typeMix": {
+      "mcq": 35,
+      "multi-select": 5,
+      "tf-justified": 6
+    }
+  },
+  "questions": [
+    {
+      "id": "W02-Mon-Q01",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "rag-architecture"
+      ],
+      "stem": "According to Monday's RAG architecture overview, RAG splits the language model's job into which two phases?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Retrieve (pull relevant chunks from an indexed corpus) and generate (compose a response using those chunks as grounding)",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Encode (the transformer's input pass over the query) and decode (the autoregressive output pass that produces the response), both executed once per request inside the LLM call itself",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Train and serve, where training runs nightly and serving runs at request time",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Tokenise and embed, where tokenisation is offline and embedding is per-request",
+          "correct": false
+        }
+      ],
+      "explanation": "The overview defines RAG as retrieve-then-generate: pull relevant chunks from the indexed corpus, then have the LLM compose a response using those chunks as grounding. 'Encode/decode' is a transformer-internal concept, not the RAG split. Section 2 of the daily overview makes this explicit.",
+      "sources": [
+        {
+          "title": "RAG architecture overview — six dimensions to plan against",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/1-DailyTopicOverview.md#2-rag-architecture-overview--six-dimensions-to-plan-against-10-min",
+          "anchor": "2-rag-architecture-overview--six-dimensions-to-plan-against-10-min"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q02",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "co-disqualifier",
+        "stakeholder-framing"
+      ],
+      "stem": "The Contracting Officer's Monday-morning ask names two operational questions she needs answered. Which pair does the daily overview specifically identify?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Which vector DB is best, and whether RAG is cooler than fine-tuning the model",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Whether to use Bedrock or OpenAI, and what the per-query cost ceiling will be",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "What 'grounding' means as a contractual deliverable, and what the OIG-defensible citation trail is",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "How fast the pilot can ship, and which agencies are funding similar tools",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 1 of the overview underlines what the CO is NOT asking ('is RAG cool', 'which vector DB is best') and what she IS asking: what grounding means contractually, and what the OIG-defensible citation trail looks like. Choice A is the explicitly-rejected framing; D is plausible but is a programme-management ask, not the CO's.",
+      "sources": [
+        {
+          "title": "Stakeholder demand framing — what the contracting officer actually asked for",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/1-DailyTopicOverview.md#1-stakeholder-demand-framing--what-the-contracting-officer-actually-asked-for-10-min",
+          "anchor": "1-stakeholder-demand-framing--what-the-contracting-officer-actually-asked-for-10-min"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q03",
+      "type": "multi-select",
+      "difficulty": "recall",
+      "topics": [
+        "six-design-dimensions"
+      ],
+      "stem": "Per Monday's daily overview, which of the following are explicitly listed among the SIX coupled design dimensions for a RAG system? Select all that apply.",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Corpus shape + chunking",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Embedding model",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Reinforcement-learning reward function for the LLM",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Citation grounding surface",
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": "Tokeniser vocabulary size",
+          "correct": false
+        }
+      ],
+      "explanation": "The six dimensions named in §2 are: corpus shape + chunking, embedding model, vector store, retrieval mode, citation grounding surface, and evaluation pattern. RL reward functions and tokeniser vocab are not on the list — they belong to model training, which is upstream of RAG.",
+      "sources": [
+        {
+          "title": "RAG architecture overview — six dimensions to plan against",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/1-DailyTopicOverview.md#2-rag-architecture-overview--six-dimensions-to-plan-against-10-min",
+          "anchor": "2-rag-architecture-overview--six-dimensions-to-plan-against-10-min"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q04",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "adr-discipline",
+        "plan-day-discipline"
+      ],
+      "stem": "Which four ADRs does Monday's daily overview say the Plan-Day artefact must commit on (per D-033)?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "LLM provider, prompt template, evaluation harness, and CI workflow",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Chunking strategy, embedding model, vector store, and LangChain v1.0 posture",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Retrieval mode, citation schema, evaluation metric, and refusal threshold",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Tenant isolation model, ACL policy, audit log shape, and data residency",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 6 of the daily overview names exactly four Monday-ADR commitments: chunking + embedding model + vector store + LangChain v1.0 posture. The retrieval mode, citation schema, and evaluation harness are explicitly called out as the three iterables that get sharpened Tue–Fri, not committed Monday.",
+      "sources": [
+        {
+          "title": "LangChain v1.0 posture + ADR discipline — the two non-negotiable Mon ADRs",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/1-DailyTopicOverview.md#6-langchain-v10-posture--adr-discipline--the-two-non-negotiable-mon-adrs-12-min",
+          "anchor": "6-langchain-v10-posture--adr-discipline--the-two-non-negotiable-mon-adrs-12-min"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q05",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "plan-day-discipline",
+        "spec-driven-dev"
+      ],
+      "stem": "True or False: W2 Monday's Plan Day opens with a §0 retrospective on last week's plan-spec, just like every subsequent Plan Day will.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True because the §0 retro pattern starts the first Plan Day of the programme, per D-029",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True because every Plan Day in the programme must open with a §0 reflection regardless of week",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True because W1 Fri produced a multi-day plan-spec that the W2 Mon retro reviews",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — §0 is deferred this week; the retro pattern formally starts W3 Mon per D-036, because W1 Fri was Day 1 of Phase 1, not a multi-day plan-spec worth retro-ing",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False because retros are never run on Mondays — they always run Friday EOD",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False because spec-driven dev was not yet adopted by the cohort on W2 Mon",
+          "correct": false
+        }
+      ],
+      "explanation": "The overview's opening callout is explicit: §0 is deferred this week. The retro pattern formally begins W3 Mon (per D-036) because W1 Fri was a single-day kick-off, not a multi-day plan-spec worth retroing. f1 is the correct justification; the other 'true' branch options each conflate D-029 (the Plan-Day pattern) with D-036 (the §0 retro) which is exactly the trap the callout warns about.",
+      "sources": [
+        {
+          "title": "Pre-session reading — RAG architecture & Scenario Design Planning (pre-Plan-Day)",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/1-DailyTopicOverview.md#pre-session-reading--rag-architecture--scenario-design-planning-pre-plan-day",
+          "anchor": "pre-session-reading--rag-architecture--scenario-design-planning-pre-plan-day"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q06",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "stakeholder-framing"
+      ],
+      "stem": "The stakeholder-demand-framing reading decomposes every stakeholder utterance into three layers. Which set names them correctly?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Headline ask, dollar value, deadline pressure",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "User persona, jobs-to-be-done, and feature wish-list",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Problem statement, success criterion, and budget ceiling",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The surface ask, the accountability anchor, and the disqualifier",
+          "correct": true
+        }
+      ],
+      "explanation": "§3.1 names the three layers explicitly: the surface ask (literal sentence), the accountability anchor (what the stakeholder is held accountable for), and the disqualifier (the unstated condition under which none of this ships). The reading flags the disqualifier as the most often missed and the most load-bearing layer.",
+      "sources": [
+        {
+          "title": "The stakeholder utterance is a signal, not a spec",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/2-stakeholder-demand-framing.md#31-the-stakeholder-utterance-is-a-signal-not-a-spec",
+          "anchor": "31-the-stakeholder-utterance-is-a-signal-not-a-spec"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q07",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "w6h-pattern",
+        "scope-envelope"
+      ],
+      "stem": "Among the six W6H scope-envelope questions, which one does the reading single out as the load-bearing question — the one that, if unanswerable, means the requirement is not yet scoped?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "How will we know it worked — what is the acceptance criterion plus the negative scenario?",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "When — what is the time-box and the demo moment?",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Who is the primary user and who is the accountable signer?",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Where does it run — what environments and what data sources?",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.2 calls out the sixth question — 'how will we know it worked', with a named negative scenario — as the load-bearing one. If you can't describe a specific input or state that must produce a defined failure response, the requirement is not yet scoped. 'Who' (A) names the accountable signer but isn't the load-bearing test.",
+      "sources": [
+        {
+          "title": "Translate to a six-question scope envelope",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/2-stakeholder-demand-framing.md#32-translate-to-a-six-question-scope-envelope",
+          "anchor": "32-translate-to-a-six-question-scope-envelope"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q08",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "moscow-prioritisation",
+        "scope-envelope"
+      ],
+      "stem": "According to the stakeholder-framing reading, what makes a MoSCoW table actually function as a scope envelope rather than a wishlist?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Every Must item must have an assigned engineer by name before the iteration starts",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "The Could column being collapsed into the Must column to maximise commitments",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "A populated Won't column — negative scope written down explicitly, with deferral target named",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "A signed approval from finance on the budget impact of each Should item",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.3 and the Best Practices section both make the point that the Won't column is what protects a team from scope drift — without it, MoSCoW is a wishlist. The Atlassian, Altexsoft, and IIBA guides referenced converge on this. Choice A is plausible-sounding project hygiene, but it isn't what the reading says makes the scope envelope work.",
+      "sources": [
+        {
+          "title": "MoSCoW and the explicit \"Won't\"",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/2-stakeholder-demand-framing.md#33-moscow-and-the-explicit-wont",
+          "anchor": "33-moscow-and-the-explicit-wont"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q09",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "stakeholder-framing"
+      ],
+      "stem": "True or False: The stakeholder-framing reading recommends under-promising so the team can over-deliver and exceed stakeholder expectations.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True — Tom Peters established this as the gold standard for trust-building in stakeholder relationships",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True — it's the safest way to handle ambiguous requirements when the scope envelope is incomplete",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True — modern PMI guidance explicitly endorses under-promise-over-deliver as the dominant pattern",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — the reading explicitly warns against under-promise-over-deliver; it conditions stakeholders to discount your commitments and the literature recommends honest scoping with explicit boundaries instead",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False because Tom Peters never advocated the pattern; it was invented by the PMI in 2020",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False because under-promising is only valid when the disqualifier is also under-promised",
+          "correct": false
+        }
+      ],
+      "explanation": "§2 of the stakeholder-framing reading is direct: under-promise-over-deliver is one of the two dominant anti-patterns, critiqued in Planview, PMI, and ProjectTimes. Honest scoping with explicit Won't boundaries is the recommended middle path. The 'true' justifications all paraphrase folk wisdom the reading is rebutting.",
+      "sources": [
+        {
+          "title": "Introduction",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/2-stakeholder-demand-framing.md#2-introduction",
+          "anchor": "2-introduction"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q10",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "accountability-inversion",
+        "citation-grounding"
+      ],
+      "stem": "Reading the CO's Monday ask through the accountability-inversion lens, what does the reading say the real requirement turns out to be?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The AI capability itself — the ability to generate citation-ready clauses on demand",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "The evidence trail — what the platform produces so the accountable signer can defend their signature in a downstream review",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "The cost projection — what the agency CIO needs to approve next year's contract option",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The deployment timeline — when grounding ships and when the audit cycle starts",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.5 (accountability inversion) plus §1 of the daily overview converge: the contracting officer carries personal accountability (FAR Subpart 1.602), so the platform's job is to produce the evidence trail that lets the human signer defend their signature. A is the tempting tech-first read; B is the framing-correct one.",
+      "sources": [
+        {
+          "title": "The accountability inversion",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/2-stakeholder-demand-framing.md#35-the-accountability-inversion",
+          "anchor": "35-the-accountability-inversion"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q11",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "scope-envelope"
+      ],
+      "stem": "In the fintech fraud-screening worked example, which item belongs in the explicit Won't column to honour the compliance officer's disqualifier?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Side-panel widget that highlights three most-anomalous transactions in the last 90 days",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Audit log of every highlight rendered, replayable for compliance review",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Adaptive learning from agent thumbs-up/thumbs-down feedback for iteration 2",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Auto-resolve disputes, auto-issue refunds, and auto-close cases — the agent always makes the call, never the system",
+          "correct": true
+        }
+      ],
+      "explanation": "§4 of the stakeholder-framing reading shows the worked Won't row: auto-resolve, auto-refund, and auto-close are explicitly forbidden because Reg E accountability stays with the human agent. Choice D is in the Could column (deferred), not the Won't column. The Won't is what addresses the compliance disqualifier head-on.",
+      "sources": [
+        {
+          "title": "Generic Implementation",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/2-stakeholder-demand-framing.md#4-generic-implementation",
+          "anchor": "4-generic-implementation"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q12",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "rag-architecture",
+        "chunking-strategies"
+      ],
+      "stem": "The RAG architecture overview reports a figure from the 2026 production-RAG literature about where failures originate. Which figure does the reading cite?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "About 80% of RAG failures trace to the ingestion and chunking layer, not to the language model itself",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "About 50% of RAG failures come from the embedding model being mis-sized for the corpus",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "About 30% of RAG failures result from vector-store index corruption during ingestion",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "About 65% of RAG failures stem from prompt-engineering mistakes at the generation step",
+          "correct": false
+        }
+      ],
+      "explanation": "§2 of the RAG architecture overview cites premai.io's 2026 guide for the 80%-of-failures-in-ingestion-and-chunking figure, and the chunking-strategies reading restates it. The other choices are plausible-sounding numbers about adjacent failure modes the reading does NOT endorse.",
+      "sources": [
+        {
+          "title": "Introduction",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/3-rag-architecture-overview.md#2-introduction",
+          "anchor": "2-introduction"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q13",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "six-design-dimensions",
+        "embedding-models"
+      ],
+      "stem": "The RAG overview describes the embedding-model dimension as 'hard to reverse.' What specifically does the reading give as the reason?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Embedding models are usually under closed-source vendor licences that forbid migration",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Embedding models become deprecated by their vendors every six months on a fixed cadence",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Re-indexing is expensive because vectors from model A and model B do not live in the same semantic space",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Changing the embedding model requires re-training the downstream generation LLM as well",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.2 (dimension 2) and the embedding-generation reading both make the point: vectors from different models are not interoperable, so model change means re-embed the whole corpus. Choice D is the most tempting wrong answer because it overstates the coupling between embeddings and the generator (which is actually independent).",
+      "sources": [
+        {
+          "title": "The six coupled design dimensions",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/3-rag-architecture-overview.md#32-the-six-coupled-design-dimensions",
+          "anchor": "32-the-six-coupled-design-dimensions"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q14",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "naive-vs-production-rag"
+      ],
+      "stem": "The RAG architecture overview contrasts naive RAG with production RAG. Which of the following appear in the production-RAG topology but NOT in the naive demo path? Select all that apply.",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Pre-filter (tenant, ACL, date range, document type)",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Hybrid retrieval with score fusion",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "User query embedding step",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Re-rank stage (cross-encoder or LLM-as-reranker)",
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": "Top-k vector search against the index",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.4 spells out the two pipelines. Naive RAG is query → embed → top-k → prompt → LLM. Production RAG adds query rewriting, pre-filtering, hybrid retrieval, re-ranking, parent-child context assembly, citation scaffolding, post-validation, and refusal logic. C (query embedding) and E (top-k search) appear in BOTH topologies, so they're not the discriminator.",
+      "sources": [
+        {
+          "title": "Naive RAG vs production RAG topology",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/3-rag-architecture-overview.md#34-naive-rag-vs-production-rag-topology",
+          "anchor": "34-naive-rag-vs-production-rag-topology"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q15",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "six-design-dimensions",
+        "rag-architecture"
+      ],
+      "stem": "Per the commit-this-Monday-vs-iterable table in the RAG architecture overview, which dimension is marked iterable (not committed Monday)?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Chunking strategy",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Retrieval mode (dense / hybrid)",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Embedding model",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Composition / orchestration framework",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.5 of the RAG overview marks four dimensions as commit-this-Monday (chunking, embedding model, vector store, composition framework) and three as iterables (retrieval mode → Tue; citation surface → Thu; evaluation pattern → Fri). Retrieval mode is iterable because once the store supports it, you can toggle per-query.",
+      "sources": [
+        {
+          "title": "Which decisions are commit-this-Monday vs iterable",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/3-rag-architecture-overview.md#35-which-decisions-are-commit-this-monday-vs-iterable",
+          "anchor": "35-which-decisions-are-commit-this-monday-vs-iterable"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q16",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "rag-architecture"
+      ],
+      "stem": "The RAG architecture overview reports a widely-cited 2026 industry benchmark for hybrid retrieval vs dense-only on enterprise document collections. What did the benchmark report?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Hybrid retrieval gives roughly +50% precision but halves recall on long-tail queries",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Hybrid retrieval reduces query latency by about 30% but slightly hurts recall",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Hybrid retrieval and dense-only perform within 1% of each other on most corpora",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Hybrid retrieval delivers roughly +17% recall over dense-only on enterprise corpora",
+          "correct": true
+        }
+      ],
+      "explanation": "§3.2 (dimension 4) cites axiscoretech.com's 2026 write-up reporting +17% recall for hybrid over dense-only on enterprise document collections. The trade-off the reading names is operational complexity, not latency or precision. Choices B and D invert or exaggerate the actual finding.",
+      "sources": [
+        {
+          "title": "The six coupled design dimensions",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/3-rag-architecture-overview.md#32-the-six-coupled-design-dimensions",
+          "anchor": "32-the-six-coupled-design-dimensions"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q17",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "six-design-dimensions"
+      ],
+      "stem": "True or False: Per the RAG architecture overview, the six design dimensions can be treated as an independent checklist where each one is decided in isolation from the others.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True because separation of concerns keeps the Plan-Day artefact tractable",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True because each dimension is owned by a different team member in a typical FDE pair",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True because the coupling between dimensions is empirically weak below a 10M-vector corpus",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — §3.3 shows the dimensions are tightly coupled; changing chunking changes what the embedding model is asked to represent, which constrains retrieval mode, which determines what the citation surface can prove, and so on",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False because dimension 6 (evaluation) is always decided last and rewrites everything before it",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False because LangChain v1.0 enforces a fixed dimension ordering at composition time",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.3 is explicit: a structural-chunking decision (dim 1) shrinks chunks, which constrains what the embedding model can represent (dim 2), which forces hybrid search (dim 4), which constrains the vector store (dim 3), which determines what parent-child the citation surface (dim 5) must return, which sets the grain at which evaluation (dim 6) must score. Decide one, you've constrained the others.",
+      "sources": [
+        {
+          "title": "Why the dimensions are coupled",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/3-rag-architecture-overview.md#33-why-the-dimensions-are-coupled",
+          "anchor": "33-why-the-dimensions-are-coupled"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q18",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "rag-architecture"
+      ],
+      "stem": "The RAG overview's index-time vs query-time framing surfaces an asymmetry. Which asymmetry does the reading specifically name?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Most runtime latency/cost is in the LLM call, but most quality is determined offline at index time",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Index-time can use better hardware than query-time because batch jobs are not latency-bound",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Index-time runs in a different cloud region than query-time for compliance reasons",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Index-time uses a different embedding model than query-time to save cost",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.1 of the RAG overview names the asymmetry precisely: runtime LLM-call dominates latency and cost, but most of the quality budget is spent offline at index time on chunking and embedding. This is the reason chunking dominates RAG failure modes — by the time you find the mistake, you've paid for the index. D inverts the index-time rule ('same model must embed both sides').",
+      "sources": [
+        {
+          "title": "The two-phase pipeline",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/3-rag-architecture-overview.md#31-the-two-phase-pipeline",
+          "anchor": "31-the-two-phase-pipeline"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q19",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "rag-architecture"
+      ],
+      "stem": "Which best practice does the RAG architecture overview identify as the 'single highest-ROI hallucination defence'?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Switching to a 3072-dimension embedding model so the vector space discriminates better between near-misses",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Doubling numCandidates on every query to maximise retrieval recall and ensure the chunk arrives",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Refuse on empty evidence — a system prompt that tells the model to say 'I don't have enough evidence' when retrieval is weak",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Adding a second LLM as a post-validator that fact-checks the first model's response",
+          "correct": false
+        }
+      ],
+      "explanation": "§6 (Best Practices) of the RAG overview names refusal-on-empty-evidence as the single highest-ROI hallucination defence — build it in, don't bolt it on. A second-LLM validator (D) is plausible but the reading positions it as additional safety, not the headline lever. B and C are unrelated to hallucination defence per se.",
+      "sources": [
+        {
+          "title": "Best Practices",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/3-rag-architecture-overview.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q20",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "chunking-strategies"
+      ],
+      "stem": "The chunking-strategies reading converges on four canonical chunking families. Which set names all four?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Sentence, paragraph, page, and document",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Fixed-size, semantic, structural/recursive, and parent-child (hierarchical)",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Static, dynamic, adaptive, and learned",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Lexical splitting, syntactic boundary detection, semantic clustering, and pragmatic discourse-level grouping",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.2 names the four canonical families explicitly: fixed-size (token windows), semantic (split on similarity drop), structural/recursive (split on document structure), and parent-child (small child chunks index, parent chunks generate). The other choices are plausible-sounding taxonomies from adjacent NLP fields the reading does not use.",
+      "sources": [
+        {
+          "title": "The four canonical chunking strategies",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/4-chunking-strategies-pre-vocabulary.md#32-the-four-canonical-chunking-strategies",
+          "anchor": "32-the-four-canonical-chunking-strategies"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q21",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "parent-child-chunking",
+        "chunking-strategies"
+      ],
+      "stem": "How does parent-child chunking resolve the precision-vs-context trade-off, per §3.3 of the chunking reading?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It indexes only the heading of each section and stores the body separately in a key-value store",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "It runs two embedding models in parallel and averages their outputs into one combined vector",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "It uses larger chunks at index time and smaller chunks at query time to balance the costs",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "It separates the unit of retrieval from the unit of generation: match on the small child, present the parent",
+          "correct": true
+        }
+      ],
+      "explanation": "§3.3 frames the trade-off (smaller chunks → higher retrieval precision; larger chunks → richer generation context) and §3.2 explains how parent-child resolves it: index the small child for precision, return the parent to the LLM for context. B is plausible-sounding but is not what the reading describes.",
+      "sources": [
+        {
+          "title": "The precision-vs-context trade-off",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/4-chunking-strategies-pre-vocabulary.md#33-the-precision-vs-context-trade-off",
+          "anchor": "33-the-precision-vs-context-trade-off"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q22",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "chunking-strategies"
+      ],
+      "stem": "The chunking reading names recursive structural chunking with overlap as a sensible 2026 default. What chunk size and overlap range does it cite?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "About 400–512 tokens with 10–20% overlap, with 85–90% recall reported at 400 tokens",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "About 2048 tokens with 5% overlap, citing recent enterprise benchmarks",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "About 128 tokens with no overlap, optimised for vector compression cost",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "About 1024 tokens with 50% overlap, mirroring the parent-chunk default",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.2 of the chunking reading cites recursive character splitting at 400–512 tokens with 10–20% overlap as the most commonly cited 2026 default, with Chroma-cited research showing 85–90% recall at 400 tokens. A and C are plausible adjacent numbers; D conflates the parent-chunk size with the recursive default.",
+      "sources": [
+        {
+          "title": "The four canonical chunking strategies",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/4-chunking-strategies-pre-vocabulary.md#32-the-four-canonical-chunking-strategies",
+          "anchor": "32-the-four-canonical-chunking-strategies"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q23",
+      "type": "multi-select",
+      "difficulty": "synthesis",
+      "topics": [
+        "chunking-strategies"
+      ],
+      "stem": "Per the chunking reading's Real-world Patterns section, which of the following failures are correctly attributable to bad chunking (and fixable by changing the chunking strategy)? Select all that apply.",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Radiology reports yielding ~60% recall with fixed-size 512-token chunks; recovered to ~85% by switching to structural chunking on section headers",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "An e-commerce per-review chunking pass producing diluted embeddings; fixed by moving to sentence-level child chunks with the full review as parent",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "A delivery-SOP corpus where fixed-size chunking shattered numbered-step sequences; fixed by structural chunking on step boundaries",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "An LLM hallucinating citations because the system prompt did not enforce 'cite or refuse'; fixed by adding refusal-on-empty-evidence",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "An embedding model giving low similarity scores on cross-language queries; fixed by switching to a multilingual embedding model",
+          "correct": false
+        }
+      ],
+      "explanation": "§5 (Real-world Patterns) of the chunking reading describes A, B, and C as chunking-attributable wins. D is a generation-side / refusal-policy failure (covered in the RAG overview §6 — best practices). E is a model-choice problem covered in the embedding-generation reading, not a chunking problem.",
+      "sources": [
+        {
+          "title": "Real-world Patterns",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/4-chunking-strategies-pre-vocabulary.md#5-real-world-patterns",
+          "anchor": "5-real-world-patterns"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q24",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "chunking-strategies"
+      ],
+      "stem": "The chunking reading argues that the chunk's metadata is the only filtering signal the retrieval layer has. What follows from this for a Plan-Day ADR?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The vector store should auto-derive metadata from chunk text via a second LLM pass at query time",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Metadata should be omitted from chunks because it bloats the vector and weakens semantic matching at retrieval",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Anything you want to filter on at query time must be captured at chunking time; metadata cannot be cheaply retro-fitted",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Metadata should be stored only on parent chunks because children inherit from their parent at lookup",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.1 and the Best Practices section both make the load-bearing point: capture metadata at chunking time, because you can't retro-fit it cheaply. Tenant, ACL, publication date, document type — all need to be on the chunk record. D is the plausible-runner-up but the reading actually says the opposite — children carry their own metadata even when retrieving via parent-child.",
+      "sources": [
+        {
+          "title": "What a chunk is, and what it gets used for",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/4-chunking-strategies-pre-vocabulary.md#31-what-a-chunk-is-and-what-it-gets-used-for",
+          "anchor": "31-what-a-chunk-is-and-what-it-gets-used-for"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q25",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "chunking-strategies"
+      ],
+      "stem": "True or False: Eyeballing chunks ('they look fine') is a sufficient way to validate that your chunking strategy is working.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True because experienced engineers can tell from a 30-minute review whether chunks are good",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True provided that chunk sizes cluster within ±15% of the target token count",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True because semantic chunkers always produce valid chunks by construction",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — Best Practices says to test chunking with a held-out QA set, not by reading chunks; eyeballing tells you they're 'fine', running retrieval against real questions tells you whether they're useful",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False because every chunk must be inspected individually before it can be embedded",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False because chunking decisions are exempt from validation per the spec-driven dev process",
+          "correct": false
+        }
+      ],
+      "explanation": "§6 (Best Practices) of the chunking reading is explicit: test with a held-out QA set, not by reading chunks. The reading frames eyeballing as misleading — chunks always 'look fine'; only a real retrieval probe tells you whether they're useful. The other false-branch options invert or fabricate process requirements.",
+      "sources": [
+        {
+          "title": "Best Practices",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/4-chunking-strategies-pre-vocabulary.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q26",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "chunking-strategies"
+      ],
+      "stem": "The chunking reading contrasts an API-reference corpus (Corpus A) with long-form analyst reports (Corpus B). What chunking strategy does it recommend for Corpus B?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Recursive structural chunking at function-boundary granularity, with no overlap needed",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Parent-child with paragraph-level children and section-level parents",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Fixed-size 256-token chunks with 0% overlap, optimised for embedding cost",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Semantic chunking with a similarity threshold of 0.95 to maximise topical homogeneity",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.5 of the chunking reading frames Corpus A (API reference) as recursive structural at the section boundary (no overlap) and Corpus B (analyst reports with cross-section references) as parent-child with overlap. The reason for overlap on B: transitional sentences like 'as we showed earlier' must be findable from both sides. A is the Corpus A answer applied to Corpus B — tempting if you skim the section.",
+      "sources": [
+        {
+          "title": "Two corpora, two right answers",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/4-chunking-strategies-pre-vocabulary.md#35-two-corpora-two-right-answers",
+          "anchor": "35-two-corpora-two-right-answers"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q27",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "embedding-models"
+      ],
+      "stem": "An embedding model is the bridge from text to vectors. According to the reading, what does an individual dimension of a learned embedding 'mean'?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Each dimension corresponds to a named linguistic feature (e.g., sentiment, formality, tense)",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Each dimension is a normalised probability over the model's vocabulary at that position",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Each dimension represents one document in the corpus, decided at training time",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Nothing in particular individually — meaning lives in the relationships between dimensions, distributed across the vector",
+          "correct": true
+        }
+      ],
+      "explanation": "§3.1 of the embedding reading flags this as the most common newcomer confusion: individual dimensions are not interpretable. The model decides what each dimension represents during training, producing a distributed representation. A is the plausible-runner-up — it sounds like how older feature-engineered NLP worked, but it isn't how learned embeddings work.",
+      "sources": [
+        {
+          "title": "What an embedding is, and what a dimension is not",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/5-embedding-generation-model-and-dimensionality.md#31-what-an-embedding-is-and-what-a-dimension-is-not",
+          "anchor": "31-what-an-embedding-is-and-what-a-dimension-is-not"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q28",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "matryoshka-mrl",
+        "embedding-dimensionality"
+      ],
+      "stem": "Matryoshka Representation Learning (MRL) changes the dimensionality conversation in what concrete way?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It lets you slice a prefix of the model's full-dimensionality output and still get a useful smaller embedding",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "It compresses embeddings by 50% through scalar quantisation applied during the forward pass",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "It uses multiple embedding models in parallel and concatenates their outputs into one super-vector",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "It re-trains the embedding model nightly on the previous day's queries to adapt to drift",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.3 of the embedding reading explains MRL: the model is trained so the first N dimensions form a useful self-contained smaller embedding. Slice the prefix, re-normalise, you have a 128/256/512-dim vector from the same 1024-dim model. The HuggingFace write-up reports 128-dim MRL often matches 512-dim standard. B mentions quantisation, which is paired with MRL for cost wins but is not MRL itself.",
+      "sources": [
+        {
+          "title": "Matryoshka Representation Learning (MRL)",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/5-embedding-generation-model-and-dimensionality.md#33-matryoshka-representation-learning-mrl",
+          "anchor": "33-matryoshka-representation-learning-mrl"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q29",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "embedding-dimensionality"
+      ],
+      "stem": "Per the dimensionality trade-off table in the embedding reading, what recall do 256-dim embeddings deliver relative to the 1024-dim baseline?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Roughly 60–65% of 1024-baseline recall, with 4× lower storage cost",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Roughly 80% of 1024-baseline recall, at 2× storage cost",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Roughly 96–97% of 1024-baseline recall, at 1× storage cost vs 4× for 1024",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Roughly equal recall, because MRL eliminates the dimensionality–recall trade-off entirely",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.4's trade-off table reports 256-dim at ~96–97% of the 1024 baseline at 1× storage, while 1024 sits at 4× storage cost. 512-dim is the 99% / 2× sweet spot. D overstates MRL — the reading repeatedly notes dimensionality still has real trade-offs even on MRL-aware models.",
+      "sources": [
+        {
+          "title": "The dimensionality trade-off table",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/5-embedding-generation-model-and-dimensionality.md#34-the-dimensionality-trade-off-table",
+          "anchor": "34-the-dimensionality-trade-off-table"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q30",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "embedding-models"
+      ],
+      "stem": "What does the embedding reading identify as the single most common embedding mistake on a team's first re-indexing exercise?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Forgetting to set the random seed during embedding generation, leading to non-deterministic results",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Mixing vectors from different models in the same index",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Embedding chunks in batches of 1 instead of 100, increasing per-token cost by ~10×",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Forgetting to apply Matryoshka truncation, causing storage cost to balloon",
+          "correct": false
+        }
+      ],
+      "explanation": "§6 (Best Practices) flags mixing vectors from different models as the single most common re-indexing mistake — vector spaces are not interoperable, so the index becomes incoherent. C and D are plausible operational concerns but are not what the reading singles out.",
+      "sources": [
+        {
+          "title": "Best Practices",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/5-embedding-generation-model-and-dimensionality.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q31",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "embedding-models"
+      ],
+      "stem": "True or False: You may safely index your corpus with model A and embed queries at runtime with model B as long as both models output the same dimensionality.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True because matching dimensionality is sufficient for the cosine similarity computation to be valid",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True provided both models were trained on broadly English data and use the same tokeniser",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True if you re-normalise both vectors to unit length before computing the similarity",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — the same model must embed both corpus and query because asymmetry breaks the geometry; vector spaces from different models are incoherent, and retrieval becomes random",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False because cosine similarity requires identical model weights, which can never happen between two models",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False unless model A and model B are both from the same vendor",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.5 of the embedding reading is direct: the same model must embed both corpus and query; asymmetry breaks the geometry. Matching dimensionality is necessary but not sufficient — the vector spaces are different, so distances are meaningless. Don't confuse this with passage/query mode separation, which uses the SAME model with different input prefixes.",
+      "sources": [
+        {
+          "title": "Index-time vs query-time embedding",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/5-embedding-generation-model-and-dimensionality.md#35-index-time-vs-query-time-embedding",
+          "anchor": "35-index-time-vs-query-time-embedding"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q32",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "embedding-models",
+        "adr-discipline"
+      ],
+      "stem": "The embedding reading recommends committing the embedding-model choice on Monday's ADR but deferring the dimensionality choice. Why does it draw the line there?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Because vendor pricing for embedding APIs changes weekly, making model choice a financial bet",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Because the Mon ADR template prohibits committing more than one parameter per decision record",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Because dimensionality has no measurable impact on cost or recall when storage tiers are properly configured",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "With MRL-aware models, dimensionality is a runtime parameter and can be tuned on held-out evaluation",
+          "correct": true
+        }
+      ],
+      "explanation": "§3.5 plus the Best Practices section make this explicit: model is the irreversible-ish lever (different vector spaces, re-embedding cost); dimensionality on MRL-aware models is a runtime tunable. The Mon ADR commits the model; dimensionality lives in held-out eval and can be sharpened W2 Tue–Fri.",
+      "sources": [
+        {
+          "title": "Best Practices",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/5-embedding-generation-model-and-dimensionality.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q33",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "embedding-dimensionality",
+        "bedrock-titan-embeddings"
+      ],
+      "stem": "Per the daily overview, the training repo's default embedding model is Bedrock Titan Embeddings v2. What dimensionality and truncation modes does the overview list?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "1024-dim default, with 512 and 256 truncations supported for cost/latency trade-offs",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "768-dim default, with truncation to 384 or 192 supported",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "1536-dim default, with no truncation supported (full-dimensionality only)",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "3072-dim default, with arbitrary truncation supported on any prefix length",
+          "correct": false
+        }
+      ],
+      "explanation": "§4 of the daily overview names Titan v2 as 1024-dim default, with 512 and 256 truncations. Max input 8,192 tokens, ~$0.00002/1K input tokens. Choice D is technically true of some MRL models but is not the Titan v2 specification the overview cites.",
+      "sources": [
+        {
+          "title": "Embedding generation — model and dimensionality choice",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/1-DailyTopicOverview.md#4-embedding-generation--model-and-dimensionality-choice-10-min",
+          "anchor": "4-embedding-generation--model-and-dimensionality-choice-10-min"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q34",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "vectorsearch-aggregation",
+        "atlas-vector-search"
+      ],
+      "stem": "Per the Atlas Vector Search reading, what is the load-bearing rule about WHERE the `$vectorSearch` stage may appear in an aggregation pipeline?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It must be wrapped inside a `$facet` block so MongoDB can fan out the search in parallel across shards",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "It must be the last stage of any aggregation so the results don't get re-processed downstream",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "It must be the first stage of any aggregation pipeline that uses it",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "It must appear immediately before a `$match` filter so the query planner can co-optimise the two stages",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.2 states the rule unambiguously: `$vectorSearch` must be the first stage and cannot appear inside `$lookup` sub-pipelines or `$facet`. The query engine enforces this — it is not a style guideline. D is a tempting variation because pre-filtering inside the stage IS load-bearing, but the placement rule itself is about being first.",
+      "sources": [
+        {
+          "title": "The $vectorSearch aggregation stage",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/6-mongodb-atlas-vector-search-as-rag-store.md#32-the-vectorsearch-aggregation-stage",
+          "anchor": "32-the-vectorsearch-aggregation-stage"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q35",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "multi-tenant-pre-filter",
+        "atlas-vector-search"
+      ],
+      "stem": "Why is putting a tenant filter in a downstream `$match` (after `$vectorSearch`) a correctness footgun rather than just a performance issue?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Because `$match` doesn't support equality predicates on string fields like `tenant_id` in aggregation context",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "`$vectorSearch` finds the globally-nearest neighbours across all tenants",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "MongoDB silently downgrades to exact nearest-neighbour when `$match` follows `$vectorSearch`, breaking the ANN guarantee",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Aggregation pipelines run `$match` before `$vectorSearch` at compile time, so the order in the source code is irrelevant",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.4 explains: the ANN search has already discarded the candidates that mattered when the post-`$match` runs, and the wrong pattern often produces results that LOOK fine — biased, partial, or cross-contaminated — which surfaces six months later in an audit. Pre-filter inside `$vectorSearch.filter` is the only correct pattern for tenant/ACL.",
+      "sources": [
+        {
+          "title": "Pre-filtering vs post-filtering — why this matters",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/6-mongodb-atlas-vector-search-as-rag-store.md#34-pre-filtering-vs-post-filtering--why-this-matters",
+          "anchor": "34-pre-filtering-vs-post-filtering--why-this-matters"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q36",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "numcandidates-tuning",
+        "atlas-vector-search"
+      ],
+      "stem": "Per the Atlas Vector Search reading, what is the widely-cited heuristic floor for `numCandidates` on an unfiltered query, and what happens when pre-filters are present?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "`numCandidates` is auto-tuned by Atlas based on the query embedding's magnitude; setting it manually is ignored",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "`numCandidates == limit` is sufficient; raising it gives diminishing returns on recall",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "`numCandidates >= 100 × limit` regardless of filtering, because HNSW graphs always require that ratio",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "`numCandidates >= 20 × limit` for ~90% recall, raised by 2–5× when pre-filters are present because the effective candidate pool shrinks",
+          "correct": true
+        }
+      ],
+      "explanation": "§3.5 and §3.2 both give the heuristic: 20× the limit for ~90% recall on unfiltered queries. When pre-filters are present the effective candidate pool shrinks, so the ANN must examine more nodes to find K acceptable ones — raise by 2–5×. The fraud-pattern real-world example raised from 20× to 60× to lift recall from 88% to 96%.",
+      "sources": [
+        {
+          "title": "numCandidates — the recall/latency knob",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/6-mongodb-atlas-vector-search-as-rag-store.md#35-numcandidates--the-recalllatency-knob",
+          "anchor": "35-numcandidates--the-recalllatency-knob"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q37",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "vector-index-definition",
+        "atlas-vector-search"
+      ],
+      "stem": "Which of the following statements about the Atlas vector-index definition are TRUE per the reading? Select all that apply.",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Dimensionality is fixed at index creation; changing embedding-model dimensionality means a new index",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Similarity metric (cosine, dotProduct, or euclidean) is part of the index definition, not a per-query parameter",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Filter fields must be declared explicitly as `filter`-type entries to be usable inside `$vectorSearch.filter`",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Every metadata field in the document is automatically filterable; the `filter`-type declaration is purely for documentation",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "Similarity metric can be changed per-query by passing an override in `$vectorSearch`",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.3 lays out the four index facts: dimensionality fixed at creation (A), similarity metric in the index (B), filter fields must be declared (C). D is the explicit anti-fact the reading warns about — fields NOT declared as filter-type cannot be used inside `filter`. E contradicts B.",
+      "sources": [
+        {
+          "title": "The vector index definition",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/6-mongodb-atlas-vector-search-as-rag-store.md#33-the-vector-index-definition",
+          "anchor": "33-the-vector-index-definition"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q38",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "atlas-vector-search",
+        "multi-tenant-pre-filter"
+      ],
+      "stem": "The B2B marketplace real-world pattern describes a defensive engineering response after a cross-tenant leak. What did the team do to prevent recurrence?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Wrap every `$vectorSearch` call in a thin helper that enforces `tenant_id` in the filter clause and rejects anything trying to filter by tenant in a later stage",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Switch to a single-tenant-per-collection model where every tenant owns its own MongoDB database",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Add a downstream `$match` stage as a belt-and-suspenders second filter after the vector search",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Mark all multi-tenant queries as 'unsafe' and route them through a separate non-vector keyword search",
+          "correct": false
+        }
+      ],
+      "explanation": "§5 (Real-world Patterns) describes the marketplace's response: a thin helper enforced the tenant filter at the right place AND rejected attempts to filter at the wrong place. C is the dangerous-looking distractor — adding a redundant downstream `$match` does nothing to recover candidates the ANN search already discarded; it's the original bug, doubled.",
+      "sources": [
+        {
+          "title": "Real-world Patterns",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/6-mongodb-atlas-vector-search-as-rag-store.md#5-real-world-patterns",
+          "anchor": "5-real-world-patterns"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q39",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "atlas-vector-search",
+        "citation-grounding"
+      ],
+      "stem": "Per the Atlas reading's Best Practices, what is the purpose of capturing `$meta: \"vectorSearchScore\"` in the projection?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It is required by Atlas to bill the query; omitting it causes the search to fail silently",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "It triggers a server-side cache so the next identical query is free",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "It enables refusal-on-low-confidence behaviour and is useful for debugging retrieval quality",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "It exposes the raw query embedding for downstream re-ranking by a cross-encoder model",
+          "correct": false
+        }
+      ],
+      "explanation": "§6 (Best Practices) and the e-commerce worked example both flag `$meta: \"vectorSearchScore\"` as the load-bearing projection field — it lets the application set a confidence floor below which the LLM refuses to answer, AND lets engineers diagnose retrieval quality. D is plausible-sounding but the score is post-retrieval, not the query embedding.",
+      "sources": [
+        {
+          "title": "Best Practices",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/6-mongodb-atlas-vector-search-as-rag-store.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q40",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "atlas-vector-search",
+        "vector-index-definition"
+      ],
+      "stem": "True or False: You can change a vector index's dimensionality from 1024 to 512 in place, without re-indexing, by issuing an ALTER-INDEX command in Atlas.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "True because Atlas supports online index reshape since 7.0 GA",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "True provided the new dimensionality is a prefix of the old via MRL",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "True because dimensionality is stored as metadata, not as part of the on-disk index structure",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "False — dimensionality is fixed at index creation; changing it (or the embedding model that drives it) requires creating a new index and re-embedding, which the reading flags as expensive",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "False because Atlas does not support 512-dim indexes at all — only 1024 and 3072 are valid",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "False because re-indexing requires manual approval from MongoDB support staff",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.3 of the Atlas reading and §4 of the daily overview both say the same thing: dimensionality is fixed at index creation. Plan for re-creation at every embedding-model change. The 'true' justifications fabricate Atlas features that don't exist. MRL truncation (t2) is a runtime operation done by the application before storing — not an in-place index reshape.",
+      "sources": [
+        {
+          "title": "The vector index definition",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/6-mongodb-atlas-vector-search-as-rag-store.md#33-the-vector-index-definition",
+          "anchor": "33-the-vector-index-definition"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q41",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "langchain-v1"
+      ],
+      "stem": "LangChain v1.0 made three deliberate architectural choices that break code written against pre-v1.0 tutorials. Which set names them correctly?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "All models must be wrapped in `BaseChatModel` before invocation; LCEL pipe syntax is mandatory for every retrieval chain; agents are not supported in v1.0 and must be deferred to a future major release",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "`Chain` class moved to `langchain-classic`; LCEL pipe de-emphasised as foundational; `create_agent` becomes the canonical agent entry point",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "RAG must use LangGraph directly; embedding models must be self-hosted; tool-calling requires JSON schema",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Python 3.12 is required; sync APIs are removed; all calls become async-only",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.1 of the LangChain reading names the three: Chain class removed from main package, LCEL de-emphasised, `create_agent` as the canonical entry point. The deeper shift the reading mentions is that LangGraph now sits underneath as the runtime substrate — but that's an architectural framing, not one of the three v1.0 breaking choices.",
+      "sources": [
+        {
+          "title": "What changed in LangChain v1.0",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/7-langchain-v1-posture-and-adr-discipline.md#31-what-changed-in-langchain-v10",
+          "anchor": "31-what-changed-in-langchain-v10"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q42",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "langchain-v1"
+      ],
+      "stem": "A teammate's PR includes `chain = retriever | model` and `result = chain.run(question)`. Which v1.0 review feedback is correct?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The `.run()` is fine; only the pipe needs to be replaced with `.stream()` for v1.0 compatibility",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "The pipe line is fine in v1.0 — only the `.run()` call needs to be replaced with `.invoke()` because LCEL's `|` operator is still officially endorsed by v1.0 docs as the primary composition pattern for retrieval chains",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Both lines are fine in v1.0; the pipe is required syntax and `.run()` is the canonical invocation",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Both lines are flagged: `.run()` belongs to the removed `Chain` class hierarchy, and the `|` pipe pattern is no longer positioned as foundational in v1.0 docs — refactor to plain Python function calls",
+          "correct": true
+        }
+      ],
+      "explanation": "§3.1 and §3.2 of the LangChain reading: `Chain.run()` is the removed pre-v1.0 pattern; the `|` pipe is de-emphasised. The v1.0 idiom is plain-Python composition — `retrieved = retriever.invoke(q); response = model.invoke(build_prompt(q, retrieved))`. B is the tempting half-right answer because `.invoke()` IS the v1.0 call surface, but the pipe still needs to go too.",
+      "sources": [
+        {
+          "title": "v10-compatible composition without Chain or LCEL pipes",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/7-langchain-v1-posture-and-adr-discipline.md#32-v10-compatible-composition-without-chain-or-lcel-pipes",
+          "anchor": "32-v10-compatible-composition-without-chain-or-lcel-pipes"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q43",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "adr-discipline"
+      ],
+      "stem": "Which set lists the FIVE canonical sections of a Michael-Nygard-style ADR?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Title, Status, Context, Decision, Consequences",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Title, Author, Date, Body, References",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Title, Problem, Solution, Risk, Owner",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Goal, Approach, Constraints, Validation, Sign-off",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.3 of the LangChain/ADR reading lists the five Nygard sections: Title, Status, Context, Decision, Consequences — with the widely-adopted sixth section being Alternatives Considered. The other choices are plausible-sounding doc templates from adjacent domains (PRDs, RFCs) that are not the canonical Nygard format.",
+      "sources": [
+        {
+          "title": "The Michael Nygard ADR template",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/7-langchain-v1-posture-and-adr-discipline.md#33-the-michael-nygard-adr-template",
+          "anchor": "33-the-michael-nygard-adr-template"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q44",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "adr-discipline"
+      ],
+      "stem": "Per §3.4 of the LangChain reading, what heuristic does the reading offer for deciding whether a decision deserves an ADR?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "If the decision changes any line of production code, write an ADR",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "If the decision was made by a senior engineer, write an ADR; junior-engineer decisions go in code comments",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "If reversing it would require bringing three people into a meeting, write an ADR",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "If the decision involves more than $10k of recurring infrastructure cost, write an ADR",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.4 gives exactly that heuristic: if reversing would require bringing three people into a meeting, write an ADR. The reading also lists the bar — would a future engineer plausibly want to know WHY, and would reconstructing it cost effort? Variable naming and single-run hyperparameters belong in code comments, not ADRs.",
+      "sources": [
+        {
+          "title": "What makes a decision deserve an ADR",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/7-langchain-v1-posture-and-adr-discipline.md#34-what-makes-a-decision-deserve-an-adr",
+          "anchor": "34-what-makes-a-decision-deserve-an-adr"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q45",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "adr-discipline"
+      ],
+      "stem": "Per §3.4, which of the following decisions are described as ADR-worthy in the reading? Select all that apply.",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Choice of vector store",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Choice of embedding model",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Multi-tenancy boundary policy",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Library version pin within a major version (e.g., bumping a patch release)",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "Variable naming convention for a single function",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.4 names ADR-worthy as: vector store, embedding model, orchestration framework, multi-tenancy boundary, refusal-on-low-confidence vs always-answer, and cloud provider for managed AI services. Variable naming (E) and library version pins within a major (D) are explicitly called out as belonging in code comments or PR descriptions, not ADRs.",
+      "sources": [
+        {
+          "title": "What makes a decision deserve an ADR",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/7-langchain-v1-posture-and-adr-discipline.md#34-what-makes-a-decision-deserve-an-adr",
+          "anchor": "34-what-makes-a-decision-deserve-an-adr"
+        }
+      ]
+    },
+    {
+      "id": "W02-Mon-Q46",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "spec-driven-dev",
+        "plan-day-discipline"
+      ],
+      "stem": "How does the LangChain reading say spec-driven development keeps ADRs honest across iterations?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "By auto-generating ADR diffs from git commit messages so the catalogue updates itself",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Through a four-phase loop (specify → plan → task → implement) practised iteratively, with a §0 retrospective closing each iteration that reaffirms, supersedes, or marks ADRs stale",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "By requiring every ADR to be re-approved every 30 days or auto-archived as expired",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "By embedding ADRs as YAML frontmatter on every source file so they live next to the code they govern",
+          "correct": false
+        }
+      ],
+      "explanation": "§3.5 frames spec-driven dev as a four-phase iterative loop with a §0 retrospective closing each iteration — that's what keeps ADRs honest. The logistics carrier real-world example shows the practice: after six iterations, a 14-ADR catalogue any engineer can read in 90 minutes. B and D are plausible automation ideas but not what the reading describes.",
+      "sources": [
+        {
+          "title": "Spec-driven dev — the discipline ADRs serve",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/1-Monday/7-langchain-v1-posture-and-adr-discipline.md#35-spec-driven-dev--the-discipline-adrs-serve",
+          "anchor": "35-spec-driven-dev--the-discipline-adrs-serve"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1986 @@
+{
+  "meta": {
+    "week": "W02",
+    "day": "Friday",
+    "dayLabel": "Fri 5 Jun",
+    "topics": [
+      "adr-thresholds",
+      "answer-relevance",
+      "bias-mitigation",
+      "block-vs-report",
+      "calibration",
+      "chain-of-thought",
+      "chunking",
+      "citation-discipline",
+      "context-precision",
+      "context-recall",
+      "cross-dimension-drift",
+      "curation-discipline",
+      "debt-item-12",
+      "eval-harness",
+      "eval-as-test-fixture",
+      "faithfulness",
+      "flat-file-vs-hosted",
+      "github-actions",
+      "hitl",
+      "indirect-injection",
+      "iterative-loops",
+      "judge-cost",
+      "langsmith-deferral",
+      "layered-fix-order",
+      "live-defense",
+      "llm-as-judge",
+      "mcq-logistics",
+      "metric-to-layer",
+      "non-determinism",
+      "owasp-llm01",
+      "parent-child-indexing",
+      "plan-retrospective",
+      "pr-comment",
+      "probe-shape",
+      "ragas-dimensions",
+      "regression-threshold",
+      "rubric-anchors",
+      "rubric-capture",
+      "scenario-alternatives",
+      "security-probes",
+      "self-preference-bias",
+      "what-got-dropped"
+    ],
+    "sourceCount": 7,
+    "questionCount": 45,
+    "generated": "2026-05-27",
+    "typeMix": {
+      "mcq": 34,
+      "multi-select": 5,
+      "tf-justified": 6
+    }
+  },
+  "questions": [
+    {
+      "id": "W02-Fri-Q01",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "eval-harness",
+        "mcq-logistics"
+      ],
+      "stem": "According to Friday's pre-session overview, Friday is three things stacked. Which of these is the AM activity?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Building a RAG eval harness from scratch against PR #47",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "The first Live Defense of the programme, one defender per pair for 10 minutes",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The first standard two-tier W2 MCQ — senior plus entry, 30 minutes open-book",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The §0 retrospective on the W2 Monday plan-spec using the week's lived evidence",
+          "correct": false
+        }
+      ],
+      "explanation": "The overview explicitly stacks Friday: AM = build the harness against PR #47; PM 14:00 = first Live Defense; PM 16:30 = first two-tier MCQ. The §0 plan retrospective happens W3 Monday, not Friday — that's the common distractor for skim-readers.",
+      "sources": [
+        {
+          "title": "Pre-session reading — RAG eval harness + Live Defense + W3 Mon preview",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/1-DailyTopicOverview.md#pre-session-reading--rag-eval-harness--live-defense--w3-mon-preview",
+          "anchor": "pre-session-reading--rag-eval-harness--live-defense--w3-mon-preview"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q02",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "eval-harness",
+        "curation-discipline"
+      ],
+      "stem": "PR #47 introduced a sub-paragraph → 512-token sliding window with 20% overlap and improved p95 latency on /rag/clause-search from 770ms to 540ms. Why does Friday's harness still gate the PR rather than just shipping it?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Latency wins on /rag/clause-search always need a separate ADR with vendor sign-off before they merge, regardless of any quality signal that the PR comment reports on the dimensions",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Atlas Vector Search caches the previous chunking layout and the new 512-token chunks need a full re-index plus warm-up cycle before they can safely merge to main",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Two cohort members report it 'feels worse' on the FAR 15.208(a) / DFARS 215.371-4 timing case, so the harness settles the quality question with evidence rather than vibes",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "PR #47 was opened Wednesday evening and Karsun's merge-window policy on the acquire-gov repo forbids merging chunking changes within 48 hours of opening time",
+          "correct": false
+        }
+      ],
+      "explanation": "The overview is explicit: subjective 'feels worse' vs 'feels fine' splits the cohort, so the harness settles it with evidence. The harness exists precisely to convert latency-vs-quality arguments into a measured trade-off. The latency-ADR distractor is the plausible runner-up if you half-remember the ADR discipline.",
+      "sources": [
+        {
+          "title": "Eval-as-test-fixture — Item 12 partial close",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/1-DailyTopicOverview.md#3-eval-as-test-fixture--regression-framing--item-12-partial-close-12-min",
+          "anchor": "3-eval-as-test-fixture--regression-framing--item-12-partial-close-12-min"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q03",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "langsmith-deferral",
+        "eval-harness"
+      ],
+      "stem": "Friday's harness should be built directly on LangSmith because it's the standard production eval store and saves rework in W5.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "LangSmith's hosted dashboards make PR comments easier to render than rolling our own flat-file format",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "Adopting LangSmith now eliminates the need for a separate calibration step later",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "LangSmith is the only platform that supports the four RAGAS-style dimensions out of the box",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "Per D-031 LangSmith production tracing is deferred to W5; Friday is flat-file plus GitHub Actions on purpose, and the discipline of writing the QA set before the system is the muscle memory W3 inherits",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "LangSmith does not support GitHub Actions integration, so it cannot be used as a PR-gate eval store",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "Hosted eval platforms are blocked by Karsun's security review and cannot be adopted this programme",
+          "correct": false
+        }
+      ],
+      "explanation": "The overview names D-031 explicitly: LangSmith is intentionally deferred to W5. Friday's flat-file plus GHA harness is a discipline-building choice, not a tooling limitation. The 'doesn't support GHA' branch is wrong on the facts; the 'security review' branch is fabricated.",
+      "sources": [
+        {
+          "title": "Building a RAG eval harness from scratch — flat-file qa.jsonl",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/1-DailyTopicOverview.md#1-building-a-rag-eval-harness-from-scratch--flat-file-qajsonl-12-min",
+          "anchor": "1-building-a-rag-eval-harness-from-scratch--flat-file-qajsonl-12-min"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q04",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "debt-item-12",
+        "github-actions"
+      ],
+      "stem": "Friday's `.github/workflows/rag-eval.yml` is described as a partial close of which deliberate brownfield-debt item in the acquire-gov repo?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Item 10 — multi-tenant boundary leak in solicitation-service",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Item 12 — the repo's `.github/workflows/lint.yml` ships with `disabled: true`",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Item 8 — missing OIDC trust policy for GitHub Actions to AWS",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Item 6 — AWS SDK v1 calls in the api-gateway service",
+          "correct": false
+        }
+      ],
+      "explanation": "The overview names Item 12 explicitly: the lint workflow ships disabled, and Friday's rag-eval workflow is the first CI to actually run in the repo. The close is partial — the broader lint stays disabled until W4 modernization. Item 10 is the Wed multi-tenant fixture; that's the plausible runner-up if you confuse 'eval' with 'tenant boundary'.",
+      "sources": [
+        {
+          "title": "Eval-as-test-fixture — Item 12 partial close",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/1-DailyTopicOverview.md#3-eval-as-test-fixture--regression-framing--item-12-partial-close-12-min",
+          "anchor": "3-eval-as-test-fixture--regression-framing--item-12-partial-close-12-min"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q05",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "hitl",
+        "scenario-alternatives",
+        "live-defense"
+      ],
+      "stem": "Which of the following are W2 Friday-specific events listed in the daily overview? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "First Live Defense of the programme — one learner per pair, 10 minutes, defending a W02 scenario-alternative ADR",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "First standard two-tier W2 MCQ at 16:30 — 10 senior-tier and 10 entry-tier, 30 minutes, open-book",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Three pair retros plus one cohort retro using `templates/weekly-retro.md`",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "The first multi-agent + LangGraph + HITL #5 implementation flow",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "Wiring HITL #7 (AIOps auto-remediation authority) into the AI orchestrator",
+          "correct": false
+        }
+      ],
+      "explanation": "Friday stacks Live Defense, the two-tier MCQ, and EOD retros — all named in the overview. Multi-agent/LangGraph/HITL #5 is W3 Wed-Fri material; HITL #7 is W5 Wed. Selecting either D or E means you have pulled in the next week's preview as if it were Friday's deliverable.",
+      "sources": [
+        {
+          "title": "W3 Mon Plan Day preview + Live Defense + MCQ logistics",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/1-DailyTopicOverview.md#6-w3-mon-plan-day-preview--live-defense--mcq-logistics-10-min",
+          "anchor": "6-w3-mon-plan-day-preview--live-defense--mcq-logistics-10-min"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q06",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "eval-harness",
+        "flat-file-vs-hosted"
+      ],
+      "stem": "According to the harness reading, what is the minimum-viable RAG eval harness?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A managed dashboard with run history, judge versioning, and dataset management features",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "A LangChain LCEL pipeline composing the retriever, reranker, and grader with `|` operators",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "A relational database of QA pairs plus a scheduled nightly job that writes scores to a Slack channel",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "A flat-file JSONL dataset, a runner that calls the system under test, a grader, and a results writer",
+          "correct": true
+        }
+      ],
+      "explanation": "Section 2 of the harness reading defines the minimum viable harness as exactly four parts — JSONL dataset, runner, grader, results writer — all files in the repo, no platform. The LCEL pipe distractor is explicitly the known-bad pattern called out by the `langchain-lcel-pipe` blocklist entry.",
+      "sources": [
+        {
+          "title": "Building a RAG eval harness from scratch — Introduction",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/2-building-a-rag-eval-harness-from-scratch.md#2-introduction",
+          "anchor": "2-introduction"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q07",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "curation-discipline",
+        "eval-harness"
+      ],
+      "stem": "A teammate proposes seeding `qa.jsonl` by asking Claude to generate 100 representative FAR Part 15 questions. Per the harness reading's curation rule, what's the right response?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Refuse: fabricated rows encode the model's existing biases and the harness becomes a self-fulfilling prophecy; pull real Q&A from FedBizOpps logs, SBA archives, or GAO bid-protest decisions with provenance",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Accept the generated rows since synthetic seeding has become the standard 2026 way to bootstrap a 250+ row harness when expert curators aren't immediately available to write rows",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Accept but downgrade the rows' difficulty tag to `easy` so they don't gate merges",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Accept the rows only if the generation temperature was set to 0 to ensure determinism",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.3 names this as the single highest-leverage governance choice: never fabricate rows. The overview also names the real sources (FedBizOpps, SBA, GAO bid-protest). The 'downgrade difficulty' runner-up is tempting because it sounds like a compromise — but the rule is about provenance, not difficulty.",
+      "sources": [
+        {
+          "title": "The curation rule",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/2-building-a-rag-eval-harness-from-scratch.md#33-the-curation-rule",
+          "anchor": "33-the-curation-rule"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q08",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "eval-harness",
+        "curation-discipline"
+      ],
+      "stem": "The harness reading names five fields the smallest useful QA row carries. Which field catches 'retrieved from the wrong corpus' failure modes that pure semantic similarity scores miss?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "`expected_chunks` — IDs of the corpus chunks that should be retrieved",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "`metadata` — provenance for the row itself",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "`corpus_sources_expected` — which corpora are expected to contribute",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "`ground_truth_answer` — the canonical answer a domain expert would accept",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.1 is explicit: `corpus_sources_expected` is the field that catches wrong-corpus retrieval. `expected_chunks` catches the related but distinct failure of right-corpus-wrong-chunk; that's the plausible runner-up. Both fields exist for a reason — the question is which one catches *this* failure mode.",
+      "sources": [
+        {
+          "title": "Anatomy of a QA row",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/2-building-a-rag-eval-harness-from-scratch.md#31-anatomy-of-a-qa-row",
+          "anchor": "31-anatomy-of-a-qa-row"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q09",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "flat-file-vs-hosted",
+        "eval-harness"
+      ],
+      "stem": "Per the harness reading, at what threshold does flat-file JSONL stop being sufficient and graduation to a hosted platform make sense?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "When the QA set passes 100 rows, since at that size git diffs become unreadable regardless of contributor count or whether the harness handles any production-traffic eval samples",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "When any of three thresholds is hit: QA set exceeds ~500 rows, more than three contributors editing concurrently, or eval needs to run against production traffic samples",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "When the team adopts LangChain, since LCEL pipelines require a managed eval store",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "When the harness needs to run against more than one model family in parallel",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.2 lists exactly three graduation triggers: ~500 rows, >3 concurrent contributors, or production-traffic eval. Below all three, flat-file is the right answer. The '100 rows' runner-up is plausibly close but the threshold is ~500 — half-remembering 'a few hundred' lands here.",
+      "sources": [
+        {
+          "title": "Flat-file vs. hosted",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/2-building-a-rag-eval-harness-from-scratch.md#32-flat-file-vs-hosted",
+          "anchor": "32-flat-file-vs-hosted"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q10",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "curation-discipline",
+        "eval-harness"
+      ],
+      "stem": "The harness reading lists signals that should add rows to the QA set (with curator review). Which of these qualify? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A production failure surfaced by a user — if the failure mode isn't represented, add a row",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "A near-miss caught by a sibling check (pin-test or smoke test) where the failure mode generalises",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "A new corpus or new document type arriving in the system — at least one row per new document class",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "A drop in the production model's perplexity score over a 24-hour window",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "Any PR that touches the prompts directory — auto-add one row per changed prompt",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.4 names exactly three signals: production failures, generalisable near-misses, and new corpus/document types. The compounding effect is the point — every row is earned by real evidence. The 'perplexity drop' and 'auto-add per prompt change' distractors describe automated bloat, the opposite of curated growth.",
+      "sources": [
+        {
+          "title": "Growth strategy",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/2-building-a-rag-eval-harness-from-scratch.md#34-growth-strategy",
+          "anchor": "34-growth-strategy"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q11",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "eval-harness",
+        "curation-discipline"
+      ],
+      "stem": "A new pair is setting up the harness and asks where unverified rows should live. Per the reading, what's the right split and what's the consequence?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Keep everything in `qa.jsonl`; tag unverified rows with `verified: false` so the runner can filter them at scoring time",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Move unverified rows into a hosted platform like LangSmith for triage outside the repo",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Delete unverified rows immediately — they pollute the gradient of the eval signal",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Quarantine unverified rows in a separate `qa-unverified.jsonl` so they don't gate merges",
+          "correct": true
+        }
+      ],
+      "explanation": "Section 3.3 prescribes the split exactly: verified rows in the main file gate merges; unverified rows in `qa-unverified.jsonl` do not. The 'tag with verified:false' runner-up looks reasonable but the reading explicitly puts them in a separate file — keeping the gate clean is the point, not adding a filter.",
+      "sources": [
+        {
+          "title": "The curation rule",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/2-building-a-rag-eval-harness-from-scratch.md#33-the-curation-rule",
+          "anchor": "33-the-curation-rule"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q12",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "eval-harness",
+        "flat-file-vs-hosted"
+      ],
+      "stem": "Mature shops that have adopted a hosted eval platform usually retire the flat-file harness entirely because the platform supersedes it.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "Hosted platforms provide all the governance properties of a flat-file harness, so retiring the JSONL is the natural cleanup",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "Flat-file JSONL cannot represent the per-row metadata that hosted platforms expose, forcing migration",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "Audit-grade evals require centralized run history that only hosted platforms provide",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "The reading says mature shops keep the flat-file harness around even after adopting a hosted platform — the JSONL is the reviewable authoring surface in git, the platform is the dashboard",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "Hosted platforms forbid mirror-deployments of the same QA set, so the flat-file must be deleted to avoid drift",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "Flat-file JSONL is the only format that supports the four RAGAS dimensions",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.2 explicitly says mature shops keep flat-file around for governance — a JSONL diff in git is reviewable in a way a platform UI isn't. The e-commerce real-world pattern (Section 5) demonstrates this: platform became the dashboard, JSONL stayed as source of truth. The wrong-branch distractors invent conflicts that aren't in the reading.",
+      "sources": [
+        {
+          "title": "Flat-file vs. hosted",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/2-building-a-rag-eval-harness-from-scratch.md#32-flat-file-vs-hosted",
+          "anchor": "32-flat-file-vs-hosted"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q13",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "llm-as-judge",
+        "ragas-dimensions"
+      ],
+      "stem": "Per the LLM-as-judge reading, what are the three structural problems an LLM judge carries?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Self-preference bias, rubric capture, and non-determinism",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Token cost, latency overhead, and rate limiting",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Prompt injection, citation hijack, and cross-tenant leak",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Chunk drift, embedding obsolescence, and reranker decay",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 1 (Learning Objectives) and Section 2 (Introduction) both enumerate exactly three structural problems: self-preference bias, rubric capture, non-determinism. The token-cost runner-up is real but is an operational concern, not a structural one; the security trio belongs to Friday's other reading.",
+      "sources": [
+        {
+          "title": "LLM-as-judge for retrieval eval — Introduction",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/3-llm-as-judge-for-retrieval-eval.md#2-introduction",
+          "anchor": "2-introduction"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q14",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "self-preference-bias",
+        "llm-as-judge"
+      ],
+      "stem": "Your team's system-under-test uses Claude Sonnet for answering RAG queries. Per the LLM-as-judge reading, what is the recommended starting-harness mitigation for self-preference bias?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Use Claude Sonnet to judge Claude Sonnet, with temperature dropped to 0 to ensure deterministic scoring and lower judge cost since the system-under-test model is already loaded in the Bedrock cache",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Always run a three-judge ensemble across three families and aggregate by majority vote",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Use a different model family (GPT or Gemini) — or if you must stay in the family, use a smaller model like Haiku judging Sonnet, since the size difference partially neutralises the stylistic match",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Use a fine-tuned classifier head on top of Sonnet to eliminate family-level bias",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.2 is explicit: different family first; if you must share, smaller model in the family (Haiku judging Sonnet) is the partial fix. The three-judge ensemble is the higher-stakes graduation pattern — the reading says single-judge-different-family is sufficient for a starting harness, ensemble is what you graduate to.",
+      "sources": [
+        {
+          "title": "Self-preference bias",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/3-llm-as-judge-for-retrieval-eval.md#32-self-preference-bias",
+          "anchor": "32-self-preference-bias"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q15",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "rubric-capture",
+        "chain-of-thought"
+      ],
+      "stem": "Why does the LLM-as-judge reading insist on per-band rubric criteria plus a chain-of-thought instruction rather than a freeform 'rate faithfulness from 0 to 1' prompt?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Chain-of-thought reduces total token cost compared to freeform scoring",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "A vague rubric forces the judge to invent its own definition, and different runs invent different definitions; per-band criteria plus chain-of-thought force the judge to work step by step and produce an auditable justification",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Per-band rubrics are a Bedrock-specific service requirement that Anthropic models on Bedrock won't score without throwing a validation exception at the response-format layer of the inference API",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Freeform prompts cannot return JSON, which the GHA workflow needs for parsing",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.3 names the mechanism: vague rubrics force the judge to invent definitions per run, which drifts. Per-band criteria pin the definition; chain-of-thought forces stepwise reasoning and gives an audit trail. Chain-of-thought *adds* tokens — the reading says it's worth the tokens, not that it saves them.",
+      "sources": [
+        {
+          "title": "Rubric capture",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/3-llm-as-judge-for-retrieval-eval.md#33-rubric-capture",
+          "anchor": "33-rubric-capture"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q16",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "non-determinism",
+        "llm-as-judge"
+      ],
+      "stem": "After running the judge N=3 times with seeded sampling on a given QA row, you observe stddev = 0.12 on faithfulness. Per the reading, what does this signal?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The system under test is non-deterministic and needs a temperature-zero rerun",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Three runs is too few — increase to N=10 until stddev stabilises",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The retrieval layer is returning different chunks across runs and needs a fixed seed",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The rubric is too vague — tighten it; stddev > 0.05 on any dimension is the threshold",
+          "correct": true
+        }
+      ],
+      "explanation": "Section 3.4 names the threshold precisely: stddev > ~0.05 on any dimension means the rubric is too vague and should be tightened. The 'increase N' runner-up is tempting because more samples sounds like better statistics — but the fix is in the prompt, not the sample size.",
+      "sources": [
+        {
+          "title": "Non-determinism",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/3-llm-as-judge-for-retrieval-eval.md#34-non-determinism",
+          "anchor": "34-non-determinism"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q17",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "calibration",
+        "llm-as-judge"
+      ],
+      "stem": "The cohort calibrates the v1 judge prompt against the 5 rows the instructor pre-scored Wednesday evening. Mean absolute disagreement comes in at 0.13. What does the daily overview say to do?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Refuse to ship and iterate the prompt; disagreement > 0.1 on average means the judge prompt is broken",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Ship the prompt — 0.13 is within the noise floor for early-stage judges",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Adjust the instructor's hand-scored values to match the judge — instructor scores are pre-calibration",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Switch to a frontier-tier judge model — Haiku is too small to hit calibration",
+          "correct": false
+        }
+      ],
+      "explanation": "The overview is explicit: 'Refuse to ship a judge prompt that disagrees with instructor scoring by more than 0.1 on average.' The 'within noise floor' distractor is the rationalisation the reading warns against; adjusting the human-scored gold set defeats the purpose of calibration.",
+      "sources": [
+        {
+          "title": "LLM-as-judge for retrieval eval — bias and calibration",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/1-DailyTopicOverview.md#2-llm-as-judge-for-retrieval-eval--bias-and-calibration-12-min",
+          "anchor": "2-llm-as-judge-for-retrieval-eval--bias-and-calibration-12-min"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q18",
+      "type": "multi-select",
+      "difficulty": "recall",
+      "topics": [
+        "ragas-dimensions",
+        "faithfulness",
+        "context-recall",
+        "context-precision",
+        "answer-relevance"
+      ],
+      "stem": "Which of the following are the four RAGAS-style dimensions Friday's harness scores on each QA row? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Faithfulness — do the answer's claims appear in the retrieved chunks?",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Context recall — of the expected chunks, how many were retrieved?",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Context precision — of the retrieved chunks, how many are relevant?",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Answer relevance — does the answer address the query?",
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": "Perplexity — how predictable was the answer given the retrieved context?",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.6 of the judge reading enumerates exactly four dimensions: faithfulness, context recall, context precision, answer relevance. Perplexity is a generic language-model metric, not a RAG-eval dimension — it's the plausible runner-up if you reach for traditional NLP metrics.",
+      "sources": [
+        {
+          "title": "The four dimensions",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/3-llm-as-judge-for-retrieval-eval.md#36-the-four-dimensions",
+          "anchor": "36-the-four-dimensions"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q19",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "ragas-dimensions",
+        "faithfulness"
+      ],
+      "stem": "Faithfulness alone is sufficient to ship a RAG eval harness — the other three RAGAS dimensions are nice-to-have.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "Faithfulness aggregates the other three dimensions implicitly via the grounding check",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "Hallucination is the only customer-visible failure mode in RAG",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "Context-recall and answer-relevance are encoded in the retrieval layer and don't need explicit scoring",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "Faithfulness alone misses context-recall (the system did not retrieve the right chunks) and answer-relevance (the system answered a different question than asked) failure modes; the `ragas-faithfulness-only` blocklist entry and the Live Defense rubric both probe this",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "Faithfulness is computationally equivalent to BLEU and inherits the same weaknesses",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "Faithfulness scoring requires a frontier judge model that exceeds the W2 budget",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.6 explicitly names the `ragas-faithfulness-only` blocklist entry and the failure modes it misses. The overview's Known-bad-pattern section also flags any source advocating faithfulness-only. The wrong-branch distractors invent fake equivalences (BLEU, budget) that aren't in the reading.",
+      "sources": [
+        {
+          "title": "The four dimensions",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/3-llm-as-judge-for-retrieval-eval.md#36-the-four-dimensions",
+          "anchor": "36-the-four-dimensions"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q20",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "judge-cost",
+        "llm-as-judge"
+      ],
+      "stem": "Per the judge reading, what cost ceiling for judge model spend should the team aim to stay under, and what does crossing it trigger?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Under 5% of production LLM cost; crossing it triggers a switch to a deterministic non-LLM grader",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Under 50% of production LLM cost; crossing it requires moving to LangSmith for managed cost control",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Under 10–15% of production LLM cost; if it creeps above 25%, distill the judge or downsample the eval set",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Under 1% of production LLM cost; otherwise the judge has consumed more budget than the system it grades",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 6 (Best Practices) states the ratio precisely: under 10–15% target, distill or downsample above 25%. The 1% and 50% distractors bracket the right answer plausibly; the deterministic-grader option misses that LLM-as-judge is the only viable option for grading open-ended generation.",
+      "sources": [
+        {
+          "title": "LLM-as-judge — Best Practices",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/3-llm-as-judge-for-retrieval-eval.md#6-best-practices",
+          "anchor": "6-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q21",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "calibration",
+        "llm-as-judge"
+      ],
+      "stem": "Per the calibration protocol, what does kappa dropping over time most likely indicate?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The judge model has been swapped out by the vendor; rebuild the harness",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Either the data distribution has shifted (new corpus, new query patterns) or the rubric has aged out — re-ground the rubric or refresh the gold set",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "The QA set has grown past the flat-file graduation threshold of ~500 rows; migrate to LangSmith or another hosted platform to restore calibration stability across the dimensions",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The system under test improved and the judge is now grading easier outputs",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.5 names exactly these two causes for kappa drift: data-distribution shift or rubric ageing. The education real-world pattern (Section 5) demonstrates this with a March 2026 K-12 vendor case. The 'system improved' runner-up is plausible-sounding but the reading says the *judge* is the broken piece when kappa drops, not the system.",
+      "sources": [
+        {
+          "title": "Calibration",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/3-llm-as-judge-for-retrieval-eval.md#35-calibration",
+          "anchor": "35-calibration"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q22",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "eval-as-test-fixture",
+        "pr-comment"
+      ],
+      "stem": "The eval-as-test-fixture reading contrasts two patterns. Which is the one that 'actually gates quality' in 2026 practice?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Eval-as-a-job — a scheduled nightly job writing scores to a dashboard or Slack channel",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Eval-on-deploy — the eval runs against a production traffic mirror after each deploy and any blocking-dimension regression triggers an automated rollback through the canary controller",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Eval-on-merge — the eval runs after merge to main and posts results to a release dashboard",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Eval-as-test-fixture — the eval runs on the PR, the result lands as a PR comment with a delta vs main, and the merge button is disabled if a blocking dimension regresses past threshold",
+          "correct": true
+        }
+      ],
+      "explanation": "Section 3.1 contrasts eval-as-a-job vs eval-as-test-fixture explicitly and lands on test-fixture as the 2026 consensus. The reading uses the code-coverage parallel: coverage was unused until it became sticky PR comments. The dashboard still has a place for trends — it's just no longer the gate.",
+      "sources": [
+        {
+          "title": "Eval-as-job vs. eval-as-test-fixture",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/4-eval-as-test-fixture-and-regression-framing.md#31-eval-as-job-vs-eval-as-test-fixture",
+          "anchor": "31-eval-as-job-vs-eval-as-test-fixture"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q23",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "regression-threshold",
+        "adr-thresholds"
+      ],
+      "stem": "Friday's harness blocks merges when faithfulness or context recall drops more than 5%. Per the reading, why 5% rather than 1% or 10%?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "1% blocks too many PRs that drifted within the harness's own noise floor (false-positives, engineers learn to ignore the gate); 10% lets real regressions slip through (false-negative); 5% is the defensible middle for a 50–200 row harness with a 2–3% per-row noise floor",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "5% is the RAGAS-library default and changing it requires a config override",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "5% matches the GitHub Actions default failure threshold for status checks",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "5% is the documented Bedrock Claude inference variance bound on the Sonnet judge family, so anything tighter would just measure inference noise and produce constant false-positive merge blocks across every PR",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.3 frames 5% as a justified ADR-grade trade-off between false-positive (gate dies, engineers ignore it) and false-negative (regressions ship under 'within tolerance'). The reading is explicit: 5% is not magic, it's the defensible default for early-stage harnesses; the RAGAS-default distractor is plausible but fabricated.",
+      "sources": [
+        {
+          "title": "The threshold",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/4-eval-as-test-fixture-and-regression-framing.md#33-the-threshold",
+          "anchor": "33-the-threshold"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q24",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "block-vs-report",
+        "eval-as-test-fixture"
+      ],
+      "stem": "Per the eval-as-test-fixture reading, which dimensions block merges and which report-only — and why?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Block on all four dimensions; reporting-only signals get ignored",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Block on context recall and context precision since both are retrieval-layer metrics; report-only on faithfulness and answer relevance since those are downstream prompt-layer concerns that fix faster",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Block on faithfulness (catches hallucination, highest-stakes) and context recall (catches retrieval coverage, most common silent regression); report-only on context precision (noisy on small QA sets) and answer relevance (usually a prompt issue, fix it but don't block)",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Block on whichever dimension regressed most this week; rotate weekly to avoid gate fatigue",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.4 names the split exactly. The rationale: block on dimensions that ship customer-visible failures, report on dimensions that fire false positives. The reading explicitly notes different products land different splits (a high-stakes medical assistant might block on all four), so 'always block all' isn't universally wrong — but it isn't Friday's pattern.",
+      "sources": [
+        {
+          "title": "Block vs. report-only",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/4-eval-as-test-fixture-and-regression-framing.md#34-block-vs-report-only",
+          "anchor": "34-block-vs-report-only"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q25",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "pr-comment",
+        "eval-as-test-fixture"
+      ],
+      "stem": "Per the reading's PR-comment discipline, how is the eval comment maintained as the PR branch evolves?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A new comment is appended on every push so the history is preserved inline",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "A single comment is re-edited on each push; comment stacking is noise and one comment reflects the current state of the branch",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "The comment is only posted on the first push; subsequent pushes only update the GitHub status check",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The comment lives in a separate `.eval-results.md` file in the repo, not as a GitHub PR comment",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.2 names this as a discipline point: re-edit one comment per PR, never append. Stacking comments is noise — the reviewer needs the current state, not the history. The 'status-check-only' runner-up is plausible because GHA status checks update on push, but the reading is explicit that the comment is part of the gate.",
+      "sources": [
+        {
+          "title": "The PR comment",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/4-eval-as-test-fixture-and-regression-framing.md#32-the-pr-comment",
+          "anchor": "32-the-pr-comment"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q26",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "debt-item-12",
+        "eval-as-test-fixture"
+      ],
+      "stem": "The harness reading describes 'brownfield CI and partial closure' as a real-codebase shape. What's the discipline that keeps partial closure from becoming permanent?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Re-enable all disabled workflows on the same day the eval workflow ships, even if they're still broken",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Switch from GHA to a different CI provider, since GHA encourages workflow disablement",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Delete the disabled workflows entirely so they can't be silently left disabled",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Track the disabled workflows as work items (in some teams, as audit findings) so the partial closure doesn't become permanent",
+          "correct": true
+        }
+      ],
+      "explanation": "Section 3.5 is explicit: track the disabled workflows as work items / audit findings. The overview reinforces this with the OIG-style finding via `POST /api/findings` on the acquire-gov repo. Deleting the workflows would lose the affordance that 'this needs to come back'; re-enabling broken workflows would just re-break CI.",
+      "sources": [
+        {
+          "title": "Brownfield CI and partial closure",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/4-eval-as-test-fixture-and-regression-framing.md#35-brownfield-ci-and-partial-closure",
+          "anchor": "35-brownfield-ci-and-partial-closure"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q27",
+      "type": "tf-justified",
+      "difficulty": "applied",
+      "topics": [
+        "github-actions",
+        "eval-as-test-fixture"
+      ],
+      "stem": "The baseline `main`-branch eval results should be regenerated on every PR run to ensure freshness.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "Stale baselines drift over time and produce misleading deltas, so regeneration is the safe default",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "GitHub Actions caches expire after 7 days, so the baseline must be regenerated weekly anyway",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "Regeneration on every PR is required for the four RAGAS dimensions to remain comparable",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "Section 4 names this explicitly: baseline is the main-branch results checked in at the last successful merge — regenerating on every PR would double the eval cost; the baseline updates on merge, not on PR",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "Baselines must be regenerated daily but not per-PR; that's the GHA scheduling default",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "Baselines are LangSmith-only artifacts and don't apply to flat-file harnesses",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 4's notes list say: baseline = main-branch results at last successful merge, not regenerated on every PR. That's the cost-discipline point. The wrong-branch distractors fabricate GHA cache timings and LangSmith requirements that aren't in the reading.",
+      "sources": [
+        {
+          "title": "Eval-as-test-fixture — Generic Implementation",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/4-eval-as-test-fixture-and-regression-framing.md#4-generic-implementation",
+          "anchor": "4-generic-implementation"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q28",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "regression-threshold",
+        "adr-thresholds"
+      ],
+      "stem": "Per the eval-as-test-fixture reading, what makes the 5% threshold an 'ADR-grade decision' rather than a magic number?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The rationale is committed alongside the code with explicit triggers for revisiting (e.g., 'revisit when QA set exceeds 200 rows or noise floor drops below 1%'); the trade-off between false-positive and false-negative is named, not buried",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "It's coded as a constant in `post_pr_comment.py` and changing it requires a full code review with two approvers plus a green run of the eval suite against the baseline before merging the threshold change",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The threshold has been independently audited by an OIG-equivalent reviewer",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "ADR-grade just means it requires a separate pull request — any threshold change qualifies",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.3 frames the ADR shape: rationale committed with the code, named revisit triggers, explicit false-positive vs false-negative trade-off. The 'separate PR' distractor catches a half-remembering of 'ADR = administrative process'. The reading wants the *thinking* captured, not just the code-review step.",
+      "sources": [
+        {
+          "title": "The threshold",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/4-eval-as-test-fixture-and-regression-framing.md#33-the-threshold",
+          "anchor": "33-the-threshold"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q29",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "iterative-loops",
+        "metric-to-layer"
+      ],
+      "stem": "Per the iterative-improvement-loops reading, why is 'change one variable at a time' non-negotiable when fixing a regressed dimension?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The 5% threshold only applies to single-variable changes; bundled changes use a different threshold (10% by Karsun convention) that loosens the merge gate to accommodate the larger change blast radius across dimensions",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "GitHub Actions can only run one workflow at a time per PR, so bundled changes serialize anyway",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Bundled changes (new embedding model, new chunking, new prompt) might lift the aggregate score, but you learn nothing about which change actually helped and the system becomes harder to maintain",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Bundled changes always regress at least one dimension, so they're unfixable",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 2 (Introduction) frames this as the experimental-science discipline: change one thing, measure, decide. The reading explicitly warns that bundled changes teach you nothing. The 'unfixable' runner-up is too absolute — bundled changes are just *opaque*, not impossible.",
+      "sources": [
+        {
+          "title": "Iterative improvement loops — Introduction",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/5-iterative-improvement-loops-eval-fix-re-eval.md#2-introduction",
+          "anchor": "2-introduction"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q30",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "metric-to-layer",
+        "iterative-loops"
+      ],
+      "stem": "Per the metric-to-layer mapping, context recall has regressed on a PR. What is the most likely system layer to investigate, and a candidate fix?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The prompt — tighten the grounding instruction to push the model toward the right chunks",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "The retrieval / chunking layer — try parent-child indexing or add a sparse BM25 leg, or increase top-K",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "The judge rubric — recall scores are an artifact of judge calibration, not the system",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The Bedrock model selection — swap Sonnet for Opus to recover recall",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.2 maps recall regressions to retrieval-coverage failures: chunking change (parent-child), retrieval mode (add sparse leg), or top-K increase. The 'prompt' runner-up is the trap the reading warns against — relevance lives in prompts, recall lives in retrieval. Model-swap is a high-cost intervention that doesn't address the root cause.",
+      "sources": [
+        {
+          "title": "Metric-to-layer mapping",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/5-iterative-improvement-loops-eval-fix-re-eval.md#32-metric-to-layer-mapping",
+          "anchor": "32-metric-to-layer-mapping"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q31",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "cross-dimension-drift",
+        "iterative-loops"
+      ],
+      "stem": "The reading describes cross-dimension drift with examples. Which example is consistent with the pattern it teaches?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Increasing top-K for context recall causes faithfulness to drop because the judge prompt is too short",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Adding a sparse BM25 leg for recall causes the answer to be longer — faithfulness drops because the model has less context",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Switching to a frontier model for answer relevance causes context recall to drop because the retrieval pipeline restarts",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Tightening the grounding prompt for faithfulness causes the model to refuse questions with valid partial answers — answer relevance drops",
+          "correct": true
+        }
+      ],
+      "explanation": "Section 3.3 lists this exact pair: tighten grounding → refuse partial answers → answer relevance drops. The other distractors invent causal chains that conflict with the reading — adding BM25 actually drops *precision*, not faithfulness; increasing top-K drops *answer relevance* (model wanders), not faithfulness.",
+      "sources": [
+        {
+          "title": "Cross-dimension drift",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/5-iterative-improvement-loops-eval-fix-re-eval.md#33-cross-dimension-drift",
+          "anchor": "33-cross-dimension-drift"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q32",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "parent-child-indexing",
+        "chunking"
+      ],
+      "stem": "PR #47's 512-token sliding window split DFARS 215.371-4 across two chunks: the first half ranked high but the timing exception lived in the second half. Per the reading, what's the candidate fix?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Parent-child indexing: index small chunks (e.g., 256 tokens) for retrieval, but pass larger parent chunks (e.g., 1024 tokens) to the LLM for generation",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Switch to 1024-token chunks across the board; bigger chunks always retrieve better",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Tighten the judge rubric so it gives partial credit when the right section is retrieved at all, even if the timing-exception detail itself lives in a different chunk that the retriever did not surface",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Lower the merge threshold from 5% to 17% so the PR can merge as-is",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.4 names parent-child indexing precisely: small chunks for retrieval (good semantic similarity), larger parent chunks for generation (enough context). The financial-RAG real-world pattern moved recall from ~0.53 to ~0.74 with this fix. The 'always bigger' distractor misses that smaller chunks index *better* for similarity; the threshold-lowering option defeats the gate.",
+      "sources": [
+        {
+          "title": "Parent-child indexing",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/5-iterative-improvement-loops-eval-fix-re-eval.md#34-parent-child-indexing",
+          "anchor": "34-parent-child-indexing"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q33",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "layered-fix-order",
+        "iterative-loops"
+      ],
+      "stem": "Per the layered fix order, which of these are layers to walk in priority order before tweaking the prompt? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Document extraction — is the source clean? OCR errors? table-extraction failures?",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Chunking — parent-child? overlap? section-aware boundaries?",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Retrieval — dense? sparse? hybrid? reranker?",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Judge rubric — per-band criteria? chain-of-thought?",
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": "Frontend rendering — markdown vs JSON output formatting?",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.5 lists exactly four layers in order: extraction → chunking → retrieval → generation. The prompt is the generation layer — last, not first. Judge rubric is an *eval* layer not a *system* layer; frontend rendering is downstream of the system entirely.",
+      "sources": [
+        {
+          "title": "The layered fix order",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/5-iterative-improvement-loops-eval-fix-re-eval.md#35-the-layered-fix-order",
+          "anchor": "35-the-layered-fix-order"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q34",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "cross-dimension-drift",
+        "iterative-loops"
+      ],
+      "stem": "A PR that lifts faithfulness 8% but silently regresses answer relevance 4% is a clear win and should merge.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "Faithfulness is the highest-stakes dimension, so an 8% lift dominates any small regression elsewhere",
+          "correct": false
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "Answer relevance is report-only, so a 4% drop is automatically tolerable",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "Net +4% improvement across dimensions is the standard merge threshold",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "The reading frames this as a 'shape-shift' not a win — non-blocking dimensions are the early-warning system for cross-dimension drift; the change has unintended consequences and the eval reports all four dimensions precisely so reviewers can see the shape, not just the headline",
+          "correct": true
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "GitHub Actions cannot post comments showing multi-dimension deltas, so the team would never see the relevance regression",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "Faithfulness scoring is non-deterministic enough that an 8% lift could be noise",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.3 calls this specific scenario a 'shape-shift', not a win. Reporting non-blocking dimensions is the mitigation precisely so this isn't silent. Best-practices section 6 also says: document trade-offs in the PR description when accepting a small regression — but accepting it requires conscious acknowledgment, not silence.",
+      "sources": [
+        {
+          "title": "Cross-dimension drift",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/5-iterative-improvement-loops-eval-fix-re-eval.md#33-cross-dimension-drift",
+          "anchor": "33-cross-dimension-drift"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q35",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "owasp-llm01",
+        "indirect-injection"
+      ],
+      "stem": "Per the security-eval extension reading, what distinguishes direct from indirect prompt injection?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Direct injection requires elevated privileges; indirect injection works with any user account",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Direct injection targets RAG; indirect injection targets agentic systems",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Direct injection is a user-crafted prompt that alters model behavior",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Direct injection uses natural language; indirect injection uses base64-encoded payloads",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.1 defines both: direct = user-crafted; indirect = malicious content riding in via retrieval. The reading notes indirect is the more dangerous case for RAG because retrieved content bypasses input filters. The 'privileges' and 'encoding' distractors mix in unrelated security concepts.",
+      "sources": [
+        {
+          "title": "OWASP LLM01 — direct vs. indirect injection",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/6-security-eval-extension-prompt-injection-probes.md#31-owasp-llm01--direct-vs-indirect-injection",
+          "anchor": "31-owasp-llm01--direct-vs-indirect-injection"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q36",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "security-probes",
+        "probe-shape"
+      ],
+      "stem": "A probe row for an indirect-injection attack in the RAG harness has `expected_behavior: refuse-or-escalate`. Why is this structurally different from a regular faithfulness row?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Probe rows don't need provenance metadata, since attacks aren't real user queries",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "The expected behavior is usually a refusal or escalation",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Probe rows always block merges; regular rows are report-only by default",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Probe rows use a frontier judge model; regular rows use Haiku",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.3 walks the probe shape: expected_behavior is often refusal, acceptable_responses is a list of safe outputs, failure_modes is the negative space. A faithfulness-style grader doesn't know what to do with refusal-as-success. The 'always block' runner-up is half-true (best-practices section 6 does say treat probe failures as blockers) but the structural difference is in the grading rubric, not the merge gate.",
+      "sources": [
+        {
+          "title": "The probe shape",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/6-security-eval-extension-prompt-injection-probes.md#33-the-probe-shape",
+          "anchor": "33-the-probe-shape"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q37",
+      "type": "multi-select",
+      "difficulty": "applied",
+      "topics": [
+        "security-probes",
+        "owasp-llm01"
+      ],
+      "stem": "Per the starter probe categories, which of these belong in a 3–5 probe minimum-viable RAG security set? (Select all that apply.)",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Instruction injection via retrieved chunk — does the model treat retrieved content as data or as instructions?",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Citation hijack — does the model verify citations or accept them at face value?",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Cross-tenant leak — does the retrieval boundary hold at the model layer, not just the database?",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Refusal probing — do refusals hold under socially-engineered phrasing?",
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": "Token-cost denial — does a single user query burn more than $1 of inference?",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.4 lists exactly these four minimum categories (plus an optional fifth: role confusion). Token-cost denial is a denial-of-service concern, not a prompt-injection probe — it belongs in a different security category entirely.",
+      "sources": [
+        {
+          "title": "Starter probe categories for a RAG system",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/6-security-eval-extension-prompt-injection-probes.md#34-starter-probe-categories-for-a-rag-system",
+          "anchor": "34-starter-probe-categories-for-a-rag-system"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q38",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "security-probes",
+        "non-determinism"
+      ],
+      "stem": "Per the security-eval reading's `grade_security_probe` function, when N=3 runs return [PASS, PASS, FAIL], what's the verdict and why?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "PASS — majority vote (2 of 3) wins",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Re-run until 3 consecutive verdicts agree",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "UNCLEAR — any split votes across N runs mark the row as needing human review before the PR can merge or be marked passing on the security-eval gate dimension",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "FAIL — any single FAIL across N runs treats the row as failed; security probes are not the place for averaging, a probe that occasionally bypasses is still a vulnerability",
+          "correct": true
+        }
+      ],
+      "explanation": "Section 4's code comments are explicit: any FAIL = failed row. The reading explains the rationale — averaging is fine for quality dimensions where stddev is noise, but security probes have a different shape: an occasional bypass is still an exploit. The majority-vote runner-up is the seductive answer if you generalize from the quality-eval pattern.",
+      "sources": [
+        {
+          "title": "Security-eval extension — Generic Implementation",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/6-security-eval-extension-prompt-injection-probes.md#4-generic-implementation",
+          "anchor": "4-generic-implementation"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q39",
+      "type": "tf-justified",
+      "difficulty": "synthesis",
+      "topics": [
+        "hitl",
+        "security-probes"
+      ],
+      "stem": "Wiring HITL escalation thresholds early in a RAG system pays a security dividend even before the formal OWASP LLM Top 10 work begins.",
+      "choices": [
+        {
+          "id": "t1",
+          "branch": "true",
+          "text": "A well-tuned HITL escalation threshold tends to score better on injection probes too — the threshold catches the same uncertainty signals an attacker is trying to exploit, so a model that escalates uncertain decisions to a human is structurally harder to exploit than one that confidently guesses",
+          "correct": true
+        },
+        {
+          "id": "t2",
+          "branch": "true",
+          "text": "HITL escalation eliminates the need for a separate probe suite entirely",
+          "correct": false
+        },
+        {
+          "id": "t3",
+          "branch": "true",
+          "text": "HITL escalation is the only OWASP-recommended mitigation for LLM01",
+          "correct": false
+        },
+        {
+          "id": "f1",
+          "branch": "false",
+          "text": "HITL is a UX pattern, not a security pattern, and conflating them produces confused architecture",
+          "correct": false
+        },
+        {
+          "id": "f2",
+          "branch": "false",
+          "text": "HITL escalations are blocked by FedRAMP moderate baseline controls",
+          "correct": false
+        },
+        {
+          "id": "f3",
+          "branch": "false",
+          "text": "Adding HITL increases attack surface by introducing a human-readable channel attackers can target",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.5 names this connection explicitly: same uncertainty signal that triggers HITL also catches injection patterns. The eliminate-probes runner-up overreaches — HITL is *one* mitigation, not a substitute. The wrong-branch distractors invent regulatory and architectural conflicts that aren't in the reading.",
+      "sources": [
+        {
+          "title": "The HITL connection",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/6-security-eval-extension-prompt-injection-probes.md#35-the-hitl-connection",
+          "anchor": "35-the-hitl-connection"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q40",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "security-probes",
+        "indirect-injection"
+      ],
+      "stem": "Per the reading, why is RAG architecture particularly exposed to indirect prompt injection?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "RAG explicitly trusts retrieved content to land in the model's context",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "RAG systems run on serverless platforms by default, which lack request-level isolation",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "RAG embeddings leak training data, which attackers can extract and replay",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "RAG requires public internet access to retrieve fresh chunks, exposing infrastructure",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.2 frames this precisely: the architecture trusts retrieved content. Email archives, ticket queues, forums, and any user-contributed sources are exposed surfaces. The serverless and embeddings-extraction distractors mix in unrelated attack patterns; RAG doesn't require public internet at all.",
+      "sources": [
+        {
+          "title": "Why RAG is the prime target",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/6-security-eval-extension-prompt-injection-probes.md#32-why-rag-is-the-prime-target",
+          "anchor": "32-why-rag-is-the-prime-target"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q41",
+      "type": "mcq",
+      "difficulty": "recall",
+      "topics": [
+        "plan-retrospective",
+        "what-got-dropped"
+      ],
+      "stem": "Per the W3 Mon Plan Day preview reading, which category in a plan retrospective is the 'load-bearing' one — the one most-often skipped that exposes planning skill?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "What the plan said — a literal re-read of the spec",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "What actually shipped — PR links and schedule",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "What got dropped from the plan",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "What carries forward into next week's plan",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.3 names this explicitly: 'what got dropped' is the load-bearing, most-skipped category. The three sub-cases (dropped correctly, dropped silently, dropped under pressure) are the diagnostic. Carry-forward is downstream of the drop analysis — it's the *output*, not the *exposure point*.",
+      "sources": [
+        {
+          "title": "What got dropped — the load-bearing category",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/7-w3-mon-plan-day-preview-and-live-defense-expectations.md#33-what-got-dropped--the-load-bearing-category",
+          "anchor": "33-what-got-dropped--the-load-bearing-category"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q42",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "plan-retrospective",
+        "what-got-dropped"
+      ],
+      "stem": "The reading describes three sub-cases for 'what got dropped'. A team realises Monday's scoped item was actually the wrong scope and consciously cuts it mid-week. Which sub-case applies?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Dropped silently — the team did not realise the item had been dropped until the §0 retrospective named it explicitly; either the plan-spec was decorative all week or the team wasn't honest about progress",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Dropped correctly — the team realised the scoped item wasn't the right scope; the plan over-promised; update the planning heuristic",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Dropped under pressure — the team knew the item was at risk and made a conscious trade-off",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Dropped silently — any scope cut without a written ADR counts as silent",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.3 distinguishes the three sub-cases. 'Dropped correctly' specifically names 'the scoped item was not the right scope' — that's the case here. 'Dropped under pressure' is the close runner-up — both are conscious, but 'pressure' implies a known-at-risk item being traded off, not a scope realization.",
+      "sources": [
+        {
+          "title": "What got dropped — the load-bearing category",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/7-w3-mon-plan-day-preview-and-live-defense-expectations.md#33-what-got-dropped--the-load-bearing-category",
+          "anchor": "33-what-got-dropped--the-load-bearing-category"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q43",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "live-defense",
+        "rubric-anchors"
+      ],
+      "stem": "Per the Live Defense reading, what is the 10-minute structure of a defender's slot?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "5 min opener, 3 min probes, 2 min closer",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "3 min opener, 4 min Q&A, 3 min closer with a live re-run of the eval harness",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "10 min defender monologue with no live probes — the examiner scores afterwards from the recording, returns scores in W3 Mon 1:1s, and the rubric weights articulation density across the full ten-minute window",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "2 min opener (decision + key trade-off + most important rejected alternative), 5–6 min instructor probes from the rubric, 2 min closer (what would change with hindsight)",
+          "correct": true
+        }
+      ],
+      "explanation": "Section 3.4 names the format precisely: 2 / 5–6 / 2 with a 5 min reset between defenders. The structure compresses what would otherwise be a 30-min conversation into a high-density signal pass — and disciplines both defender (no hand-waving) and examiner (rubric is the script).",
+      "sources": [
+        {
+          "title": "The live oral defense — structure",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/7-w3-mon-plan-day-preview-and-live-defense-expectations.md#34-the-live-oral-defense--structure",
+          "anchor": "34-the-live-oral-defense--structure"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q44",
+      "type": "mcq",
+      "difficulty": "applied",
+      "topics": [
+        "live-defense",
+        "citation-discipline"
+      ],
+      "stem": "What does 'citations as load-bearing, not decorative' mean in the Live Defense rubric, per the reading?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A defender who cannot produce the source for a claim under questioning loses points",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Defenders must include at least 10 citations in their opening statement",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "All citations must be from Anthropic-authored sources to count",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Citations should be footnoted in the ADR but never spoken aloud in the defense",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.5 frames it: the dimension catches 'I chose X because the blog post said so' defenders who can't produce the source on demand. The overview reinforces this — defenders who skip citations get scored on it. The '10 citations' distractor invents a quota that isn't in the reading.",
+      "sources": [
+        {
+          "title": "What the rubric weights",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/7-w3-mon-plan-day-preview-and-live-defense-expectations.md#35-what-the-rubric-weights",
+          "anchor": "35-what-the-rubric-weights"
+        }
+      ]
+    },
+    {
+      "id": "W02-Fri-Q45",
+      "type": "mcq",
+      "difficulty": "synthesis",
+      "topics": [
+        "rubric-anchors",
+        "bias-mitigation"
+      ],
+      "stem": "Per the reading's bias-and-calibration section, why are behavioral anchors at every band the load-bearing mitigation against rater bias?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Anchors automate the scoring so a single rater is sufficient, eliminating the need for multi-rater calibration",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Anchors are required by Auth0 audit policy for any scoring system tied to learner records",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Without anchors, raters cluster scores at 3 (central-tendency bias)",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Anchors compress the rubric into fewer bands, reducing scoring time per defender",
+          "correct": false
+        }
+      ],
+      "explanation": "Section 3.6 frames the mechanism: without anchors, raters cluster at 3 (the central-tendency-bias failure mode). Anchors give 5/5 a specific observable definition, which is the bias-mitigation tool. The 'automate single-rater' runner-up misses that anchors enable consistency *between* raters — they don't replace multi-rater calibration, they make it converge.",
+      "sources": [
+        {
+          "title": "Bias and calibration in oral defense",
+          "url": "https://github.com/KarsunFDE/content/blob/main/W02/pre-session/5-Friday/7-w3-mon-plan-day-preview-and-live-defense-expectations.md#36-bias-and-calibration-in-oral-defense",
+          "anchor": "36-bias-and-calibration-in-oral-defense"
+        }
+      ]
+    }
+  ]
+}
